@@ -1,6 +1,4 @@
-Custom-made widgets are placed in awesome/madwidgets
-
-# madwidgets/menupanel
+# menupanel
 
 This creates a panel that can be toggled temporarily to present buttons.
 
