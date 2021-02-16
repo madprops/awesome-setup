@@ -85,6 +85,11 @@ local mp_main = menupanel.create({
             hide_on_click = true,
         },
         {
+            name = "Apply Layout",
+            action = function() layoutsmenu() end,
+            hide_on_click = true,
+        },
+        {
             name = "Open Symbols Picker",
             action = function()
                 symbolsmenu()
@@ -153,6 +158,26 @@ local mp_confirm = menupanel.create({
             action = function() end,
             hide_on_click = true,
         }
+    }
+})
+
+local mp_layouts = menupanel.create({ 
+    placement = "bottom",
+    height = panel_height,
+    autoclose = true,
+    autoclose_delay = 5,
+    hide_button = true,
+    items = {
+        {
+            name = "Left / Right",
+            action = function() apply_layout("left_right") end,
+            hide_on_click = true,
+        },
+        {
+            name = "Up / Down",
+            action = function() apply_layout("up_down") end,
+            hide_on_click = true,
+        },
     }
 })
 
@@ -717,6 +742,10 @@ function symbolsmenu()
     mp_symbols.show()
 end
 
+function layoutsmenu()
+    mp_layouts.show()
+end
+
 function dropdown()
     awful.util.spawn("tilix --quake", false)
 end
@@ -813,6 +842,36 @@ end
 
 function msg(txt)
     naughty.notify({text = " "..txt.." "})
+end
+
+function apply_layout(mode)
+    if mode == "left_right" then
+        local counter = 1
+        for i, c in ipairs(awful.screen.focused().clients) do
+            if counter == 1 then
+                snap(c, "vertically", awful.placement.left)
+                counter = counter + 1
+            elseif counter == 2 then
+                snap(c, "vertically", awful.placement.right)
+                counter = counter + 1
+            end
+
+            if counter > 2 then return end
+        end
+    elseif mode == "up_down" then
+        local counter = 1
+        for i, c in ipairs(awful.screen.focused().clients) do
+            if counter == 1 then
+                snap(c, "horizontally", awful.placement.top)
+                counter = counter + 1
+            elseif counter == 2 then
+                snap(c, "horizontally", awful.placement.bottom)
+                counter = counter + 1
+            end
+    
+            if counter > 2 then return end
+        end
+    end
 end
 
 confirm_func = function() end
