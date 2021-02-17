@@ -87,10 +87,10 @@ local mp_main = menupanel.create({
     on_right_click = function()
         lockscreen()
     end,
-    on_wheel_down = function()
+    on_wheel_up = function()
         prev_tag()
     end,
-    on_wheel_up = function()
+    on_wheel_down = function()
         next_tag()
     end,
     items = {
@@ -281,8 +281,8 @@ awful.screen.connect_for_each_screen(function(s)
                                                 client.focus:toggle_tag(t)
                                             end
                                         end),
-            awful.button({ }, 4, function() next_tag() end),
-            awful.button({ }, 5, function() prev_tag() end),
+            awful.button({ }, 4, function() prev_tag() end),
+            awful.button({ }, 5, function() next_tag() end),
         }
     }
 
@@ -661,13 +661,13 @@ function string.starts(String,Start)
     return string.sub(String,1,string.len(Start))==Start
 end
 
-function next_tag()
+function prev_tag()
     awful.screen.focused().tags[
         math.max(1, awful.screen.focused().selected_tags[1].index - 1)
     ]:view_only()
 end
 
-function prev_tag()
+function next_tag()
     awful.screen.focused().tags[
         math.min(#awful.screen.focused().tags, awful.screen.focused().selected_tags[1].index + 1)
     ]:view_only()

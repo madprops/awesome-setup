@@ -24,10 +24,10 @@ local mp_main = menupanel.create({
     on_right_click = function()
         lockscreen()
     end,
-    on_wheel_down = function()
+    on_wheel_up = function()
         prev_tag()
     end,
-    on_wheel_up = function()
+    on_wheel_down = function()
         next_tag()
     end,
     items = {
