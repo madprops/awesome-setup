@@ -34,7 +34,7 @@ function prepare_button(widgt, args)
 end
 
 function menupanel.create(args)
-  local panel = awful.popup({
+  local instance = awful.popup({
     placement = args.placement,
     ontop = true,
     visible = false,
@@ -46,30 +46,30 @@ function menupanel.create(args)
     fg = "#aaaaaa",
   })
 
-  panel.args = args
+  instance.args = args
 
   -- Methods
 
-  function panel.show()
-    panel.screen = awful.screen.focused()
-    panel.visible = true
-    panel.stop_autoclose()
+  function instance.show()
+    instance.screen = awful.screen.focused()
+    instance.visible = true
+    instance.stop_autoclose()
   end
 
-  function panel.hide()
-    panel.visible = false
-    panel.stop_autoclose()
+  function instance.hide()
+    instance.visible = false
+    instance.stop_autoclose()
   end
 
-  function panel.toggle()
-    if panel.visible then
-      panel.hide()
+  function instance.toggle()
+    if instance.visible then
+      instance.hide()
     else
-      panel.show()
+      instance.show()
     end
   end
 
-  function panel.create_icon(c)
+  function instance.create_icon(c)
     local icon = wibox.widget{
       text = " "..c.." ",
       widget = wibox.widget.textbox,
@@ -77,11 +77,11 @@ function menupanel.create(args)
   
     icon:connect_signal("button::press", function(a, b, c, button, mods)
       if button == 1 then
-        panel.toggle()
+        icon.toggle()
       elseif button == 2 then
-          if args.on_middle_click ~= nil then
-            args.on_middle_click()
-          end
+        if args.on_middle_click ~= nil then
+          args.on_middle_click()
+        end
       elseif button == 3 then
         if args.on_right_click ~= nil then
           args.on_right_click()
@@ -95,26 +95,26 @@ function menupanel.create(args)
           args.on_wheel_down()
         end
       end
-    end)
+    end)   
 
     return icon
   end
 
-  function panel.start_autoclose()
-    if panel.args.autoclose then
-      panel.timeout = gears.timer {
-        timeout = panel.args.autoclose_delay,
+  function instance.start_autoclose()
+    if instance.args.autoclose then
+      instance.timeout = gears.timer {
+        timeout = instance.args.autoclose_delay,
         autostart = true,
         callback = function()
-          panel.hide()
+          instance.hide()
         end
       }
     end
   end
 
-  function panel.stop_autoclose()
-    if panel.timeout ~= nil then
-      panel.timeout:stop()
+  function instance.stop_autoclose()
+    if instance.timeout ~= nil then
+      instance.timeout:stop()
     end
   end
 
@@ -131,7 +131,7 @@ function menupanel.create(args)
   
     hide_button:connect_signal("button::press", function(a, b, c, button, mods)
       if button == 1 then
-        panel.toggle()
+        instance.toggle()
       end
     end)
   
@@ -151,7 +151,7 @@ function menupanel.create(args)
           item.action()
         end
         if item.hide_on_click == nil or item.hide_on_click then
-          panel.hide()
+          instance.hide()
         end
       end
     end)
@@ -161,14 +161,14 @@ function menupanel.create(args)
 
   -- Setup
 
-  panel:connect_signal("mouse::leave", function(a, b, c, button, mods)
-    if panel.visible then
-      panel.start_autoclose()
+  instance:connect_signal("mouse::leave", function(a, b, c, button, mods)
+    if instance.visible then
+      instance.start_autoclose()
     end
   end)
 
-  panel:connect_signal("mouse::enter", function(a, b, c, button, mods)
-    panel.stop_autoclose()
+  instance:connect_signal("mouse::enter", function(a, b, c, button, mods)
+    instance.stop_autoclose()
   end)
 
   local left = {
@@ -185,14 +185,14 @@ function menupanel.create(args)
     layout = wibox.layout.fixed.horizontal,
   }
 
-  panel:setup {
+  instance:setup {
     layout = wibox.layout.align.horizontal,
     left,
     middle,
     right,
   }
 
-  return panel
+  return instance
 end
 
 return menupanel

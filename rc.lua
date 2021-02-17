@@ -10,6 +10,7 @@ local menubar = require("menubar")
 --
 local menupanel = require("madwidgets/menupanel/menupanel")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
+local datetime = require("madwidgets/datetime/datetime")
 --
 
 local panel_height = 25
@@ -56,25 +57,6 @@ awful.layout.layouts = {
     awful.layout.suit.floating
 }
 
-mytextclock = awful.widget.textclock(" %a %b %d, %l:%M%P", 15)
-mytextclock:connect_signal("button::press", function(a, b, c, button, mods)
-    if button == 1 then
-        calendar()
-    end
-end)
-
-local myclock_t = awful.tooltip { }
-
-local myclock_t = awful.tooltip {
-    objects = { mytextclock },
-    timer_function = function()
-        local text = ""
-        text = text..os.date('%T\n%A %B %d %Y')
-        return text
-    end,
-    bg = color_1
-}
-
 local mp_autoclose_delay = 2
 
 local mp_main = menupanel.create({ 
@@ -88,7 +70,7 @@ local mp_main = menupanel.create({
         lockscreen()
     end,
     on_right_click = function()
-        launcher()
+        dropdown()
     end,
     on_wheel_up = function()
         prev_tag()
@@ -317,7 +299,17 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.widget.textbox("  "),
             volumecontrol.create(),
             wibox.widget.textbox("  "),
-            mytextclock,
+            datetime.create({
+                on_click = function()
+                    calendar()
+                end,
+                on_wheel_up = function()
+                    increase_volume()
+                end,
+                on_wheel_down = function()
+                    decrease_volume()
+                end
+            }),
             wibox.widget.textbox("  "),
         }
     else
@@ -418,11 +410,11 @@ globalkeys = gears.table.join(
     end), 
 
     awful.key({}, "XF86AudioRaiseVolume", function()
-        volumecontrol.change("increase")
+        increase_volume()
     end), 
 
     awful.key({}, "XF86AudioLowerVolume", function()
-        volumecontrol.change("decrease")
+        decrease_volume()
     end), 
 
     awful.key({modkey}, "Delete", function(c)
@@ -767,6 +759,14 @@ end
 
 function msg(txt)
     naughty.notify({text = " "..txt.." "})
+end
+
+function increase_volume()
+    volumecontrol.change("increase")
+end
+
+function decrease_volume()
+    volumecontrol.change("decrease")
 end
 
 function apply_layout(mode)
