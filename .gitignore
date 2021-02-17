@@ -3,4 +3,4 @@
 !.gitignore
 !rc.lua
 !/madwidgets/
-!/madwidgets/*
+!/madwidgets/**
