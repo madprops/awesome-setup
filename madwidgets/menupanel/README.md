@@ -21,8 +21,11 @@ local mp_main = menupanel.create({
     autoclose_delay = 5,
     hide_button = true,
     speak = false,
-    on_right_click = function()
+    on_middle_click = function()
         lockscreen()
+    end,
+    on_right_click = function()
+        launcher()
     end,
     on_wheel_up = function()
         prev_tag()
