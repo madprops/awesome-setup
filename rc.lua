@@ -84,6 +84,15 @@ local mp_main = menupanel.create({
     autoclose_delay = mp_autoclose_delay,
     hide_button = true,
     speak = false,
+    on_right_click = function()
+        lockscreen()
+    end,
+    on_wheel_down = function()
+        prev_tag()
+    end,
+    on_wheel_up = function()
+        next_tag()
+    end,
     items = {
         {
             name = "Launch an Application",

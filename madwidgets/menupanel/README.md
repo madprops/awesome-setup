@@ -21,6 +21,15 @@ local mp_main = menupanel.create({
     autoclose_delay = 5,
     hide_button = true,
     speak = false,
+    on_right_click = function()
+        lockscreen()
+    end,
+    on_wheel_down = function()
+        prev_tag()
+    end,
+    on_wheel_up = function()
+        next_tag()
+    end,
     items = {
         {
             name = "Launch an Application",
@@ -40,6 +49,8 @@ local mp_main = menupanel.create({
     }
 })
 ```
+
+All arguments are shown in the example above. It's not necessary to define all of them.
 
 You can use instance.create_icon("some text or character") to add a shortcut somewhere in the main panel:
 ```lua
