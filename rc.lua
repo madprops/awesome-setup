@@ -7,7 +7,11 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
-local menupanel = require("madwidgets/menupanel")
+--
+local menupanel = require("madwidgets/menupanel/menupanel")
+local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
+--
+
 local panel_height = 25
 local color_1 = "#3f3f3f"
 local color_white = "#ffffff"
@@ -71,11 +75,13 @@ local myclock_t = awful.tooltip {
     bg = color_1
 }
 
+local mp_autoclose_delay = 2
+
 local mp_main = menupanel.create({ 
     placement = "bottom",
     height = panel_height,
     autoclose = true,
-    autoclose_delay = 5,
+    autoclose_delay = mp_autoclose_delay,
     hide_button = true,
     speak = false,
     items = {
@@ -110,7 +116,7 @@ local mp_symbols = menupanel.create({
     placement = "bottom",
     height = panel_height,
     autoclose = true,
-    autoclose_delay = 5,
+    autoclose_delay = mp_autoclose_delay,
     hide_button = true,
     items = {
         {
@@ -145,7 +151,7 @@ local mp_confirm = menupanel.create({
     placement = "bottom",
     height = panel_height,
     autoclose = true,
-    autoclose_delay = 5,
+    autoclose_delay = mp_autoclose_delay,
     hide_button = true,
     items = {
         {
@@ -165,7 +171,7 @@ local mp_layouts = menupanel.create({
     placement = "bottom",
     height = panel_height,
     autoclose = true,
-    autoclose_delay = 5,
+    autoclose_delay = mp_autoclose_delay,
     hide_button = true,
     items = {
         {
@@ -289,38 +295,15 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     if s.index == 1 then
-        s.volume = wibox.widget {
-            markup = ' -- % ',
-            align  = 'center',
-            valign = 'center',
-            widget = wibox.widget.textbox
-        }
-
-        s.volume:connect_signal("button::press", function(a, b, c, button, mods)
-            if button == 1 then
-                max_volume()
-            elseif button == 2 then
-                min_volume()
-            end
-        end)
-
         local right_layout = wibox.layout.fixed.horizontal()
-
-        right_layout:connect_signal("button::press", function(a, b, c, button, mods)
-            if button == 4 then
-                change_volume("increase")      
-            elseif button == 5 then
-                change_volume("decrease")
-            end
-        end)
-
+        
         right = {
             layout = right_layout,
             wibox.widget.textbox("  "),
             wibox.widget.textbox("  "),
             wibox.widget.systray(),
             wibox.widget.textbox("  "),
-            s.volume,
+            volumecontrol.create(),
             wibox.widget.textbox("  "),
             mytextclock,
             wibox.widget.textbox("  "),
@@ -423,11 +406,11 @@ globalkeys = gears.table.join(
     end), 
 
     awful.key({}, "XF86AudioRaiseVolume", function()
-        change_volume("increase")
+        volumecontrol.change("increase")
     end), 
 
     awful.key({}, "XF86AudioLowerVolume", function()
-        change_volume("decrease")
+        volumecontrol.change("decrease")
     end), 
 
     awful.key({modkey}, "Delete", function(c)
@@ -766,76 +749,6 @@ function calendar()
     awful.util.spawn("osmo", false)
 end
 
-local top_volume = 115
-local bottom_volume = 25
-
-function change_volume(direction)
-    get_volume(function(vol)
-        if direction == "increase" then
-            if vol < top_volume then
-                vol = vol + 5
-                if vol > top_volume then
-                    vol = top_volume
-                end
-            end
-        elseif direction == "decrease" then
-            if vol > 0 then
-                vol = vol - 5
-                if vol < 0 then
-                    vol = 0
-                end
-            end
-        end
-            
-        awful.util.spawn_with_shell("pactl set-sink-volume @DEFAULT_SINK@ "..vol.."%", false) 
-        update_volume(vol)
-    end)
-end
-
-function max_volume()
-    get_volume(function(vol)
-        local newvol = 0
-
-        if vol == 100 then
-            newvol = top_volume
-        else
-            newvol = 100
-        end
-    
-        awful.util.spawn_with_shell("pactl set-sink-volume @DEFAULT_SINK@ "..newvol.."%", false)
-        update_volume(newvol)
-    end)
-end
-
-function min_volume()    
-    awful.util.spawn_with_shell("pactl set-sink-volume @DEFAULT_SINK@ "..bottom_volume.."%", false)
-    update_volume(bottom_volume)
-end
-
-function update_volume(vol)
-    local svol = vol
-
-    if vol < 100 then
-        svol = "0"..vol
-    end
-
-    if vol < 10 then
-        svol = "0"..svol
-    end
-
-    awful.screen.connect_for_each_screen(function(s)
-        if s.volume ~= nil then
-            s.volume.text = "Vol: "..svol.."%"
-        end
-    end)
-end
-
-function get_volume(f)
-    awful.spawn.easy_async_with_shell('pulsemixer --get-volume | grep -o "^\\w*\\b"', function(vol)
-        f(tonumber(vol))
-    end)
-end
-
 function typestring(txt)
     awful.util.spawn("xdotool type "..txt, false)
 end
@@ -931,4 +844,3 @@ awful.util.spawn_with_shell("pkill dubya.js; /home/yo/code/dubya/dubya.js", fals
 awful.util.spawn("xset m 0 0", false)
 awful.util.spawn("xset r rate 220 40", false)
 awful.util.spawn("setxkbmap -option caps:none", false)
-change_volume("update")
