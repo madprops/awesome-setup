@@ -77,7 +77,7 @@ function menupanel.create(args)
   
     icon:connect_signal("button::press", function(a, b, c, button, mods)
       if button == 1 then
-        icon.toggle()
+        instance.toggle()
       elseif button == 2 then
         if args.on_middle_click ~= nil then
           args.on_middle_click()
