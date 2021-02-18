@@ -6,7 +6,6 @@ local autoclose_delay = 2
 
 menupanels.main = menupanel.create({ 
   placement = "bottom",
-  height = beautiful.wibar_height,
   autoclose = true,
   autoclose_delay = autoclose_delay,
   hide_button = true,
@@ -53,7 +52,6 @@ menupanels.main = menupanel.create({
 
 menupanels.symbols = menupanel.create({ 
   placement = "bottom",
-  height = beautiful.wibar_height,
   autoclose = true,
   autoclose_delay = autoclose_delay,
   hide_button = true,
@@ -88,7 +86,6 @@ menupanels.symbols = menupanel.create({
 
 menupanels.confirm = menupanel.create({ 
   placement = "bottom",
-  height = beautiful.wibar_height,
   autoclose = true,
   autoclose_delay = autoclose_delay,
   hide_button = true,
@@ -108,7 +105,6 @@ menupanels.confirm = menupanel.create({
 
 menupanels.layouts = menupanel.create({ 
   placement = "bottom",
-  height = beautiful.wibar_height,
   autoclose = true,
   autoclose_delay = autoclose_delay,
   hide_button = true,

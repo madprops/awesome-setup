@@ -40,7 +40,7 @@ function menupanel.create(args)
     ontop = true,
     visible = false,
     border_width = 0,
-    minimum_height = args.height,
+    minimum_height = beautiful.wibar_height,
     minimum_width = awful.screen.focused().geometry.width,
     widget = wibox.widget.background,
     bg = beautiful.tasklist_bg_normal,
