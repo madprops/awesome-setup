@@ -1,8 +1,9 @@
+local beautiful = require("beautiful")
 local menupanel = require("madwidgets/menupanel/menupanel")
 
 local menupanels = {}
 local mp_autoclose_delay = 2
-local panel_height = 25
+local panel_height = beautiful.wibar_height
 
 menupanels.main = menupanel.create({ 
     placement = "bottom",

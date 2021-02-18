@@ -14,10 +14,6 @@ local bindings = require("modules/bindings")
 require("modules/autostart")
 --
 
-local panel_height = 25
-local color_1 = "#3f3f3f"
-local color_white = "#ffffff"
-
 if awesome.startup_errors then
   naughty.notify({
     preset = naughty.config.presets.critical,
@@ -49,6 +45,10 @@ local theme = beautiful.get()
 theme.font = "sans 11"
 beautiful.init(theme)
 
+local color_1 = "#3f3f3f"
+local color_white = "#ffffff"
+
+beautiful.wibar_height = 25
 beautiful.tasklist_bg_focus = color_1
 beautiful.tasklist_fg_focus = color_white
 beautiful.tasklist_bg_minimize = ""
@@ -120,8 +120,7 @@ awful.screen.connect_for_each_screen(function(s)
   s.mainpanel = awful.wibar({
     ontop = false,
     position = "bottom",
-    screen = s,
-    height = panel_height
+    screen = s
   })
 
   local left
