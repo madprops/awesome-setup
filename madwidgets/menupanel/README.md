@@ -74,7 +74,7 @@ You can manually show, hide, and toggle the menu with:
 
 It is able to speak out items if "speak" property is set to true. It uses espeak for this.
 
-## Theme Variables
+## Used Theme Variables
 
 >beautiful.tasklist_bg_normal
 
@@ -83,3 +83,5 @@ It is able to speak out items if "speak" property is set to true. It uses espeak
 >beautiful.tasklist_bg_focus
 
 >beautiful.tasklist_fg_focus
+
+>beautiful.wibar_height

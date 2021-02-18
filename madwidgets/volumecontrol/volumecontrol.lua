@@ -113,7 +113,7 @@ function volumecontrol.create(args)
 
   if update_timeout == nil then
     update_timeout = gears.timer {
-      timeout = 2,
+      timeout = 3,
       autostart = true,
       callback = function()
         volumecontrol.change("update")

@@ -74,3 +74,7 @@ volumecontrol.max_volume
 
 volumecontrol.steps
 >Default 5 (% - used in increase and decrease)
+
+## Notes
+
+It auto updates once, 3 seconds after starting awesome, to get the initial value.
