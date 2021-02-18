@@ -53,6 +53,13 @@ beautiful.init(theme)
 altkey = "Mod1"
 modkey = "Mod4"
 
+beautiful.taglist_bg_focus = color_1
+beautiful.tasklist_bg_focus = color_1
+beautiful.tasklist_bg_minimize = ""
+beautiful.notification_font = "Noto Sans 18px"
+beautiful.notification_icon_size = 100
+awful.mouse.snap.default_distance = 25
+
 awful.layout.layouts = {
     awful.layout.suit.floating
 }
@@ -769,13 +776,6 @@ end
 function exec_confirm()
     confirm_func()
 end
-
-beautiful.taglist_bg_focus = color_1
-beautiful.tasklist_bg_focus = color_1
-beautiful.tasklist_bg_minimize = ""
-beautiful.notification_font = "Noto Sans 18px"
-beautiful.notification_icon_size = 100
-awful.mouse.snap.default_distance = 25
 
 ruled.notification.connect_signal('request::rules', function()
     ruled.notification.append_rule {

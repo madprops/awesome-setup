@@ -37,9 +37,7 @@ function datetime.create(args)
       local text = ""
       text = text..os.date('%T\n%A %B %d %Y')
       return text
-    end,
-    bg = "#3f3f3f",
-    fg = "#ffffff"
+    end
   }  
 
   return instance
