@@ -2,14 +2,13 @@ local beautiful = require("beautiful")
 local menupanel = require("madwidgets/menupanel/menupanel")
 
 local menupanels = {}
-local mp_autoclose_delay = 2
-local panel_height = beautiful.wibar_height
+local autoclose_delay = 2
 
 menupanels.main = menupanel.create({ 
   placement = "bottom",
-  height = panel_height,
+  height = beautiful.wibar_height,
   autoclose = true,
-  autoclose_delay = mp_autoclose_delay,
+  autoclose_delay = autoclose_delay,
   hide_button = true,
   speak = false,
   on_middle_click = function()
@@ -54,9 +53,9 @@ menupanels.main = menupanel.create({
 
 menupanels.symbols = menupanel.create({ 
   placement = "bottom",
-  height = panel_height,
+  height = beautiful.wibar_height,
   autoclose = true,
-  autoclose_delay = mp_autoclose_delay,
+  autoclose_delay = autoclose_delay,
   hide_button = true,
   items = {
     {
@@ -89,9 +88,9 @@ menupanels.symbols = menupanel.create({
 
 menupanels.confirm = menupanel.create({ 
   placement = "bottom",
-  height = panel_height,
+  height = beautiful.wibar_height,
   autoclose = true,
-  autoclose_delay = mp_autoclose_delay,
+  autoclose_delay = autoclose_delay,
   hide_button = true,
   items = {
     {
@@ -109,9 +108,9 @@ menupanels.confirm = menupanel.create({
 
 menupanels.layouts = menupanel.create({ 
   placement = "bottom",
-  height = panel_height,
+  height = beautiful.wibar_height,
   autoclose = true,
-  autoclose_delay = mp_autoclose_delay,
+  autoclose_delay = autoclose_delay,
   hide_button = true,
   items = {
     {
