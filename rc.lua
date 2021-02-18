@@ -53,9 +53,10 @@ beautiful.init(theme)
 altkey = "Mod1"
 modkey = "Mod4"
 
-beautiful.taglist_bg_focus = color_1
 beautiful.tasklist_bg_focus = color_1
+beautiful.tasklist_fg_focus = color_white
 beautiful.tasklist_bg_minimize = ""
+beautiful.taglist_bg_focus = color_1
 beautiful.notification_font = "Noto Sans 18px"
 beautiful.notification_icon_size = 100
 awful.mouse.snap.default_distance = 25

@@ -2,6 +2,7 @@ local awful = require("awful")
 local wibox = require("wibox")
 local naughty = require("naughty")
 local gears = require("gears")
+local beautiful = require("beautiful")
 
 local menupanel = {}
 
@@ -20,8 +21,8 @@ function prepare_button(widgt, args)
   }
 
   button:connect_signal("mouse::enter", function(btn)
-    btn.fg = "#ffffff"
-    btn.bg = "#333333"
+    btn.bg = beautiful.tasklist_bg_focus
+    btn.fg = beautiful.tasklist_fg_focus
     if args.speak then speak(widgt.text) end
   end)
 
@@ -42,8 +43,8 @@ function menupanel.create(args)
     minimum_height = args.height,
     minimum_width = awful.screen.focused().geometry.width,
     widget = wibox.widget.background,
-    bg = "#222222",
-    fg = "#aaaaaa",
+    bg = beautiful.tasklist_bg_normal,
+    fg = beautiful.tasklist_fg_normal,
   })
 
   instance.args = args
