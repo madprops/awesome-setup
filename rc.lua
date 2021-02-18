@@ -639,23 +639,6 @@ client.connect_signal("manage", function(c)
     end
 end)
 
-function has_mod(mods)
-    for i, value in ipairs(mods) do
-        if value == modkey then
-            return true
-        end
-    end
-    return false
-end
-
-function trim(s)
-    return (s:gsub("^%s*(.-)%s*$", "%1"))
-end
-
-function string.starts(String,Start)
-    return string.sub(String,1,string.len(Start))==Start
-end
-
 function prev_tag()
     awful.screen.focused().tags[
         math.max(1, awful.screen.focused().selected_tags[1].index - 1)
@@ -675,20 +658,9 @@ function prev_client()
     end
 end
 
-function minimize(c)
-    c.minimized = not c.minimized
-end
-
 function maximize(c)
     focus(c)
     c.maximized = not c.maximized
-end
-
-function center(c)
-    awful.placement.align(c, {
-        position = "centered",
-        honor_workarea = true
-    })
 end
 
 function focus(c)
@@ -698,10 +670,6 @@ end
 
 function close(c)
     c:kill()
-end
-
-function beep()
-    awful.util.spawn("play -q -n synth 0.1 sin 880", false)
 end
 
 function snap(c, axis, position)
@@ -739,14 +707,6 @@ end
 
 function lockscreen()
     awful.util.spawn_with_shell("i3lock --color=000000")
-end
-
-function enable_mouse()
-    awful.util.spawn_with_shell('xinput --set-prop 10 "Device Enabled" "1"', false)
-end
-
-function disable_mouse()
-    awful.util.spawn_with_shell('xinput --set-prop 10 "Device Enabled" "0"', false)
 end
 
 function calendar()
@@ -808,14 +768,6 @@ end
 
 function exec_confirm()
     confirm_func()
-end
-
-function focus_on_last_in_history(s)
-    local c = awful.client.focus.history.get(s, 0)
-    if not (c == nil) then
-        client.focus = c
-        c:raise()
-    end
 end
 
 beautiful.taglist_bg_focus = color_1
