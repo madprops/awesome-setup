@@ -8,17 +8,14 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 --
-local menupanel = require("madwidgets/menupanel/menupanel")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local datetime = require("madwidgets/datetime/datetime")
+local bindings = require("modules/bindings")
 --
 
 local panel_height = 25
 local color_1 = "#3f3f3f"
 local color_white = "#ffffff"
-
--- https://github.com/blueyed/awesome-cyclefocus
-local cyclefocus = require("cyclefocus")
 
 if awesome.startup_errors then
     naughty.notify({
@@ -50,8 +47,6 @@ beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 local theme = beautiful.get()
 theme.font = "sans 11"
 beautiful.init(theme)
-altkey = "Mod1"
-modkey = "Mod4"
 
 beautiful.tasklist_bg_focus = color_1
 beautiful.tasklist_fg_focus = color_white
@@ -61,151 +56,11 @@ beautiful.notification_font = "Noto Sans 18px"
 beautiful.notification_icon_size = 100
 awful.mouse.snap.default_distance = 25
 
+local menupanels = require("modules/menupanels")
+
 awful.layout.layouts = {
     awful.layout.suit.floating
 }
-
-local mp_autoclose_delay = 2
-
-local mp_main = menupanel.create({ 
-    placement = "bottom",
-    height = panel_height,
-    autoclose = true,
-    autoclose_delay = mp_autoclose_delay,
-    hide_button = true,
-    speak = false,
-    on_middle_click = function()
-        lockscreen()
-    end,
-    on_right_click = function()
-        dropdown()
-    end,
-    on_wheel_up = function()
-        prev_tag()
-    end,
-    on_wheel_down = function()
-        next_tag()
-    end,
-    items = {
-        {
-            name = "Launch an Application",
-            action = function() launcher() end,
-            hide_on_click = true,
-        },
-        {
-            name = "Apply Layout",
-            action = function() layoutsmenu() end,
-            hide_on_click = true,
-        },
-        {
-            name = "Open Symbols Picker",
-            action = function()
-                symbolsmenu()
-            end,
-            hide_on_click = true,
-        },
-        {
-            name = "Restart Awesome",
-            action = function()
-                needs_confirm(awesome.restart)
-            end,
-            hide_on_click = true,
-        },
-    }
-})
-
-local mp_symbols = menupanel.create({ 
-    placement = "bottom",
-    height = panel_height,
-    autoclose = true,
-    autoclose_delay = mp_autoclose_delay,
-    hide_button = true,
-    items = {
-        {
-            name = "$",
-            action = function() typestring("$") end,
-            hide_on_click = false,
-        },
-        {
-            name = "%",
-            action = function() typestring("%") end,
-            hide_on_click = false,
-        },
-        {
-            name = "^",
-            action = function() typestring("^") end,
-            hide_on_click = false,
-        },
-        {
-            name = "&",
-            action = function() typestring("&") end,
-            hide_on_click = false,
-        },
-        {
-            name = "*",
-            action = function() typestring("*") end,
-            hide_on_click = false,
-        },
-    }
-})
-
-local mp_confirm = menupanel.create({ 
-    placement = "bottom",
-    height = panel_height,
-    autoclose = true,
-    autoclose_delay = mp_autoclose_delay,
-    hide_button = true,
-    items = {
-        {
-            name = "Confirm",
-            action = function() exec_confirm() end,
-            hide_on_click = true,
-        },
-        {
-            name = "Cancel",
-            action = function() end,
-            hide_on_click = true,
-        }
-    }
-})
-
-local mp_layouts = menupanel.create({ 
-    placement = "bottom",
-    height = panel_height,
-    autoclose = true,
-    autoclose_delay = mp_autoclose_delay,
-    hide_button = true,
-    items = {
-        {
-            name = "Left / Right",
-            action = function() apply_layout("left_right") end,
-            hide_on_click = true,
-        },
-        {
-            name = "Up / Down",
-            action = function() apply_layout("up_down") end,
-            hide_on_click = true,
-        },
-    }
-})
-
-local tasklist_buttons = gears.table.join(
-    awful.button({}, 1, function(c)
-        c:activate { context = "tasklist", action = "toggle_minimization" }
-    end), 
-
-    awful.button({}, 3, function(c)
-        maximize(c)
-    end), 
-
-    awful.button({modkey}, 4, function(c)
-        awful.client.swap.byidx(-1, c)
-    end), 
-
-    awful.button({modkey}, 5, function(c)
-        awful.client.swap.byidx(1, c)
-    end)
-)
 
 local function set_wallpaper(s)
     if beautiful.wallpaper then
@@ -234,7 +89,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     s.mytasklist = awful.widget.tasklist {
         screen = s,
-        buttons = tasklist_buttons,
+        buttons = bindings.tasklist_buttons,
         filter = function() return true end, 
         source = function()
             local result = {}
@@ -259,24 +114,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytaglist = awful.widget.taglist {
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
-        buttons = {
-            awful.button({ }, 1, function(t)
-                t:view_only()
-            end),
-            awful.button({ modkey }, 1, function(t)
-                                            if client.focus then
-                                                client.focus:move_to_tag(t)
-                                            end
-                                        end),
-            awful.button({ }, 3, awful.tag.viewtoggle),
-            awful.button({ modkey }, 3, function(t)
-                                            if client.focus then
-                                                client.focus:toggle_tag(t)
-                                            end
-                                        end),
-            awful.button({ }, 4, function() prev_tag() end),
-            awful.button({ }, 5, function() next_tag() end),
-        }
+        buttons = bindings.taglist_buttons
     }
 
     s.mainpanel = awful.wibar({
@@ -291,7 +129,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     left = {
         layout = wibox.layout.fixed.horizontal,
-        mp_main.create_icon("❇"),
+        menupanels.main.create_icon("❇"),
         s.mytaglist,
         wibox.widget.textbox("  "),
     }
@@ -334,193 +172,7 @@ awful.screen.connect_for_each_screen(function(s)
     }
 end)
 
-globalkeys = gears.table.join(
-    awful.key({modkey, "Control"}, "BackSpace", awesome.restart), 
-    awful.key({modkey, "Shift"}, "q", awesome.quit), 
-
-    awful.key {
-        modifiers = { modkey },
-        keygroup = "numrow",
-        on_press = function (index)
-            local screen = awful.screen.focused()
-            local tag = screen.tags[index]
-            if tag then
-                tag:view_only()
-            end
-        end,
-    },
-
-    awful.key {
-        modifiers = {modkey, "Shift"},
-        keygroup = "numrow",
-        on_press = function(index)
-            if client.focus then
-                local tag = client.focus.screen.tags[index]
-                if tag then
-                    client.focus:move_to_tag(tag)
-                    tag:view_only()
-                end
-            end
-        end
-    },
-
-    awful.key({modkey}, "Return", function()
-        prev_client()
-    end),
-
-    awful.key({modkey}, "space", function()
-        launcher()
-    end),
-
-    awful.key({}, "Scroll_Lock", function()
-        dropdown()
-    end),
-
-    awful.key({modkey}, "l", function()
-        lockscreen()
-    end),
-
-    awful.key({}, "Pause", function()
-        awful.util.spawn("/home/yo/scripts/randword.sh", false)
-    end),
-
-    awful.key({"Control"}, "Pause", function()
-        awful.util.spawn("/home/yo/scripts/randword.sh word", false)
-    end),
-
-    awful.key({}, "Print", function()
-        awful.util.spawn("flameshot gui -p /home/yo/Downloads/pics/pics1", false)
-    end), 
-
-    awful.key({}, "XF86AudioPlay", function()
-        awful.util.spawn("playerctl -p spotify play-pause", false)
-    end),
-
-    awful.key({}, "XF86AudioNext", function()
-        awful.util.spawn("playerctl -p spotify next", false)
-    end), 
-
-    awful.key({}, "XF86AudioPrev", function()
-        awful.util.spawn("playerctl -p spotify previous", false)
-    end), 
-
-    awful.key({"Control"}, "XF86AudioPlay", function()
-        awful.util.spawn("playerctl -p clementine play-pause", false)
-    end), 
-
-    awful.key({"Control"}, "XF86AudioNext", function()
-        
-        awful.util.spawn("playerctl -p clementine next", false)
-    end), 
-
-    awful.key({"Control"}, "XF86AudioPrev", function()
-        awful.util.spawn("playerctl -p clementine previous", false)
-    end), 
-
-    awful.key({}, "XF86AudioRaiseVolume", function()
-        increase_volume()
-    end), 
-
-    awful.key({}, "XF86AudioLowerVolume", function()
-        decrease_volume()
-    end), 
-
-    awful.key({modkey}, "Delete", function(c)
-        awful.util.spawn("/home/yo/scripts/closer.sh", false)
-    end), 
-
-    awful.key({modkey}, "#79", function()
-        snap(client.focus, "corner", awful.placement.top_left)
-    end), 
-
-    awful.key({modkey}, "#80", function()
-        snap(client.focus, "horizontally", awful.placement.top)
-    end), 
-
-    awful.key({modkey}, "#81", function()
-        snap(client.focus, "corner", awful.placement.top_right)
-    end), 
-
-    awful.key({modkey}, "#83", function()
-        snap(client.focus, "vertically", awful.placement.left)
-    end), 
-
-    awful.key({modkey}, "#84", function()
-        maximize(client.focus)
-    end), 
-
-    awful.key({modkey}, "#85", function()
-        snap(client.focus, "vertically", awful.placement.right)
-    end), 
-
-    awful.key({modkey}, "#87", function()
-        snap(client.focus, "corner", awful.placement.bottom_left)
-    end), 
-
-    awful.key({modkey}, "#88", function()
-        snap(client.focus, "horizontally", awful.placement.bottom)
-    end), 
-
-    awful.key({modkey}, "#89", function()
-        snap(client.focus, "corner", awful.placement.bottom_right)
-    end), 
-
-    awful.key({modkey}, "Escape", function(c)
-        mp_main.toggle()
-    end),
-
-    awful.key({modkey, "Control"}, "1", function()
-        launch_1()
-    end),
-
-    awful.key({modkey, "Control"}, "2", function()
-        launch_2()
-    end)
-)
-
-clientkeys = gears.table.join(
-    awful.key({modkey}, "f", function(c)
-        c.fullscreen = not c.fullscreen
-        c:raise()
-    end),
-
-    awful.key({altkey}, "F4", function(c)
-        close(c)
-    end), 
-
-    awful.key({modkey}, "\\", function(c)
-        c:move_to_screen()
-    end), 
-
-    awful.key({modkey}, "BackSpace", function(c)
-        maximize(c)
-    end),
-
-    cyclefocus.key({altkey}, "Tab", {
-        cycle_filters = { cyclefocus.filters.same_screen, cyclefocus.filters.common_tag },
-        keys = {'Tab', 'ISO_Left_Tab'}
-    })
-)
-
-clientbuttons = gears.table.join(
-    awful.button({}, 1, function(c)
-        focus(c)
-    end), 
-
-    awful.button({modkey}, 1, function(c)
-        focus(c)
-        c.maximized = false
-        awful.mouse.client.move(c)
-    end), 
-
-    awful.button({modkey}, 3, function(c)
-        focus(c)
-        c.maximized = false
-        awful.mouse.client.resize(c)
-    end)
-)
-
-root.keys(globalkeys)
+root.keys(bindings.globalkeys)
 
 awful.rules.rules = {
     {
@@ -530,8 +182,8 @@ awful.rules.rules = {
             border_color = beautiful.border_normal,
             focus = awful.client.focus.filter,
             raise = true,
-            keys = clientkeys,
-            buttons = clientbuttons,
+            keys = bindings.clientkeys,
+            buttons = bindings.clientbuttons,
             screen = awful.screen.preferred,
             placement = function(c)
                 return awful.placement.centered(c, {honor_workarea = true})
@@ -702,11 +354,11 @@ function launcher()
 end
 
 function symbolsmenu()
-    mp_symbols.show()
+    menupanels.symbols.show()
 end
 
 function layoutsmenu()
-    mp_layouts.show()
+    menupanels.layouts.show()
 end
 
 function dropdown()
@@ -771,7 +423,7 @@ confirm_func = function() end
 
 function needs_confirm(func)
     confirm_func = func
-    mp_confirm.show()
+    menupanels.confirm.show()
 end
 
 function exec_confirm()
