@@ -98,15 +98,15 @@ function volumecontrol.create(args)
   }
 
   instance:connect_signal("button::press", function(a, b, c, button, mods)
-      if button == 1 then
-          volumecontrol.max()
-      elseif button == 2 then
-          volumecontrol.mute()
-      elseif button == 4 then
-        volumecontrol.change("increase")      
-      elseif button == 5 then
-          volumecontrol.change("decrease")
-      end
+    if button == 1 then
+      volumecontrol.max()
+    elseif button == 2 then
+      volumecontrol.mute()
+    elseif button == 4 then
+      volumecontrol.change("increase")      
+    elseif button == 5 then
+      volumecontrol.change("decrease")
+    end
   end)
 
   table.insert(instances, instance)

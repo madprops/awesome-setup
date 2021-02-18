@@ -81,9 +81,8 @@ awful.screen.connect_for_each_screen(function(s)
   local num_tags = 4
   local tags = {}
 
-  for i = 1, num_tags, 1
-  do 
-     table.insert(tags, ""..i.."")
+  for i = 1, num_tags, 1 do 
+    table.insert(tags, ""..i.."")
   end
 
   awful.tag(tags, s, awful.layout.layouts[1])

@@ -83,7 +83,6 @@ bindings.globalkeys = gears.table.join(
   end), 
 
   awful.key({"Control"}, "XF86AudioNext", function()
-    
     awful.util.spawn("playerctl -p clementine next", false)
   end), 
 
