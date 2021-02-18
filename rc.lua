@@ -1,4 +1,3 @@
-pcall(require, "luarocks.loader")
 require("awful.autofocus")
 local ruled = require("ruled")
 local gears = require("gears")
