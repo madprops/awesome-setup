@@ -67,7 +67,7 @@ function volumecontrol.mute()
   end)
 end
 
-function get_volstring(s)
+function volstring(s)
   return "Vol: "..s.."%"
 end
 
@@ -83,7 +83,7 @@ function volumecontrol.update(vol)
   end
 
   for i, instance in ipairs(instances) do
-    instance.text = get_volstring(svol)
+    instance.text = volstring(svol)
   end
 end
 
@@ -95,7 +95,7 @@ end
 
 function volumecontrol.create(args)
   local instance = wibox.widget {
-    markup = get_volstring("100"),
+    markup = volstring("100"),
     align  = 'center',
     valign = 'center',
     widget = wibox.widget.textbox
