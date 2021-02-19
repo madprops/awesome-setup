@@ -2,14 +2,8 @@ local beautiful = require("beautiful")
 local menupanel = require("madwidgets/menupanel/menupanel")
 
 local menupanels = {}
-local autoclose_delay = 2
 
 menupanels.main = menupanel.create({ 
-  placement = "bottom",
-  autoclose = true,
-  autoclose_delay = autoclose_delay,
-  hide_button = true,
-  speak = false,
   on_middle_click = function()
     lockscreen()
   end,
@@ -51,10 +45,6 @@ menupanels.main = menupanel.create({
 })
 
 menupanels.symbols = menupanel.create({ 
-  placement = "bottom",
-  autoclose = true,
-  autoclose_delay = autoclose_delay,
-  hide_button = true,
   items = {
     {
       name = "$",
@@ -85,10 +75,6 @@ menupanels.symbols = menupanel.create({
 })
 
 menupanels.confirm = menupanel.create({ 
-  placement = "bottom",
-  autoclose = true,
-  autoclose_delay = autoclose_delay,
-  hide_button = true,
   items = {
     {
       name = "Confirm",
@@ -104,10 +90,6 @@ menupanels.confirm = menupanel.create({
 })
 
 menupanels.layouts = menupanel.create({ 
-  placement = "bottom",
-  autoclose = true,
-  autoclose_delay = autoclose_delay,
-  hide_button = true,
   items = {
     {
       name = "Left / Right",

@@ -35,6 +35,26 @@ function prepare_button(widgt, args)
 end
 
 function menupanel.create(args)
+  if args.placement == nil then
+    args.placement = "bottom"
+  end
+
+  if args.hide_button == nil then
+    args.hide_button = true
+  end
+
+  if args.autoclose == nil then
+    args.autoclose = true
+  end
+
+  if args.autoclose_delay == nil then
+    args.autoclose_delay = 2
+  end
+
+  if args.speak == nil then
+    args.speak = false
+  end
+
   local instance = awful.popup({
     placement = args.placement,
     ontop = true,
