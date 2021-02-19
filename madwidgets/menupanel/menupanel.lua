@@ -91,7 +91,7 @@ function menupanel.create(args)
   end
 
   function instance.create_icon(c)
-    local icon = wibox.widget{
+    local icon = wibox.widget {
       text = " "..c.." ",
       widget = wibox.widget.textbox,
     }
@@ -145,7 +145,7 @@ function menupanel.create(args)
   local hide_button = wibox.widget.textbox("")
 
   if args.hide_button then
-    hide_button = wibox.widget{
+    hide_button = wibox.widget {
       text = " x ",
       widget = wibox.widget.textbox
     }
@@ -160,7 +160,7 @@ function menupanel.create(args)
   end
 
   for i, item in ipairs(args.items) do
-    local new_item = wibox.widget{
+    local new_item = wibox.widget {
       text = " "..item.name.." ",
       align = "center",
       widget = wibox.widget.textbox
