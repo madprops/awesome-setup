@@ -115,4 +115,15 @@ awful.rules.rules = {
       xindex = 5
     }
   },
+  {
+    rule = {instance = "hexchat"},
+    properties = {
+      placement = function(c)
+        return awful.placement.bottom_right(c, {honor_workarea = true})
+      end,
+      width = awful.screen.focused().workarea.width * 0.5,
+      height = awful.screen.focused().workarea.height * 0.6,
+      xindex = 5
+    }
+  },
 }
