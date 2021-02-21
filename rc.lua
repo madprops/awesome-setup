@@ -10,8 +10,6 @@ local menubar = require("menubar")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local datetime = require("madwidgets/datetime/datetime")
 local bindings = require("modules/bindings")
-require("modules/rules")
-require("modules/autostart")
 --
 
 if awesome.startup_errors then
@@ -338,3 +336,6 @@ function launch_2()
   awful.util.spawn("clementine", false)
   awful.util.spawn("spotify", false)
 end
+
+require("modules/rules")
+require("modules/autostart")
