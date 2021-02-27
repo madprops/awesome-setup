@@ -8,26 +8,20 @@ menupanels.main = menupanel.create({
     {
       name = "Launch an Application",
       action = function() launcher() end,
-      hide_on_click = true,
     },
     {
       name = "Apply Layout",
       action = function() layoutsmenu() end,
-      hide_on_click = true,
     },
     {
       name = "Open Symbols Picker",
       action = function()
           symbolsmenu()
       end,
-      hide_on_click = true,
     },
     {
-      name = "Restart Awesome",
-      action = function()
-          needs_confirm(awesome.restart)
-      end,
-      hide_on_click = true,
+      name = "Leave",
+      action = function() leavemenu() end,
     },
   }
 })
@@ -67,12 +61,10 @@ menupanels.confirm = menupanel.create({
     {
       name = "Confirm",
       action = function() exec_confirm() end,
-      hide_on_click = true,
     },
     {
       name = "Cancel",
       action = function() end,
-      hide_on_click = true,
     }
   }
 })
@@ -87,7 +79,31 @@ menupanels.layouts = menupanel.create({
     {
       name = "Up / Down",
       action = function() apply_layout("up_down") end,
-      hide_on_click = true,
+    },
+  }
+})
+
+menupanels.leave = menupanel.create({ 
+  items = {
+    {
+      name = "Restart",
+      action = function() needs_confirm(function() awesome.restart() end) end,
+    },
+    {
+      name = "Logout",
+      action = function() needs_confirm(function() awesome.quit() end) end,
+    },
+    {
+      name = "Sleep",
+      action = function() needs_confirm(function() awful.spawn.with_shell("systemctl suspend") end) end,
+    },
+    {
+      name = "Reboot",
+      action = function() needs_confirm(function() awful.spawn.with_shell("reboot") end) end,
+    },
+    {
+      name = "Shutdown",
+      action = function() needs_confirm(function() awful.spawn.with_shell("shutdown now") end) end,
     },
   }
 })

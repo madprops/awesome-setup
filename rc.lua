@@ -261,6 +261,10 @@ function layoutsmenu()
   menupanels.layouts.show()
 end
 
+function leavemenu()
+  menupanels.leave.show()
+end
+
 function dropdown()
   awful.util.spawn("tilix --quake", false)
 end
