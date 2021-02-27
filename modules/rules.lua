@@ -19,6 +19,7 @@ awful.rules.rules = {
       xindex = 0
     }
   },
+  -- Screen 1 Tag 1
   {
     rule = {class = "Firefox"},
     properties = {
@@ -50,10 +51,10 @@ awful.rules.rules = {
       maximized = true
     }
   },
+  -- Screen 2 Tag 1
   {
     rule_any = {
       instance = {"dolphin", "spotify", "clementine", "hexchat", "konsole"},
-      class = {"mpv"},
     },
     properties = {
       screen = 2,
@@ -94,28 +95,6 @@ awful.rules.rules = {
     }
   },
   {
-    rule = {instance = "dolphin"},
-    properties = {
-      placement = function(c)
-        return awful.placement.top_left(c, {honor_workarea = true})
-      end,
-      width = awful.screen.focused().workarea.width * 0.5,
-      height = awful.screen.focused().workarea.height * 0.4,
-      xindex = 4,
-    }
-  },
-  {
-    rule = {class = "mpv"},
-    properties = {
-      placement = function(c)
-        return awful.placement.bottom_right(c, {honor_workarea = true})
-      end,
-      width = awful.screen.focused().workarea.width * 0.5,
-      height = awful.screen.focused().workarea.height * 0.6,
-      xindex = 5
-    }
-  },
-  {
     rule = {instance = "hexchat"},
     properties = {
       placement = function(c)
@@ -123,7 +102,50 @@ awful.rules.rules = {
       end,
       width = awful.screen.focused().workarea.width * 0.5,
       height = awful.screen.focused().workarea.height * 0.6,
-      xindex = 5
+      xindex = 4
+    }
+  },
+  {
+    rule = {instance = "dolphin"},
+    properties = {
+      placement = function(c)
+        return awful.placement.top_left(c, {honor_workarea = true})
+      end,
+      width = awful.screen.focused().workarea.width * 0.5,
+      height = awful.screen.focused().workarea.height * 0.4,
+      xindex = 5,
+    }
+  },
+  -- Screen 2 Tag 2
+  {
+    rule_any = {
+      class = {"Nightly", "mpv"},
+    },
+    properties = {
+      screen = 2,
+      tag = "2",
+    }
+  }, 
+  {
+    rule = {class = "Nightly"},
+    properties = {
+      placement = function(c)
+        return awful.placement.left(c, {honor_workarea = true})
+      end,
+      width = awful.screen.focused().workarea.width * 0.3,
+      height = awful.screen.focused().workarea.height,
+      xindex = 1,
+    }
+  },
+  {
+    rule = {class = "mpv"},
+    properties = {
+      placement = function(c)
+        return awful.placement.right(c, {honor_workarea = true})
+      end,
+      width = awful.screen.focused().workarea.width * 0.7,
+      height = awful.screen.focused().workarea.height,
+      xindex = 2,
     }
   },
 }
