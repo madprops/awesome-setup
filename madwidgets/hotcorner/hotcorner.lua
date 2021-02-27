@@ -15,7 +15,8 @@ function hotcorner.create(args)
     maximum_width = 2,
     maximum_height = 2,
     widget = wibox.widget.background,
-    bg = "transparent",
+    bg = "red",
+    opacity = 0
   })
     
   corner:connect_signal("mouse::enter", function(btn)
