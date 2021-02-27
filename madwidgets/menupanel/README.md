@@ -25,12 +25,10 @@ local mp_main = menupanel.create({
         {
             name = "Launch an Application",
             action = function() launcher() end,
-            hide_on_click = true,
         },
         {
             name = "Open Video On Clipboard",
             action = function() video_from_clipboard() end,
-            hide_on_click = true,
         },
         {
             name = "Open Symbols Picker",

@@ -74,7 +74,6 @@ menupanels.layouts = menupanel.create({
     {
       name = "Left / Right",
       action = function() apply_layout("left_right") end,
-      hide_on_click = true,
     },
     {
       name = "Up / Down",
