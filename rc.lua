@@ -7,6 +7,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 --
+local multibutton = require("madwidgets/multibutton/multibutton")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local datetime = require("madwidgets/datetime/datetime")
 local bindings = require("modules/bindings")
@@ -126,7 +127,24 @@ awful.screen.connect_for_each_screen(function(s)
 
   left = {
     layout = wibox.layout.fixed.horizontal,
-    menupanels.main.create_icon("❇"),
+    multibutton.create({
+      text = "❇",
+      on_click = function() 
+        menupanels.main.toggle() 
+      end,
+      on_middle_click = function()
+        lockscreen()
+      end,
+      on_right_click = function()
+        dropdown()
+      end,
+      on_wheel_up = function()
+        prev_tag()
+      end,
+      on_wheel_down = function()
+        next_tag()
+      end,
+    }),
     s.mytaglist,
     wibox.widget.textbox("  "),
   }

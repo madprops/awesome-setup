@@ -92,37 +92,6 @@ function menupanel.create(args)
     end
   end
 
-  function instance.create_icon(c)
-    local icon = wibox.widget {
-      text = " "..c.." ",
-      widget = wibox.widget.textbox,
-    }
-  
-    icon:connect_signal("button::press", function(a, b, c, button, mods)
-      if button == 1 then
-        instance.toggle()
-      elseif button == 2 then
-        if args.on_middle_click ~= nil then
-          args.on_middle_click()
-        end
-      elseif button == 3 then
-        if args.on_right_click ~= nil then
-          args.on_right_click()
-        end
-      elseif button == 4 then
-        if args.on_wheel_up ~= nil then
-          args.on_wheel_up()
-        end      
-      elseif button == 5 then
-        if args.on_wheel_down ~= nil then
-          args.on_wheel_down()
-        end
-      end
-    end)   
-
-    return icon
-  end
-
   function instance.start_autoclose()
     if instance.args.autoclose then
       instance.timeout = gears.timer {

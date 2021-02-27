@@ -4,18 +4,6 @@ local menupanel = require("madwidgets/menupanel/menupanel")
 local menupanels = {}
 
 menupanels.main = menupanel.create({ 
-  on_middle_click = function()
-    lockscreen()
-  end,
-  on_right_click = function()
-    dropdown()
-  end,
-  on_wheel_up = function()
-    prev_tag()
-  end,
-  on_wheel_down = function()
-    next_tag()
-  end,
   items = {
     {
       name = "Launch an Application",
