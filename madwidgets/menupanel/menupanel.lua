@@ -18,8 +18,8 @@ function prepare_button(widgt, args)
   local button = wibox.widget {
     widgt,
     widget = wibox.container.background,
-    border_width = 2,
-    border_color = "#282c34"
+    border_width = 1,
+    border_color = beautiful.tasklist_fg_normal
   }
 
   button:connect_signal("mouse::enter", function(btn)
