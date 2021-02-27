@@ -80,7 +80,9 @@ awful.screen.connect_for_each_screen(function(s)
     hotcorner.create({
       screen = s,
       placement = awful.placement.top_right,
-      action = function() msg("corner activated") end
+      action = function()
+        tagtoggle(1, 2)
+      end
     })
   end
 
@@ -218,6 +220,14 @@ function next_tag()
   awful.screen.focused().tags[
     math.min(#awful.screen.focused().tags, awful.screen.focused().selected_tags[1].index + 1)
   ]:view_only()
+end
+
+function tagtoggle(t1, t2)
+  if awful.screen.focused().selected_tags[1].index == t1 then
+    awful.screen.focused().tags[t2]:view_only()
+  else
+    awful.screen.focused().tags[t1]:view_only()
+  end
 end
 
 function prev_client()
