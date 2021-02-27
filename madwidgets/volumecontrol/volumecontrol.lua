@@ -1,6 +1,5 @@
 local awful = require("awful")
 local wibox = require("wibox")
-local naughty = require("naughty")
 local gears = require("gears")
 
 local volumecontrol = {}
@@ -10,10 +9,6 @@ volumecontrol.steps = 5
 local update_timeout
 local instances = {}
 local last_volume = 100
-
-function msg(txt)
-  naughty.notify({text = " "..txt.." "})
-end
 
 function update_volume(vol)
   vol = tonumber(vol)

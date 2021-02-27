@@ -1,14 +1,9 @@
 local awful = require("awful")
 local wibox = require("wibox")
-local naughty = require("naughty")
 local gears = require("gears")
 local beautiful = require("beautiful")
 
 local menupanel = {}
-
-function msg(txt)
-  naughty.notify({text = " "..txt.." "})
-end
 
 function speak(txt)
   awful.util.spawn_with_shell('pkill espeak; espeak "'..txt..'"', false)

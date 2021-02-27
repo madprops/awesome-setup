@@ -1,12 +1,7 @@
 local awful = require("awful")
 local wibox = require("wibox")
-local naughty = require("naughty")
 
 local hotcorner = {}
-
-function msg(txt)
-  naughty.notify({text = " "..txt.." "})
-end
 
 function do_create(args, s)
   local corner = awful.popup({
