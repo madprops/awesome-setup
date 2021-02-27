@@ -75,7 +75,15 @@ end
 
 screen.connect_signal("property::geometry", set_wallpaper)
 
-awful.screen.connect_for_each_screen(function(s)  
+awful.screen.connect_for_each_screen(function(s)
+  if s.index == 2 then
+    hotcorner.create({
+      screen = s,
+      placement = awful.placement.top_right,
+      action = function() msg("corner activated") end
+    })
+  end
+
   set_wallpaper(s)
 
   local num_tags = 4
