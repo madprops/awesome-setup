@@ -80,7 +80,7 @@ menupanels.leave = menupanel.create({
       action = function() menupanels.confirm("Logout", function() awesome.quit() end) end,
     },
     {
-      name = "Sleep",
+      name = "Suspend",
       action = function() menupanels.confirm("Suspend", function() awful.spawn.with_shell("systemctl suspend") end) end,
     },
     {
