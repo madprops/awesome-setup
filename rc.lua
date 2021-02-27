@@ -264,11 +264,11 @@ function msg(txt)
 end
 
 function increase_volume()
-  volumecontrol.change("increase")
+  volumecontrol.increase()
 end
 
 function decrease_volume()
-  volumecontrol.change("decrease")
+  volumecontrol.decrease()
 end
 
 function apply_layout(mode)

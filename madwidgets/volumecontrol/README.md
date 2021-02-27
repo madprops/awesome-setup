@@ -30,27 +30,27 @@ You can add keyboard shortcuts like:
 
 ```lua
 awful.key({}, "XF86AudioRaiseVolume", function()
-    volumecontrol.change("increase")
+    volumecontrol.increase()
 end), 
 
 awful.key({}, "XF86AudioLowerVolume", function()
-    volumecontrol.change("decrease")
+    volumecontrol.decrease()
 end),
 ```
 
 ## Functions
 
-volumecontrol.change(number)
+volumecontrol.set(number)
 >Set the volume to a specific %
 
 ---
 
-volumecontrol.change("increase")
+volumecontrol.increase()
 >Increase volume by a % step
 
 ---
 
-volumecontrol.change("decrease")
+volumecontrol.decrease()
 >Decrease volume by a % step
 
 ---

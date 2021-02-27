@@ -15,63 +15,8 @@ function msg(txt)
   naughty.notify({text = " "..txt.." "})
 end
 
-function volumecontrol.change(mode)
-  volumecontrol.get(function(vol)
-    if type(mode) == "number" then
-      vol = mode
-    else
-      if mode == "increase" then
-        if vol < volumecontrol.max_volume then
-          vol = vol + volumecontrol.steps
-          if vol > volumecontrol.max_volume then
-            vol = volumecontrol.max_volume
-          end
-        end
-      elseif mode == "decrease" then
-        if vol > 0 then
-          vol = vol - volumecontrol.steps
-          if vol < 0 then
-            vol = 0
-          end
-        end
-      end
-    end
-    awful.util.spawn_with_shell("pactl set-sink-volume @DEFAULT_SINK@ "..vol.."%", false) 
-    volumecontrol.update(vol)
-  end)
-end
-
-function volumecontrol.max()
-  volumecontrol.get(function(vol)
-    local newvol = 0
-
-    if vol == 100 then
-      newvol = volumecontrol.max_volume
-    else
-      newvol = 100
-    end
-
-    awful.util.spawn_with_shell("pactl set-sink-volume @DEFAULT_SINK@ "..newvol.."%", false)
-    volumecontrol.update(newvol)
-  end)
-end
-
-function volumecontrol.mute()
-  volumecontrol.get(function(vol)
-    if vol == 0 then
-      volumecontrol.change(last_volume)
-    else
-      last_volume = vol
-      volumecontrol.change(0)
-    end
-  end)
-end
-
-function volstring(s)
-  return "Vol: "..s.."%"
-end
-
-function volumecontrol.update(vol)
+function update_volume(vol)
+  vol = tonumber(vol)
   local svol = vol
 
   if vol < 100 then
@@ -87,10 +32,77 @@ function volumecontrol.update(vol)
   end
 end
 
-function volumecontrol.get(f)
+function get_volume(f)
   awful.spawn.easy_async_with_shell('pulsemixer --get-volume | grep -o "^\\w*\\b"', function(vol)
     f(tonumber(vol))
   end)
+end
+
+function change_volume(vol)
+  awful.util.spawn_with_shell("pactl set-sink-volume @DEFAULT_SINK@ "..vol.."%", false) 
+  update_volume(vol)
+end
+
+function volumecontrol.set(vol)
+  vol = tonumber(vol)
+  if vol > volumecontrol.max_volume or vol < 0 then
+    return
+  end
+  change_volume(vol)
+end
+
+function volumecontrol.increase()
+  get_volume(function(vol)
+    if vol < volumecontrol.max_volume then
+      vol = vol + volumecontrol.steps
+      if vol > volumecontrol.max_volume then
+        vol = volumecontrol.max_volume
+      end
+      change_volume(vol)
+    end
+  end)
+end
+
+function volumecontrol.decrease()
+  get_volume(function(vol)
+    if vol > 0 then
+      vol = vol - volumecontrol.steps
+      if vol < 0 then
+        vol = 0
+      end
+      change_volume(vol)
+    end
+  end)
+end
+
+function volumecontrol.max()
+  get_volume(function(vol)
+    local newvol = 0
+
+    if vol == 100 then
+      newvol = volumecontrol.max_volume
+    else
+      newvol = 100
+    end
+
+    awful.util.spawn_with_shell("pactl set-sink-volume @DEFAULT_SINK@ "..newvol.."%", false)
+    update_volume(newvol)
+  end)
+end
+
+function volumecontrol.mute()
+  get_volume(function(vol)
+    if vol == 0 then
+      volumecontrol.set(last_volume)
+    else
+      last_volume = vol
+      volumecontrol.set(0)
+    end
+  end)
+end
+
+function volstring(s)
+  return "Vol: "..s.."%"
 end
 
 function volumecontrol.create(args)
@@ -107,9 +119,9 @@ function volumecontrol.create(args)
     elseif button == 2 then
       volumecontrol.mute()
     elseif button == 4 then
-      volumecontrol.change("increase")      
+      volumecontrol.increase()  
     elseif button == 5 then
-      volumecontrol.change("decrease")
+      volumecontrol.decrease()
     end
   end)
 
@@ -120,7 +132,9 @@ function volumecontrol.create(args)
       timeout = 3,
       autostart = true,
       callback = function()
-        volumecontrol.change("update")
+        get_volume(function(vol)
+          update_volume(vol)
+        end)
       end
     }
   end
