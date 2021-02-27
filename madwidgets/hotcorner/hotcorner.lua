@@ -3,8 +3,9 @@ local wibox = require("wibox")
 
 local hotcorner = {}
 
-function do_create(args, s)
+function hotcorner.create(args)
   local corner = awful.popup({
+    screen = args.screen,
     placement = args.placement,
     ontop = true,
     visible = true,
@@ -15,19 +16,12 @@ function do_create(args, s)
     maximum_height = 2,
     widget = wibox.widget.background,
     bg = "transparent",
-    screen = s
   })
     
   corner:connect_signal("mouse::enter", function(btn)
     if args.action ~= nil then
       args.action()
     end
-  end)
-end
-
-function hotcorner.create(args)
-  awful.screen.connect_for_each_screen(function(s)
-    do_create(args, s)
   end)
 end
 

@@ -9,6 +9,7 @@ Create the corners like:
 
 ```lua
 hotcorner.create({
+  screen = s,
   placement = awful.placement.top_left,
   action = function() some_action() end
 })
