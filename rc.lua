@@ -342,17 +342,6 @@ function apply_layout(mode)
   end
 end
 
-confirm_func = function() end
-
-function needs_confirm(func)
-  confirm_func = func
-  menupanels.confirm.show()
-end
-
-function exec_confirm()
-  confirm_func()
-end
-
 ruled.notification.connect_signal('request::rules', function()
   ruled.notification.append_rule {
     rule = {},

@@ -56,19 +56,6 @@ menupanels.symbols = menupanel.create({
   }
 })
 
-menupanels.confirm = menupanel.create({ 
-  items = {
-    {
-      name = "Confirm",
-      action = function() exec_confirm() end,
-    },
-    {
-      name = "Cancel",
-      action = function() end,
-    }
-  }
-})
-
 menupanels.layouts = menupanel.create({ 
   items = {
     {
@@ -86,25 +73,42 @@ menupanels.leave = menupanel.create({
   items = {
     {
       name = "Restart",
-      action = function() needs_confirm(function() awesome.restart() end) end,
+      action = function() menupanels.confirm("Restart", function() awesome.restart() end) end,
     },
     {
       name = "Logout",
-      action = function() needs_confirm(function() awesome.quit() end) end,
+      action = function() menupanels.confirm("Logout", function() awesome.quit() end) end,
     },
     {
       name = "Sleep",
-      action = function() needs_confirm(function() awful.spawn.with_shell("systemctl suspend") end) end,
+      action = function() menupanels.confirm("Suspend", function() awful.spawn.with_shell("systemctl suspend") end) end,
     },
     {
       name = "Reboot",
-      action = function() needs_confirm(function() awful.spawn.with_shell("reboot") end) end,
+      action = function() menupanels.confirm("Reboot", function() awful.spawn.with_shell("reboot") end) end,
     },
     {
       name = "Shutdown",
-      action = function() needs_confirm(function() awful.spawn.with_shell("shutdown now") end) end,
+      action = function() menupanels.confirm("Shutdown", function() awful.spawn.with_shell("shutdown now") end) end,
     },
   }
 })
+
+function menupanels.confirm(label, func)
+  local confirm = menupanel.create({ 
+    items = {
+      {
+        name = "Confirm "..label,
+        action = function() func() end,
+      },
+      {
+        name = "Cancel",
+        action = function() end,
+      }
+    }
+  })
+
+  confirm.show()
+end
 
 return menupanels
