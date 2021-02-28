@@ -19,9 +19,15 @@ function hotcorner.create(args)
     opacity = 0
   })
     
-  corner:connect_signal("mouse::enter", function(btn)
+  corner:connect_signal("mouse::enter", function()
     if args.action ~= nil then
-      args.action()
+      args.action(corner)
+    end
+  end)
+
+  corner:connect_signal("mouse::leave", function()
+    if args.action_2 ~= nil then
+      args.action_2(corner)
     end
   end)
 end

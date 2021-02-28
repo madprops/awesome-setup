@@ -1,3 +1,4 @@
+local awful = require("awful")
 local beautiful = require("beautiful")
 local menupanel = require("madwidgets/menupanel/menupanel")
 
