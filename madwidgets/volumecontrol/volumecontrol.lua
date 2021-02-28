@@ -94,6 +94,12 @@ function volumecontrol.mute()
   end)
 end
 
+function volumecontrol.refresh()
+  get_volume(function(vol)
+    update_volume(vol)
+  end)
+end
+
 function volstring(s)
   return "Vol: "..s.."%"
 end

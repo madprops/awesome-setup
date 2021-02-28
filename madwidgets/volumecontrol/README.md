@@ -65,6 +65,9 @@ volumecontrol.mute()
 
 ---
 
+volumecontrol.refresh()
+>Updates the volume level. Meant to be ran once at startup
+
 ## Variables
 
 volumecontrol.max_volume

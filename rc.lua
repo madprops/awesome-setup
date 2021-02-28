@@ -371,3 +371,4 @@ end
 
 require("modules/rules")
 require("modules/autostart")
+volumecontrol.refresh()
