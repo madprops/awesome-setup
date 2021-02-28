@@ -15,42 +15,8 @@ menupanels.main = menupanel.create({
       action = function() menupanels.layouts.show() end,
     },
     {
-      name = "Open Symbols Picker",
-      action = function() menupanels.symbols.show() end,
-    },
-    {
       name = "Leave",
       action = function() menupanels.leave.show() end,
-    },
-  }
-})
-
-menupanels.symbols = menupanel.create({ 
-  items = {
-    {
-      name = "$",
-      action = function() typestring("$") end,
-      hide_on_click = false,
-    },
-    {
-      name = "%",
-      action = function() typestring("%") end,
-      hide_on_click = false,
-    },
-    {
-      name = "^",
-      action = function() typestring("^") end,
-      hide_on_click = false,
-    },
-    {
-      name = "&",
-      action = function() typestring("&") end,
-      hide_on_click = false,
-    },
-    {
-      name = "*",
-      action = function() typestring("*") end,
-      hide_on_click = false,
     },
   }
 })
