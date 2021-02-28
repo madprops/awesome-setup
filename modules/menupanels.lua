@@ -62,6 +62,14 @@ menupanels.applications = menupanel.create({
       action = function() menupanels.browsers.show() end,
     },
     {
+      name = "Code",
+      action = function() awful.util.spawn("code", false) end,
+    },
+    {
+      name = "Music",
+      action = function() menupanels.music.show() end,
+    },
+    {
       name = "Vidya",
       action = function() menupanels.vidya.show() end,
     }
@@ -108,6 +116,21 @@ menupanels.vidya = menupanel.create({
     {
       name = "Steam",
       action = function() awful.util.spawn("steam", false) end,
+      hide_on_click = false,
+    },
+  }
+})
+
+menupanels.music = menupanel.create({ 
+  items = {
+    {
+      name = "Spotify",
+      action = function() awful.util.spawn("spotify", false) end,
+      hide_on_click = false,
+    },
+    {
+      name = "Clementine",
+      action = function() awful.util.spawn("clementine", false) end,
       hide_on_click = false,
     },
   }
