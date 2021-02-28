@@ -3,10 +3,7 @@ local wibox = require("wibox")
 local multibutton = {}
 
 function multibutton.create(args)
-  local button = wibox.widget {
-    text = " "..args.text.." ",
-    widget = wibox.widget.textbox,
-  }
+  local button = wibox.widget.textbox(args.text, false)
   
   button:connect_signal("button::press", function(a, b, c, btn, mods)
     if btn == 1 then
