@@ -8,7 +8,7 @@ menupanels.main = menupanel.create({
   items = {
     {
       name = "Launch an Application",
-      action = function() launcher() end,
+      action = function() menupanels.applications.show() end,
     },
     {
       name = "Apply Layout",
@@ -50,6 +50,64 @@ menupanels.symbols = menupanel.create({
     {
       name = "*",
       action = function() typestring("*") end,
+      hide_on_click = false,
+    },
+  }
+})
+
+menupanels.applications = menupanel.create({
+  items = {
+    {
+      name = "Browsers",
+      action = function() menupanels.browsers.show() end,
+    },
+    {
+      name = "Vidya",
+      action = function() menupanels.vidya.show() end,
+    }
+  }
+})
+
+menupanels.browsers = menupanel.create({ 
+  items = {
+    {
+      name = "Firefox",
+      action = function() awful.util.spawn("firefox", false) end,
+      hide_on_click = false,
+    },
+    {
+      name = "Firefox Dev 1",
+      action = function() awful.util.spawn("firefox -P dev1", false) end,
+      hide_on_click = false,
+    },
+    {
+      name = "Firefox Dev 2",
+      action = function() awful.util.spawn("firefox -P dev2", false) end,
+      hide_on_click = false,
+    },
+    {
+      name = "Nightly",
+      action = function() awful.util.spawn("firefox-trunk", false) end,
+      hide_on_click = false,
+    },
+    {
+      name = "Chromium",
+      action = function() awful.util.spawn("chromium", false) end,
+      hide_on_click = false,
+    },
+  }
+})
+
+menupanels.vidya = menupanel.create({ 
+  items = {
+    {
+      name = "Lutris",
+      action = function() awful.util.spawn("lutris", false) end,
+      hide_on_click = false,
+    },
+    {
+      name = "Steam",
+      action = function() awful.util.spawn("steam", false) end,
       hide_on_click = false,
     },
   }
