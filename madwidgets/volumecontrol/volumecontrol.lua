@@ -1,12 +1,10 @@
 local awful = require("awful")
 local wibox = require("wibox")
-local gears = require("gears")
 
 local volumecontrol = {}
 volumecontrol.max_volume = 115
 volumecontrol.steps = 5
 
-local update_timeout
 local instances = {}
 local last_volume = 100
 
@@ -121,18 +119,6 @@ function volumecontrol.create(args)
   end)
 
   table.insert(instances, instance)
-
-  if update_timeout == nil then
-    update_timeout = gears.timer {
-      timeout = 3,
-      autostart = true,
-      callback = function()
-        get_volume(function(vol)
-          update_volume(vol)
-        end)
-      end
-    }
-  end
 
   return instance
 end

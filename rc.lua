@@ -73,11 +73,13 @@ local function set_wallpaper(s)
   end
 end
 
+local corner_1
+
 screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
   if s.index == 2 then
-    hotcorner.create({
+    corner_1 = hotcorner.create({
       screen = s,
       placement = awful.placement.top_right,
       action = function()

@@ -30,6 +30,8 @@ function hotcorner.create(args)
       args.action_2(corner)
     end
   end)
+
+  return corner
 end
 
 return hotcorner

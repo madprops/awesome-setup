@@ -8,7 +8,7 @@ Put this near the top:
 Create the corners like:
 
 ```lua
-hotcorner.create({
+local corner = hotcorner.create({
   screen = s,
   placement = awful.placement.top_left,
   action = function() some_action_on_mouse_enter() end
