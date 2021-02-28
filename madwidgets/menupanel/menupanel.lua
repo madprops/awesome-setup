@@ -45,7 +45,7 @@ function menupanel.create(args)
   end
 
   if args.autoclose_delay == nil then
-    args.autoclose_delay = 2
+    args.autoclose_delay = 3
   end
 
   if args.speak == nil then
