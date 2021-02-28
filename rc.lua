@@ -274,18 +274,6 @@ function launcher()
   awful.util.spawn("rofi -modi drun -show drun -show-icons -width 22 -no-click-to-exit", false)
 end
 
-function symbolsmenu()
-  menupanels.symbols.show()
-end
-
-function layoutsmenu()
-  menupanels.layouts.show()
-end
-
-function leavemenu()
-  menupanels.leave.show()
-end
-
 function dropdown()
   awful.util.spawn("tilix --quake", false)
 end

@@ -12,17 +12,15 @@ menupanels.main = menupanel.create({
     },
     {
       name = "Apply Layout",
-      action = function() layoutsmenu() end,
+      action = function() menupanels.layouts.show() end,
     },
     {
       name = "Open Symbols Picker",
-      action = function()
-          symbolsmenu()
-      end,
+      action = function() menupanels.symbols.show() end,
     },
     {
       name = "Leave",
-      action = function() leavemenu() end,
+      action = function() menupanels.leave.show() end,
     },
   }
 })
