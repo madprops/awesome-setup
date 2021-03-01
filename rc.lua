@@ -60,8 +60,7 @@ awful.mouse.snap.default_distance = 25
 local menupanels = require("modules/menupanels")
 
 awful.layout.layouts = {
-  awful.layout.suit.floating,
-  awful.layout.suit.tile,
+  awful.layout.suit.floating
 }
 
 local function set_wallpaper(s)
@@ -88,16 +87,6 @@ awful.screen.connect_for_each_screen(function(s)
       end
     })
   end
-
-  s.mylayoutbox = awful.widget.layoutbox {
-    screen  = s,
-    buttons = {
-        awful.button({ }, 1, function () awful.layout.inc( 1) end),
-        awful.button({ }, 3, function () awful.layout.inc(-1) end),
-        awful.button({ }, 4, function () awful.layout.inc(-1) end),
-        awful.button({ }, 5, function () awful.layout.inc( 1) end),
-    }
-  }
 
   set_wallpaper(s)
 
@@ -196,14 +185,11 @@ awful.screen.connect_for_each_screen(function(s)
           decrease_volume()
         end
       }),
-      wibox.widget.textbox("  "),
-      s.mylayoutbox,
+      wibox.widget.textbox("  ")
     }
   else
     right = {
-      layout = wibox.layout.fixed.horizontal,
-      wibox.widget.textbox("  "),
-      s.mylayoutbox,
+      layout = wibox.layout.fixed.horizontal
     }
   end
 
@@ -296,7 +282,7 @@ end
 function stop_all_music()
   awful.util.spawn_with_shell("playerctl -p spotify pause")
   awful.util.spawn_with_shell("playerctl -p clementine pause")
-  awful.util.spawn_with_shell("echo 'set pause yes' | socat - /tmp/mpv-socket")
+  awful.util.spawn_with_shell("playerctl -p vlc pause")
 end
 
 function lockscreen()
@@ -351,7 +337,7 @@ end
 
 function launch_3()
   awful.util.spawn("firefox-trunk", false)
-  awful.util.spawn("mpv --player-operation-mode=pseudo-gui", false)
+  awful.util.spawn("vlc", false)
 end
 
 require("modules/rules")
