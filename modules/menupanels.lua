@@ -130,10 +130,6 @@ function menupanels.confirm(label, func)
         name = "Confirm "..label,
         action = function() func() end,
       },
-      {
-        name = "Cancel",
-        action = function() end,
-      }
     }
   })
 
