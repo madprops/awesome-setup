@@ -60,8 +60,27 @@ awful.mouse.snap.default_distance = 25
 local menupanels = require("modules/menupanels")
 
 awful.layout.layouts = {
-  awful.layout.suit.floating
+  awful.layout.suit.floating,
+  awful.layout.suit.tile,
 }
+
+-- tag.connect_signal("request::default_layouts", function()
+--     awful.layout.append_default_layouts({
+--         awful.layout.suit.floating,
+--         awful.layout.suit.tile,
+--         awful.layout.suit.tile.left,
+--         awful.layout.suit.tile.bottom,
+--         awful.layout.suit.tile.top,
+--         awful.layout.suit.fair,
+--         awful.layout.suit.fair.horizontal,
+--         awful.layout.suit.spiral,
+--         awful.layout.suit.spiral.dwindle,
+--         awful.layout.suit.max,
+--         awful.layout.suit.max.fullscreen,
+--         awful.layout.suit.magnifier,
+--         awful.layout.suit.corner.nw,
+--     })
+-- end)
 
 local function set_wallpaper(s)
   if beautiful.wallpaper then
@@ -87,6 +106,16 @@ awful.screen.connect_for_each_screen(function(s)
       end
     })
   end
+
+  s.mylayoutbox = awful.widget.layoutbox {
+    screen  = s,
+    buttons = {
+        awful.button({ }, 1, function () awful.layout.inc( 1) end),
+        awful.button({ }, 3, function () awful.layout.inc(-1) end),
+        awful.button({ }, 4, function () awful.layout.inc(-1) end),
+        awful.button({ }, 5, function () awful.layout.inc( 1) end),
+    }
+  }
 
   set_wallpaper(s)
 
@@ -185,10 +214,13 @@ awful.screen.connect_for_each_screen(function(s)
         end
       }),
       wibox.widget.textbox("  "),
+      s.mylayoutbox,
     }
   else
     right = {
-      layout = wibox.layout.fixed.horizontal
+      layout = wibox.layout.fixed.horizontal,
+      wibox.widget.textbox("  "),
+      s.mylayoutbox,
     }
   end
 
@@ -300,36 +332,6 @@ end
 
 function decrease_volume()
   volumecontrol.decrease()
-end
-
-function apply_layout(mode)
-  if mode == "left_right" then
-    local counter = 1
-    for i, c in ipairs(awful.screen.focused().clients) do
-      if counter == 1 then
-        snap(c, "vertically", awful.placement.left)
-        counter = counter + 1
-      elseif counter == 2 then
-        snap(c, "vertically", awful.placement.right)
-        counter = counter + 1
-      end
-
-      if counter > 2 then return end
-    end
-  elseif mode == "up_down" then
-    local counter = 1
-    for i, c in ipairs(awful.screen.focused().clients) do
-      if counter == 1 then
-        snap(c, "horizontally", awful.placement.top)
-        counter = counter + 1
-      elseif counter == 2 then
-        snap(c, "horizontally", awful.placement.bottom)
-        counter = counter + 1
-      end
-  
-      if counter > 2 then return end
-    end
-  end
 end
 
 ruled.notification.connect_signal('request::rules', function()

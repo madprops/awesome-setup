@@ -144,6 +144,14 @@ bindings.globalkeys = gears.table.join(
 
   awful.key({modkey, "Control"}, "2", function()
     launch_2()
+  end),
+
+  awful.key({modkey}, "KP_Add", function()
+    awful.tag.incmwfact(0.05)
+  end),
+
+  awful.key({modkey}, "KP_Subtract", function()
+    awful.tag.incmwfact(-0.05)
   end)
 )
 

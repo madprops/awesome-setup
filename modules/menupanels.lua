@@ -11,10 +11,6 @@ menupanels.main = menupanel.create({
       action = function() menupanels.applications.show() end,
     },
     {
-      name = "Apply Layout",
-      action = function() menupanels.layouts.show() end,
-    },
-    {
       name = "Leave",
       action = function() menupanels.leave.show() end,
     },
@@ -98,19 +94,6 @@ menupanels.music = menupanel.create({
       name = "Clementine",
       action = function() awful.util.spawn("clementine", false) end,
       hide_on_click = false,
-    },
-  }
-})
-
-menupanels.layouts = menupanel.create({ 
-  items = {
-    {
-      name = "Left / Right",
-      action = function() apply_layout("left_right") end,
-    },
-    {
-      name = "Up / Down",
-      action = function() apply_layout("up_down") end,
     },
   }
 })
