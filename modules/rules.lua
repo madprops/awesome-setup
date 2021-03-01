@@ -116,36 +116,4 @@ awful.rules.rules = {
       xindex = 5,
     }
   },
-  -- Screen 2 Tag 2
-  {
-    rule_any = {
-      class = {"Nightly", "vlc"},
-    },
-    properties = {
-      screen = 2,
-      tag = "2",
-    }
-  }, 
-  {
-    rule = {class = "Nightly"},
-    properties = {
-      placement = function(c)
-        return awful.placement.left(c, {honor_workarea = true})
-      end,
-      width = awful.screen.focused().workarea.width * 0.3,
-      height = awful.screen.focused().workarea.height,
-      xindex = 1,
-    }
-  },
-  {
-    rule = {class = "vlc"},
-    properties = {
-      placement = function(c)
-        return awful.placement.right(c, {honor_workarea = true})
-      end,
-      width = awful.screen.focused().workarea.width * 0.7,
-      height = awful.screen.focused().workarea.height,
-      xindex = 2,
-    }
-  },
 }
