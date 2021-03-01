@@ -126,10 +126,6 @@ function menupanel.create(args)
   end
 
   for i, item in ipairs(args.items) do
-    if item.hide_on_click == nil then
-      item.hide_on_click = true
-    end
-
     local new_item = wibox.widget {
       text = " "..item.name.." ",
       align = "center",
@@ -137,12 +133,12 @@ function menupanel.create(args)
     }
 
     new_item:connect_signal("button::press", function(a, b, c, button, mods)
-      if button == 1 then
+      if button == 1 or button == 2 then
         if item.action ~= nil then
           item.action()
-        end
-        if item.hide_on_click then
-          instance.hide()
+          if button == 1 then
+            instance.hide()
+          end
         end
       end
     end)

@@ -62,3 +62,9 @@ It is able to speak out items if "speak" property is set to true. It uses espeak
 >beautiful.tasklist_fg_focus
 
 >beautiful.wibar_height
+
+## Mouse Clicks
+
+Button 1 (main click) triggers an action and closes the panel.
+
+Button 2 (middle click) triggers an action but doesn't close the panel.

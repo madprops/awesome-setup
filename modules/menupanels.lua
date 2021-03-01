@@ -43,27 +43,22 @@ menupanels.browsers = menupanel.create({
     {
       name = "Firefox",
       action = function() awful.util.spawn("firefox", false) end,
-      hide_on_click = false,
     },
     {
       name = "Firefox Dev 1",
       action = function() awful.util.spawn("firefox -P dev1", false) end,
-      hide_on_click = false,
     },
     {
       name = "Firefox Dev 2",
       action = function() awful.util.spawn("firefox -P dev2", false) end,
-      hide_on_click = false,
     },
     {
       name = "Nightly",
       action = function() awful.util.spawn("firefox-trunk", false) end,
-      hide_on_click = false,
     },
     {
       name = "Chromium",
       action = function() awful.util.spawn("chromium", false) end,
-      hide_on_click = false,
     },
   }
 })
@@ -73,12 +68,10 @@ menupanels.vidya = menupanel.create({
     {
       name = "Lutris",
       action = function() awful.util.spawn("lutris", false) end,
-      hide_on_click = false,
     },
     {
       name = "Steam",
       action = function() awful.util.spawn("steam", false) end,
-      hide_on_click = false,
     },
   }
 })
@@ -88,12 +81,10 @@ menupanels.music = menupanel.create({
     {
       name = "Spotify",
       action = function() awful.util.spawn("spotify", false) end,
-      hide_on_click = false,
     },
     {
       name = "Clementine",
       action = function() awful.util.spawn("clementine", false) end,
-      hide_on_click = false,
     },
   }
 })
