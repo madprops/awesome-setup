@@ -7,7 +7,7 @@ local menupanels = {}
 menupanels.main = menupanel.create({ 
   items = {
     {
-      name = "Launch an Application",
+      name = "Launch",
       action = function() menupanels.applications.show() end,
     },
     {

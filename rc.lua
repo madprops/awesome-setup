@@ -157,6 +157,7 @@ awful.screen.connect_for_each_screen(function(s)
         menupanels.main.toggle() 
       end,
       on_middle_click = function(btn)
+        stop_all_music()
         lockscreen()
       end,
       on_right_click = function(btn)
@@ -292,6 +293,12 @@ function dropdown()
   awful.util.spawn("tilix --quake", false)
 end
 
+function stop_all_music()
+  awful.util.spawn_with_shell("playerctl -p spotify pause")
+  awful.util.spawn_with_shell("playerctl -p clementine pause")
+  awful.util.spawn_with_shell("echo 'set pause yes' | socat - /tmp/mpv-socket")
+end
+
 function lockscreen()
   awful.util.spawn_with_shell("i3lock --color=000000")
 end
@@ -339,6 +346,12 @@ function launch_2()
   awful.util.spawn("konsole -e bpytop", false)
   awful.util.spawn("clementine", false)
   awful.util.spawn("spotify", false)
+  awful.util.spawn("hexchat", false)
+end
+
+function launch_3()
+  awful.util.spawn("firefox-trunk", false)
+  awful.util.spawn("mpv --player-operation-mode=pseudo-gui", false)
 end
 
 require("modules/rules")
