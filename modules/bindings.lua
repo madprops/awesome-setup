@@ -79,15 +79,15 @@ bindings.globalkeys = gears.table.join(
   end), 
 
   awful.key({"Control"}, "XF86AudioPlay", function()
-    awful.util.spawn("playerctl -p clementine play-pause", false)
+    awful.util.spawn("playerctl -p strawberry play-pause", false)
   end), 
 
   awful.key({"Control"}, "XF86AudioNext", function()
-    awful.util.spawn("playerctl -p clementine next", false)
+    awful.util.spawn("playerctl -p strawberry next", false)
   end), 
 
   awful.key({"Control"}, "XF86AudioPrev", function()
-    awful.util.spawn("playerctl -p clementine previous", false)
+    awful.util.spawn("playerctl -p strawberry previous", false)
   end), 
 
   awful.key({}, "XF86AudioRaiseVolume", function()

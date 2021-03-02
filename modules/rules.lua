@@ -54,7 +54,7 @@ awful.rules.rules = {
   -- Screen 2 Tag 1
   {
     rule_any = {
-      instance = {"dolphin", "clementine", "hexchat", "konsole"},
+      instance = {"dolphin", "strawberry", "hexchat", "konsole"},
       class = {"Nightly"}
     },
     properties = {
@@ -74,7 +74,7 @@ awful.rules.rules = {
     }
   }, 
   {
-    rule = {instance = "clementine"},
+    rule = {instance = "strawberry"},
     properties = {
       placement = function(c)
         return awful.placement.bottom_left(c, {honor_workarea = true})
