@@ -285,9 +285,9 @@ function dropdown()
 end
 
 function stop_all_music()
-  awful.util.spawn_with_shell("playerctl -p spotify pause")
   awful.util.spawn_with_shell("playerctl -p clementine pause")
   awful.util.spawn_with_shell("playerctl -p vlc pause")
+  awful.util.spawn_with_shell("playerctl -p firefox pause")
 end
 
 function lockscreen()
@@ -336,13 +336,8 @@ function launch_2()
   awful.util.spawn("dolphin", false)
   awful.util.spawn("konsole -e bpytop", false)
   awful.util.spawn("clementine", false)
-  awful.util.spawn("spotify", false)
   awful.util.spawn("hexchat", false)
-end
-
-function launch_3()
   awful.util.spawn("firefox-trunk", false)
-  awful.util.spawn("vlc", false)
 end
 
 require("modules/rules")
