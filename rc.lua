@@ -285,9 +285,9 @@ function dropdown()
 end
 
 function stop_all_music()
-  awful.util.spawn_with_shell("playerctl -p clementine pause")
-  awful.util.spawn_with_shell("playerctl -p vlc pause")
   awful.util.spawn_with_shell("playerctl -p firefox pause")
+  awful.util.spawn_with_shell("playerctl -p strawberry pause")
+  awful.util.spawn_with_shell("playerctl -p vlc pause")
 end
 
 function lockscreen()

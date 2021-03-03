@@ -67,27 +67,27 @@ bindings.globalkeys = gears.table.join(
   end), 
 
   awful.key({}, "XF86AudioPlay", function()
-    awful.util.spawn("playerctl -p firefox play-pause", false)
-  end),
-
-  awful.key({}, "XF86AudioNext", function()
-    awful.util.spawn("playerctl -p firefox next", false)
-  end), 
-
-  awful.key({}, "XF86AudioPrev", function()
-    awful.util.spawn("playerctl -p firefox previous", false)
-  end), 
-
-  awful.key({"Control"}, "XF86AudioPlay", function()
     awful.util.spawn("playerctl -p strawberry play-pause", false)
   end), 
 
-  awful.key({"Control"}, "XF86AudioNext", function()
+  awful.key({}, "XF86AudioNext", function()
     awful.util.spawn("playerctl -p strawberry next", false)
   end), 
 
-  awful.key({"Control"}, "XF86AudioPrev", function()
+  awful.key({}, "XF86AudioPrev", function()
     awful.util.spawn("playerctl -p strawberry previous", false)
+  end), 
+
+  awful.key({"Control"}, "XF86AudioPlay", function()
+    awful.util.spawn("playerctl -p firefox play-pause", false)
+  end),
+
+  awful.key({"Control"}, "XF86AudioNext", function()
+    awful.util.spawn("playerctl -p firefox next", false)
+  end), 
+
+  awful.key({"Control"}, "XF86AudioPrev", function()
+    awful.util.spawn("playerctl -p firefox previous", false)
   end), 
 
   awful.key({}, "XF86AudioRaiseVolume", function()
