@@ -1,5 +1,8 @@
 local gears = require("gears")
 local awful = require("awful")
+---
+local doubletap = require("madwidgets/doubletap/doubletap")
+---
 
 -- https://github.com/blueyed/awesome-cyclefocus
 local cyclefocus = require("cyclefocus")
@@ -7,6 +10,13 @@ local cyclefocus = require("cyclefocus")
 local bindings = {}
 local altkey = "Mod1"
 local modkey = "Mod4"
+
+local closetap = doubletap.create({
+  delay = 300,
+  action = function()
+    mouse.object_under_pointer():kill()
+  end
+})
 
 bindings.globalkeys = gears.table.join(
   awful.key({modkey, "Control"}, "BackSpace", awesome.restart), 
@@ -147,7 +157,7 @@ bindings.globalkeys = gears.table.join(
   end),
 
   awful.key({modkey}, "Delete", function()
-    doubletap()
+    closetap.trigger()
   end)
 )
 
