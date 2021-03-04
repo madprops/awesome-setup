@@ -98,10 +98,6 @@ bindings.globalkeys = gears.table.join(
     decrease_volume()
   end), 
 
-  awful.key({modkey}, "Delete", function(c)
-    awful.util.spawn("/home/yo/scripts/closer.sh", false)
-  end), 
-
   awful.key({modkey}, "#79", function()
     snap(client.focus, "corner", awful.placement.top_left)
   end), 
@@ -148,6 +144,10 @@ bindings.globalkeys = gears.table.join(
 
   awful.key({modkey, "Control"}, "3", function()
     launch_3()
+  end),
+
+  awful.key({modkey}, "Delete", function()
+    doubletap()
   end)
 )
 

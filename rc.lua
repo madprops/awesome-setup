@@ -314,7 +314,21 @@ function decrease_volume()
   volumecontrol.decrease()
 end
 
-ruled.notification.connect_signal('request::rules', function()
+local last_doubletap = 0
+
+function doubletap()
+  awful.spawn.easy_async("date +%s%3N", function(output)
+    local now = tonumber(output)
+    if (now - last_doubletap < 300) then
+      mouse.object_under_pointer():kill()
+      last_doubletap = 0
+    else
+      last_doubletap = now
+    end
+  end)
+end
+
+ruled.notification.connect_signal("request::rules", function()
   ruled.notification.append_rule {
     rule = {},
     properties = {
