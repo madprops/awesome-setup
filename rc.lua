@@ -335,7 +335,7 @@ end
 function launch_2()
   awful.util.spawn("dolphin", false)
   awful.util.spawn("konsole -e bpytop", false)
-  awful.util.spawn("clementine", false)
+  awful.util.spawn("strawberry", false)
   awful.util.spawn("hexchat", false)
   awful.util.spawn("firefox-trunk", false)
 end
