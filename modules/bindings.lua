@@ -73,8 +73,8 @@ bindings.globalkeys = gears.table.join(
   end),
 
   awful.key({}, "Print", function()
-    awful.util.spawn("flameshot gui -p /home/yo/Downloads/pics/pics1", false)
-  end), 
+    awful.util.spawn("/home/yo/bin/chizuhoru/chizuhoru -dir /home/yo/Downloads/pics/pics1", false)
+  end),
 
   awful.key({}, "XF86AudioPlay", function()
     awful.util.spawn("playerctl -p strawberry play-pause", false)
