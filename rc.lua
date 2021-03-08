@@ -209,6 +209,11 @@ end)
 root.keys(bindings.globalkeys)
 
 client.connect_signal("manage", function(c)
+  if c.class == "Chizuhoru" then
+    c.fullscreen = false
+    c.fullscreen = true
+  end
+
   if not awesome.startup then
     awful.client.setslave(c)
   end
