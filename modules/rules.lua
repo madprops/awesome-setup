@@ -104,8 +104,6 @@ awful.rules.rules = {
       width = awful.screen.focused().workarea.width * 0.5,
       height = awful.screen.focused().workarea.height * 0.6,
       xindex = 4,
-      border_color = "#00000000",
-      border_width = 20
     }
   },
   {
