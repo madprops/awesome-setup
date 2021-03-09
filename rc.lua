@@ -350,6 +350,8 @@ function launch_2()
   awful.util.spawn("firefox-trunk", false)
 end
 
+awful.layout.set(awful.layout.suit.tile, screen[2].tags[2])
+
 require("modules/rules")
 require("modules/autostart")
 volumecontrol.refresh()
