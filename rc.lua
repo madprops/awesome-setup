@@ -88,7 +88,7 @@ awful.screen.connect_for_each_screen(function(s)
       screen = s,
       placement = awful.placement.top_right,
       action = function()
-        tagtoggle(1, 2)
+        next_non_empty_tag()
       end
     })
   end
@@ -235,12 +235,17 @@ function next_tag()
   ]:view_only()
 end
 
-function tagtoggle(t1, t2)
-  if awful.screen.focused().selected_tags[1].index == t1 then
-    awful.screen.focused().tags[t2]:view_only()
-  else
-    awful.screen.focused().tags[t1]:view_only()
+function next_non_empty_tag()
+  local tags = awful.screen.focused().tags
+  local ci = awful.screen.focused().selected_tags[1].index
+
+  for i, t in ipairs(tags) do
+    if i > ci then
+      if #t:clients() > 0 then t:view_only() return end
+    end
   end
+
+  if ci > 1 then tags[1]:view_only() end
 end
 
 function prev_client()
