@@ -308,10 +308,6 @@ function calendar()
   awful.util.spawn("osmo", false)
 end
 
-function typestring(txt)
-  awful.util.spawn("xdotool type "..txt, false)
-end
-
 function msg(txt)
   naughty.notify({text = " "..txt.." "})
 end
