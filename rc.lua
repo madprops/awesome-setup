@@ -301,7 +301,7 @@ function stop_all_music()
 end
 
 function lockscreen()
-  awful.util.spawn_with_shell("i3lock --color=000000")
+  awful.util.spawn_with_shell("i3lock --color=000000 -n; date >> /home/yo/data/unlocks")
 end
 
 function calendar()
