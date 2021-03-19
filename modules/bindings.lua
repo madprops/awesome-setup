@@ -191,6 +191,10 @@ bindings.clientkeys = gears.table.join(
   awful.key({modkey}, "BackSpace", function(c)
     maximize(c)
   end),
+
+  awful.key({"Shift"}, "BackSpace", function(c)
+    awful.rules.apply(c)
+  end),
   
   cyclefocus.key({altkey}, "Tab", {
     cycle_filters = { cyclefocus.filters.same_screen, cyclefocus.filters.common_tag },
