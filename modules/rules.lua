@@ -21,7 +21,7 @@ awful.rules.rules = {
   },
   -- Screen 1 Tag 1
   {
-    rule = {class = "Firefox"},
+    rule = {instance = "vivaldi-stable"},
     properties = {
       xindex = 1
     }

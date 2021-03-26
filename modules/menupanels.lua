@@ -41,8 +41,8 @@ menupanels.applications = menupanel.create({
 menupanels.browsers = menupanel.create({ 
   items = {
     {
-      name = "Firefox",
-      action = function() awful.util.spawn("firefox", false) end,
+      name = "Vivaldi",
+      action = function() awful.util.spawn("vivaldi-stable", false) end,
     },
     {
       name = "Firefox Dev 1",
@@ -51,6 +51,10 @@ menupanels.browsers = menupanel.create({
     {
       name = "Firefox Dev 2",
       action = function() awful.util.spawn("firefox -P dev2", false) end,
+    },
+    {
+      name = "Firefox Dev 3",
+      action = function() awful.util.spawn("firefox -P dev3", false) end,
     },
     {
       name = "Nightly",

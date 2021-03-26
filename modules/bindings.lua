@@ -15,7 +15,7 @@ local closetap = doubletap.create({
   delay = 300,
   action = function()
     local c = mouse.object_under_pointer()
-    if c.instance == "Navigator" then
+    if c.instance == "vivaldi-stable" then
       client.focus = c
       root.fake_input('key_release', "Super_L")
       root.fake_input('key_release', "Super_R")

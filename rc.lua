@@ -332,7 +332,7 @@ ruled.notification.connect_signal("request::rules", function()
 end)
 
 function launch_1()
-  awful.util.spawn("firefox", false)
+  awful.util.spawn("vivaldi-stable", false)
   awful.util.spawn("code", false)
   awful.util.spawn("steam", false)
   awful.util.spawn("lutris", false)
@@ -343,7 +343,6 @@ function launch_2()
   awful.util.spawn("konsole -e bpytop", false)
   awful.util.spawn("strawberry", false)
   awful.util.spawn("hexchat", false)
-  awful.util.spawn("firefox-trunk", false)
 end
 
 awful.layout.set(awful.layout.suit.tile, screen[2].tags[2])
