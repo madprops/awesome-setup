@@ -45,25 +45,17 @@ menupanels.browsers = menupanel.create({
       action = function() awful.util.spawn("vivaldi-stable", false) end,
     },
     {
-      name = "Firefox Dev 1",
-      action = function() awful.util.spawn("firefox -P dev1", false) end,
+      name = "Vivaldi Dev 1",
+      action = function() awful.util.spawn("vivaldi-stable --profile-directory=dev1", false) end,
     },
     {
-      name = "Firefox Dev 2",
-      action = function() awful.util.spawn("firefox -P dev2", false) end,
+      name = "Vivaldi Dev 2",
+      action = function() awful.util.spawn("vivaldi-stable --profile-directory=dev2", false) end,
     },
     {
-      name = "Firefox Dev 3",
-      action = function() awful.util.spawn("firefox -P dev3", false) end,
-    },
-    {
-      name = "Nightly",
-      action = function() awful.util.spawn("firefox-trunk", false) end,
-    },
-    {
-      name = "Chromium",
-      action = function() awful.util.spawn("chromium", false) end,
-    },
+      name = "Vivaldi Dev 3",
+      action = function() awful.util.spawn("vivaldi-stable --profile-directory=dev3", false) end,
+    }
   }
 })
 
