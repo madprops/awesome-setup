@@ -97,7 +97,7 @@ menupanels.leave = menupanel.create({
     },
     {
       name = "Suspend",
-      action = function() menupanels.confirm("Suspend", function() awful.spawn.with_shell("systemctl suspend") end) end,
+      action = function() menupanels.confirm("Suspend", function() lockscreen(true) end) end,
     },
     {
       name = "Reboot",

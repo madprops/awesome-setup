@@ -300,8 +300,14 @@ function stop_all_music()
   awful.util.spawn_with_shell("playerctl -p vlc pause")
 end
 
-function lockscreen()
-  awful.util.spawn_with_shell("i3lock --color=000000 -n; date >> /home/yo/data/unlocks")
+function lockscreen(suspend)
+  local s = ""
+
+  if suspend then
+    s = "systemctl suspend; "
+  end
+
+  awful.util.spawn_with_shell(s.."i3lock --color=000000 -n; date >> /home/yo/data/unlocks")
 end
 
 function calendar()
