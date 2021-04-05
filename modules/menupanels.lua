@@ -54,6 +54,11 @@ menupanels.log = menupanel.create({
       needs_confirm = true,
     },
     {
+      name = "Bath",
+      action = function() add2log("Bath") end,
+      needs_confirm = true,
+    },
+    {
       name = "Meds",
       action = function() add2log("Meds") end,
       needs_confirm = true,
