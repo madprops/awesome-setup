@@ -11,6 +11,10 @@ menupanels.main = menupanel.create({
       action = function() menupanels.applications.show() end,
     },
     {
+      name = "Log",
+      action = function() menupanels.log.show() end,
+    },
+    {
       name = "Leave",
       action = function() menupanels.leave.show() end,
     },
@@ -34,6 +38,23 @@ menupanels.applications = menupanel.create({
     {
       name = "Vidya",
       action = function() menupanels.vidya.show() end,
+    }
+  }
+})
+
+menupanels.log = menupanel.create({
+  items = {
+    {
+      name = "Show Log",
+      action = function() showlog() end,
+    },
+    {
+      name = "Wake",
+      action = function() menupanels.confirm("Log Wake", function() add2log("Wake") end) end,
+    },
+    {
+      name = "Meds",
+      action = function() menupanels.confirm("Log Meds", function() add2log("Meds") end) end,
     }
   }
 })

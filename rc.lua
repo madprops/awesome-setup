@@ -307,7 +307,18 @@ function lockscreen(suspend)
     s = "systemctl suspend; "
   end
 
-  awful.util.spawn_with_shell(s.."i3lock --color=000000 -n; date >> /home/yo/data/unlocks")
+  awful.util.spawn_with_shell(s.."i3lock --color=000000 -n")
+end
+
+local logpath = "/home/yo/.config/clickthing/clicks.txt"
+
+function add2log(name)
+  local txt = name.." "..os.date("%c")
+  awful.util.spawn_with_shell("echo '"..txt.."' | cat - "..logpath.." | tee "..logpath)
+end
+
+function showlog(name)
+  awful.util.spawn_with_shell("kwrite "..logpath)
 end
 
 function calendar()
