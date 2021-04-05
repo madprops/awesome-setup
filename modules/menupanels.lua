@@ -50,11 +50,13 @@ menupanels.log = menupanel.create({
     },
     {
       name = "Wake",
-      action = function() menupanels.confirm("Log Wake", function() add2log("Wake") end) end,
+      action = function() add2log("Wake") end,
+      needs_confirm = true,
     },
     {
       name = "Meds",
-      action = function() menupanels.confirm("Log Meds", function() add2log("Meds") end) end,
+      action = function() add2log("Meds") end,
+      needs_confirm = true,
     }
   }
 })
@@ -110,38 +112,30 @@ menupanels.leave = menupanel.create({
   items = {
     {
       name = "Restart",
-      action = function() menupanels.confirm("Restart", function() awesome.restart() end) end,
+      action = function() awesome.restart() end,
+      needs_confirm = true,
     },
     {
       name = "Logout",
-      action = function() menupanels.confirm("Logout", function() awesome.quit() end) end,
+      action = function() awesome.quit() end,
+      needs_confirm = true,
     },
     {
       name = "Suspend",
-      action = function() menupanels.confirm("Suspend", function() lockscreen(true) end) end,
+      action = function() lockscreen(true) end,
+      needs_confirm = true,
     },
     {
       name = "Reboot",
-      action = function() menupanels.confirm("Reboot", function() awful.spawn.with_shell("reboot") end) end,
+      action = function() awful.spawn.with_shell("reboot") end,
+      needs_confirm = true,
     },
     {
       name = "Shutdown",
-      action = function() menupanels.confirm("Shutdown", function() awful.spawn.with_shell("shutdown now") end) end,
+      action = function() awful.spawn.with_shell("shutdown now") end,
+      needs_confirm = true,
     },
   }
 })
-
-function menupanels.confirm(label, func)
-  local confirm = menupanel.create({ 
-    items = {
-      {
-        name = "Confirm "..label,
-        action = function() func() end,
-      },
-    }
-  })
-
-  confirm.show()
-end
 
 return menupanels
