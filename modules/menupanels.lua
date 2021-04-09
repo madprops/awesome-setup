@@ -21,23 +21,19 @@ menupanels.main = menupanel.create({
   }
 })
 
-menupanels.applications = menupanel.create({
+menupanels.applications = menupanel.create({ 
   items = {
     {
-      name = "Browsers",
-      action = function() menupanels.browsers.show() end,
+      name = "Vivaldi Dev 1",
+      action = function() awful.util.spawn("vivaldi-stable --profile-directory=dev1", false) end,
     },
     {
-      name = "Code",
-      action = function() awful.util.spawn("code", false) end,
+      name = "Vivaldi Dev 2",
+      action = function() awful.util.spawn("vivaldi-stable --profile-directory=dev2", false) end,
     },
     {
-      name = "Music",
-      action = function() menupanels.music.show() end,
-    },
-    {
-      name = "Vidya",
-      action = function() menupanels.vidya.show() end,
+      name = "Vivaldi Dev 3",
+      action = function() awful.util.spawn("vivaldi-stable --profile-directory=dev3", false) end,
     }
   }
 })
@@ -63,53 +59,6 @@ menupanels.log = menupanel.create({
       action = function() add2log("Meds") end,
       needs_confirm = true,
     }
-  }
-})
-
-menupanels.browsers = menupanel.create({ 
-  items = {
-    {
-      name = "Vivaldi",
-      action = function() awful.util.spawn("vivaldi-stable", false) end,
-    },
-    {
-      name = "Vivaldi Dev 1",
-      action = function() awful.util.spawn("vivaldi-stable --profile-directory=dev1", false) end,
-    },
-    {
-      name = "Vivaldi Dev 2",
-      action = function() awful.util.spawn("vivaldi-stable --profile-directory=dev2", false) end,
-    },
-    {
-      name = "Vivaldi Dev 3",
-      action = function() awful.util.spawn("vivaldi-stable --profile-directory=dev3", false) end,
-    }
-  }
-})
-
-menupanels.vidya = menupanel.create({ 
-  items = {
-    {
-      name = "Lutris",
-      action = function() awful.util.spawn("lutris", false) end,
-    },
-    {
-      name = "Steam",
-      action = function() awful.util.spawn("steam", false) end,
-    },
-  }
-})
-
-menupanels.music = menupanel.create({ 
-  items = {
-    {
-      name = "Spotify",
-      action = function() awful.util.spawn("spotify", false) end,
-    },
-    {
-      name = "Clementine",
-      action = function() awful.util.spawn("clementine", false) end,
-    },
   }
 })
 

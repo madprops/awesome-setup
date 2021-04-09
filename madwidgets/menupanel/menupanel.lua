@@ -40,6 +40,10 @@ function menupanel.create(args)
     args.hide_button = true
   end
 
+  if args.hide_button_placement == nil then
+    args.hide_button_placement = "left"
+  end
+
   if args.autoclose == nil then
     args.autoclose = true
   end
@@ -177,9 +181,8 @@ function menupanel.create(args)
 
   local left = {
     layout = wibox.layout.fixed.horizontal,
-    hide_button
   }
-  
+
   local middle = {
     layout = wibox.layout.ratio.horizontal,
     table.unpack(items),
@@ -188,6 +191,12 @@ function menupanel.create(args)
   local right = {
     layout = wibox.layout.fixed.horizontal,
   }
+
+  if args.hide_button_placement == "left" then
+    table.insert(left, hide_button)
+  elseif args.hide_button_placement == "right" then
+    table.insert(right, hide_button)
+  end
 
   instance:setup {
     layout = wibox.layout.align.horizontal,
