@@ -15,8 +15,7 @@ Add the following after theme definitions like font size are set:
 
 ```lua
 local mp_main = menupanel.create({ 
-    position = "bottom",
-    height = panel_height,
+    placement = "bottom",
     autoclose = true,
     autoclose_delay = 5,
     hide_button = true,
@@ -24,16 +23,16 @@ local mp_main = menupanel.create({
     items = {
         {
             name = "Launch an Application",
-            action = function() launcher() end,
+            action = function() launcher() end
         },
         {
             name = "Open Video On Clipboard",
             action = function() video_from_clipboard() end,
+            needs_confirm = true
         },
         {
             name = "Open Symbols Picker",
-            action = function() symbolmenu() end,
-            hide_on_click = false,
+            action = function() symbolmenu() end
         },
     }
 })
