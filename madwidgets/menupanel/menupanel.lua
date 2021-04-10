@@ -9,13 +9,14 @@ function speak(txt)
   awful.util.spawn_with_shell('pkill espeak; espeak "'..txt..'"', false)
 end
 
-function focus_button(btn, args)
+function focus_button(instance, btn)
   btn.bg = beautiful.tasklist_bg_focus
   btn.fg = beautiful.tasklist_fg_focus
-  if args.speak then speak(btn.text) end
+  if instance.args.speak then speak(btn.xtext) end
+  instance.grabber_index = btn.xindex
 end
 
-function unfocus_button(btn, args)
+function unfocus_button(instance, btn)
   btn.fg = nil
   btn.bg = nil
 end
@@ -23,9 +24,9 @@ end
 function unfocus_except(instance, index)
   for i, btn in ipairs(instance.buttons) do
     if i == index then
-      focus_button(btn, instance.args)
+      focus_button(instance, btn)
     else
-      unfocus_button(btn, instance.args)
+      unfocus_button(instance, btn)
     end
   end
 end
@@ -38,14 +39,15 @@ function prepare_button(instance, widgt, index)
     border_color = beautiful.tasklist_fg_normal
   }
 
-  button.text = widgt.text
+  button.xtext = widgt.text
+  button.xindex = index
 
   button:connect_signal("mouse::enter", function(btn)
     unfocus_except(instance, index)
   end)
 
   button:connect_signal("mouse::leave", function(btn)
-    unfocus_button(btn, instance.args)
+    unfocus_button(instance, btn)
   end)
 
   return button
