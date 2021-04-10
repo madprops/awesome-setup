@@ -12,7 +12,7 @@ end
 function focus_button(btn, args)
   btn.bg = beautiful.tasklist_bg_focus
   btn.fg = beautiful.tasklist_fg_focus
-  if args.speak then speak(widgt.text) end
+  if args.speak then speak(btn.text) end
 end
 
 function unfocus_button(btn, args)
@@ -37,6 +37,8 @@ function prepare_button(instance, widgt, index)
     border_width = 1,
     border_color = beautiful.tasklist_fg_normal
   }
+
+  button.text = widgt.text
 
   button:connect_signal("mouse::enter", function(btn)
     unfocus_except(instance, index)
