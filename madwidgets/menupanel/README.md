@@ -4,7 +4,7 @@ This creates a panel that can be toggled temporarily to present buttons.
 
 It's meant to replace the main panel until closed.
 
-![](https://i.imgur.com/DktBQcC.gif)
+![](https://i.imgur.com/RNzCGCX.jpg)
 
 ## To use it
 
