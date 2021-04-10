@@ -61,6 +61,10 @@ bindings.globalkeys = gears.table.join(
     end
   },
 
+  awful.key({modkey}, "`", function()
+    show_menupanel()
+  end),
+
   awful.key({modkey}, "Return", function()
     prev_client()
   end),

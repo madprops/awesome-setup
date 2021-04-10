@@ -18,7 +18,6 @@ local mp_main = menupanel.create({
     placement = "bottom",
     autoclose = true,
     autoclose_delay = 5,
-    hide_button = true,
     speak = false,
     items = {
         {

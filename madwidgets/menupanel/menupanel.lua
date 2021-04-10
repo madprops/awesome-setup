@@ -9,7 +9,28 @@ function speak(txt)
   awful.util.spawn_with_shell('pkill espeak; espeak "'..txt..'"', false)
 end
 
-function prepare_button(widgt, args)
+function focus_button(btn, args)
+  btn.bg = beautiful.tasklist_bg_focus
+  btn.fg = beautiful.tasklist_fg_focus
+  if args.speak then speak(widgt.text) end
+end
+
+function unfocus_button(btn, args)
+  btn.fg = nil
+  btn.bg = nil
+end
+
+function unfocus_except(instance, index)
+  for i, btn in ipairs(instance.buttons) do
+    if i == index then
+      focus_button(btn, instance.args)
+    else
+      unfocus_button(btn, instance.args)
+    end
+  end
+end
+
+function prepare_button(instance, widgt, index)
   local button = wibox.widget {
     widgt,
     widget = wibox.container.background,
@@ -18,14 +39,11 @@ function prepare_button(widgt, args)
   }
 
   button:connect_signal("mouse::enter", function(btn)
-    btn.bg = beautiful.tasklist_bg_focus
-    btn.fg = beautiful.tasklist_fg_focus
-    if args.speak then speak(widgt.text) end
+    unfocus_except(instance, index)
   end)
 
   button:connect_signal("mouse::leave", function(btn)
-    btn.fg = nil
-    btn.bg = nil
+    unfocus_button(btn, instance.args)
   end)
 
   return button
@@ -36,20 +54,12 @@ function menupanel.create(args)
     args.placement = "bottom"
   end
 
-  if args.hide_button == nil then
-    args.hide_button = true
-  end
-
-  if args.hide_button_placement == nil then
-    args.hide_button_placement = "left"
-  end
-
   if args.autoclose == nil then
     args.autoclose = true
   end
 
   if args.autoclose_delay == nil then
-    args.autoclose_delay = 3
+    args.autoclose_delay = 1
   end
 
   if args.speak == nil then
@@ -69,18 +79,72 @@ function menupanel.create(args)
   })
 
   instance.args = args
+  instance.grabber_index = 1
+
+  instance.keygrabber = awful.keygrabber {
+    keybindings = {
+      {{}, 'Left', function()
+        if instance.grabber_index > 1 then
+          instance.grabber_index = instance.grabber_index - 1
+          unfocus_except(instance, instance.grabber_index)
+        end
+      end},
+      {{}, 'Right', function()
+        if instance.grabber_index < #instance.args.items then
+          instance.grabber_index = instance.grabber_index + 1
+          unfocus_except(instance, instance.grabber_index)
+        end
+      end},
+      {{}, 'Return', function()
+        instance.action(instance.args.items[instance.grabber_index], 1)
+      end},
+      {{"Shift"}, 'Return', function()
+        instance.action(instance.args.items[instance.grabber_index], 2)
+      end},
+      {{}, 'Escape', function() instance.hide() end}
+    }
+  }
 
   -- Methods
+
+  function instance.action(item, mode)
+    if mode == 1 or mode == 2 then
+      if item.action ~= nil then
+        if mode == 1 then
+          instance.hide()
+        end
+  
+        if item.needs_confirm then
+          local confirm = menupanel.create({ 
+            items = {
+              {
+                name = "Confirm "..item.name,
+                action = item.action,
+              },
+            }
+          })
+  
+          confirm.show()
+        else
+          item.action()
+        end
+      end
+    end
+  end
 
   function instance.show()
     instance.screen = awful.screen.focused()
     instance.visible = true
     instance.stop_autoclose()
+    instance.grabber_index = 1
+    unfocus_except(instance, instance.grabber_index)
+    instance.keygrabber:start()
   end
 
   function instance.hide()
     instance.visible = false
     instance.stop_autoclose()
+    instance.keygrabber:stop()
   end
 
   function instance.toggle()
@@ -111,23 +175,7 @@ function menupanel.create(args)
 
   -- Items
   
-  local items = {}
-  local hide_button = wibox.widget.textbox("")
-
-  if args.hide_button then
-    hide_button = wibox.widget {
-      text = " x ",
-      widget = wibox.widget.textbox
-    }
-  
-    hide_button:connect_signal("button::press", function(a, b, c, button, mods)
-      if button == 1 then
-        instance.toggle()
-      end
-    end)
-  
-    hide_button = prepare_button(hide_button, args)
-  end
+  instance.buttons = {}
 
   for i, item in ipairs(args.items) do
     if item.needs_confirm == nil then
@@ -140,31 +188,11 @@ function menupanel.create(args)
       widget = wibox.widget.textbox
     }
 
-    new_item:connect_signal("button::press", function(a, b, c, button, mods)
-      if button == 1 or button == 2 then
-        if item.action ~= nil then
-          if item.needs_confirm then
-            local confirm = menupanel.create({ 
-              items = {
-                {
-                  name = "Confirm "..item.name,
-                  action = item.action,
-                },
-              }
-            })
-
-            confirm.show()
-          else
-            item.action()
-          end
-          if button == 1 then
-            instance.hide()
-          end
-        end
-      end
+    new_item:connect_signal("button::press", function(_, _, _, mode)
+      instance.action(item, mode)
     end)
 
-    table.insert(items, prepare_button(new_item, args))
+    table.insert(instance.buttons, prepare_button(instance, new_item, i))
   end
 
   -- Setup
@@ -183,20 +211,10 @@ function menupanel.create(args)
     layout = wibox.layout.fixed.horizontal,
   }
 
-  local middle = {
+  local middle = wibox.widget {
     layout = wibox.layout.ratio.horizontal,
-    table.unpack(items),
+    table.unpack(instance.buttons)
   }
-  
-  local right = {
-    layout = wibox.layout.fixed.horizontal,
-  }
-
-  if args.hide_button_placement == "left" then
-    table.insert(left, hide_button)
-  elseif args.hide_button_placement == "right" then
-    table.insert(right, hide_button)
-  end
 
   instance:setup {
     layout = wibox.layout.align.horizontal,
