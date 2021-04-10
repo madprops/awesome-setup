@@ -17,7 +17,7 @@ Add the following after theme definitions like font size are set:
 local mp_main = menupanel.create({ 
     placement = "bottom",
     autoclose = true,
-    autoclose_delay = 5,
+    autoclose_delay = 1,
     speak = false,
     items = {
         {
