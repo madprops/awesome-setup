@@ -117,13 +117,17 @@ function menupanel.create(args)
         end
   
         if item.needs_confirm then
-          local confirm = menupanel.create({ 
+          local confirm = menupanel.create({
+            placement = instance.args.placement,
+            autoclose = instance.args.autoclose,
+            autoclose_delay = instance.args.autoclose_delay,
+            speak = instance.args.speak,
             items = {
               {
                 name = "Confirm "..item.name,
                 action = item.action,
               },
-            }
+            },
           })
   
           confirm.show()
