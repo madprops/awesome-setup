@@ -39,7 +39,6 @@ menupanels.applications = menupanel.create({
 })
 
 menupanels.log = menupanel.create({
-  speak = true,
   items = {
     {
       name = "Show Log",
