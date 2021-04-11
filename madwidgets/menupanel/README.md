@@ -17,6 +17,8 @@ Add the following after theme definitions like font size are set:
 local mp_main = menupanel.create({ 
     placement = "bottom",
     speak = false,
+    hide_button = true,
+    hide_button_placement = "left",
     items = {
         {
             name = "Launch an Application",
