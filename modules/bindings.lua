@@ -179,11 +179,6 @@ bindings.globalkeys = gears.table.join(
 )
 
 bindings.clientkeys = gears.table.join(
-  awful.key({modkey}, "f", function(c)
-    c.fullscreen = not c.fullscreen
-    c:raise()
-  end),
-
   awful.key({altkey}, "F4", function(c)
     close(c)
   end), 
@@ -191,9 +186,14 @@ bindings.clientkeys = gears.table.join(
   awful.key({modkey}, "\\", function(c)
     c:move_to_screen()
   end), 
-
+  
   awful.key({modkey}, "BackSpace", function(c)
     maximize(c)
+  end),
+
+  awful.key({modkey, "Shift"}, "BackSpace", function(c)
+    c.fullscreen = not c.fullscreen
+    c:raise()
   end),
 
   awful.key({"Shift"}, "BackSpace", function(c)
