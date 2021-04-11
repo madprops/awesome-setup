@@ -86,16 +86,30 @@ function prepare_button(instance, textbox, index)
     border_color = beautiful.tasklist_fg_normal
   }
 
-  button.xindex = index
-  button.textbox = textbox
-  button.textbox.xoriginaltext = textbox.text
+  if index > 0 then
+    button.xindex = index
+    button.textbox = textbox
+    button.textbox.xoriginaltext = textbox.text
 
+    button:connect_signal("mouse::enter", function(btn)
+      unfocus_except(instance, index)
+    end)
+  else
+    button = prepare_hide_button(instance, button)
+  end
+
+  return button
+end
+
+function prepare_hide_button(instance, button)
   button:connect_signal("mouse::enter", function(btn)
-    unfocus_except(instance, index)
+    btn.bg = beautiful.tasklist_bg_focus
+    btn.fg = beautiful.tasklist_fg_focus
   end)
-
+    
   button:connect_signal("mouse::leave", function(btn)
-    unfocus_button(instance, btn)
+    btn.bg = nil
+    btn.fg = nil
   end)
 
   return button
@@ -197,10 +211,26 @@ function menupanel.create(args)
     table.insert(instance.buttons, prepare_button(instance, new_item, i))
   end
 
+  -- Hide Button
+
+  local new_item = wibox.widget {
+    text = " x ",
+    align = "center",
+    widget = wibox.widget.textbox
+  }
+
+  new_item:connect_signal("button::press", function(_, _, _, mode)
+    instance.hide()
+    show_parent(instance)
+  end)
+
+  local hide_button = prepare_button(instance, new_item, 0)
+
   -- Setup
 
   local left = {
     layout = wibox.layout.fixed.horizontal,
+    hide_button
   }
 
   local middle = wibox.widget {
