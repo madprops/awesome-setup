@@ -15,10 +15,10 @@ function focus_button(instance, btn)
   if instance.args.speak then speak(btn.textbox.text) end
   instance.grabber_index = btn.xindex
   reset_confirm_charges(instance)
-  unfocus_hide_button(instance)
+  unfocus_button(instance.hide_button)
 end
 
-function unfocus_button(instance, btn)
+function unfocus_button(btn)
   btn.fg = nil
   btn.bg = nil
 end
@@ -28,14 +28,14 @@ function unfocus_except(instance, index)
     if i == index then
       focus_button(instance, btn)
     else
-      unfocus_button(instance, btn)
+      unfocus_button(btn)
     end
   end
 end
 
 function unfocus_all(instance)
   for i, btn in ipairs(instance.buttons) do
-    unfocus_button(instance, btn)
+    unfocus_button(btn)
   end
   instance.grabber_index = 0
 end
@@ -136,11 +136,6 @@ function focus_hide_button(instance)
   instance.hide_button.bg = beautiful.tasklist_bg_focus
   instance.hide_button.fg = beautiful.tasklist_fg_focus
   unfocus_all(instance)
-end
-
-function unfocus_hide_button(instance)
-  instance.hide_button.bg = nil
-  instance.hide_button.fg = nil
 end
 
 function menupanel.create(args)
