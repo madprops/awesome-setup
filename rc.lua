@@ -39,6 +39,10 @@ do
   end)
 end
 
+function msg(txt)
+  naughty.notify({text = " "..tostring(txt).." "})
+end
+
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 local theme = beautiful.get()
@@ -327,10 +331,6 @@ end
 
 function calendar()
   awful.util.spawn("osmo", false)
-end
-
-function msg(txt)
-  naughty.notify({text = " "..tostring(txt).." "})
 end
 
 function increase_volume()

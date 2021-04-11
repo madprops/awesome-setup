@@ -128,10 +128,6 @@ function prepare_hide_button(instance, textbox)
   button:connect_signal("mouse::enter", function(btn)
     focus_hide_button(instance)
   end)
-    
-  button:connect_signal("mouse::leave", function(btn)
-    unfocus_hide_button(instance)
-  end)
 
   return button
 end
@@ -230,9 +226,19 @@ function menupanel.create(args)
     hide_all(instance)
     instance.screen = awful.screen.focused()
     instance.visible = true
-    instance.grabber_index = 1
     reset_confirm_charges(instance)
-    unfocus_except(instance, instance.grabber_index)
+
+    local w = mouse.current_widget
+    if w ~= nil then
+      instance.grabber_index = w.xindex
+
+      if instance.grabber_index == 0 then
+        focus_hide_button(instance)
+      else
+        unfocus_except(instance, instance.grabber_index)
+      end
+    end
+
     instance.keygrabber:start()
   end
 
@@ -253,13 +259,14 @@ function menupanel.create(args)
     item.xindex = i
     item.confirm_charge = 0
 
-    local new_item = create_textbox(item.name)
+    local textbox = create_textbox(item.name)
 
-    new_item:connect_signal("button::press", function(_, _, _, mode)
+    textbox:connect_signal("button::press", function(_, _, _, mode)
       action(instance, item, mode)
     end)
 
-    table.insert(instance.buttons, prepare_button(instance, new_item, i))
+    textbox.xindex = i
+    table.insert(instance.buttons, prepare_button(instance, textbox, i))
   end
 
   -- Setup
@@ -278,13 +285,14 @@ function menupanel.create(args)
   }
 
   if args.hide_button then
-    local new_item = create_textbox(" x ")
+    local textbox = create_textbox(" x ")
 
-    new_item:connect_signal("button::press", function(_, _, _, mode)
+    textbox:connect_signal("button::press", function(_, _, _, mode)
       hide2(instance)
     end)
-
-    instance.hide_button = prepare_hide_button(instance, new_item)
+    
+    textbox.xindex = 0
+    instance.hide_button = prepare_hide_button(instance, textbox)
 
     if args.hide_button_placement == "left" then
       table.insert(left, instance.hide_button)
