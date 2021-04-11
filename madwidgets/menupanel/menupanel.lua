@@ -1,12 +1,16 @@
 local awful = require("awful")
 local wibox = require("wibox")
-local gears = require("gears")
 local beautiful = require("beautiful")
 
+local instances = {}
 local menupanel = {}
 
 function speak(txt)
   awful.util.spawn_with_shell('pkill espeak; espeak "'..txt..'"', false)
+end
+
+function beep(txt)
+  awful.util.spawn_with_shell("play -q -n synth 0.1 sin 880", false)
 end
 
 function focus_button(instance, btn)
@@ -14,6 +18,7 @@ function focus_button(instance, btn)
   btn.fg = beautiful.tasklist_fg_focus
   if instance.args.speak then speak(btn.xtext) end
   instance.grabber_index = btn.xindex
+  reset_confirm_charges(instance)
 end
 
 function unfocus_button(instance, btn)
@@ -28,6 +33,39 @@ function unfocus_except(instance, index)
     else
       unfocus_button(instance, btn)
     end
+  end
+end
+
+function before_action(instance, mode)
+  if mode == 1 then
+    instance.hide()
+  else
+    beep()
+  end
+end
+
+function action(instance, item, mode)
+  if mode == 1 or mode == 2 then
+    if item.action ~= nil then 
+      if item.needs_confirm then
+        if item.confirm_charge < 1 then
+          item.confirm_charge = item.confirm_charge + 1
+        else
+          reset_confirm_charges(instance)
+          before_action(instance, mode)
+          item.action()
+        end
+      else
+        before_action(instance, mode)
+        item.action()
+      end
+    end
+  end
+end
+
+function reset_confirm_charges(instance)
+  for i, item in ipairs(instance.args.items) do
+    item.confirm_charge = 0
   end
 end
 
@@ -58,16 +96,12 @@ function menupanel.create(args)
     args.placement = "bottom"
   end
 
-  if args.autoclose == nil then
-    args.autoclose = true
-  end
-
-  if args.autoclose_delay == nil then
-    args.autoclose_delay = 1
-  end
-
   if args.speak == nil then
     args.speak = false
+  end
+
+  if args.on_esc == nil then
+    args.on_esc = function() end
   end
 
   local instance = awful.popup({
@@ -100,85 +134,38 @@ function menupanel.create(args)
         end
       end},
       {{}, 'Return', function()
-        instance.action(instance.args.items[instance.grabber_index], 1)
+        action(instance, instance.args.items[instance.grabber_index], 1)
       end},
       {{"Shift"}, 'Return', function()
-        instance.action(instance.args.items[instance.grabber_index], 2)
+        action(instance, instance.args.items[instance.grabber_index], 2)
       end},
-      {{}, 'Escape', function() instance.hide() end}
+      {{}, 'Escape', function() 
+        instance.hide()
+        instance.args.on_esc()
+      end}
     }
   }
 
   -- Methods
 
-  function instance.action(item, mode)
-    if mode == 1 or mode == 2 then
-      if item.action ~= nil then
-        if mode == 1 then
-          instance.hide()
-        end
-  
-        if item.needs_confirm then
-          local confirm = menupanel.create({
-            placement = instance.args.placement,
-            autoclose = instance.args.autoclose,
-            autoclose_delay = instance.args.autoclose_delay,
-            speak = instance.args.speak,
-            items = {
-              {
-                name = "Confirm "..item.name,
-                action = item.action,
-              },
-            },
-          })
-  
-          confirm.show()
-        else
-          item.action()
-        end
+  function instance.show()
+    for i, insta in ipairs(instances) do
+      if insta.visible then
+        insta.hide()
       end
     end
-  end
 
-  function instance.show()
     instance.screen = awful.screen.focused()
     instance.visible = true
-    instance.stop_autoclose()
     instance.grabber_index = 1
+    reset_confirm_charges(instance)
     unfocus_except(instance, instance.grabber_index)
     instance.keygrabber:start()
   end
 
   function instance.hide()
     instance.visible = false
-    instance.stop_autoclose()
     instance.keygrabber:stop()
-  end
-
-  function instance.toggle()
-    if instance.visible then
-      instance.hide()
-    else
-      instance.show()
-    end
-  end
-
-  function instance.start_autoclose()
-    if instance.args.autoclose then
-      instance.timeout = gears.timer {
-        timeout = instance.args.autoclose_delay,
-        autostart = true,
-        callback = function()
-          instance.hide()
-        end
-      }
-    end
-  end
-
-  function instance.stop_autoclose()
-    if instance.timeout ~= nil then
-      instance.timeout:stop()
-    end
   end
 
   -- Items
@@ -190,6 +177,8 @@ function menupanel.create(args)
       item.needs_confirm = false
     end
 
+    item.confirm_charge = 0
+
     local new_item = wibox.widget {
       text = " "..item.name.." ",
       align = "center",
@@ -197,23 +186,13 @@ function menupanel.create(args)
     }
 
     new_item:connect_signal("button::press", function(_, _, _, mode)
-      instance.action(item, mode)
+      action(instance, item, mode)
     end)
 
     table.insert(instance.buttons, prepare_button(instance, new_item, i))
   end
 
   -- Setup
-
-  instance:connect_signal("mouse::leave", function(a, b, c, button, mods)
-    if instance.visible then
-      instance.start_autoclose()
-    end
-  end)
-
-  instance:connect_signal("mouse::enter", function(a, b, c, button, mods)
-    instance.stop_autoclose()
-  end)
 
   local left = {
     layout = wibox.layout.fixed.horizontal,
@@ -231,6 +210,7 @@ function menupanel.create(args)
     right,
   }
 
+  table.insert(instances, instance)
   return instance
 end
 

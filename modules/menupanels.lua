@@ -21,7 +21,8 @@ menupanels.main = menupanel.create({
   }
 })
 
-menupanels.applications = menupanel.create({ 
+menupanels.applications = menupanel.create({
+  on_esc = function() menupanels.main.show() end,
   items = {
     {
       name = "Vivaldi Dev 1",
@@ -39,6 +40,7 @@ menupanels.applications = menupanel.create({
 })
 
 menupanels.log = menupanel.create({
+  on_esc = function() menupanels.main.show() end,
   items = {
     {
       name = "Show Log",
@@ -63,6 +65,7 @@ menupanels.log = menupanel.create({
 })
 
 menupanels.leave = menupanel.create({ 
+  on_esc = function() menupanels.main.show() end,
   items = {
     {
       name = "Restart",

@@ -148,7 +148,7 @@ awful.screen.connect_for_each_screen(function(s)
     multibutton.create({
       text = " ❇ ",
       on_click = function(btn) 
-        menupanels.main.toggle() 
+        menupanels.main.show() 
       end,
       on_middle_click = function(btn)
         stop_all_music()
@@ -330,7 +330,7 @@ function calendar()
 end
 
 function msg(txt)
-  naughty.notify({text = " "..txt.." "})
+  naughty.notify({text = " "..tostring(txt).." "})
 end
 
 function increase_volume()
