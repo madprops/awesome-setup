@@ -78,30 +78,32 @@ function confirm_charge_border(btn)
   btn.textbox.text = "*"..btn.textbox.xoriginaltext.."*"
 end
 
-function prepare_button(instance, textbox, index)
-  local button = wibox.widget {
+function basic_button(textbox)
+  return wibox.widget {
     textbox,
     widget = wibox.container.background,
     border_width = 1,
     border_color = beautiful.tasklist_fg_normal
   }
+end
 
-  if index > 0 then
-    button.xindex = index
-    button.textbox = textbox
-    button.textbox.xoriginaltext = textbox.text
+function prepare_button(instance, textbox, index)
+  local button = basic_button(textbox)
 
-    button:connect_signal("mouse::enter", function(btn)
-      unfocus_except(instance, index)
-    end)
-  else
-    button = prepare_hide_button(instance, button)
-  end
+  button.xindex = index
+  button.textbox = textbox
+  button.textbox.xoriginaltext = textbox.text
+
+  button:connect_signal("mouse::enter", function(btn)
+    unfocus_except(instance, index)
+  end)
 
   return button
 end
 
-function prepare_hide_button(instance, button)
+function prepare_hide_button(textbox)
+  local button = basic_button(textbox)
+
   button:connect_signal("mouse::enter", function(btn)
     btn.bg = beautiful.tasklist_bg_focus
     btn.fg = beautiful.tasklist_fg_focus
@@ -224,7 +226,7 @@ function menupanel.create(args)
     show_parent(instance)
   end)
 
-  local hide_button = prepare_button(instance, new_item, 0)
+  local hide_button = prepare_hide_button(new_item)
 
   -- Setup
 
