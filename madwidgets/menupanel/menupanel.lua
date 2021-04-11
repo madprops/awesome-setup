@@ -32,6 +32,13 @@ function unfocus_except(instance, index)
   end
 end
 
+function unfocus_all(instance)
+  for i, btn in ipairs(instance.buttons) do
+    unfocus_button(instance, btn)
+  end
+  instance.grabber_index = 0
+end
+
 function hide_all(instance)
   for i, insta in ipairs(instances) do
     if insta.visible then
@@ -87,6 +94,14 @@ function basic_button(textbox)
   }
 end
 
+function create_textbox(text)
+  return wibox.widget {
+    text = text,
+    align = "center",
+    widget = wibox.widget.textbox
+  }
+end
+
 function prepare_button(instance, textbox, index)
   local button = basic_button(textbox)
 
@@ -101,12 +116,13 @@ function prepare_button(instance, textbox, index)
   return button
 end
 
-function prepare_hide_button(textbox)
+function prepare_hide_button(instance, textbox)
   local button = basic_button(textbox)
 
   button:connect_signal("mouse::enter", function(btn)
     btn.bg = beautiful.tasklist_bg_focus
     btn.fg = beautiful.tasklist_fg_focus
+    unfocus_all(instance)
   end)
     
   button:connect_signal("mouse::leave", function(btn)
@@ -124,6 +140,14 @@ function menupanel.create(args)
 
   if args.speak == nil then
     args.speak = false
+  end
+
+  if args.hide_button == nil then
+    args.hide_button = true
+  end
+
+  if args.hide_button_placement == nil then
+    args.hide_button_placement = "left"
   end
 
   local instance = awful.popup({
@@ -156,10 +180,14 @@ function menupanel.create(args)
         end
       end},
       {{}, 'Return', function()
-        action(instance, instance.args.items[instance.grabber_index], 1)
+        if instance.grabber_index > 0 then
+          action(instance, instance.args.items[instance.grabber_index], 1)
+        end
       end},
       {{"Shift"}, 'Return', function()
-        action(instance, instance.args.items[instance.grabber_index], 2)
+        if instance.grabber_index > 0 then
+          action(instance, instance.args.items[instance.grabber_index], 2)
+        end
       end},
       {{}, 'Escape', function() 
         instance.hide()
@@ -177,7 +205,7 @@ function menupanel.create(args)
     hide_all(instance)
     instance.screen = awful.screen.focused()
     instance.visible = true
-    instance.grabber_index = 1
+    instance.grabber_index = 0
     reset_confirm_charges(instance)
     unfocus_except(instance, instance.grabber_index)
     instance.keygrabber:start()
@@ -200,11 +228,7 @@ function menupanel.create(args)
     item.xindex = i
     item.confirm_charge = 0
 
-    local new_item = wibox.widget {
-      text = " "..item.name.." ",
-      align = "center",
-      widget = wibox.widget.textbox
-    }
+    local new_item = create_textbox(item.name)
 
     new_item:connect_signal("button::press", function(_, _, _, mode)
       action(instance, item, mode)
@@ -213,32 +237,37 @@ function menupanel.create(args)
     table.insert(instance.buttons, prepare_button(instance, new_item, i))
   end
 
-  -- Hide Button
-
-  local new_item = wibox.widget {
-    text = " x ",
-    align = "center",
-    widget = wibox.widget.textbox
-  }
-
-  new_item:connect_signal("button::press", function(_, _, _, mode)
-    instance.hide()
-    show_parent(instance)
-  end)
-
-  local hide_button = prepare_hide_button(new_item)
-
   -- Setup
 
   local left = {
     layout = wibox.layout.fixed.horizontal,
-    hide_button
   }
 
   local middle = wibox.widget {
     layout = wibox.layout.ratio.horizontal,
     table.unpack(instance.buttons)
   }
+
+  local right = {
+    layout = wibox.layout.fixed.horizontal,
+  }
+
+  if args.hide_button then
+    local new_item = create_textbox(" x ")
+
+    new_item:connect_signal("button::press", function(_, _, _, mode)
+      instance.hide()
+      show_parent(instance)
+    end)
+
+    local hide_button = prepare_hide_button(instance, new_item)
+
+    if args.hide_button_placement == "left" then
+      table.insert(left, hide_button)
+    elseif args.hide_button_placement == "right" then
+      table.insert(right, hide_button)
+    end
+  end
 
   instance:setup {
     layout = wibox.layout.align.horizontal,
