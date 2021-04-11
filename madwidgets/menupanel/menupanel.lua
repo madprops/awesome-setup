@@ -219,10 +219,14 @@ function menupanel.create(args)
     hide_all(instance)
   end
 
+  -- Hide instances when clicking outside
+
+  button.connect_signal('press', on_unfocus)
+  
   instance:connect_signal('mouse::leave', function()
     button.connect_signal('press', on_unfocus)
   end)
-
+  
   instance:connect_signal('mouse::enter', function()
     button.disconnect_signal('press', on_unfocus)
   end)
@@ -232,6 +236,8 @@ function menupanel.create(args)
       button.disconnect_signal('press', on_unfocus)
     end
   end)
+
+  --
 
   table.insert(instances, instance)
   return instance
