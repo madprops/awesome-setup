@@ -15,6 +15,7 @@ function focus_button(instance, btn)
   if instance.args.speak then speak(btn.textbox.text) end
   instance.grabber_index = btn.xindex
   reset_confirm_charges(instance)
+  unfocus_hide_button(instance)
 end
 
 function unfocus_button(instance, btn)
@@ -51,6 +52,11 @@ function show_parent(instance)
   if instance.args.parent ~= nil then
     instance.args.parent.show()
   end
+end
+
+function hide2(instance)
+  instance.hide()
+  show_parent(instance)
 end
 
 function action(instance, item, mode)
@@ -120,17 +126,25 @@ function prepare_hide_button(instance, textbox)
   local button = basic_button(textbox)
 
   button:connect_signal("mouse::enter", function(btn)
-    btn.bg = beautiful.tasklist_bg_focus
-    btn.fg = beautiful.tasklist_fg_focus
-    unfocus_all(instance)
+    focus_hide_button(instance)
   end)
     
   button:connect_signal("mouse::leave", function(btn)
-    btn.bg = nil
-    btn.fg = nil
+    unfocus_hide_button(instance)
   end)
 
   return button
+end
+
+function focus_hide_button(instance)
+  instance.hide_button.bg = beautiful.tasklist_bg_focus
+  instance.hide_button.fg = beautiful.tasklist_fg_focus
+  unfocus_all(instance)
+end
+
+function unfocus_hide_button(instance)
+  instance.hide_button.bg = nil
+  instance.hide_button.fg = nil
 end
 
 function menupanel.create(args)
@@ -171,27 +185,38 @@ function menupanel.create(args)
         if instance.grabber_index > 1 then
           instance.grabber_index = instance.grabber_index - 1
           unfocus_except(instance, instance.grabber_index)
+        else
+          if args.hide_button_placement == "left" then
+            focus_hide_button(instance)
+          end
         end
       end},
       {{}, 'Right', function()
         if instance.grabber_index < #instance.args.items then
           instance.grabber_index = instance.grabber_index + 1
           unfocus_except(instance, instance.grabber_index)
+        else
+          if args.hide_button_placement == "right" then
+            focus_hide_button(instance)
+          end
         end
       end},
       {{}, 'Return', function()
         if instance.grabber_index > 0 then
           action(instance, instance.args.items[instance.grabber_index], 1)
+        else
+          hide2(instance)
         end
       end},
       {{"Shift"}, 'Return', function()
         if instance.grabber_index > 0 then
           action(instance, instance.args.items[instance.grabber_index], 2)
+        else
+          hide2(instance)
         end
       end},
       {{}, 'Escape', function() 
-        instance.hide()
-        show_parent(instance)
+        hide2(instance)
       end},
       {{"Shift"}, 'Escape', function() 
         hide_all(instance)
@@ -205,7 +230,7 @@ function menupanel.create(args)
     hide_all(instance)
     instance.screen = awful.screen.focused()
     instance.visible = true
-    instance.grabber_index = 0
+    instance.grabber_index = 1
     reset_confirm_charges(instance)
     unfocus_except(instance, instance.grabber_index)
     instance.keygrabber:start()
@@ -256,16 +281,15 @@ function menupanel.create(args)
     local new_item = create_textbox(" x ")
 
     new_item:connect_signal("button::press", function(_, _, _, mode)
-      instance.hide()
-      show_parent(instance)
+      hide2(instance)
     end)
 
-    local hide_button = prepare_hide_button(instance, new_item)
+    instance.hide_button = prepare_hide_button(instance, new_item)
 
     if args.hide_button_placement == "left" then
-      table.insert(left, hide_button)
+      table.insert(left, instance.hide_button)
     elseif args.hide_button_placement == "right" then
-      table.insert(right, hide_button)
+      table.insert(right, instance.hide_button)
     end
   end
 
