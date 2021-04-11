@@ -229,14 +229,16 @@ function menupanel.create(args)
     reset_confirm_charges(instance)
 
     local w = mouse.current_widget
-    if w ~= nil then
+    if w ~= nil and w.xindex ~= nil then
       instance.grabber_index = w.xindex
+    else
+      instance.grabber_index = 1
+    end
 
-      if instance.grabber_index == 0 then
-        focus_hide_button(instance)
-      else
-        unfocus_except(instance, instance.grabber_index)
-      end
+    if instance.grabber_index == 0 then
+      focus_hide_button(instance)
+    else
+      unfocus_except(instance, instance.grabber_index)
     end
 
     instance.keygrabber:start()
