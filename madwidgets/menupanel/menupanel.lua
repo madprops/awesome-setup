@@ -16,7 +16,7 @@ end
 function focus_button(instance, btn)
   btn.bg = beautiful.tasklist_bg_focus
   btn.fg = beautiful.tasklist_fg_focus
-  if instance.args.speak then speak(btn.xtext) end
+  if instance.args.speak then speak(btn.textbox.text) end
   instance.grabber_index = btn.xindex
   reset_confirm_charges(instance)
 end
@@ -58,6 +58,7 @@ function action(instance, item, mode)
       if item.needs_confirm then
         if item.confirm_charge < 1 then
           item.confirm_charge = item.confirm_charge + 1
+          confirm_charge_border(instance.buttons[item.xindex])
         else
           reset_confirm_charges(instance)
           before_action(instance, mode)
@@ -74,19 +75,26 @@ end
 function reset_confirm_charges(instance)
   for i, item in ipairs(instance.args.items) do
     item.confirm_charge = 0
+    local btn = instance.buttons[i]
+    btn.textbox.text = btn.textbox.xoriginaltext
   end
 end
 
-function prepare_button(instance, widgt, index)
+function confirm_charge_border(btn)
+  btn.textbox.text = "*"..btn.textbox.xoriginaltext.."*"
+end
+
+function prepare_button(instance, textbox, index)
   local button = wibox.widget {
-    widgt,
+    textbox,
     widget = wibox.container.background,
     border_width = 1,
     border_color = beautiful.tasklist_fg_normal
   }
 
-  button.xtext = widgt.text
   button.xindex = index
+  button.textbox = textbox
+  button.textbox.xoriginaltext = textbox.text
 
   button:connect_signal("mouse::enter", function(btn)
     unfocus_except(instance, index)
@@ -183,6 +191,7 @@ function menupanel.create(args)
       item.needs_confirm = false
     end
 
+    item.xindex = i
     item.confirm_charge = 0
 
     local new_item = wibox.widget {
