@@ -52,6 +52,12 @@ function before_action(instance, mode)
   end
 end
 
+function show_parent(instance)
+  if instance.args.parent ~= nil then
+    instance.args.parent.show()
+  end
+end
+
 function action(instance, item, mode)
   if mode == 1 or mode == 2 then
     if item.action ~= nil then 
@@ -116,10 +122,6 @@ function menupanel.create(args)
     args.speak = false
   end
 
-  if args.on_esc == nil then
-    args.on_esc = function() end
-  end
-
   local instance = awful.popup({
     placement = args.placement,
     ontop = true,
@@ -157,7 +159,7 @@ function menupanel.create(args)
       end},
       {{}, 'Escape', function() 
         instance.hide()
-        instance.args.on_esc()
+        show_parent(instance)
       end},
       {{"Shift"}, 'Escape', function() 
         hide_all(instance)
