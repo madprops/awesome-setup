@@ -62,3 +62,7 @@ It is able to speak out items if "speak" property is set to true. It uses espeak
 Button 1 (main click) triggers an action and closes the panel.
 
 Button 2 (middle click) triggers an action but doesn't close the panel.
+
+There is a 'parent' property that can reference another menupanel instance.
+Doing this enables showing the parent menupanel when Esc is pressed on the current menupanel.
+This is a way to form menus with submenus using multiple menupanels. 
