@@ -216,6 +216,24 @@ function menupanel.create(args)
     right,
   }
 
+  function on_unfocus()
+    hide_all(instance)
+  end
+
+  instance:connect_signal('mouse::leave', function()
+    button.connect_signal('press', on_unfocus)
+  end)
+
+  instance:connect_signal('mouse::enter', function()
+    button.disconnect_signal('press', on_unfocus)
+  end)
+
+  instance:connect_signal('property::visible', function(self)
+    if not self.visible then
+      button.disconnect_signal('press', on_unfocus)
+    end
+  end)
+
   table.insert(instances, instance)
   return instance
 end
