@@ -9,10 +9,6 @@ function speak(txt)
   awful.util.spawn_with_shell('pkill espeak; espeak "'..txt..'"', false)
 end
 
-function beep(txt)
-  awful.util.spawn_with_shell("play -q -n synth 0.1 sin 880", false)
-end
-
 function focus_button(instance, btn)
   btn.bg = beautiful.tasklist_bg_focus
   btn.fg = beautiful.tasklist_fg_focus
@@ -44,14 +40,6 @@ function hide_all(instance)
   end
 end
 
-function before_action(instance, mode)
-  if mode == 1 then
-    instance.hide()
-  else
-    beep()
-  end
-end
-
 function show_parent(instance)
   if instance.args.parent ~= nil then
     instance.args.parent.show()
@@ -67,11 +55,11 @@ function action(instance, item, mode)
           confirm_charge_border(instance.buttons[item.xindex])
         else
           reset_confirm_charges(instance)
-          before_action(instance, mode)
+          if mode == 1 then instance.hide() end
           item.action()
         end
       else
-        before_action(instance, mode)
+        if mode == 1 then instance.hide() end
         item.action()
       end
     end
