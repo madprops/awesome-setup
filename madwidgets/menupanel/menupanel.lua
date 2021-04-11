@@ -36,6 +36,14 @@ function unfocus_except(instance, index)
   end
 end
 
+function hide_all(instance)
+  for i, insta in ipairs(instances) do
+    if insta.visible then
+      insta.hide()
+    end
+  end
+end
+
 function before_action(instance, mode)
   if mode == 1 then
     instance.hide()
@@ -142,6 +150,9 @@ function menupanel.create(args)
       {{}, 'Escape', function() 
         instance.hide()
         instance.args.on_esc()
+      end},
+      {{"Shift"}, 'Escape', function() 
+        hide_all(instance)
       end}
     }
   }
@@ -149,12 +160,7 @@ function menupanel.create(args)
   -- Methods
 
   function instance.show()
-    for i, insta in ipairs(instances) do
-      if insta.visible then
-        insta.hide()
-      end
-    end
-
+    hide_all(instance)
     instance.screen = awful.screen.focused()
     instance.visible = true
     instance.grabber_index = 1
