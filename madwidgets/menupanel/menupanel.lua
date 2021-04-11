@@ -60,6 +60,13 @@ function hide2(instance)
   show_parent(instance)
 end
 
+function number(instance, n, m)
+  if n <= #instance.buttons then
+    unfocus_except(instance, n)
+    action(instance, instance.args.items[n], m)
+  end
+end
+
 function action(instance, item, mode)
   if mode == 1 or mode == 2 then
     if item.action ~= nil then 
@@ -226,59 +233,59 @@ function menupanel.create(args)
       end},
 
       {{}, '1', function() 
-        action(instance, instance.args.items[1], 1)
+        number(instance, 1, 1)
       end},
       {{}, '2', function() 
-        action(instance, instance.args.items[2], 1)
+        number(instance, 2, 1)
       end},
       {{}, '3', function() 
-        action(instance, instance.args.items[3], 1)
+        number(instance, 3, 1)
       end},
       {{}, '4', function() 
-        action(instance, instance.args.items[4], 1)
+        number(instance, 4, 1)
       end},
       {{}, '5', function() 
-        action(instance, instance.args.items[5], 1)
+        number(instance, 5, 1)
       end},
       {{}, '6', function() 
-        action(instance, instance.args.items[6], 1)
+        number(instance, 6, 1)
       end},
       {{}, '7', function() 
-        action(instance, instance.args.items[7], 1)
+        number(instance, 7, 1)
       end},
       {{}, '8', function() 
-        action(instance, instance.args.items[8], 1)
+        number(instance, 8, 1)
       end},
       {{}, '9', function() 
-        action(instance, instance.args.items[9], 1)
+        number(instance, 9, 1)
       end},
 
       {{modkey}, '1', function() 
-        action(instance, instance.args.items[1], 2)
+        number(instance, 1, 2)
       end},
       {{modkey}, '2', function() 
-        action(instance, instance.args.items[2], 2)
+        number(instance, 2, 2)
       end},
       {{modkey}, '3', function() 
-        action(instance, instance.args.items[3], 2)
+        number(instance, 3, 2)
       end},
       {{modkey}, '4', function() 
-        action(instance, instance.args.items[4], 2)
+        number(instance, 4, 2)
       end},
       {{modkey}, '5', function() 
-        action(instance, instance.args.items[5], 2)
+        number(instance, 5, 2)
       end},
       {{modkey}, '6', function() 
-        action(instance, instance.args.items[6], 2)
+        number(instance, 6, 2)
       end},
       {{modkey}, '7', function() 
-        action(instance, instance.args.items[7], 2)
+        number(instance, 7, 2)
       end},
       {{modkey}, '8', function() 
-        action(instance, instance.args.items[8], 2)
+        number(instance, 8, 2)
       end},
       {{modkey}, '9', function() 
-        action(instance, instance.args.items[9], 2)
+        number(instance, 9, 2)
       end},
     }
   }
