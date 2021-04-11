@@ -4,6 +4,7 @@ local beautiful = require("beautiful")
 
 local instances = {}
 local menupanel = {}
+local modkey = "Mod4"
 
 function speak(txt)
   awful.util.spawn_with_shell('pkill espeak; espeak "'..txt..'"', false)
@@ -64,6 +65,7 @@ function action(instance, item, mode)
     if item.action ~= nil then 
       if item.needs_confirm then
         if item.confirm_charge < 1 then
+          reset_confirm_charges_except(instance, item.xindex)
           item.confirm_charge = item.confirm_charge + 1
           confirm_charge_border(instance.buttons[item.xindex])
         else
@@ -84,6 +86,16 @@ function reset_confirm_charges(instance)
     item.confirm_charge = 0
     local btn = instance.buttons[i]
     btn.textbox.text = btn.textbox.xoriginaltext
+  end
+end
+
+function reset_confirm_charges_except(instance, index)
+  for i, item in ipairs(instance.args.items) do
+    if i ~= index then
+      item.confirm_charge = 0
+      local btn = instance.buttons[i]
+      btn.textbox.text = btn.textbox.xoriginaltext
+    end
   end
 end
 
@@ -199,7 +211,7 @@ function menupanel.create(args)
           hide2(instance)
         end
       end},
-      {{"Shift"}, 'Return', function()
+      {{modkey}, 'Return', function()
         if instance.grabber_index > 0 then
           action(instance, instance.args.items[instance.grabber_index], 2)
         else
@@ -209,9 +221,65 @@ function menupanel.create(args)
       {{}, 'Escape', function() 
         hide2(instance)
       end},
-      {{"Shift"}, 'Escape', function() 
+      {{modkey}, 'Escape', function() 
         hide_all(instance)
-      end}
+      end},
+
+      {{}, '1', function() 
+        action(instance, instance.args.items[1], 1)
+      end},
+      {{}, '2', function() 
+        action(instance, instance.args.items[2], 1)
+      end},
+      {{}, '3', function() 
+        action(instance, instance.args.items[3], 1)
+      end},
+      {{}, '4', function() 
+        action(instance, instance.args.items[4], 1)
+      end},
+      {{}, '5', function() 
+        action(instance, instance.args.items[5], 1)
+      end},
+      {{}, '6', function() 
+        action(instance, instance.args.items[6], 1)
+      end},
+      {{}, '7', function() 
+        action(instance, instance.args.items[7], 1)
+      end},
+      {{}, '8', function() 
+        action(instance, instance.args.items[8], 1)
+      end},
+      {{}, '9', function() 
+        action(instance, instance.args.items[9], 1)
+      end},
+
+      {{modkey}, '1', function() 
+        action(instance, instance.args.items[1], 2)
+      end},
+      {{modkey}, '2', function() 
+        action(instance, instance.args.items[2], 2)
+      end},
+      {{modkey}, '3', function() 
+        action(instance, instance.args.items[3], 2)
+      end},
+      {{modkey}, '4', function() 
+        action(instance, instance.args.items[4], 2)
+      end},
+      {{modkey}, '5', function() 
+        action(instance, instance.args.items[5], 2)
+      end},
+      {{modkey}, '6', function() 
+        action(instance, instance.args.items[6], 2)
+      end},
+      {{modkey}, '7', function() 
+        action(instance, instance.args.items[7], 2)
+      end},
+      {{modkey}, '8', function() 
+        action(instance, instance.args.items[8], 2)
+      end},
+      {{modkey}, '9', function() 
+        action(instance, instance.args.items[9], 2)
+      end},
     }
   }
 
@@ -256,7 +324,7 @@ function menupanel.create(args)
     item.xindex = i
     item.confirm_charge = 0
 
-    local textbox = create_textbox(item.name)
+    local textbox = create_textbox("("..i..") "..item.name)
 
     textbox:connect_signal("button::press", function(_, _, _, mode)
       action(instance, item, mode)
