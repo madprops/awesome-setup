@@ -48,15 +48,19 @@ You can manually show, hide, and toggle the menu with:
 
 It is able to speak out items if "speak" property is set to true. It uses espeak for this.
 
-## Mouse Clicks
+## Actions
 
-Button 1 (main click) triggers an action and closes the panel.
+Click (or Enter) triggers an action and hides the panel.
 
-Button 2 (middle click) triggers an action but doesn't close the panel.
+Middle click (or modkey+Enter) triggers an action but doesn't hide the panel.
 
 There is a 'parent' property that can reference another menupanel instance.
 Doing this enables showing the parent menupanel when Esc is pressed on the current menupanel.
 This is a way to form menus with submenus using multiple menupanels. 
+
+Escape or clicking the x button hides the menupanel or goes to parent.
+
+modkey+Escape hides the menupanel completely (doesn't go to parent)
 
 ## Theming
 
