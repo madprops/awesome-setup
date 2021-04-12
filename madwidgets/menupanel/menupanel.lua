@@ -61,15 +61,6 @@ function hide2(instance)
   show_parent(instance)
 end
 
-function number(instance, n, m)
-  if n <= #instance.buttons then
-    if instance.focused ~= n then
-      unfocus_except(instance, n)
-    end
-    action(instance, instance.args.items[n], m)
-  end
-end
-
 function action(instance, item, mode)
   if mode == 1 or mode == 2 then
     if item.action ~= nil then 
@@ -244,63 +235,7 @@ function menupanel.create(args)
       end},
       {{modkey}, 'Escape', function() 
         hide_all(instance)
-      end},
-
-      {{}, '1', function() 
-        number(instance, 1, 1)
-      end},
-      {{}, '2', function() 
-        number(instance, 2, 1)
-      end},
-      {{}, '3', function() 
-        number(instance, 3, 1)
-      end},
-      {{}, '4', function() 
-        number(instance, 4, 1)
-      end},
-      {{}, '5', function() 
-        number(instance, 5, 1)
-      end},
-      {{}, '6', function() 
-        number(instance, 6, 1)
-      end},
-      {{}, '7', function() 
-        number(instance, 7, 1)
-      end},
-      {{}, '8', function() 
-        number(instance, 8, 1)
-      end},
-      {{}, '9', function() 
-        number(instance, 9, 1)
-      end},
-
-      {{modkey}, '1', function() 
-        number(instance, 1, 2)
-      end},
-      {{modkey}, '2', function() 
-        number(instance, 2, 2)
-      end},
-      {{modkey}, '3', function() 
-        number(instance, 3, 2)
-      end},
-      {{modkey}, '4', function() 
-        number(instance, 4, 2)
-      end},
-      {{modkey}, '5', function() 
-        number(instance, 5, 2)
-      end},
-      {{modkey}, '6', function() 
-        number(instance, 6, 2)
-      end},
-      {{modkey}, '7', function() 
-        number(instance, 7, 2)
-      end},
-      {{modkey}, '8', function() 
-        number(instance, 8, 2)
-      end},
-      {{modkey}, '9', function() 
-        number(instance, 9, 2)
-      end},
+      end}
     }
   }
 
@@ -337,7 +272,7 @@ function menupanel.create(args)
     item.xindex = i
     item.confirm_charge = 0
 
-    local textbox = create_textbox("("..i..") "..item.name)
+    local textbox = create_textbox(item.name)
 
     textbox:connect_signal("button::press", function(_, _, _, mode)
       action(instance, item, mode)
