@@ -49,14 +49,6 @@ It is able to speak out items if "speak" property is set to true. It uses espeak
 
 ## Used Theme Variables
 
->beautiful.tasklist_bg_normal
-
->beautiful.tasklist_fg_normal
-
->beautiful.tasklist_bg_focus
-
->beautiful.tasklist_fg_focus
-
 >beautiful.wibar_height
 
 ## Mouse Clicks

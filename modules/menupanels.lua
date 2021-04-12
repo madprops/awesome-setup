@@ -3,8 +3,12 @@ local beautiful = require("beautiful")
 local menupanel = require("madwidgets/menupanel/menupanel")
 
 local menupanels = {}
+local placement = "bottom"
+local height = 25
 
-menupanels.main = menupanel.create({ 
+menupanels.main = menupanel.create({
+  placement = placement,
+  height = height,
   items = {
     {
       name = "Launch",
@@ -22,6 +26,8 @@ menupanels.main = menupanel.create({
 })
 
 menupanels.applications = menupanel.create({
+  placement = placement,
+  height = height,
   parent = menupanels.main,
   items = {
     {
@@ -40,6 +46,8 @@ menupanels.applications = menupanel.create({
 })
 
 menupanels.log = menupanel.create({
+  placement = placement,
+  height = height,
   parent = menupanels.main,
   items = {
     {
@@ -64,7 +72,9 @@ menupanels.log = menupanel.create({
   }
 })
 
-menupanels.leave = menupanel.create({ 
+menupanels.leave = menupanel.create({
+  placement = placement,
+  height = height, 
   parent = menupanels.main,
   items = {
     {

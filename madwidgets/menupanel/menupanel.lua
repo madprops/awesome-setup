@@ -1,18 +1,23 @@
 local awful = require("awful")
 local wibox = require("wibox")
-local beautiful = require("beautiful")
 
 local instances = {}
 local menupanel = {}
 local modkey = "Mod4"
+local bgcolor = "#21252b"
+local bgcolor2 = "#2f333d"
+local fontcolor = "#b8babc"
+local bordercolor = "#485767"
+local bordercolor2 = "#11a8cd"
 
 function speak(txt)
   awful.util.spawn_with_shell('pkill espeak; espeak "'..txt..'"', false)
 end
 
 function focus_button(instance, btn)
-  btn.bg = beautiful.tasklist_bg_focus
-  btn.fg = beautiful.tasklist_fg_focus
+  btn.bg = bgcolor2
+  btn.fg = fontcolor
+  btn.border_color = bordercolor2
   if instance.args.speak then speak(btn.textbox.text) end
   instance.grabber_index = btn.xindex
   reset_confirm_charges(instance)
@@ -20,8 +25,9 @@ function focus_button(instance, btn)
 end
 
 function unfocus_button(btn)
-  btn.fg = nil
-  btn.bg = nil
+  btn.bg = bgcolor
+  btn.fg = fontcolor
+  btn.border_color = bordercolor
 end
 
 function unfocus_except(instance, index)
@@ -115,7 +121,7 @@ function basic_button(textbox)
     textbox,
     widget = wibox.container.background,
     border_width = 1,
-    border_color = beautiful.tasklist_fg_normal
+    border_color = bordercolor
   }
 end
 
@@ -152,14 +158,19 @@ function prepare_hide_button(instance, textbox)
 end
 
 function focus_hide_button(instance)
-  instance.hide_button.bg = beautiful.tasklist_bg_focus
-  instance.hide_button.fg = beautiful.tasklist_fg_focus
+  instance.hide_button.bg = bgcolor2
+  instance.hide_button.fg = fontcolor
+  instance.hide_button.border_color = bordercolor2
   unfocus_all(instance)
 end
 
 function menupanel.create(args)
   if args.placement == nil then
     args.placement = "bottom"
+  end
+
+  if args.height == nil then
+    args.height = 25
   end
 
   if args.speak == nil then
@@ -179,11 +190,11 @@ function menupanel.create(args)
     ontop = true,
     visible = false,
     border_width = 0,
-    minimum_height = beautiful.wibar_height,
+    minimum_height = args.height,
     minimum_width = awful.screen.focused().geometry.width,
     widget = wibox.widget.background,
-    bg = beautiful.tasklist_bg_normal,
-    fg = beautiful.tasklist_fg_normal,
+    bg = bgcolor,
+    fg = fontcolor
   })
 
   instance.args = args
