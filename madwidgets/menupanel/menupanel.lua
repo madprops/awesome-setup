@@ -14,7 +14,7 @@ function focus_button(instance, btn)
   btn.fg = instance.args.fontcolor
   btn.border_color = instance.args.bordercolor2
   if instance.args.speak then speak(btn.textbox.text) end
-  instance.grabber_index = btn.xindex
+  instance.focused = btn.xindex
   reset_confirm_charges(instance)
   unfocus_button(instance, instance.hide_button)
 end
@@ -39,7 +39,7 @@ function unfocus_all(instance)
   for i, btn in ipairs(instance.buttons) do
     unfocus_button(instance, btn)
   end
-  instance.grabber_index = 0
+  instance.focused = 0
 end
 
 function hide_all(instance)
@@ -63,7 +63,9 @@ end
 
 function number(instance, n, m)
   if n <= #instance.buttons then
-    unfocus_except(instance, n)
+    if instance.focused ~= n then
+      unfocus_except(instance, n)
+    end
     action(instance, instance.args.items[n], m)
   end
 end
@@ -199,14 +201,14 @@ function menupanel.create(args)
   })
 
   instance.args = args
-  instance.grabber_index = 1
+  instance.focused = 1
 
   instance.keygrabber = awful.keygrabber {
     keybindings = {
       {{}, 'Left', function()
-        if instance.grabber_index > 1 then
-          instance.grabber_index = instance.grabber_index - 1
-          unfocus_except(instance, instance.grabber_index)
+        if instance.focused > 1 then
+          instance.focused = instance.focused - 1
+          unfocus_except(instance, instance.focused)
         else
           if args.hide_button_placement == "left" then
             focus_hide_button(instance)
@@ -214,9 +216,9 @@ function menupanel.create(args)
         end
       end},
       {{}, 'Right', function()
-        if instance.grabber_index < #instance.args.items then
-          instance.grabber_index = instance.grabber_index + 1
-          unfocus_except(instance, instance.grabber_index)
+        if instance.focused < #instance.args.items then
+          instance.focused = instance.focused + 1
+          unfocus_except(instance, instance.focused)
         else
           if args.hide_button_placement == "right" then
             focus_hide_button(instance)
@@ -224,15 +226,15 @@ function menupanel.create(args)
         end
       end},
       {{}, 'Return', function()
-        if instance.grabber_index > 0 then
-          action(instance, instance.args.items[instance.grabber_index], 1)
+        if instance.focused > 0 then
+          action(instance, instance.args.items[instance.focused], 1)
         else
           hide2(instance)
         end
       end},
       {{modkey}, 'Return', function()
-        if instance.grabber_index > 0 then
-          action(instance, instance.args.items[instance.grabber_index], 2)
+        if instance.focused > 0 then
+          action(instance, instance.args.items[instance.focused], 2)
         else
           hide2(instance)
         end
@@ -311,10 +313,10 @@ function menupanel.create(args)
     reset_confirm_charges(instance)
 
     if not samepos then
-      instance.grabber_index = 1
+      instance.focused = 1
     end
     
-    unfocus_except(instance, instance.grabber_index)
+    unfocus_except(instance, instance.focused)
     instance.keygrabber:start()
   end
 
@@ -384,11 +386,11 @@ function menupanel.create(args)
     right,
   }
 
+  -- Hide instances when clicking outside
+
   function on_unfocus()
     hide_all(instance)
   end
-
-  -- Hide instances when clicking outside
 
   button.connect_signal('press', on_unfocus)
   
