@@ -52,7 +52,7 @@ end
 
 function show_parent(instance)
   if instance.args.parent ~= nil then
-    instance.args.parent.show()
+    instance.args.parent.show(true)
   end
 end
 
@@ -304,25 +304,17 @@ function menupanel.create(args)
 
   -- Methods
 
-  function instance.show()
+  function instance.show(samepos)
     hide_all(instance)
     instance.screen = awful.screen.focused()
     instance.visible = true
     reset_confirm_charges(instance)
 
-    local w = mouse.current_widget
-    if w ~= nil and w.xindex ~= nil then
-      instance.grabber_index = w.xindex
-    else
+    if not samepos then
       instance.grabber_index = 1
     end
-
-    if instance.grabber_index == 0 then
-      focus_hide_button(instance)
-    else
-      unfocus_except(instance, instance.grabber_index)
-    end
-
+    
+    unfocus_except(instance, instance.grabber_index)
     instance.keygrabber:start()
   end
 
