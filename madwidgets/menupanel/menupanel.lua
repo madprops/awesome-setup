@@ -4,30 +4,25 @@ local wibox = require("wibox")
 local instances = {}
 local menupanel = {}
 local modkey = "Mod4"
-local bgcolor = "#21252b"
-local bgcolor2 = "#2f333d"
-local fontcolor = "#b8babc"
-local bordercolor = "#485767"
-local bordercolor2 = "#11a8cd"
 
 function speak(txt)
   awful.util.spawn_with_shell('pkill espeak; espeak "'..txt..'"', false)
 end
 
 function focus_button(instance, btn)
-  btn.bg = bgcolor2
-  btn.fg = fontcolor
-  btn.border_color = bordercolor2
+  btn.bg = instance.args.bgcolor2
+  btn.fg = instance.args.fontcolor
+  btn.border_color = instance.args.bordercolor2
   if instance.args.speak then speak(btn.textbox.text) end
   instance.grabber_index = btn.xindex
   reset_confirm_charges(instance)
-  unfocus_button(instance.hide_button)
+  unfocus_button(instance, instance.hide_button)
 end
 
-function unfocus_button(btn)
-  btn.bg = bgcolor
-  btn.fg = fontcolor
-  btn.border_color = bordercolor
+function unfocus_button(instance, btn)
+  btn.bg = instance.args.bgcolor
+  btn.fg = instance.args.fontcolor
+  btn.border_color = instance.args.bordercolor
 end
 
 function unfocus_except(instance, index)
@@ -35,14 +30,14 @@ function unfocus_except(instance, index)
     if i == index then
       focus_button(instance, btn)
     else
-      unfocus_button(btn)
+      unfocus_button(instance, btn)
     end
   end
 end
 
 function unfocus_all(instance)
   for i, btn in ipairs(instance.buttons) do
-    unfocus_button(btn)
+    unfocus_button(instance, btn)
   end
   instance.grabber_index = 0
 end
@@ -116,12 +111,12 @@ function confirm_charge_border(btn)
   btn.textbox.text = "*"..btn.textbox.xoriginaltext.."*"
 end
 
-function basic_button(textbox)
+function basic_button(instance, textbox)
   return wibox.widget {
     textbox,
     widget = wibox.container.background,
     border_width = 1,
-    border_color = bordercolor
+    border_color = instance.args.bordercolor
   }
 end
 
@@ -134,7 +129,7 @@ function create_textbox(text)
 end
 
 function prepare_button(instance, textbox, index)
-  local button = basic_button(textbox)
+  local button = basic_button(instance, textbox)
 
   button.xindex = index
   button.textbox = textbox
@@ -148,7 +143,7 @@ function prepare_button(instance, textbox, index)
 end
 
 function prepare_hide_button(instance, textbox)
-  local button = basic_button(textbox)
+  local button = basic_button(instance, textbox)
 
   button:connect_signal("mouse::enter", function(btn)
     focus_hide_button(instance)
@@ -158,9 +153,9 @@ function prepare_hide_button(instance, textbox)
 end
 
 function focus_hide_button(instance)
-  instance.hide_button.bg = bgcolor2
-  instance.hide_button.fg = fontcolor
-  instance.hide_button.border_color = bordercolor2
+  instance.hide_button.bg = instance.args.bgcolor2
+  instance.hide_button.fg = instance.args.fontcolor
+  instance.hide_button.border_color = instance.args.bordercolor2
   unfocus_all(instance)
 end
 
@@ -185,6 +180,12 @@ function menupanel.create(args)
     args.hide_button_placement = "left"
   end
 
+  args.bgcolor = args.bgcolor or "#21252b"
+  args.bgcolor2 = args.bgcolor2 or "#2f333d"
+  args.fontcolor = args.fontcolor or "#b8babc"
+  args.bordercolor = args.bordercolor or "#485767"
+  args.bordercolor2 = args.bordercolor2 or "#11a8cd"
+
   local instance = awful.popup({
     placement = args.placement,
     ontop = true,
@@ -193,8 +194,8 @@ function menupanel.create(args)
     minimum_height = args.height,
     minimum_width = awful.screen.focused().geometry.width,
     widget = wibox.widget.background,
-    bg = bgcolor,
-    fg = fontcolor
+    bg = args.bgcolor,
+    fg = args.fontcolor
   })
 
   instance.args = args

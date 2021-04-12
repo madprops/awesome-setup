@@ -57,3 +57,17 @@ Button 2 (middle click) triggers an action but doesn't close the panel.
 There is a 'parent' property that can reference another menupanel instance.
 Doing this enables showing the parent menupanel when Esc is pressed on the current menupanel.
 This is a way to form menus with submenus using multiple menupanels. 
+
+## Theming
+
+You can use these arguments to customize the look of a menupanel:
+
+>bgcolor
+
+>bgcolor2
+
+>fontcolor
+
+>bordercolor
+
+>bordercolor2
