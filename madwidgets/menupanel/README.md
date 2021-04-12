@@ -16,6 +16,7 @@ Add the following after theme definitions like font size are set:
 ```lua
 local mp_main = menupanel.create({ 
     placement = "bottom",
+    height = 25,
     speak = false,
     hide_button = true,
     hide_button_placement = "left",
@@ -46,10 +47,6 @@ You can manually show, hide, and toggle the menu with:
 >instance.hide()
 
 It is able to speak out items if "speak" property is set to true. It uses espeak for this.
-
-## Used Theme Variables
-
->beautiful.wibar_height
 
 ## Mouse Clicks
 
