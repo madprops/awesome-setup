@@ -247,11 +247,19 @@ function menupanel.create(args)
     instance.visible = true
     reset_confirm_charges(instance)
 
-    if not samepos then
+    local w = mouse.current_widget
+    if w ~= nil and w.xindex ~= nil then
+      instance.focused = w.xindex
+    elseif not samepos then
       instance.focused = 1
     end
+
+    if instance.focused == 0 then
+      focus_hide_button(instance)
+    else
+      unfocus_except(instance, instance.focused)
+    end
     
-    unfocus_except(instance, instance.focused)
     instance.keygrabber:start()
   end
 
