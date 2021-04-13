@@ -3,7 +3,7 @@ local wibox = require("wibox")
 
 local instances = {}
 local menupanel = {}
-local modkey = "Mod4"
+local modkey = "Shift"
 
 function speak(txt)
   awful.util.spawn_with_shell('pkill espeak; espeak "'..txt..'"', false)
