@@ -357,6 +357,10 @@ function decrease_volume()
   volumecontrol.decrease()
 end
 
+function refresh_volume()
+  volumecontrol.refresh()
+end
+
 ruled.notification.connect_signal("request::rules", function()
   ruled.notification.append_rule {
     rule = {},
