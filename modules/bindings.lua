@@ -90,7 +90,7 @@ bindings.globalkeys = gears.table.join(
   end),
 
   awful.key({}, "Print", function()
-    awful.util.spawn("/home/yo/bin/chizuhoru/chizuhoru -dir /home/yo/Downloads/pics/pics1", false)
+    screenshot()
   end),
 
   awful.key({}, "XF86AudioPlay", function()

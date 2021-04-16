@@ -294,6 +294,10 @@ function launcher()
   awful.util.spawn("rofi -modi drun -show drun -show-icons -width 22 -no-click-to-exit", false)
 end
 
+function screenshot()
+  awful.util.spawn("/home/yo/bin/chizuhoru/chizuhoru -dir /home/yo/Downloads/pics/pics1", false)
+end
+
 function show_menupanel()
   menupanels.main.show()
 end
