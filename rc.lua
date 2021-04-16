@@ -298,6 +298,18 @@ function screenshot()
   awful.util.spawn("/home/yo/bin/chizuhoru/chizuhoru -dir /home/yo/Downloads/pics/pics1", false)
 end
 
+function media(action)
+  awful.util.spawn("playerctl -p strawberry " ..action, false)
+end
+
+function randstring()
+  awful.util.spawn("/home/yo/scripts/randword.sh", false)
+end
+
+function randword()
+  awful.util.spawn("/home/yo/scripts/randword.sh word", false)
+end
+
 function show_menupanel()
   menupanels.main.show()
 end
