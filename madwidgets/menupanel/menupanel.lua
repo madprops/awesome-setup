@@ -1,5 +1,6 @@
 local awful = require("awful")
 local wibox = require("wibox")
+local gears = require("gears")
 
 local instances = {}
 local menupanel = {}
@@ -182,7 +183,7 @@ function menupanel.create(args)
   local instance = awful.popup({
     placement = args.placement,
     ontop = true,
-    visible = false,
+    visible = true,
     border_width = 0,
     minimum_height = args.height,
     minimum_width = awful.screen.focused().geometry.width,
@@ -351,7 +352,18 @@ function menupanel.create(args)
     end
   end)
 
-  --
+  -- Timer to give time for widget to get drawn
+
+  instance.drawtimer = gears.timer {
+    timeout = 2
+  }
+
+  instance.drawtimer:connect_signal("timeout", function()
+    instance.visible = false
+    instance.drawtimer:stop()
+  end)
+
+  instance.drawtimer:start()
 
   table.insert(instances, instance)
   return instance

@@ -13,6 +13,7 @@ local modkey = "Mod4"
 
 local closetap = doubletap.create({
   delay = 300,
+  lockdelay = 1000,
   action = function()
     local c = mouse.object_under_pointer()
     if c.instance == "vivaldi-stable" then

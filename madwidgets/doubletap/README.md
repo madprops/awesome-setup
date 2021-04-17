@@ -36,8 +36,17 @@ This is a quick way to close windows.
 ```lua
 local closetap = doubletap.create({
   delay = 300,
+  lockdelay = 1000,
   action = function()
     mouse.object_under_pointer():kill()
   end
 })
 ```
+
+>delay (ms)
+
+Two taps need to happen <= this range to trigger. So for instance 200 needs quick taps while 2000 can be slow taps.
+
+>lockdelay (ms)
+
+After the last trigger, the taps will be locked until this time has passed. This is to avoid accidental double taps in some cases.
