@@ -213,11 +213,6 @@ end)
 root.keys(bindings.globalkeys)
 
 client.connect_signal("manage", function(c)
-  if c.class == "Chizuhoru" then
-    c.fullscreen = false
-    c.fullscreen = true
-  end
-
   if not awesome.startup then
     awful.client.setslave(c)
   end
@@ -295,7 +290,7 @@ function launcher()
 end
 
 function screenshot()
-  awful.util.spawn("/home/yo/bin/chizuhoru/chizuhoru -dir /home/yo/Downloads/pics/pics1", false)
+  awful.util.spawn("flameshot gui -p /home/yo/Downloads/pics/pics1", false)
 end
 
 function media(action)
