@@ -69,7 +69,11 @@ function action(instance, item, mode)
         if item.confirm_charge < 1 then
           reset_confirm_charges_except(instance, item.xindex)
           item.confirm_charge = item.confirm_charge + 1
-          confirm_charge_border(instance.buttons[item.xindex])
+          local btn = instance.buttons[item.xindex]
+          confirm_charge_border(btn)
+          if instance.args.speak then
+            speak("Confirm "..btn.textbox.xoriginaltext)
+          end
         else
           reset_confirm_charges(instance)
           if mode == 1 then instance.hide() end
