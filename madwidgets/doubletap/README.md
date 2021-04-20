@@ -4,6 +4,9 @@ This simulates a double-click trigger.
 
 To create:
 
+Put this near the top:
+>local doubletap = require("madwidgets/doubletap/doubletap")
+
 ```lua
 local mytap = doubletap.create({
   delay = 300,
