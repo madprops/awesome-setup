@@ -5,20 +5,18 @@ local doubletap = {}
 
 function doubletap.create(args)
   local tap = {}
-  local last_tap = 0
   local locked = false
-  
-  if args.delay == nil then
-    args.delay = 300
-  end
-  
-  if args.lockdelay == nil then
-    args.lockdelay = 0
-  end
+  args.delay = args.delay or 300
+  args.lockdelay = args.lockdelay or 0
+  args.action = args.action or function() end
 
-  if args.action == nil then
-    args.action = function() end
-  end
+  local taptimer = gears.timer {
+    timeout = args.delay / 1000
+  }
+
+  taptimer:connect_signal("timeout", function()
+    taptimer:stop()
+  end)
 
   local locktimer = gears.timer {
     timeout = args.lockdelay / 1000
@@ -26,23 +24,18 @@ function doubletap.create(args)
 
   locktimer:connect_signal("timeout", function()
     locked = false
-    last_tap = 0
     locktimer:stop()
   end)
 
   function tap.trigger()
     if locked then return end
-    
-    awful.spawn.easy_async("date +%s%3N", function(output)
-      local now = tonumber(output)
-      if (now - last_tap < args.delay) then
-        args.action()
-        locked = true
-        locktimer:start()
-      else
-        last_tap = now
-      end
-    end)
+    if taptimer.started then
+      args.action()
+      locked = true
+      locktimer:start()
+    else
+      taptimer:start()
+    end
   end
 
   return tap
