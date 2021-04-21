@@ -223,15 +223,13 @@ client.connect_signal("manage", function(c)
 end)
 
 function prev_tag()
-  awful.screen.focused().tags[
-    math.max(1, awful.screen.focused().selected_tags[1].index - 1)
-  ]:view_only()
+  local s = awful.screen.focused()
+  s.tags[math.max(1, s.selected_tags[1].index - 1)]:view_only()
 end
 
 function next_tag()
-  awful.screen.focused().tags[
-    math.min(#awful.screen.focused().tags, awful.screen.focused().selected_tags[1].index + 1)
-  ]:view_only()
+  local s = awful.screen.focused()
+  s.tags[math.min(#s.tags, s.selected_tags[1].index + 1)]:view_only()
 end
 
 function next_non_empty_tag()
