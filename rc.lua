@@ -331,7 +331,7 @@ local logpath = "/home/yo/.config/clickthing/clicks.txt"
 
 function add2log(name)
   local txt = name.." "..os.date("%c")
-  awful.util.spawn_with_shell("echo '"..txt.."' | cat - "..logpath.." | tee "..logpath)
+  awful.util.spawn_with_shell("echo -e '"..txt.."' | cat - "..logpath.." | sponge "..logpath)
 end
 
 function showlog(name)
