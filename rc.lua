@@ -173,10 +173,8 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   if s.index == 1 then
-    local right_layout = wibox.layout.fixed.horizontal()
-    
     right = {
-      layout = right_layout,
+      layout = wibox.layout.fixed.horizontal(),
       wibox.widget.textbox("  "),
       wibox.widget.textbox("  "),
       wibox.widget.systray(),
@@ -198,7 +196,23 @@ awful.screen.connect_for_each_screen(function(s)
     }
   else
     right = {
-      layout = wibox.layout.fixed.horizontal
+      layout = wibox.layout.fixed.horizontal(),
+      wibox.widget.textbox("  "),
+      wibox.widget.textbox("  "),
+      volumecontrol.create(),
+      wibox.widget.textbox("  "),
+      datetime.create({
+        on_click = function()
+          calendar()
+        end,
+        on_wheel_up = function()
+          increase_volume()
+        end,
+        on_wheel_down = function()
+          decrease_volume()
+        end
+      }),
+      wibox.widget.textbox("  ")
     }
   end
 
