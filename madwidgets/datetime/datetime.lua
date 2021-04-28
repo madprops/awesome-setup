@@ -34,7 +34,7 @@ function datetime.create(args)
     objects = { instance },
     timer_function = function()
       local text = ""
-      text = text..os.date('%T\n%A %B %d %Y')
+      text = text..os.date('%T\n%A %B (%m) %d %Y')
       return text
     end
   }  
