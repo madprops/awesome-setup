@@ -58,7 +58,7 @@ awful.rules.rules = {
       class = {"Nightly"}
     },
     properties = {
-      screen = 2,
+      screen = screen_or_preferred(2),
       tag = "1",
     }
   }, 

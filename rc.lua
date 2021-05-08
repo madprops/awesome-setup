@@ -259,6 +259,14 @@ function next_non_empty_tag()
   if ci > 1 then tags[1]:view_only() end
 end
 
+function screen_or_preferred(n)
+  if #screen >= n then 
+    return n 
+  else 
+    return awful.screen.preferred
+  end
+end
+
 function prev_client()
   awful.client.focus.history.previous()
   if client.focus then
@@ -393,7 +401,9 @@ function launch_2()
   awful.util.spawn("hexchat", false)
 end
 
-awful.layout.set(awful.layout.suit.tile, screen[2].tags[2])
+if #screen >= 2 then
+  awful.layout.set(awful.layout.suit.tile, screen[2].tags[2])
+end
 
 require("modules/rules")
 require("modules/autostart")
