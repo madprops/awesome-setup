@@ -51,6 +51,13 @@ awful.rules.rules = {
       maximized = true
     }
   },
+  {
+    rule = {instance = "pulseeffects"},
+    properties = {
+      xindex = 6,
+      icon = "microphone"
+    }
+  },
   -- Screen 2 Tag 1
   {
     rule_any = {

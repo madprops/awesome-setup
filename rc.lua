@@ -226,6 +226,9 @@ end)
 
 root.keys(bindings.globalkeys)
 
+local cairo = require("lgi").cairo
+local default_icon = os.getenv("HOME") .. "/.config/awesome/default_icon.png"
+
 client.connect_signal("manage", function(c)
   if not awesome.startup then
     awful.client.setslave(c)
@@ -234,6 +237,17 @@ client.connect_signal("manage", function(c)
   if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
     awful.placement.no_offscreen(c)
   end
+  
+  awful.spawn.easy_async_with_shell("sleep 0.6", function()
+    if c and c.valid and not c.icon then
+      local s = gears.surface(default_icon)
+      local img = cairo.ImageSurface.create(cairo.Format.ARGB32, s:get_width(), s:get_height())
+      local cr = cairo.Context(img)
+      cr:set_source_surface(s, 0, 0)
+      cr:paint()
+      c.icon = img._native
+    end
+  end)
 end)
 
 function prev_tag()
