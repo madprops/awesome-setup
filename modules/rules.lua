@@ -54,8 +54,7 @@ awful.rules.rules = {
   {
     rule = {instance = "pulseeffects"},
     properties = {
-      xindex = 6,
-      icon = "microphone"
+      xindex = 6
     }
   },
   -- Screen 2 Tag 1
