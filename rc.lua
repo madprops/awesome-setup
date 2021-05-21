@@ -415,6 +415,13 @@ function launch_2()
   awful.util.spawn("hexchat", false)
 end
 
+function launch_3()
+  awful.util.spawn("vivaldi-stable", false)
+  awful.util.spawn("strawberry", false)
+  awful.util.spawn("hexchat", false)
+  awful.util.spawn("pulseeffects")
+end
+
 if #screen >= 2 then
   awful.layout.set(awful.layout.suit.tile, screen[2].tags[2])
 end

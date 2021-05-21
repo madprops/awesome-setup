@@ -162,6 +162,10 @@ bindings.globalkeys = gears.table.join(
     launch_3()
   end),
 
+  awful.key({modkey, "Control"}, "3", function()
+    launch_3()
+  end),
+
   awful.key({modkey}, "Delete", function()
     closetap.trigger()
   end)
