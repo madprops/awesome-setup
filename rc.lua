@@ -417,9 +417,11 @@ end
 
 function launch_3()
   awful.util.spawn("vivaldi-stable", false)
+  awful.util.spawn("code", false)
+  awful.util.spawn("dolphin", false)
   awful.util.spawn("strawberry", false)
   awful.util.spawn("hexchat", false)
-  awful.util.spawn("pulseeffects")
+  awful.util.spawn("kdeconnect-indicator")
 end
 
 if #screen >= 2 then

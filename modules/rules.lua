@@ -60,25 +60,13 @@ awful.rules.rules = {
   -- Screen 2 Tag 1
   {
     rule_any = {
-      instance = {"dolphin", "strawberry", "hexchat", "konsole"},
-      class = {"Nightly"}
+      instance = {"dolphin", "strawberry", "hexchat", "konsole"}
     },
     properties = {
       screen = screen_or_preferred(2),
       tag = "1",
     }
-  }, 
-  {
-    rule = {class = "Nightly"},
-    properties = {
-      placement = function(c)
-        return awful.placement.bottom_left(c, {honor_workarea = true})
-      end,
-      width = awful.screen.focused().workarea.width * 0.5,
-      height = awful.screen.focused().workarea.height * 0.6,
-      xindex = 1
-    }
-  }, 
+  },
   {
     rule = {instance = "strawberry"},
     properties = {
