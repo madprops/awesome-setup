@@ -404,20 +404,6 @@ end)
 function launch_1()
   awful.util.spawn("vivaldi-stable", false)
   awful.util.spawn("code", false)
-  awful.util.spawn("steam", false)
-  awful.util.spawn("lutris", false)
-end
-
-function launch_2()
-  awful.util.spawn("dolphin", false)
-  awful.util.spawn("konsole -e bpytop", false)
-  awful.util.spawn("strawberry", false)
-  awful.util.spawn("hexchat", false)
-end
-
-function launch_3()
-  awful.util.spawn("vivaldi-stable", false)
-  awful.util.spawn("code", false)
   awful.util.spawn("dolphin", false)
   awful.util.spawn("strawberry", false)
   awful.util.spawn("hexchat", false)
