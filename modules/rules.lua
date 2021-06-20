@@ -45,12 +45,6 @@ awful.rules.rules = {
       end,
       width = awful.screen.focused().workarea.width * 0.5,
       height = awful.screen.focused().workarea.height * 0.6,
-      xindex = 2
-    }
-  },
-  {
-    rule = {instance = "lutris"},
-    properties = {
       xindex = 3
     }
   },
@@ -68,7 +62,13 @@ awful.rules.rules = {
   {
     rule = {instance = "Steam"},
     properties = {
-      xindex = 4
+      xindex = 4.1
+    }
+  },
+  {
+    rule = {instance = "lutris"},
+    properties = {
+      xindex = 4.2
     }
   },
   {
@@ -79,15 +79,15 @@ awful.rules.rules = {
     }
   },
   {
-    rule = {instance = "dolphin"},
+    rule = {instance = "pulseeffects"},
     properties = {
-      xindex = 5,
+      xindex = 5.1
     }
   },
   {
-    rule = {instance = "pulseeffects"},
+    rule = {instance = "dolphin"},
     properties = {
-      xindex = 6
+      xindex = 6,
     }
-  }
+  },
 }
