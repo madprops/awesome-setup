@@ -408,6 +408,12 @@ function launch_1()
   awful.util.spawn("strawberry", false)
   awful.util.spawn("hexchat", false)
   awful.util.spawn("kdeconnect-indicator")
+  awful.util.spawn("onboard")
+end
+
+function launch_2()
+  msg("Starting PulseEffects")
+  awful.util.spawn("pulseeffects --gapplication-service")
 end
 
 if #screen >= 2 then
