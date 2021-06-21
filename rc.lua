@@ -129,7 +129,40 @@ awful.screen.connect_for_each_screen(function(s)
       table.sort(result, function(a, b) return a.xindex < b.xindex end)
       for _, c in pairs(unindexed) do table.insert(result, c) end
       return result
-    end
+    end,
+    widget_template = {
+      {
+          {
+              {
+                  {
+                    id = 'icon_role',
+                    widget = wibox.widget.imagebox,
+                  },
+                  margins = 2,
+                  widget  = wibox.container.margin,
+              },
+              {
+                id = 'text_role',
+                widget = wibox.widget.textbox,
+              },
+              layout = wibox.layout.fixed.horizontal,
+          },
+          left  = 10,
+          right = 10,
+          widget = wibox.container.margin
+      },
+      id = 'background_role',
+      widget = wibox.container.background,
+      create_callback = function(self, c, _, _)
+        awful.tooltip{
+          objects = { self },
+          timer_function = function()
+            return c.name
+          end,
+          delay_show = 0.5
+        }
+      end
+    }
   }
 
   s.mytaglist = awful.widget.taglist {
@@ -328,7 +361,7 @@ function screenshot()
 end
 
 function media(action)
-  awful.util.spawn("playerctl -p strawberry " ..action, false)
+  awful.util.spawn("playerctl -p spotify " ..action, false)
 end
 
 function randstring()

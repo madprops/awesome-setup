@@ -38,6 +38,13 @@ awful.rules.rules = {
     }
   },
   {
+    rule = {instance = "spotify"},
+    properties = {
+      maximized = true,
+      xindex = 3.1
+    }
+  },
+  {
     rule = {instance = "strawberry"},
     properties = {
       placement = function(c)
@@ -45,7 +52,7 @@ awful.rules.rules = {
       end,
       width = awful.screen.focused().workarea.width * 0.5,
       height = awful.screen.focused().workarea.height * 0.6,
-      xindex = 3
+      xindex = 3.2
     }
   },
   {
