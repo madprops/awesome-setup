@@ -159,7 +159,7 @@ awful.screen.connect_for_each_screen(function(s)
           timer_function = function()
             return c.name
           end,
-          delay_show = 0.5
+          delay_show = 1
         }
       end
     }
