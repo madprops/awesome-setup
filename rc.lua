@@ -138,7 +138,8 @@ awful.screen.connect_for_each_screen(function(s)
                     id = 'icon_role',
                     widget = wibox.widget.imagebox,
                   },
-                  margins = 2,
+                  left = 0,
+                  right = 5,
                   widget  = wibox.container.margin,
               },
               {
@@ -147,8 +148,8 @@ awful.screen.connect_for_each_screen(function(s)
               },
               layout = wibox.layout.fixed.horizontal,
           },
-          left  = 10,
-          right = 10,
+          left  = 2,
+          right = 2,
           widget = wibox.container.margin
       },
       id = 'background_role',
@@ -159,7 +160,7 @@ awful.screen.connect_for_each_screen(function(s)
           timer_function = function()
             return c.name
           end,
-          delay_show = 1
+          delay_show = 0.8
         }
       end
     }
