@@ -403,15 +403,15 @@ local logpath = "/home/yo/.config/clickthing/clicks.txt"
 
 function add2log(name)
   local txt = name.." "..os.date("%c")
-  awful.util.spawn_with_shell("echo -e '"..txt.."' | cat - "..logpath.." | sponge "..logpath)
+  shellspawn("echo -e '"..txt.."' | cat - "..logpath.." | sponge "..logpath)
 end
 
 function showlog(name)
-  awful.util.spawn_with_shell("kwrite "..logpath)
+  shellspawn("kwrite "..logpath)
 end
 
 function calendar()
-  awful.util.spawn("osmo", false)
+  spawn("osmo")
 end
 
 function increase_volume()
