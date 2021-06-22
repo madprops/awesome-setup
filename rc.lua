@@ -10,6 +10,7 @@ local menubar = require("menubar")
 local hotcorner = require("madwidgets/hotcorner/hotcorner")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
+local lockdelay = require("madwidgets/lockdelay/lockdelay")
 local datetime = require("madwidgets/datetime/datetime")
 local bindings = require("modules/bindings")
 --
@@ -370,8 +371,13 @@ function change_player(p)
   msg("Player changed to "..p)
 end
 
-function playerctl(action)
-  spawn("playerctl -p "..player.." "..action)
+local playerctl_lock = lockdelay.create({
+  action = function(action) spawn("playerctl -p "..player.." "..action) end,
+  delay = 500
+})
+
+function playerctl(player)
+  playerctl_lock.trigger(player)
 end
 
 function randstring()

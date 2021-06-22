@@ -1,12 +1,11 @@
 local gears = require("gears")
+local lockdelay = require("madwidgets/lockdelay/lockdelay")
 
 local doubletap = {}
 
 function doubletap.create(args)
   local tap = {}
-  local locked = false
   args.delay = args.delay or 300
-  args.lockdelay = args.lockdelay or 0
   args.action = args.action or function() end
 
   local taptimer = gears.timer {
@@ -17,21 +16,11 @@ function doubletap.create(args)
     taptimer:stop()
   end)
 
-  local locktimer = gears.timer {
-    timeout = args.lockdelay / 1000
-  }
-
-  locktimer:connect_signal("timeout", function()
-    locked = false
-    locktimer:stop()
-  end)
+  tap.lockdelay = lockdelay.create({action=args.action, delay=args.delay})
 
   function tap.trigger()
-    if locked then return end
     if taptimer.started then
-      args.action()
-      locked = true
-      locktimer:start()
+      tap.lockdelay.trigger()
     else
       taptimer:start()
     end

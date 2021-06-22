@@ -12,8 +12,7 @@ local altkey = "Mod1"
 local modkey = "Mod4"
 
 local closetap = doubletap.create({
-  delay = 300,
-  lockdelay = 1000,
+  delay = 500,
   action = function()
     local c = mouse.object_under_pointer()
     if c.instance == "vivaldi-stable" then
@@ -21,7 +20,6 @@ local closetap = doubletap.create({
       root.fake_input('key_release', "Super_L")
       root.fake_input('key_release', "Super_R")
       root.fake_input('key_release', "Delete")
-      
       root.fake_input('key_press', "Control_L")
       root.fake_input('key_press', "w") 
       root.fake_input('key_release', "w")
