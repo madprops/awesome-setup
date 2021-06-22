@@ -14,6 +14,7 @@ local datetime = require("madwidgets/datetime/datetime")
 local bindings = require("modules/bindings")
 --
 local player = "spotify"
+local context_client
 
 if awesome.startup_errors then
   naughty.notify({
@@ -320,6 +321,11 @@ function maximize(c)
   c.maximized = not c.maximized
 end
 
+function fullscreen(c)
+  focus(c)
+  c.fullscreen = not c.fullscreen
+end
+
 function focus(c)
   c.first_tag:view_only()
   c:emit_signal("request::activate", "tasklist", {raise = true})
@@ -373,6 +379,25 @@ end
 
 function show_menupanel()
   menupanels.main.show()
+end
+
+function get_context_client()
+  return context_client
+end
+
+function task_context(c)
+  context_client = c
+  
+  local timeout = gears.timer {
+    timeout = 0.1
+  }
+  
+  timeout:connect_signal("timeout", function()
+    timeout:stop()
+    menupanels.context.show()
+  end)
+  
+  timeout:start()
 end
 
 function dropdown()

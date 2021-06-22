@@ -173,7 +173,7 @@ bindings.clientkeys = gears.table.join(
   end),
 
   awful.key({modkey, "Shift"}, "BackSpace", function(c)
-    c.fullscreen = not c.fullscreen
+    fullscreen(c)
     c:raise()
   end),
 
@@ -216,7 +216,7 @@ bindings.tasklist_buttons = gears.table.join(
   end), 
 
   awful.button({}, 3, function(c)
-    maximize(c)
+    task_context(c)
   end), 
 
   awful.button({modkey}, 4, function(c)

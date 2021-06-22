@@ -124,4 +124,23 @@ menupanels.leave = menupanel.create({
   }
 })
 
+menupanels.context = menupanel.create({
+  placement = placement,
+  height = height,
+  items = {
+    {
+      name = "Maximize",
+      action = function() maximize(get_context_client()) end,
+    },
+    {
+      name = "Fullscreen",
+      action = function() fullscreen(get_context_client()) end,
+    },  
+    {
+      name = "Close",
+      action = function() close(get_context_client()) end,
+    },
+  }
+})
+
 return menupanels
