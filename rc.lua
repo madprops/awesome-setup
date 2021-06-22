@@ -392,17 +392,7 @@ end
 
 function task_context(c)
   context_client = c
-  
-  local timeout = gears.timer {
-    timeout = 0.1
-  }
-  
-  timeout:connect_signal("timeout", function()
-    timeout:stop()
-    menupanels.context.show()
-  end)
-  
-  timeout:start()
+  menupanels.context.show_with_delay(0.1)
 end
 
 function dropdown()

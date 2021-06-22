@@ -268,6 +268,19 @@ function menupanel.create(args)
     instance.keygrabber:start()
   end
 
+  function instance.show_with_delay(delay)
+    local timeout = gears.timer {
+      timeout = delay
+    }
+    
+    timeout:connect_signal("timeout", function()
+      timeout:stop()
+      instance.show()
+    end)
+    
+    timeout:start()
+  end
+
   function instance.hide()
     instance.visible = false
     instance.keygrabber:stop()
