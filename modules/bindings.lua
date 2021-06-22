@@ -95,15 +95,15 @@ bindings.globalkeys = gears.table.join(
   end),
 
   awful.key({}, "XF86AudioPlay", function()
-    media("play-pause")
+    playerctl("play-pause")
   end), 
 
   awful.key({}, "XF86AudioNext", function()
-    media("next")
+    playerctl("next")
   end), 
 
   awful.key({}, "XF86AudioPrev", function()
-    media("previous")
+    playerctl("previous")
   end), 
 
   awful.key({}, "XF86AudioRaiseVolume", function()

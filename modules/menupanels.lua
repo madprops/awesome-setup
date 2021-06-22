@@ -18,6 +18,10 @@ menupanels.main = menupanel.create({
       action = function() menupanels.log.show() end,
     },
     {
+      name = "Players",
+      action = function() menupanels.players.show() end,
+    },
+    {
       name = "Leave",
       action = function() menupanels.leave.show() end,
     },
@@ -68,6 +72,22 @@ menupanels.log = menupanel.create({
       action = function() add2log("Meds") end,
       needs_confirm = true,
     }
+  }
+})
+
+menupanels.players = menupanel.create({
+  placement = placement,
+  height = height,
+  parent = menupanels.main,
+  items = {
+    {
+      name = "Spotify",
+      action = function() change_player("spotify") end
+    },
+    {
+      name = "Strawberry",
+      action = function() change_player("strawberry") end
+    },
   }
 })
 

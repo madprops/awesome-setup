@@ -13,6 +13,7 @@ local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local datetime = require("madwidgets/datetime/datetime")
 local bindings = require("modules/bindings")
 --
+local player = "spotify"
 
 if awesome.startup_errors then
   naughty.notify({
@@ -361,8 +362,13 @@ function screenshot()
   spawn("flameshot gui -p /home/yo/Downloads/pics/pics1")
 end
 
-function media(action)
-  spawn("playerctl -p playerctld " ..action)
+function change_player(p)
+  player = p
+  msg("Player changed to "..p)
+end
+
+function playerctl(action)
+  spawn("playerctl -p "..player.." "..action)
 end
 
 function randstring()
