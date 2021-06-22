@@ -151,11 +151,7 @@ bindings.globalkeys = gears.table.join(
   end), 
 
   awful.key({modkey, "Control"}, "1", function()
-    launch_1()
-  end),
-
-  awful.key({modkey, "Control"}, "2", function()
-    launch_2()
+    launch_all()
   end),
 
   awful.key({modkey}, "Delete", function()

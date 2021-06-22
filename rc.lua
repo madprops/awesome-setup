@@ -308,14 +308,6 @@ function next_non_empty_tag()
   if ci > 1 then tags[1]:view_only() end
 end
 
-function screen_or_preferred(n)
-  if #screen >= n then 
-    return n 
-  else 
-    return awful.screen.preferred
-  end
-end
-
 function prev_client()
   awful.client.focus.history.previous()
   if client.focus then
@@ -451,7 +443,7 @@ function shellspawn(program)
   awful.util.spawn_with_shell(program)
 end
 
-function launch_1()
+function launch_all()
   spawn("vivaldi-stable")
   spawn("code")
   spawn("dolphin")
@@ -460,15 +452,11 @@ function launch_1()
   spawn("kdeconnect-indicator")
   spawn("onboard")
   spawn("numlockx")
-end
 
-function launch_2()
-  msg("Starting PulseEffects")
-  spawn("pulseeffects --gapplication-service")
-end
-
-if #screen >= 2 then
-  awful.layout.set(awful.layout.suit.tile, screen[2].tags[2])
+  awful.spawn.easy_async_with_shell("sleep 5", function()
+    msg("Starting PulseEffects")
+    spawn("pulseeffects --gapplication-service")
+  end)
 end
 
 require("modules/rules")
