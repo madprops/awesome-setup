@@ -135,7 +135,11 @@ menupanels.context = menupanel.create({
     {
       name = "Fullscreen",
       action = function() fullscreen(get_context_client()) end,
-    },  
+    },
+    {
+      name = "Float",
+      action = function() float(get_context_client()) end,
+    }, 
     {
       name = "Close",
       action = function() close(get_context_client()) end,
