@@ -1,4 +1,4 @@
-# doubletap
+# lockdelay
 
 Temporarily lock a function from executing
 
