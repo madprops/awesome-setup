@@ -31,15 +31,15 @@ menupanels.applications = menupanel.create({
   items = {
     {
       name = "Vivaldi Dev 1",
-      action = function() awful.util.spawn("vivaldi-stable --profile-directory=dev1", false) end,
+      action = function() spawn("vivaldi-stable --profile-directory=dev1") end,
     },
     {
       name = "Vivaldi Dev 2",
-      action = function() awful.util.spawn("vivaldi-stable --profile-directory=dev2", false) end,
+      action = function() spawn("vivaldi-stable --profile-directory=dev2") end,
     },
     {
       name = "Vivaldi Dev 3",
-      action = function() awful.util.spawn("vivaldi-stable --profile-directory=dev3", false) end,
+      action = function() spawn("vivaldi-stable --profile-directory=dev3") end,
     }
   }
 })
@@ -93,12 +93,12 @@ menupanels.leave = menupanel.create({
     },
     {
       name = "Reboot",
-      action = function() awful.spawn.with_shell("reboot") end,
+      action = function() shellspawn("reboot") end,
       needs_confirm = true,
     },
     {
       name = "Shutdown",
-      action = function() awful.spawn.with_shell("shutdown now") end,
+      action = function() shellspawn("shutdown now") end,
       needs_confirm = true,
     },
   }

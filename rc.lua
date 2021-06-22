@@ -354,23 +354,23 @@ function snap(c, axis, position)
 end
 
 function launcher()
-  awful.util.spawn("rofi -modi drun -show drun -show-icons -width 22 -no-click-to-exit", false)
+  spawn("rofi -modi drun -show drun -show-icons -width 22 -no-click-to-exit")
 end
 
 function screenshot()
-  awful.util.spawn("flameshot gui -p /home/yo/Downloads/pics/pics1", false)
+  spawn("flameshot gui -p /home/yo/Downloads/pics/pics1")
 end
 
 function media(action)
-  awful.util.spawn("playerctl -p spotify " ..action, false)
+  spawn("playerctl -p playerctld " ..action)
 end
 
 function randstring()
-  awful.util.spawn("/home/yo/scripts/randword.sh", false)
+  spawn("/home/yo/scripts/randword.sh")
 end
 
 function randword()
-  awful.util.spawn("/home/yo/scripts/randword.sh word", false)
+  spawn("/home/yo/scripts/randword.sh word")
 end
 
 function show_menupanel()
@@ -378,13 +378,15 @@ function show_menupanel()
 end
 
 function dropdown()
-  awful.util.spawn("tilix --quake", false)
+  spawn("tilix --quake")
 end
 
 function stop_all_music()
-  awful.util.spawn_with_shell("playerctl -p firefox pause")
-  awful.util.spawn_with_shell("playerctl -p strawberry pause")
-  awful.util.spawn_with_shell("playerctl -p vlc pause")
+  shellspawn("playerctl -p vivaldi-stable pause")
+  shellspawn("playerctl -p firefox pause")
+  shellspawn("playerctl -p spotify pause")
+  shellspawn("playerctl -p strawberry pause")
+  shellspawn("playerctl -p vlc pause")
 end
 
 function lockscreen(suspend)
@@ -394,7 +396,7 @@ function lockscreen(suspend)
     s = "systemctl suspend; "
   end
 
-  awful.util.spawn_with_shell(s.."i3lock --color=000000 -n")
+  shellspawn(s.."i3lock --color=000000 -n")
 end
 
 local logpath = "/home/yo/.config/clickthing/clicks.txt"
@@ -435,19 +437,28 @@ ruled.notification.connect_signal("request::rules", function()
   }
 end)
 
+function spawn(program)
+  awful.util.spawn(program, false)
+end
+
+function shellspawn(program)
+  awful.util.spawn_with_shell(program)
+end
+
 function launch_1()
-  awful.util.spawn("vivaldi-stable", false)
-  awful.util.spawn("code", false)
-  awful.util.spawn("dolphin", false)
-  awful.util.spawn("strawberry", false)
-  awful.util.spawn("hexchat", false)
-  awful.util.spawn("kdeconnect-indicator")
-  awful.util.spawn("onboard")
+  spawn("vivaldi-stable")
+  spawn("code")
+  spawn("dolphin")
+  spawn("spotify")
+  spawn("hexchat")
+  spawn("kdeconnect-indicator")
+  spawn("onboard")
+  spawn("numlockx")
 end
 
 function launch_2()
   msg("Starting PulseEffects")
-  awful.util.spawn("pulseeffects --gapplication-service")
+  spawn("pulseeffects --gapplication-service")
 end
 
 if #screen >= 2 then
