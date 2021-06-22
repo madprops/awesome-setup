@@ -143,6 +143,7 @@ menupanels.context = menupanel.create({
     {
       name = "Close",
       action = function() close(get_context_client()) end,
+      needs_confirm = true,
     },
   }
 })
