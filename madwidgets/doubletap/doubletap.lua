@@ -6,6 +6,7 @@ local doubletap = {}
 function doubletap.create(args)
   local tap = {}
   args.delay = args.delay or 300
+  args.lockdelay = args.lockdelay or 0
   args.action = args.action or function() end
 
   local taptimer = gears.timer {
@@ -16,7 +17,7 @@ function doubletap.create(args)
     taptimer:stop()
   end)
 
-  tap.lockdelay = lockdelay.create({action=args.action, delay=args.delay})
+  tap.lockdelay = lockdelay.create({action=args.action, delay=args.lockdelay})
 
   function tap.trigger()
     if taptimer.started then
