@@ -466,7 +466,11 @@ function spawn(program)
 end
 
 function shellspawn(program)
-  awful.util.spawn_with_shell(program)
+  awful.util.spawn_with_shell(program, false)
+end
+
+function singlespawn(program)
+  awful.spawn.single_instance(program)
 end
 
 function launch_all()
@@ -475,9 +479,6 @@ function launch_all()
   spawn("dolphin")
   spawn("spotify")
   spawn("hexchat")
-  spawn("kdeconnect-indicator")
-  spawn("onboard")
-  spawn("numlockx")
 
   awful.spawn.easy_async_with_shell("sleep 5", function()
     msg("Starting PulseEffects")
