@@ -2,7 +2,7 @@ local awful = require("awful")
 local wibox = require("wibox")
 
 local volumecontrol = {}
-volumecontrol.max_volume = 115
+volumecontrol.max_volume = 100
 volumecontrol.steps = 5
 
 local instances = {}
@@ -69,18 +69,7 @@ function volumecontrol.decrease()
 end
 
 function volumecontrol.max()
-  get_volume(function(vol)
-    local newvol = 0
-
-    if vol == 100 then
-      newvol = volumecontrol.max_volume
-    else
-      newvol = 100
-    end
-
-    awful.util.spawn_with_shell("pactl set-sink-volume @DEFAULT_SINK@ "..newvol.."%", false)
-    update_volume(newvol)
-  end)
+  change_volume(volumecontrol.max_volume)
 end
 
 function volumecontrol.mute()

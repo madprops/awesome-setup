@@ -56,7 +56,7 @@ volumecontrol.decrease()
 ---
 
 volumecontrol.max()
->Toggle between 100% and max_volume (115%) for an extra boost
+>Sets volume to 100%
 
 ---
 
@@ -71,7 +71,7 @@ volumecontrol.refresh()
 ## Variables
 
 volumecontrol.max_volume
->Default: 115 (%)
+>Default: 100 (%)
 
 ---
 
