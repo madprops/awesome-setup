@@ -286,6 +286,18 @@ function menupanel.create(args)
     instance.keygrabber:stop()
   end
 
+  function instance.update_item(index, name, action)
+    if name then
+      instance.args.items[index].name = name
+      instance.buttons[index].textbox.text = name
+      instance.buttons[index].textbox.xoriginaltext = name
+    end
+    
+    if action then
+      instance.args.items[index].action = action
+    end
+  end
+
   -- Items
   
   instance.buttons = {}

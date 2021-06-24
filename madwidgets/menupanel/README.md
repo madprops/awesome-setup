@@ -75,3 +75,8 @@ You can use these arguments to customize the look of a menupanel:
 >bordercolor
 
 >bordercolor2
+
+
+There's an instance method to update an item programatically:
+
+>instance.update_item(index, name, action)

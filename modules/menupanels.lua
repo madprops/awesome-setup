@@ -142,12 +142,26 @@ menupanels.context = menupanel.create({
     },
     {
       name = "Title",
-      action = function() msg(get_context_client().name) end,
+      action = function()
+        menupanels.title.update_item(1, get_context_client().name)
+        menupanels.title.show()
+      end,
     },
     {
       name = "Close",
       action = function() close(get_context_client()) end,
       needs_confirm = true,
+    },
+  }
+})
+
+menupanels.title = menupanel.create({
+  placement = placement,
+  height = height,
+  items = {
+    {
+      name = "- Empty -",
+      action = function()  end,
     },
   }
 })
