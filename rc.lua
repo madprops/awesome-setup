@@ -132,41 +132,7 @@ awful.screen.connect_for_each_screen(function(s)
       table.sort(result, function(a, b) return a.xindex < b.xindex end)
       for _, c in pairs(unindexed) do table.insert(result, c) end
       return result
-    end,
-    widget_template = {
-      {
-          {
-              {
-                  {
-                    id = 'icon_role',
-                    widget = wibox.widget.imagebox,
-                  },
-                  left = 0,
-                  right = 5,
-                  widget  = wibox.container.margin,
-              },
-              {
-                id = 'text_role',
-                widget = wibox.widget.textbox,
-              },
-              layout = wibox.layout.fixed.horizontal,
-          },
-          left  = 2,
-          right = 2,
-          widget = wibox.container.margin
-      },
-      id = 'background_role',
-      widget = wibox.container.background,
-      create_callback = function(self, c, _, _)
-        awful.tooltip{
-          objects = { self },
-          timer_function = function()
-            return c.name
-          end,
-          delay_show = 0.8
-        }
-      end
-    }
+    end
   }
 
   s.mytaglist = awful.widget.taglist {

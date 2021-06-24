@@ -139,7 +139,11 @@ menupanels.context = menupanel.create({
     {
       name = "Float",
       action = function() float(get_context_client()) end,
-    }, 
+    },
+    {
+      name = "Title",
+      action = function() msg(get_context_client().name) end,
+    },
     {
       name = "Close",
       action = function() close(get_context_client()) end,
