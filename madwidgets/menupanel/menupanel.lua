@@ -298,6 +298,10 @@ function menupanel.create(args)
     end
   end
 
+  function instance.get_item(index)
+    return instance.args.items[index]
+  end
+
   -- Items
   
   instance.buttons = {}

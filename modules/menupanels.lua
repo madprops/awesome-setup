@@ -5,6 +5,11 @@ local menupanels = {}
 local placement = "bottom"
 local height = 25
 
+function mp_info(text)
+  menupanels.info.update_item(1, text)
+  menupanels.info.show()
+end
+
 menupanels.main = menupanel.create({
   placement = placement,
   height = height,
@@ -142,10 +147,7 @@ menupanels.context = menupanel.create({
     },
     {
       name = "Title",
-      action = function()
-        menupanels.title.update_item(1, get_context_client().name)
-        menupanels.title.show()
-      end,
+      action = function() mp_info(get_context_client().name) end,
     },
     {
       name = "Close",
@@ -155,13 +157,15 @@ menupanels.context = menupanel.create({
   }
 })
 
-menupanels.title = menupanel.create({
+menupanels.info = menupanel.create({
   placement = placement,
   height = height,
   items = {
     {
       name = "- Empty -",
-      action = function()  end,
+      action = function() 
+        to_clipboard(menupanels.info.get_item(1).name) 
+      end,
     },
   }
 })

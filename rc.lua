@@ -354,6 +354,14 @@ function randword()
   spawn("/home/yo/scripts/randword.sh word")
 end
 
+function to_clipboard(text)
+  shellspawn('echo -n "'..trim(text)..'" | xclip -selection clipboard')
+end
+
+function trim(text)
+  return (string.gsub(text, "^%s*(.-)%s*$", "%1"))
+end
+
 function show_menupanel()
   menupanels.main.show()
 end
