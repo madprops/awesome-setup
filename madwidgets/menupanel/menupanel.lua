@@ -380,16 +380,9 @@ function menupanel.create(args)
 
   -- Timer to give time for widget to get drawn
 
-  instance.drawtimer = gears.timer {
-    timeout = 2
-  }
-
-  instance.drawtimer:connect_signal("timeout", function()
+  gears.timer.start_new(2, function()
     instance.visible = false
-    instance.drawtimer:stop()
   end)
-
-  instance.drawtimer:start()
 
   table.insert(instances, instance)
   return instance
