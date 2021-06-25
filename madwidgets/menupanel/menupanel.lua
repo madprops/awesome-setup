@@ -269,16 +269,9 @@ function menupanel.create(args)
   end
 
   function instance.show_with_delay(delay)
-    local timeout = gears.timer {
-      timeout = delay
-    }
-    
-    timeout:connect_signal("timeout", function()
-      timeout:stop()
+    gears.timer.start_new(delay, function()
       instance.show()
     end)
-    
-    timeout:start()
   end
 
   function instance.hide()
