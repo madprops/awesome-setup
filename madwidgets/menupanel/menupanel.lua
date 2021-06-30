@@ -10,6 +10,22 @@ function speak(txt)
   awful.util.spawn_with_shell('pkill espeak; espeak "'..txt..'"', false)
 end
 
+function start_autohide(instance)
+  if instance.args.autohide then
+    instance.autohide_timer = gears.timer.start_new(instance.args.autohide_delay, function()
+      if instance.visible then
+        instance.hide()
+      end
+    end)
+  end
+end
+
+function stop_autohide(instance)
+  if instance.args.autohide and instance.autohide_timer then
+    instance.autohide_timer:stop()
+  end
+end
+
 function focus_button(instance, btn)
   btn.bg = instance.args.bgcolor2
   btn.fg = instance.args.fontcolor
@@ -166,6 +182,10 @@ function menupanel.create(args)
     args.hide_button = true
   end
 
+  if args.autohide == nil then
+    args.autohide = true
+  end
+
   args.height = args.height or 25
   args.hide_button_placement = args.hide_button_placement or "left"
   args.placement = args.placement or "bottom"
@@ -174,6 +194,7 @@ function menupanel.create(args)
   args.fontcolor = args.fontcolor or "#b8babc"
   args.bordercolor = args.bordercolor or "#485767"
   args.bordercolor2 = args.bordercolor2 or "#11a8cd"
+  args.autohide_delay = args.autohide_delay or 2
 
   local instance = awful.popup({
     placement = args.placement,
@@ -260,7 +281,7 @@ function menupanel.create(args)
   end
 
   function instance.show_with_delay(delay)
-    delay = delay or 0.1
+    delay = delay or 0.02
     gears.timer.start_new(delay, function()
       instance.show()
     end)
@@ -358,10 +379,12 @@ function menupanel.create(args)
   
   instance:connect_signal('mouse::leave', function()
     button.connect_signal('press', on_unfocus)
+    start_autohide(instance)
   end)
   
   instance:connect_signal('mouse::enter', function()
     button.disconnect_signal('press', on_unfocus)
+    stop_autohide(instance)
   end)
 
   instance:connect_signal('property::visible', function(self)
