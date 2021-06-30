@@ -370,9 +370,13 @@ function get_context_client()
   return context_client
 end
 
-function task_context(c)
+function show_task_context(c)
   context_client = c
-  menupanels.context.show_with_delay(0.1)
+  menupanels.context.show_with_delay()
+end
+
+function show_client_title(c)
+  menupanels.utils.showinfo(c.name)
 end
 
 function dropdown()

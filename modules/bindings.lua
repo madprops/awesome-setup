@@ -215,8 +215,12 @@ bindings.tasklist_buttons = gears.table.join(
     c:activate { context = "tasklist", action = "toggle_minimization" }
   end), 
 
+  awful.button({}, 2, function(c)
+    show_client_title(c)
+  end), 
+
   awful.button({}, 3, function(c)
-    task_context(c)
+    show_task_context(c)
   end), 
 
   awful.button({modkey}, 4, function(c)

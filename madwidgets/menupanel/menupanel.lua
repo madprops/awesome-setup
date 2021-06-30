@@ -158,14 +158,6 @@ function focus_hide_button(instance)
 end
 
 function menupanel.create(args)
-  if args.placement == nil then
-    args.placement = "bottom"
-  end
-
-  if args.height == nil then
-    args.height = 25
-  end
-
   if args.speak == nil then
     args.speak = false
   end
@@ -174,10 +166,9 @@ function menupanel.create(args)
     args.hide_button = true
   end
 
-  if args.hide_button_placement == nil then
-    args.hide_button_placement = "left"
-  end
-
+  args.height = args.height or 25
+  args.hide_button_placement = args.hide_button_placement or "left"
+  args.placement = args.placement or "bottom"
   args.bgcolor = args.bgcolor or "#21252b"
   args.bgcolor2 = args.bgcolor2 or "#2f333d"
   args.fontcolor = args.fontcolor or "#b8babc"
@@ -269,6 +260,7 @@ function menupanel.create(args)
   end
 
   function instance.show_with_delay(delay)
+    delay = delay or 0.1
     gears.timer.start_new(delay, function()
       instance.show()
     end)

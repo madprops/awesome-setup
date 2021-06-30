@@ -5,9 +5,11 @@ local menupanels = {}
 local placement = "bottom"
 local height = 25
 
-function mp_info(text)
+menupanels.utils = {}
+
+function menupanels.utils.showinfo(text)
   menupanels.info.update_item(1, text)
-  menupanels.info.show()
+  menupanels.info.show_with_delay()
 end
 
 menupanels.main = menupanel.create({
@@ -147,7 +149,7 @@ menupanels.context = menupanel.create({
     },
     {
       name = "Title",
-      action = function() mp_info(get_context_client().name) end,
+      action = function() show_client_title(get_context_client()) end
     },
     {
       name = "Close",
