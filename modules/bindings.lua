@@ -16,17 +16,19 @@ local closetap = doubletap.create({
   lockdelay = 1000,
   action = function()
     local c = mouse.object_under_pointer()
-    if c.instance == "vivaldi-stable" then
-      client.focus = c
-      root.fake_input('key_release', "Super_L")
-      root.fake_input('key_release', "Super_R")
-      root.fake_input('key_release', "Delete")
-      root.fake_input('key_press', "Control_L")
-      root.fake_input('key_press', "w") 
-      root.fake_input('key_release', "w")
-      root.fake_input('key_release', "Control_L")
-    else
-      c:kill()
+    if c.kill then
+      if c.instance == "vivaldi-stable" then
+        client.focus = c
+        root.fake_input('key_release', "Super_L")
+        root.fake_input('key_release', "Super_R")
+        root.fake_input('key_release', "Delete")
+        root.fake_input('key_press', "Control_L")
+        root.fake_input('key_press', "w") 
+        root.fake_input('key_release', "w")
+        root.fake_input('key_release', "Control_L")
+      else
+        c:kill()
+      end
     end
   end
 })
