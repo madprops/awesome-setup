@@ -448,7 +448,7 @@ function singlespawn(program)
 end
 
 function launch_all()
-  spawn("vivaldi-stable")
+  spawn("firefox")
   spawn("code")
   spawn("dolphin")
   spawn("spotify")
