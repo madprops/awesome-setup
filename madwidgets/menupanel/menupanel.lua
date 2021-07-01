@@ -269,6 +269,7 @@ function menupanel.create(args)
       instance.focused = w.xindex
     elseif not samepos then
       instance.focused = 1
+      start_autohide(instance)
     end
 
     if instance.focused == 0 then
