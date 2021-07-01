@@ -457,11 +457,6 @@ function launch_all()
   spawn("dolphin")
   spawn("spotify")
   spawn("hexchat")
-
-  awful.spawn.easy_async_with_shell("sleep 5", function()
-    msg("Starting PulseEffects")
-    spawn("pulseeffects --gapplication-service")
-  end)
 end
 
 require("modules/rules")
