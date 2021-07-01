@@ -20,15 +20,15 @@ awful.rules.rules = {
     }
   },
   {
-    rule = {instance = "vivaldi-stable"},
+    rule = {class = "Firefox"},
     properties = {
       xindex = 1
     }
   },
   {
-    rule = {class = "Firefox"},
+    rule = {instance = "vivaldi-stable"},
     properties = {
-      xindex = 2
+      xindex = 1
     }
   },
   {

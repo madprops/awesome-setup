@@ -457,6 +457,7 @@ function launch_all()
   spawn("dolphin")
   spawn("spotify")
   spawn("hexchat")
+  spawn("steam")
 end
 
 require("modules/rules")
