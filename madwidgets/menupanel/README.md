@@ -20,8 +20,6 @@ local mp_main = menupanel.create({
     speak = false,
     hide_button = true,
     hide_button_placement = "left",
-    autohide = true,
-    autohide_delay = 2,
     items = {
         {
             name = "Launch an Application",
