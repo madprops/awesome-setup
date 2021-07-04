@@ -339,7 +339,7 @@ end
 
 local playerctl_lock = lockdelay.create({
   action = function(action) spawn("playerctl -p "..player.." "..action) end,
-  delay = 500
+  delay = 250
 })
 
 function playerctl(player)
