@@ -92,4 +92,11 @@ awful.rules.rules = {
       xindex = 6,
     }
   },
+  {
+    rule = {instance = "xdg-desktop-portal-kde"},
+    properties = {
+      width = awful.screen.focused().workarea.width * 0.8,
+      height = awful.screen.focused().workarea.height * 0.8,
+    }
+  },
 }
