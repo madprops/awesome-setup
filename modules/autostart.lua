@@ -9,5 +9,4 @@ shellspawn("killall -q plug.sh ; /home/yo/scripts/plug.sh")
 shellspawn("killall -q xbindkeys ; xbindkeys")
 
 singlespawn("copyq")
-singlespawn("onboard")
 singlespawn("kdeconnect-indicator")

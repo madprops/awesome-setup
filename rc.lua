@@ -338,6 +338,15 @@ function change_player(p)
   msg("Player changed to "..p)
 end
 
+function goto_browser()
+  local t = awful.screen.focused().tags[1]
+  for i, c in ipairs(t:clients()) do
+    if c.class == "Firefox" then
+      focus(c)
+    end
+  end
+end
+
 local playerctl_lock = lockdelay.create({
   action = function(action) spawn("playerctl -p "..player.." "..action) end,
   delay = 250

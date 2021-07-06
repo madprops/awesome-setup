@@ -41,16 +41,20 @@ menupanels.applications = menupanel.create({
   parent = menupanels.main,
   items = {
     {
-      name = "Vivaldi Dev 1",
-      action = function() spawn("vivaldi-stable --profile-directory=dev1") end,
+      name = "Firefox Dev 1",
+      action = function() spawn("firefox -P dev1") end,
     },
     {
-      name = "Vivaldi Dev 2",
-      action = function() spawn("vivaldi-stable --profile-directory=dev2") end,
+      name = "Firefox Dev 2",
+      action = function() spawn("firefox -P dev2") end,
     },
     {
-      name = "Vivaldi Dev 3",
-      action = function() spawn("vivaldi-stable --profile-directory=dev3") end,
+      name = "Firefox Dev 3",
+      action = function() spawn("firefox -P dev3") end,
+    },
+    {
+      name = "Keyboard",
+      action = function() spawn("onboard") end,
     }
   }
 })

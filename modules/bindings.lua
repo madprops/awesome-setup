@@ -4,9 +4,6 @@ local awful = require("awful")
 local doubletap = require("madwidgets/doubletap/doubletap")
 ---
 
--- https://github.com/blueyed/awesome-cyclefocus
-local cyclefocus = require("cyclefocus")
-
 local bindings = {}
 local altkey = "Mod1"
 local modkey = "Mod4"
@@ -158,6 +155,10 @@ bindings.globalkeys = gears.table.join(
 
   awful.key({modkey}, "Delete", function()
     closetap.trigger()
+  end),
+
+  awful.key({modkey}, "1", function()
+    goto_browser()
   end)
 )
 
@@ -184,12 +185,7 @@ bindings.clientkeys = gears.table.join(
 
   awful.key({"Shift"}, "BackSpace", function(c)
     awful.rules.apply(c)
-  end),
-  
-  cyclefocus.key({altkey}, "Tab", {
-    cycle_filters = { cyclefocus.filters.same_screen, cyclefocus.filters.common_tag },
-    keys = {'Tab', 'ISO_Left_Tab'}
-  })
+  end)
 )
 
 bindings.clientbuttons = gears.table.join(
