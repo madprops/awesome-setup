@@ -149,6 +149,7 @@ awful.screen.connect_for_each_screen(function(s)
 
   local left
   local right
+  local space = "  "
 
   left = {
     layout = wibox.layout.fixed.horizontal,
@@ -172,16 +173,16 @@ awful.screen.connect_for_each_screen(function(s)
       end,
     }),
     s.mytaglist,
-    wibox.widget.textbox("  "),
+    wibox.widget.textbox(space),
   }
 
   if s.index == 1 then
     right = {
       layout = wibox.layout.fixed.horizontal(),
-      wibox.widget.textbox("  "),
-      wibox.widget.textbox("  "),
+      wibox.widget.textbox(space),
+      wibox.widget.textbox(space),
       wibox.widget.systray(),
-      wibox.widget.textbox("  "),
+      wibox.widget.textbox(space),
       volumecontrol.create(),
       datetime.create({
         on_click = function()
@@ -193,17 +194,17 @@ awful.screen.connect_for_each_screen(function(s)
         on_wheel_down = function()
           decrease_volume()
         end,
-        text_left = "  ",
-        text_right = "  "
+        text_left = space,
+        text_right = space
       })
     }
   else
     right = {
       layout = wibox.layout.fixed.horizontal(),
-      wibox.widget.textbox("  "),
-      wibox.widget.textbox("  "),
+      wibox.widget.textbox(space),
+      wibox.widget.textbox(space),
       volumecontrol.create(),
-      wibox.widget.textbox("  "),
+      wibox.widget.textbox(space),
       datetime.create({
         on_click = function()
           calendar()
@@ -215,7 +216,7 @@ awful.screen.connect_for_each_screen(function(s)
           decrease_volume()
         end
       }),
-      wibox.widget.textbox("  ")
+      wibox.widget.textbox(space)
     }
   end
 
