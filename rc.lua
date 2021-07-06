@@ -183,7 +183,6 @@ awful.screen.connect_for_each_screen(function(s)
       wibox.widget.systray(),
       wibox.widget.textbox("  "),
       volumecontrol.create(),
-      wibox.widget.textbox("  "),
       datetime.create({
         on_click = function()
           calendar()
@@ -193,9 +192,10 @@ awful.screen.connect_for_each_screen(function(s)
         end,
         on_wheel_down = function()
           decrease_volume()
-        end
-      }),
-      wibox.widget.textbox("  ")
+        end,
+        text_left = "  ",
+        text_right = "  "
+      })
     }
   else
     right = {

@@ -30,7 +30,9 @@ right = {
         end,
         on_wheel_down = function()
             decrease_volume()
-        end
+        end,
+        text_left = "  ",
+        text_right = "  "
     })
 }
 ```

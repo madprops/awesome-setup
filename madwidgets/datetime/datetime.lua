@@ -4,7 +4,9 @@ local wibox = require("wibox")
 local datetime = {}
 
 function datetime.create(args)
-  local instance = awful.widget.textclock("%a %d %b %l:%M %P", 15)
+  local left = args.text_left
+  local right = args.text_right
+  local instance = awful.widget.textclock(left.."%a %d %b %l:%M %P"..right, 15)
 
   instance:connect_signal("button::press", function(a, b, c, button, mods)
     if button == 1 then
