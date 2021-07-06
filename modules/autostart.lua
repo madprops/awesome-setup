@@ -8,7 +8,6 @@ spawn("setxkbmap -option caps:none", false)
 shellspawn("killall -q plug.sh ; /home/yo/scripts/plug.sh")
 shellspawn("killall -q xbindkeys ; xbindkeys")
 
-singlespawn("compton --backend xrender --vsync=true")
 singlespawn("copyq")
 singlespawn("onboard")
 singlespawn("kdeconnect-indicator")
