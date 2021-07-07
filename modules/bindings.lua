@@ -158,7 +158,7 @@ bindings.globalkeys = gears.table.join(
   end),
 
   awful.key({altkey}, "Tab", function()
-    goto_browser()
+    altab()
   end)
 )
 

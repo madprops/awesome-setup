@@ -329,6 +329,10 @@ function launcher()
   spawn("rofi -modi drun -show drun -show-icons -width 22 -no-click-to-exit")
 end
 
+function altab()
+  spawn("rofi -show window -show-icons -width 44 -no-click-to-exit")
+end
+
 function screenshot()
   spawn("flameshot gui -p /home/yo/Downloads/pics/pics1")
 end
@@ -336,15 +340,6 @@ end
 function change_player(p)
   player = p
   msg("Player changed to "..p)
-end
-
-function goto_browser()
-  local t = awful.screen.focused().tags[1]
-  for i, c in ipairs(t:clients()) do
-    if c.class == "Firefox" then
-      focus(c)
-    end
-  end
 end
 
 local playerctl_lock = lockdelay.create({
