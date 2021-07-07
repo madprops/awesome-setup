@@ -330,7 +330,7 @@ function launcher()
 end
 
 function altab()
-  spawn("rofi -show window -show-icons -width 44 -no-click-to-exit")
+  spawn("rofi -show window -show-icons -width 44 -no-click-to-exit -kb-row-down 'Alt+Tab' -kb-accept-entry '!Alt_L,!Alt+Tab'")
 end
 
 function screenshot()
