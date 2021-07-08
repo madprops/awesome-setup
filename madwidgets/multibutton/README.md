@@ -39,4 +39,4 @@ left = {
 }
 ```
 
-All options are shown in the example above.
+If a 'widget' argument is provided it will use that instead of creating a textbox with the text.

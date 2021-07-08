@@ -14,10 +14,10 @@ function multibutton.create(args)
   local instance = {}
   instance.args = args
 
-  if args.text then
-    instance.widget = wibox.widget.textbox(args.text, false)
-  elseif args.widget then
+  if args.widget then
     instance.widget = args.widget
+  elseif args.text then
+    instance.widget = wibox.widget.textbox(args.text, false)
   else
     return {}
   end
