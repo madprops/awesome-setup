@@ -1,15 +1,26 @@
 local wibox = require("wibox")
-local utils = require("madwidgets/utils")
 
 local multibutton = {}
 
 function multibutton.create(args)
-  args.text = args.text or "#"
-  utils.check_mouse_events(args)
+  args.on_click = args.on_click or function() end
+  args.on_middle_click = args.on_middle_click or function() end
+  args.on_right_click = args.on_right_click or function() end
+  args.on_wheel_up = args.on_wheel_up or function() end
+  args.on_wheel_down = args.on_wheel_down or function() end
+  args.on_mouse_enter = args.on_mouse_enter or function() end
+  args.on_mouse_leave = args.on_mouse_leave or function() end
 
   local instance = {}
   instance.args = args
-  instance.widget = wibox.widget.textbox(args.text, false)
+
+  if args.text then
+    instance.widget = wibox.widget.textbox(args.text, false)
+  elseif args.widget then
+    instance.widget = args.widget
+  else
+    return {}
+  end
   
   instance.widget:connect_signal("button::press", function(a, b, c, button, mods)
     if button == 1 then
@@ -33,7 +44,7 @@ function multibutton.create(args)
     args.on_mouse_leave(instance)
   end)
 
-  return instance
+  return instance.widget
 end
 
 return multibutton
