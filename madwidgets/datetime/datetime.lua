@@ -11,7 +11,7 @@ function datetime.create(args)
   local instance = {}
   instance.args = args
   args.widget = awful.widget.textclock(args.text_left.."%a %d %b %l:%M %P"..args.text_right, 15)
-  instance.widget = multibutton.create(args)
+  instance.widget = multibutton.create(args).widget
 
   awful.tooltip {
     objects = { instance.widget },

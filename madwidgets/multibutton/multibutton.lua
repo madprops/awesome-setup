@@ -44,7 +44,7 @@ function multibutton.create(args)
     args.on_mouse_leave(instance)
   end)
 
-  return instance.widget
+  return instance
 end
 
 return multibutton
