@@ -71,7 +71,8 @@ awful.mouse.snap.default_distance = 25
 local menupanels = require("modules/menupanels")
 
 awful.layout.layouts = {
-  awful.layout.suit.floating
+  awful.layout.suit.floating,
+  awful.layout.suit.tile
 }
 
 local function set_wallpaper(s)
@@ -454,8 +455,11 @@ function launch_all()
   spawn("spotify")
   spawn("hexchat")
   spawn("steam")
+  spawn("goodvibes")
 end
 
 require("modules/rules")
 require("modules/autostart")
 volumecontrol.refresh()
+
+screen[1].tags[2].layout = awful.layout.suit.tile

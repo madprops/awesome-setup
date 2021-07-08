@@ -38,19 +38,6 @@ awful.rules.rules = {
     }
   },
   {
-    rule = {instance = "spotify"},
-    properties = {
-      maximized = true,
-      xindex = 3.1
-    }
-  },
-  {
-    rule = {instance = "strawberry"},
-    properties = {
-      xindex = 3.2
-    }
-  },
-  {
     rule = {instance = "hexchat"},
     properties = {
       placement = function(c)
@@ -97,6 +84,28 @@ awful.rules.rules = {
     properties = {
       width = awful.screen.focused().workarea.width * 0.8,
       height = awful.screen.focused().workarea.height * 0.8,
+    }
+  },
+  -- Second tag
+  {
+    rule = {instance = "spotify"},
+    properties = {
+      tag = "2",
+      xindex = 1
+    }
+  },
+  {
+    rule = {instance = "strawberry"},
+    properties = {
+      tag = "2",
+      xindex = 2
+    }
+  },
+  {
+    rule = {instance = "goodvibes"},
+    properties = {
+      tag = "2",
+      xindex = 3
     }
   },
 }
