@@ -1,8 +1,6 @@
 local gears = require("gears")
 local awful = require("awful")
----
 local doubletap = require("madwidgets/doubletap/doubletap")
----
 
 local bindings = {}
 local altkey = "Mod1"
