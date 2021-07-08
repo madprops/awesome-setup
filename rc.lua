@@ -6,7 +6,8 @@ local naughty = require("naughty")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local datetime = require("madwidgets/datetime/datetime")
-local style = require("modules/style")
+
+require("modules/theme")
 local bindings = require("modules/bindings")
 
 if awesome.startup_errors then

@@ -374,7 +374,7 @@ function menupanel.create(args)
 
   -- Timer to give time for widget to get drawn
 
-  gears.timer.start_new(2, function()
+  gears.timer.start_new(1, function()
     instance.widget.visible = false
   end)
 
