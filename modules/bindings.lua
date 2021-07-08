@@ -153,10 +153,6 @@ bindings.clientkeys = gears.table.join(
     fullscreen(c)
   end),
 
-  awful.key({modkey}, "f", function(c)
-    float(c)
-  end),
-
   awful.key({"Shift"}, "BackSpace", function(c)
     awful.rules.apply(c)
   end)

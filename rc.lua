@@ -233,11 +233,6 @@ function fullscreen(c)
   c.fullscreen = not c.fullscreen
 end
 
-function float(c)
-  focus(c)
-  c.floating = not c.floating
-end
-
 function focus(c)
   c:emit_signal("request::activate", "tasklist", {raise = true})
 end
