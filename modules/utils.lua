@@ -2,6 +2,7 @@ local awful = require("awful")
 local naughty = require("naughty")
 local menupanels = require("modules/menupanels")
 local lockdelay = require("madwidgets/lockdelay/lockdelay")
+local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 
 local player = "spotify"
 local context_client
