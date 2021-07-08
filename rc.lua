@@ -155,22 +155,22 @@ awful.screen.connect_for_each_screen(function(s)
     layout = wibox.layout.fixed.horizontal,
     multibutton.create({
       text = " ❇ ",
-      on_click = function(btn) 
+      on_click = function() 
         menupanels.main.show() 
       end,
-      on_middle_click = function(btn)
+      on_middle_click = function()
         stop_all_music()
         lockscreen()
       end,
-      on_right_click = function(btn)
+      on_right_click = function()
         dropdown()
       end,
-      on_wheel_up = function(btn)
+      on_wheel_up = function()
         prev_tag()
       end,
-      on_wheel_down = function(btn)
+      on_wheel_down = function()
         next_tag()
-      end,
+      end
     }),
     s.mytaglist,
     wibox.widget.textbox(space),

@@ -1,47 +1,39 @@
 local wibox = require("wibox")
+local utils = require("madwidgets/utils")
 
 local multibutton = {}
 
 function multibutton.create(args)
-  local button = wibox.widget.textbox(args.text, false)
+  args.text = args.text or "#"
+  utils.check_mouse_events(args)
+
+  local instance = {}
+  instance.args = args
+  instance.widget = wibox.widget.textbox(args.text, false)
   
-  button:connect_signal("button::press", function(a, b, c, btn, mods)
-    if btn == 1 then
-      if args.on_click ~= nil then
-        args.on_click(button)
-      end
-    elseif btn == 2 then
-      if args.on_middle_click ~= nil then
-        args.on_middle_click(button)
-      end
-    elseif btn == 3 then
-      if args.on_right_click ~= nil then
-        args.on_right_click(button)
-      end
-    elseif btn == 4 then
-      if args.on_wheel_up ~= nil then
-        args.on_wheel_up(button)
-      end      
-    elseif btn == 5 then
-      if args.on_wheel_down ~= nil then
-        args.on_wheel_down(button)
-      end
+  instance.widget:connect_signal("button::press", function(a, b, c, button, mods)
+    if button == 1 then
+      args.on_click(instance)
+    elseif button == 2 then 
+      args.on_middle_click(instance)
+    elseif button == 3 then 
+      args.on_right_click(instance)
+    elseif button == 4 then 
+      args.on_wheel_up(instance)
+    elseif button == 5 then 
+      args.on_wheel_down(instance)
     end
   end)
   
-  button:connect_signal("mouse::enter", function()
-    if args.on_mouse_enter ~= nil then
-      args.on_mouse_enter(button)
-    end
+  instance.widget:connect_signal("mouse::enter", function()
+    args.on_mouse_enter(instance)
   end)
 
-  button:connect_signal("mouse::leave", function()
-    if args.on_mouse_leave ~= nil then
-      args.on_mouse_leave(button)
-    end
+  instance.widget:connect_signal("mouse::leave", function()
+    args.on_mouse_leave(instance)
   end)
 
-  return button
+  return instance
 end
 
 return multibutton

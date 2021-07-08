@@ -45,7 +45,7 @@ end
 
 function hide_all(instance)
   for i, insta in ipairs(instances) do
-    if insta.visible then
+    if insta.widget.visible then
       insta.hide()
     end
   end
@@ -175,7 +175,10 @@ function menupanel.create(args)
   args.bordercolor = args.bordercolor or "#485767"
   args.bordercolor2 = args.bordercolor2 or "#11a8cd"
 
-  local instance = awful.popup({
+  local instance = {}
+  instance.args = args
+
+  instance.widget = awful.popup({
     placement = args.placement,
     ontop = true,
     visible = true,
@@ -187,7 +190,6 @@ function menupanel.create(args)
     fg = args.fontcolor
   })
 
-  instance.args = args
   instance.focused = 1
 
   instance.keygrabber = awful.keygrabber {
@@ -240,7 +242,7 @@ function menupanel.create(args)
   function instance.show(samepos)
     hide_all(instance)
     instance.screen = awful.screen.focused()
-    instance.visible = true
+    instance.widget.visible = true
     reset_confirm_charges(instance)
 
     local w = mouse.current_widget
@@ -267,7 +269,7 @@ function menupanel.create(args)
   end
 
   function instance.hide()
-    instance.visible = false
+    instance.widget.visible = false
     instance.keygrabber:stop()
   end
 
@@ -341,7 +343,7 @@ function menupanel.create(args)
     end
   end
 
-  instance:setup {
+  instance.widget:setup {
     layout = wibox.layout.align.horizontal,
     left,
     middle,
@@ -356,15 +358,15 @@ function menupanel.create(args)
 
   button.connect_signal('press', on_unfocus)
   
-  instance:connect_signal('mouse::leave', function()
+  instance.widget:connect_signal('mouse::leave', function()
     button.connect_signal('press', on_unfocus)
   end)
   
-  instance:connect_signal('mouse::enter', function()
+  instance.widget:connect_signal('mouse::enter', function()
     button.disconnect_signal('press', on_unfocus)
   end)
 
-  instance:connect_signal('property::visible', function(self)
+  instance.widget:connect_signal('property::visible', function(self)
     if not self.visible then
       button.disconnect_signal('press', on_unfocus)
     end
@@ -373,7 +375,7 @@ function menupanel.create(args)
   -- Timer to give time for widget to get drawn
 
   gears.timer.start_new(2, function()
-    instance.visible = false
+    instance.widget.visible = false
   end)
 
   table.insert(instances, instance)
