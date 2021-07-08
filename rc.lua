@@ -155,10 +155,10 @@ awful.screen.connect_for_each_screen(function(s)
         dropdown()
       end,
       on_wheel_up = function()
-        prev_tag()
+        next_non_empty_tag()
       end,
       on_wheel_down = function()
-        next_tag()
+        next_non_empty_tag()
       end
     }),
     s.mytaglist,
