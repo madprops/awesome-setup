@@ -66,7 +66,6 @@ end
 
 function change_player(p)
   player = p
-  msg("Player changed to "..p)
 end
 
 local playerctl_lock = lockdelay.create({
