@@ -51,12 +51,6 @@ awful.rules.rules = {
     }
   },
   {
-    rule = {instance = "goodvibes"},
-    properties = {
-      xindex = 3.3
-    }
-  },
-  {
     rule = {instance = "hexchat"},
     properties = {
       placement = function(c)

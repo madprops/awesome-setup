@@ -396,7 +396,6 @@ function launch_all()
   spawn("spotify")
   spawn("hexchat")
   spawn("steam")
-  spawn("goodvibes")
 end
 
 require("modules/rules")
