@@ -183,7 +183,10 @@ awful.screen.connect_for_each_screen(function(s)
       wibox.widget.textbox(space),
       wibox.widget.systray(),
       wibox.widget.textbox(space),
-      volumecontrol.create(),
+      volumecontrol.create({
+        text_left = "",
+        text_right = ""
+      }),
       datetime.create({
         on_click = function()
           calendar()
@@ -329,8 +332,8 @@ function launcher()
   spawn("rofi -modi drun -show drun -show-icons -width 22 -no-click-to-exit")
 end
 
-function altab()
-  spawn("rofi -show window -show-icons -width 44 -no-click-to-exit -kb-row-down 'Alt+Tab' -kb-accept-entry '!Alt_L,!Alt+Tab'")
+function altab()  
+  spawn("rofi -show window -show-icons -width 44 -no-click-to-exit")
 end
 
 function screenshot()

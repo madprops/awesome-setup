@@ -21,7 +21,7 @@ function update_volume(vol)
   end
 
   for i, instance in ipairs(instances) do
-    instance.text = volstring(svol)
+    instance.widget.text = instance.args.text_left..volstring(svol)..instance.args.text_right
   end
 end
 
@@ -94,14 +94,20 @@ function volstring(s)
 end
 
 function volumecontrol.create(args)
-  local instance = wibox.widget {
+  args.text_left = args.text_left or ""
+  args.text_right = args.text_right or ""
+
+  local instance = {}
+  instance.args = args
+
+  instance.widget = wibox.widget {
     markup = volstring("100"),
     align  = 'center',
     valign = 'center',
     widget = wibox.widget.textbox
   }
 
-  instance:connect_signal("button::press", function(a, b, c, button, mods)
+  instance.widget:connect_signal("button::press", function(a, b, c, button, mods)
     if button == 1 then
       volumecontrol.max()
     elseif button == 2 then
@@ -114,7 +120,6 @@ function volumecontrol.create(args)
   end)
 
   table.insert(instances, instance)
-
   return instance
 end
 
