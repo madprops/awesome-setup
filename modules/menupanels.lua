@@ -100,6 +100,10 @@ menupanels.players = menupanel.create({
       action = function() change_player("strawberry") end
     },
     {
+      name = "Goodvibes",
+      action = function() change_player("Goodvibes") end
+    },
+    {
       name = "Firefox",
       action = function() change_player("firefox") end
     },
