@@ -7,7 +7,6 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 --
-local hotcorner = require("madwidgets/hotcorner/hotcorner")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local lockdelay = require("madwidgets/lockdelay/lockdelay")
@@ -90,18 +89,7 @@ local corner_1
 screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
-  if s.index == 2 then
-    corner_1 = hotcorner.create({
-      screen = s,
-      placement = awful.placement.top_right,
-      action = function()
-        next_non_empty_tag()
-      end
-    })
-  end
-
   set_wallpaper(s)
-
   local num_tags = 4
   local tags = {}
 
