@@ -392,10 +392,11 @@ end
 function launch_all()
   spawn("firefox")
   spawn("code")
-  spawn("dolphin")
   spawn("spotify")
+  spawn("strawberry")
   spawn("hexchat")
   spawn("steam")
+  spawn("dolphin")
 end
 
 require("modules/rules")
