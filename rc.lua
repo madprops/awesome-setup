@@ -85,6 +85,11 @@ local function set_wallpaper(s)
   end
 end
 
+local taglock = lockdelay.create({
+  action = function() next_non_empty_tag() end,
+  delay = 250
+})
+
 local corner_1
 
 screen.connect_signal("property::geometry", set_wallpaper)
@@ -155,10 +160,10 @@ awful.screen.connect_for_each_screen(function(s)
         dropdown()
       end,
       on_wheel_up = function()
-        next_non_empty_tag()
+        taglock.trigger()
       end,
       on_wheel_down = function()
-        next_non_empty_tag()
+        taglock.trigger()
       end
     }),
     s.mytaglist,
