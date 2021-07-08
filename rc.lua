@@ -63,17 +63,11 @@ beautiful.tasklist_fg_focus = color_white
 beautiful.tasklist_bg_focus = highlight_color
 beautiful.tasklist_fg_minimize = font_color
 beautiful.tasklist_bg_minimize = bg_color
-beautiful.taglist_bg_focus = highlight_color
 beautiful.notification_font = "Noto Sans 18px"
 beautiful.notification_icon_size = 100
 awful.mouse.snap.default_distance = 25
 
 local menupanels = require("modules/menupanels")
-
-awful.layout.layouts = {
-  awful.layout.suit.floating,
-  awful.layout.suit.tile
-}
 
 local function set_wallpaper(s)
   if beautiful.wallpaper then
@@ -85,25 +79,11 @@ local function set_wallpaper(s)
   end
 end
 
-local taglock = lockdelay.create({
-  action = function() next_non_empty_tag() end,
-  delay = 250
-})
-
-local corner_1
-
 screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
   set_wallpaper(s)
-  local num_tags = 4
-  local tags = {}
-
-  for i = 1, num_tags, 1 do 
-    table.insert(tags, ""..i.."")
-  end
-
-  awful.tag(tags, s, awful.layout.layouts[1])
+  awful.tag({"1"}, s, awful.layout.suit.floating)
 
   s.mytasklist = awful.widget.tasklist {
     screen = s,
@@ -114,12 +94,10 @@ awful.screen.connect_for_each_screen(function(s)
       local unindexed = {}
       
       for _, c in pairs(client.get()) do
-        if awful.widget.tasklist.filter.currenttags(c, s) then
-          if c.xindex > 0 then
-            table.insert(result, c)
-          else
-            table.insert(unindexed, c)
-          end
+        if c.xindex > 0 then
+          table.insert(result, c)
+        else
+          table.insert(unindexed, c)
         end
       end
 
@@ -127,12 +105,6 @@ awful.screen.connect_for_each_screen(function(s)
       for _, c in pairs(unindexed) do table.insert(result, c) end
       return result
     end
-  }
-
-  s.mytaglist = awful.widget.taglist {
-    screen  = s,
-    filter  = awful.widget.taglist.filter.all,
-    buttons = bindings.taglist_buttons
   }
 
   s.mainpanel = awful.wibar({
@@ -158,16 +130,9 @@ awful.screen.connect_for_each_screen(function(s)
       end,
       on_right_click = function()
         dropdown()
-      end,
-      on_wheel_up = function()
-        taglock.trigger()
-      end,
-      on_wheel_down = function()
-        taglock.trigger()
       end
     }),
-    s.mytaglist,
-    wibox.widget.textbox(space),
+    wibox.widget.textbox(space)
   }
 
   if s.index == 1 then
@@ -251,29 +216,6 @@ client.connect_signal("manage", function(c)
   end)
 end)
 
-function prev_tag()
-  local s = awful.screen.focused()
-  s.tags[math.max(1, s.selected_tags[1].index - 1)]:view_only()
-end
-
-function next_tag()
-  local s = awful.screen.focused()
-  s.tags[math.min(#s.tags, s.selected_tags[1].index + 1)]:view_only()
-end
-
-function next_non_empty_tag()
-  local tags = awful.screen.focused().tags
-  local ci = awful.screen.focused().selected_tags[1].index
-
-  for i, t in ipairs(tags) do
-    if i > ci then
-      if #t:clients() > 0 then t:view_only() return end
-    end
-  end
-
-  if ci > 1 then tags[1]:view_only() end
-end
-
 function prev_client()
   awful.client.focus.history.previous()
   if client.focus then
@@ -297,7 +239,6 @@ function float(c)
 end
 
 function focus(c)
-  c.first_tag:view_only()
   c:emit_signal("request::activate", "tasklist", {raise = true})
 end
 
@@ -466,5 +407,3 @@ end
 require("modules/rules")
 require("modules/autostart")
 volumecontrol.refresh()
-
-screen[1].tags[2].layout = awful.layout.suit.tile

@@ -35,32 +35,6 @@ bindings.globalkeys = gears.table.join(
   awful.key({modkey, "Control"}, "BackSpace", awesome.restart), 
   awful.key({modkey, "Shift"}, "q", awesome.quit), 
 
-  awful.key {
-    modifiers = { modkey },
-    keygroup = "numrow",
-    on_press = function (index)
-      local screen = awful.screen.focused()
-      local tag = screen.tags[index]
-      if tag then
-        tag:view_only()
-      end
-    end,
-  },
-
-  awful.key {
-    modifiers = {modkey, "Shift"},
-    keygroup = "numrow",
-    on_press = function(index)
-      if client.focus then
-        local tag = client.focus.screen.tags[index]
-        if tag then
-          client.focus:move_to_tag(tag)
-          tag:view_only()
-        end
-      end
-    end
-  },
-
   awful.key({modkey}, "`", function()
     show_menupanel()
   end),
@@ -227,24 +201,5 @@ bindings.tasklist_buttons = gears.table.join(
     awful.client.swap.byidx(1, c)
   end)
 )
-
-bindings.taglist_buttons = {
-  awful.button({ }, 1, function(t)
-    t:view_only()
-  end),
-  awful.button({ modkey }, 1, function(t)
-    if client.focus then
-      client.focus:move_to_tag(t)
-    end
-  end),
-  awful.button({ }, 3, awful.tag.viewtoggle),
-  awful.button({ modkey }, 3, function(t)
-    if client.focus then
-      client.focus:toggle_tag(t)
-    end
-  end),
-  awful.button({ }, 4, function() prev_tag() end),
-  awful.button({ }, 5, function() next_tag() end),
-}
 
 return bindings
