@@ -13,8 +13,14 @@ awful.rules.rules = {
       keys = bindings.clientkeys,
       buttons = bindings.clientbuttons,
       screen = awful.screen.preferred,
+      width = awful.screen.focused().workarea.width * 0.8,
+      height = awful.screen.focused().workarea.height * 0.8,
       placement = function(c)
-        return awful.placement.centered(c, {honor_workarea = true})
+        if (c.maximized) then
+          return awful.placement.maximize(c, {honor_workarea = true})
+        else
+          return awful.placement.centered(c, {honor_workarea = true})
+        end
       end,
       xindex = 0
     }
@@ -22,31 +28,36 @@ awful.rules.rules = {
   {
     rule = {class = "Firefox"},
     properties = {
-      xindex = 1
-    }
-  },
-  {
-    rule = {instance = "vivaldi-stable"},
-    properties = {
+      maximized = true,
       xindex = 1
     }
   },
   {
     rule = {instance = "code"},
     properties = {
+      maximized = true,
       xindex = 2
     }
   },
   {
     rule = {instance = "spotify"},
     properties = {
-      maximized = true,
+      placement = function(c)
+        return awful.placement.bottom_left(c, {honor_workarea = true})
+      end,
+      width = awful.screen.focused().workarea.width * 0.5,
+      height = awful.screen.focused().workarea.height,
       xindex = 3.1
     }
   },
   {
     rule = {instance = "strawberry"},
     properties = {
+      placement = function(c)
+        return awful.placement.bottom_left(c, {honor_workarea = true})
+      end,
+      width = awful.screen.focused().workarea.width * 0.5,
+      height = awful.screen.focused().workarea.height * 0.6,
       xindex = 3.2
     }
   },
@@ -90,13 +101,6 @@ awful.rules.rules = {
     rule = {instance = "dolphin"},
     properties = {
       xindex = 6,
-    }
-  },
-  {
-    rule = {instance = "xdg-desktop-portal-kde"},
-    properties = {
-      width = awful.screen.focused().workarea.width * 0.8,
-      height = awful.screen.focused().workarea.height * 0.8,
     }
   },
 }
