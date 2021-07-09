@@ -171,6 +171,14 @@ bindings.clientbuttons = gears.table.join(
     focus(c)
     c.maximized = false
     awful.mouse.client.resize(c)
+  end),
+
+  awful.button({modkey}, 4, function(c)
+    grow_in_place(c)
+  end), 
+  
+  awful.button({modkey}, 5, function(c)
+    shrink_in_place(c)
   end)
 )
 

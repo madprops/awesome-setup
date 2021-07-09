@@ -16,6 +16,10 @@ function prev_client()
   end
 end
 
+function center(c)
+  awful.placement.centered(c, {honor_workarea = true})
+end
+
 function maximize(c)
   focus(c)
   c.maximized = not c.maximized
@@ -182,4 +186,20 @@ end
 
 function height_factor(n)
   return awful.screen.focused().workarea.height * n
+end
+
+function ratio(c)
+  return c.width / c.height
+end
+
+function grow_in_place(c)
+  c.height = c.height + 20
+  c.width = c.width + (20 * ratio(c))
+  center(c)
+end
+
+function shrink_in_place(c)
+  c.height = c.height - 20
+  c.width = c.width - (20 * ratio(c))
+  center(c)
 end
