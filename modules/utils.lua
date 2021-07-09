@@ -185,3 +185,11 @@ end
 function show_main_menu()
   menupanels.main.show() 
 end
+
+function width_factor(n)
+  return awful.screen.focused().workarea.width * n
+end
+
+function height_factor(n)
+  return awful.screen.focused().workarea.height * n
+end

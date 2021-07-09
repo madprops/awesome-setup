@@ -37,8 +37,8 @@ awful.rules.rules = {
       placement = function(c)
         return awful.placement.bottom_left(c, {honor_workarea = true})
       end,
-      width = awful.screen.focused().workarea.width * 0.5,
-      height = awful.screen.focused().workarea.height,
+      width = width_factor(0.5),
+      height = height_factor(1),
       xindex = 3.1
     }
   },
@@ -48,8 +48,8 @@ awful.rules.rules = {
       placement = function(c)
         return awful.placement.bottom_left(c, {honor_workarea = true})
       end,
-      width = awful.screen.focused().workarea.width * 0.5,
-      height = awful.screen.focused().workarea.height * 0.6,
+      width = width_factor(0.5),
+      height = height_factor(0.6),
       xindex = 3.2
     }
   },
@@ -59,8 +59,8 @@ awful.rules.rules = {
       placement = function(c)
         return awful.placement.bottom_right(c, {honor_workarea = true})
       end,
-      width = awful.screen.focused().workarea.width * 0.5,
-      height = awful.screen.focused().workarea.height * 0.6,
+      width = width_factor(0.5),
+      height = height_factor(0.6),
       xindex = 4,
     }
   },
