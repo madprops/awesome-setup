@@ -3,8 +3,6 @@ local naughty = require("naughty")
 local menupanels = require("modules/menupanels")
 local lockdelay = require("madwidgets/lockdelay/lockdelay")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
-
-local player = "spotify"
 local context_client
 
 function msg(txt)
@@ -65,12 +63,8 @@ function screenshot()
   spawn("flameshot gui -p " .. os.getenv("HOME") .. "/Downloads/pics/pics1")
 end
 
-function change_player(p)
-  player = p
-end
-
 local playerctl_lock = lockdelay.create({
-  action = function(action) spawn("playerctl -p "..player.." "..action) end,
+  action = function(action) spawn("playerctl -p playerctld "..action) end,
   delay = 250
 })
 
@@ -115,12 +109,8 @@ function dropdown()
   spawn("tilix --quake")
 end
 
-function stop_all_music()
-  shellspawn("playerctl -p vivaldi-stable pause")
-  shellspawn("playerctl -p firefox pause")
-  shellspawn("playerctl -p spotify pause")
-  shellspawn("playerctl -p strawberry pause")
-  shellspawn("playerctl -p vlc pause")
+function stop_all_players()
+  shellspawn("playerctl --all-players pause")
 end
 
 function lockscreen(suspend)

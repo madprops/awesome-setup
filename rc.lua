@@ -78,7 +78,7 @@ awful.screen.connect_for_each_screen(function(s)
         show_main_menu()
       end,
       on_middle_click = function()
-        stop_all_music()
+        stop_all_players()
         lockscreen()
       end,
       on_right_click = function()
