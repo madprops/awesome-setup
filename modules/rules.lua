@@ -13,15 +13,7 @@ awful.rules.rules = {
       keys = bindings.clientkeys,
       buttons = bindings.clientbuttons,
       screen = awful.screen.preferred,
-      width = awful.screen.focused().workarea.width * 0.8,
-      height = awful.screen.focused().workarea.height * 0.8,
-      placement = function(c)
-        if (c.maximized) then
-          return awful.placement.maximize(c, {honor_workarea = true})
-        else
-          return awful.placement.centered(c, {honor_workarea = true})
-        end
-      end,
+      placement = function() awful.placement.centered(c, {honor_workarea = true}) end,
       xindex = 0
     }
   },
