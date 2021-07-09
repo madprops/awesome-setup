@@ -196,4 +196,5 @@ bindings.tasklist_buttons = gears.table.join(
   end)
 )
 
+root.keys(bindings.globalkeys)
 return bindings
