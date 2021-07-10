@@ -12,7 +12,7 @@ The widget includes mouse events on click, middle click, and mousewheel.
 
 ## To use it
 
-Put this near the top
+Put this near the top:
 >local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 
 Then add the widget to the panel, similar to:

@@ -6,7 +6,7 @@ It adds a tooltip on hover which shows more information.
 
 Mouse events can be configured.
 
-Put this near the top
+Put this near the top:
 >local datetime = require("madwidgets/datetime/datetime")
 
 Add something similar to a wibar:

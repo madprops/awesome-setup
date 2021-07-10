@@ -8,7 +8,7 @@ It's meant to replace the main panel until closed.
 
 ## To use it
 
-Put this near the top
+Put this near the top:
 >local menupanel = require("madwidgets/menupanel/menupanel")
 
 Add the following after theme definitions like font size are set:
