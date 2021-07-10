@@ -13,7 +13,7 @@ awful.rules.rules = {
       keys = bindings.clientkeys,
       buttons = bindings.clientbuttons,
       screen = awful.screen.preferred,
-      placement = function() awful.placement.centered(c, {honor_workarea = true}) end,
+      placement = awful.placement.centered,
       xindex = 0
     }
   },
@@ -35,7 +35,7 @@ awful.rules.rules = {
     rule = {instance = "spotify"},
     properties = {
       placement = function(c)
-        return awful.placement.bottom_left(c, {honor_workarea = true})
+        awful.placement.bottom_left(c, {honor_workarea = true})
       end,
       width = width_factor(0.5),
       height = height_factor(1),
@@ -46,7 +46,7 @@ awful.rules.rules = {
     rule = {instance = "strawberry"},
     properties = {
       placement = function(c)
-        return awful.placement.bottom_left(c, {honor_workarea = true})
+        awful.placement.bottom_left(c, {honor_workarea = true})
       end,
       width = width_factor(0.5),
       height = height_factor(0.6),
@@ -57,7 +57,7 @@ awful.rules.rules = {
     rule = {instance = "hexchat"},
     properties = {
       placement = function(c)
-        return awful.placement.bottom_right(c, {honor_workarea = true})
+        awful.placement.bottom_right(c, {honor_workarea = true})
       end,
       width = width_factor(0.5),
       height = height_factor(0.6),

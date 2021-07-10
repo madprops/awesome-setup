@@ -52,6 +52,12 @@ awful.screen.connect_for_each_screen(function(s)
         lockscreen()
       end,
       on_right_click = function()
+        show_resources()
+      end,
+      on_wheel_down = function()
+        dropdown()
+      end,
+      on_wheel_up = function()
         dropdown()
       end
     }),

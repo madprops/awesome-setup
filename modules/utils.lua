@@ -109,8 +109,13 @@ function show_client_title(c)
   menupanels.utils.showinfo(c.name)
 end
 
+local dropdown_lock = lockdelay.create({
+  action = function() spawn("tilix --quake") end,
+  delay = 250
+})
+
 function dropdown()
-  spawn("tilix --quake")
+  dropdown_lock.trigger()
 end
 
 function stop_all_players()
@@ -202,4 +207,8 @@ function shrink_in_place(c)
   c.height = c.height - 20
   c.width = c.width - (20 * ratio(c))
   center(c)
+end
+
+function show_resources()
+  spawn("konsole -e htop")
 end
