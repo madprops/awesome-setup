@@ -25,6 +25,10 @@ menupanels.main = menupanel.create({
       action = function() menupanels.log.show() end,
     },
     {
+      name = "SysMonitor",
+      action = function() sysmonitor() end,
+    },
+    {
       name = "Leave",
       action = function() menupanels.leave.show() end,
     },

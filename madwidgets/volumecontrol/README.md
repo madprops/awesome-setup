@@ -77,3 +77,5 @@ volumecontrol.max_volume
 
 volumecontrol.steps
 >Default 5 (% - used in increase and decrease)
+
+Accepts text_left and text_right arguments.

@@ -15,24 +15,10 @@ Add something similar to a wibar:
 right = {
     layout = right_layout,
     wibox.widget.systray(),
-    datetime.create({
-        on_click = function()
-            calendar()
-        end,
-        on_right_click = function()
-            something()
-        end,
-        on_middle_click = function()
-            action()
-        end,
-        on_wheel_up = function()
-            increase_volume()
-        end,
-        on_wheel_down = function()
-            decrease_volume()
-        end,
-        text_left = "  ",
-        text_right = "  "
-    })
+    datetime.create()
 }
 ```
+
+Accepts text_left and text_right arguments.
+
+Supports all multibutton mouse action arguments.

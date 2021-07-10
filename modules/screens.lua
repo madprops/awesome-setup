@@ -3,6 +3,7 @@ local wibox = require("wibox")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local datetime = require("madwidgets/datetime/datetime")
+local cpu = require("madwidgets/cpu/cpu")
 local bindings = require("modules/bindings")
 
 awful.screen.connect_for_each_screen(function(s)
@@ -64,52 +65,32 @@ awful.screen.connect_for_each_screen(function(s)
     wibox.widget.textbox(space)
   }
 
-  if s.index == 1 then
-    right = {
-      layout = wibox.layout.fixed.horizontal(),
-      wibox.widget.textbox(space),
-      wibox.widget.textbox(space),
-      wibox.widget.systray(),
-      wibox.widget.textbox(space),
-      volumecontrol.create({
-        text_left = "",
-        text_right = ""
-      }),
-      datetime.create({
-        on_click = function()
-          calendar()
-        end,
-        on_wheel_up = function()
-          increase_volume()
-        end,
-        on_wheel_down = function()
-          decrease_volume()
-        end,
-        text_left = space,
-        text_right = space
-      })
-    }
-  else
-    right = {
-      layout = wibox.layout.fixed.horizontal(),
-      wibox.widget.textbox(space),
-      wibox.widget.textbox(space),
-      volumecontrol.create(),
-      wibox.widget.textbox(space),
-      datetime.create({
-        on_click = function()
-          calendar()
-        end,
-        on_wheel_up = function()
-          increase_volume()
-        end,
-        on_wheel_down = function()
-          decrease_volume()
-        end
-      }),
-      wibox.widget.textbox(space)
-    }
-  end
+  right = {
+    layout = wibox.layout.fixed.horizontal(),
+    wibox.widget.textbox(space),
+    wibox.widget.textbox(space),
+    wibox.widget.systray(),
+    cpu.create({on_click = function()
+      sysmonitor()
+    end, text_left = space, text_right = space}),
+    volumecontrol.create({
+      text_left = "",
+      text_right = ""
+    }),
+    datetime.create({
+      on_click = function()
+        calendar()
+      end,
+      on_wheel_up = function()
+        increase_volume()
+      end,
+      on_wheel_down = function()
+        decrease_volume()
+      end,
+      text_left = space,
+      text_right = space
+    })
+  }
 
   s.mainpanel:setup {
     layout = wibox.layout.align.horizontal,

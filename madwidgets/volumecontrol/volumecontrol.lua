@@ -21,7 +21,7 @@ function update_volume(vol)
   end
 
   for i, instance in ipairs(instances) do
-    instance.widget.text = instance.args.text_left..volstring(svol)..instance.args.text_right
+    instance.widget.text = volstring(svol, instance)
   end
 end
 
@@ -89,8 +89,8 @@ function volumecontrol.refresh()
   end)
 end
 
-function volstring(s)
-  return "Vol: "..s.."%"
+function volstring(s, instance)
+  return instance.args.text_left.."Vol: "..s.."%"..instance.args.text_right
 end
 
 function volumecontrol.create(args)
@@ -101,7 +101,7 @@ function volumecontrol.create(args)
   instance.args = args
 
   instance.widget = wibox.widget {
-    markup = volstring("100"),
+    markup = volstring("100", instance),
     align  = 'center',
     valign = 'center',
     widget = wibox.widget.textbox
