@@ -209,6 +209,22 @@ function shrink_in_place(c)
   center(c)
 end
 
-function show_resources()
-  spawn("konsole -e htop")
+function minimize_all()
+  for _, c in ipairs(clients()) do
+    c.minimized = true
+  end
+end
+
+function unminimize_all()
+  for _, c in ipairs(clients()) do
+    c.minimized = false
+  end
+end
+
+function tag()
+  return awful.screen.focused().selected_tag
+end
+
+function clients()
+  return tag():clients()
 end

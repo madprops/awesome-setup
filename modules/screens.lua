@@ -52,13 +52,13 @@ awful.screen.connect_for_each_screen(function(s)
         lockscreen()
       end,
       on_right_click = function()
-        show_resources()
+        dropdown()
       end,
       on_wheel_down = function()
-        dropdown()
+        minimize_all()
       end,
       on_wheel_up = function()
-        dropdown()
+        unminimize_all()
       end
     }),
     wibox.widget.textbox(space)
