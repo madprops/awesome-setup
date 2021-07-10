@@ -1,6 +1,7 @@
 local awful = require("awful")
 local wibox = require("wibox")
 local gears = require("gears")
+local utils = require("madwidgets/utils")
 local multibutton = require("madwidgets/multibutton/multibutton")
 
 local cpu = {}
@@ -15,15 +16,8 @@ function update()
 
   local cmd = "mpstat 1 3 | awk 'END{print 100-$NF}'"
   awful.spawn.easy_async_with_shell(cmd, function(avg)
-    avg = tonumber(avg)
-    if avg < 100 then
-      savg = "0"..avg
-    end
-    if avg < 10 then
-      savg = "0"..savg
-    end
     for i, instance in ipairs(instances) do
-      instance.widget.text = cpustring(savg, instance)
+      instance.widget.text = cpustring(utils.numpad(avg), instance)
     end
   end)
 end

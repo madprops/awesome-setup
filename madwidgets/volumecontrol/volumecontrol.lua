@@ -1,5 +1,6 @@
 local awful = require("awful")
 local wibox = require("wibox")
+local utils = require("madwidgets/utils")
 
 local volumecontrol = {}
 volumecontrol.max_volume = 100
@@ -9,19 +10,8 @@ local instances = {}
 local last_volume = 100
 
 function update_volume(vol)
-  vol = tonumber(vol)
-  local svol = vol
-
-  if vol < 100 then
-    svol = "0"..vol
-  end
-
-  if vol < 10 then
-    svol = "0"..svol
-  end
-
   for i, instance in ipairs(instances) do
-    instance.widget.text = volstring(svol, instance)
+    instance.widget.text = volstring(utils.numpad(vol), instance)
   end
 end
 
