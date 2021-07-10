@@ -109,13 +109,8 @@ function show_client_title(c)
   menupanels.utils.showinfo(c.name)
 end
 
-local dropdown_lock = lockdelay.create({
-  action = function() spawn("tilix --quake") end,
-  delay = 250
-})
-
 function dropdown()
-  dropdown_lock.trigger()
+  spawn("tilix --quake")
 end
 
 function stop_all_players()
@@ -209,16 +204,30 @@ function shrink_in_place(c)
   center(c)
 end
 
+local minimize_lock = lockdelay.create({
+  action = function()
+    for _, c in ipairs(clients()) do
+      c.minimized = true
+    end
+  end,
+  delay = 250
+})
+
+local unminimize_lock = lockdelay.create({
+  action = function()
+    for _, c in ipairs(clients()) do
+      c.minimized = false
+    end
+  end,
+  delay = 250
+})
+
 function minimize_all()
-  for _, c in ipairs(clients()) do
-    c.minimized = true
-  end
+  minimize_lock.trigger()
 end
 
 function unminimize_all()
-  for _, c in ipairs(clients()) do
-    c.minimized = false
-  end
+  unminimize_lock.trigger()
 end
 
 function tag()
