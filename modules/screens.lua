@@ -1,5 +1,6 @@
 local awful = require("awful")
 local wibox = require("wibox")
+local gears = require("gears")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local datetime = require("madwidgets/datetime/datetime")
@@ -8,6 +9,7 @@ local bindings = require("modules/bindings")
 
 awful.screen.connect_for_each_screen(function(s)
   awful.tag({"1"}, s, awful.layout.suit.floating)
+  gears.wallpaper.set("#000000")
 
   s.mytasklist = awful.widget.tasklist {
     screen = s,
