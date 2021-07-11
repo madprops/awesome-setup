@@ -9,11 +9,15 @@ cpu.mode = 1
 
 local instances = {}
 
+function cpu.get_mode()
+  return cpu.modes[cpu.mode]
+end
+
 function cpu.update_strings(s)
   for i, instance in ipairs(instances) do
-    if cpu.modes[cpu.mode] == "cpu" then
+    if cpu.get_mode() == "cpu" then
       instance.widget.text = cpu.cpustring(s, instance)
-    elseif cpu.modes[cpu.mode] == "ram" then
+    elseif cpu.get_mode() == "ram" then
       instance.widget.text = cpu.ramstring(s, instance)
     end
   end
@@ -30,17 +34,17 @@ end
 function cpu.update()
   if #instances < 1 then return end
 
-  if cpu.modes[cpu.mode] == "cpu" then
+  if cpu.get_mode() == "cpu" then
     local cmd = "mpstat 1 2 | awk 'END{print 100-$NF}'"
     awful.spawn.easy_async_with_shell(cmd, function(o)
-      if cpu.modes[cpu.mode] ~= "cpu" then return end
+      if cpu.get_mode() ~= "cpu" then return end
       cpu.update_strings(utils.numpad(o))
       cpu.timer:again()
     end)
-  elseif cpu.modes[cpu.mode] == "ram" then
+  elseif cpu.get_mode() == "ram" then
     local cmd = "free | grep Mem | awk '{print $3/$2 * 100.0}'"
     awful.spawn.easy_async_with_shell(cmd, function(o)
-      if cpu.modes[cpu.mode] ~= "ram" then return end
+      if cpu.get_mode() ~= "ram" then return end
       cpu.update_strings(utils.numpad(o))
       cpu.timer:again()
     end)
