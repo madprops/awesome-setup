@@ -79,7 +79,7 @@ awful.screen.connect_for_each_screen(function(s)
     volumecontrol.create(),
     space(),
     datetime.create({
-      format = "%a-%d-%b %H:%M %P ",
+      format = "%a-%d-%b %I:%M %P ",
       on_click = function()
         calendar()
       end,

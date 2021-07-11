@@ -12,11 +12,18 @@ Put this near the top:
 Add something similar to a wibar:
 
 ```lua
-right = {
-    layout = right_layout,
-    wibox.widget.systray(),
-    datetime.create()
-}
+datetime.create({
+  format = "%a-%d-%b %I:%M %P ",
+  on_click = function()
+    calendar()
+  end,
+  on_wheel_down = function()
+    decrease_volume()
+  end,
+  on_wheel_up = function()
+    increase_volume()
+  end
+})
 ```
 
 Supports all multibutton mouse action arguments.

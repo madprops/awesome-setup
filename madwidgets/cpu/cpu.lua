@@ -36,7 +36,7 @@ function cpu.ramstring(s)
 end
 
 function cpu.tmpstring(s)
-  return "TMP:"..s.."C"
+  return "TMP:"..s.."°"
 end
 
 function cpu.update()
@@ -72,7 +72,7 @@ function cpu.cycle_mode_dec()
   else
     mode = #modes
   end
-  cpu.after_cycle()
+  cpu.after_mode_change()
 end
 
 function cpu.cycle_mode_inc()
@@ -81,10 +81,10 @@ function cpu.cycle_mode_inc()
   else
     mode = 1
   end
-  cpu.after_cycle()
+  cpu.after_mode_change()
 end
 
-function cpu.after_cycle()
+function cpu.after_mode_change()
   cpu.timer:stop()
   cpu.update_strings(loading)
   cpu.update()
@@ -121,6 +121,9 @@ function cpu.create(args)
   instance.widget:connect_signal("button::press", function(a, b, c, button, mods)
     if button == 1 then
       args.on_click()
+    elseif button == 3 then
+      mode = 1
+      cpu.after_mode_change()
     elseif button == 4 then
       cyclelock_dec.trigger()
     elseif button == 5 then
