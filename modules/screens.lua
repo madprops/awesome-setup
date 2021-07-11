@@ -75,11 +75,17 @@ awful.screen.connect_for_each_screen(function(s)
     volumecontrol.create(),
     space(),
     datetime.create({
+      format = "%a-%d-%b %H:%M %P ",
       on_click = function()
         calendar()
-      end
-    }),
-    space()
+      end,
+      on_wheel_down = function()
+        decrease_volume()
+      end,
+      on_wheel_up = function()
+        increase_volume()
+      end,
+    })
   }
 
   s.mainpanel:setup {
