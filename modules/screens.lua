@@ -45,7 +45,7 @@ awful.screen.connect_for_each_screen(function(s)
   left = {
     layout = wibox.layout.fixed.horizontal,
     multibutton.create({
-      text = " ❇  ",
+      text = " ❇ ",
       on_click = function() 
         show_main_menu()
       end,
@@ -62,15 +62,15 @@ awful.screen.connect_for_each_screen(function(s)
       on_wheel_up = function()
         unminimize_all()
       end,
-    })
+    }),
+    cpu.create(),
+    space(),
   }
 
   right = {
     layout = wibox.layout.fixed.horizontal(),
     space(),
     wibox.widget.systray(),
-    space(),
-    cpu.create(),
     space(),
     volumecontrol.create(),
     space(),
