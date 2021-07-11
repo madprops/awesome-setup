@@ -20,6 +20,6 @@ beautiful.tasklist_fg_focus = color_white
 beautiful.tasklist_bg_focus = highlight_color
 beautiful.tasklist_fg_minimize = font_color
 beautiful.tasklist_bg_minimize = bg_color
-beautiful.notification_font = "Noto Sans 18px"
+beautiful.notification_font = "monospace 18px"
 beautiful.notification_icon_size = 100
 awful.mouse.snap.default_distance = 25
