@@ -63,7 +63,11 @@ awful.screen.connect_for_each_screen(function(s)
         unminimize_all()
       end,
     }),
-    cpu.create(),
+    cpu.create({
+      on_click = function()
+        sysmonitor()
+      end
+    }),
     space(),
   }
 

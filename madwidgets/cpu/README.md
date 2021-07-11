@@ -9,8 +9,12 @@ Put this near the top:
 
 Then place it somewhere in the panel:
 
->cpu.create()
+```
+cpu.create({
+  on_click = function()
+    sysmonitor()
+  end
+})
+```
 
-Clicking the widget changes from CPU to RAM display.
-
-More modes might be added in the future.
+The mousewheel changes the mode, like CPU to RAM.
