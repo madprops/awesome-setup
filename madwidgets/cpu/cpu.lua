@@ -35,6 +35,7 @@ function cpu.update()
       for i, instance in ipairs(instances) do
         instance.widget.text = cpu.cpustring(utils.numpad(o), instance)
       end
+      cpu.timer:again()
     end)
   elseif cpu.modes[cpu.mode] == "ram" then
     local cmd = "free | grep Mem | awk '{print $3/$2 * 100.0}'"
@@ -43,10 +44,9 @@ function cpu.update()
       for i, instance in ipairs(instances) do
         instance.widget.text = cpu.ramstring(utils.numpad(o), instance)
       end
+      cpu.timer:again()
     end)
   end
-
-  cpu.timer:again()
 end
 
 function cpu.cycle_mode()
