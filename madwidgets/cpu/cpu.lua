@@ -13,13 +13,15 @@ end
 
 function update()
   if #instances < 1 then return end
-
-  local cmd = "mpstat 1 3 | awk 'END{print 100-$NF}'"
+  local cmd = "mpstat 1 2 | awk 'END{print 100-$NF}'"
+  
   awful.spawn.easy_async_with_shell(cmd, function(avg)
     for i, instance in ipairs(instances) do
       instance.widget.text = cpustring(utils.numpad(avg), instance)
     end
   end)
+
+  timer:again()
 end
 
 function cpu.create(args)
@@ -42,9 +44,12 @@ function cpu.create(args)
   return instance
 end
 
-gears.timer.start_new(3, function()
-  update()
-  return true
-end)
+local timer = gears.timer {
+  timeout = 3,
+  call_now = false,
+  autostart = true,
+  single_shot = true,
+  callback = function() update() end
+}
 
 return cpu

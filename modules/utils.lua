@@ -193,12 +193,14 @@ function ratio(c)
 end
 
 function grow_in_place(c)
+  c.maximized = false
   c.height = c.height + 20
   c.width = c.width + (20 * ratio(c))
   center(c)
 end
 
 function shrink_in_place(c)
+  c.maximized = false
   c.height = c.height - 20
   c.width = c.width - (20 * ratio(c))
   center(c)
