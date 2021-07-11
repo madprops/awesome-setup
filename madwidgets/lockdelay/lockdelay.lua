@@ -2,6 +2,7 @@ local gears = require("gears")
 local lockdelay = {}
 
 function lockdelay.create(args)
+  args = args or {}
   local lock = {}
   local locked = false
   args.delay = args.delay or 0

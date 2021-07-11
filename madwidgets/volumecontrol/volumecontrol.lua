@@ -8,10 +8,11 @@ volumecontrol.steps = 5
 
 local instances = {}
 local last_volume = 100
+local loading = "---"
 
 function volumecontrol.update_volume(vol)
   for i, instance in ipairs(instances) do
-    instance.widget.text = volumecontrol.volstring(utils.numpad(vol), instance)
+    instance.widget.text = volumecontrol.volstring(utils.numpad(vol))
   end
 end
 
@@ -79,19 +80,18 @@ function volumecontrol.refresh()
   end)
 end
 
-function volumecontrol.volstring(s, instance)
-  return instance.args.text_left.."Vol: "..s.."%"..instance.args.text_right
+function volumecontrol.volstring(s)
+  return "Vol: "..s.."%"
 end
 
 function volumecontrol.create(args)
-  args.text_left = args.text_left or ""
-  args.text_right = args.text_right or ""
+  args = args or {}
 
   local instance = {}
   instance.args = args
 
   instance.widget = wibox.widget {
-    markup = volumecontrol.volstring("100", instance),
+    markup = volumecontrol.volstring(loading),
     align  = 'center',
     valign = 'center',
     widget = wibox.widget.textbox

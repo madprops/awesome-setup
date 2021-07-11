@@ -1,5 +1,6 @@
 local awful = require("awful")
 local naughty = require("naughty")
+local wibox = require("wibox")
 local menupanels = require("modules/menupanels")
 local lockdelay = require("madwidgets/lockdelay/lockdelay")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
@@ -242,4 +243,8 @@ end
 
 function sysmonitor()
   spawn("konsole -e htop -d 20")
+end
+
+function space()
+  return wibox.widget.textbox(" ")
 end

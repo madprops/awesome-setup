@@ -41,7 +41,6 @@ awful.screen.connect_for_each_screen(function(s)
 
   local left
   local right
-  local space = "  "
 
   left = {
     layout = wibox.layout.fixed.horizontal,
@@ -63,20 +62,18 @@ awful.screen.connect_for_each_screen(function(s)
       on_wheel_up = function()
         unminimize_all()
       end
-    }),
-    wibox.widget.textbox(space)
+    })
   }
 
   right = {
     layout = wibox.layout.fixed.horizontal(),
-    wibox.widget.textbox(space),
-    wibox.widget.textbox(space),
+    space(),
     wibox.widget.systray(),
-    cpu.create({text_left = space, text_right = space}),
-    volumecontrol.create({
-      text_left = "",
-      text_right = ""
-    }),
+    space(),
+    cpu.create(),
+    space(),
+    volumecontrol.create(),
+    space(),
     datetime.create({
       on_click = function()
         calendar()
@@ -86,10 +83,9 @@ awful.screen.connect_for_each_screen(function(s)
       end,
       on_wheel_down = function()
         decrease_volume()
-      end,
-      text_left = space,
-      text_right = space
-    })
+      end
+    }),
+    space()
   }
 
   s.mainpanel:setup {

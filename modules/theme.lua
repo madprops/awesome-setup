@@ -5,7 +5,7 @@ local beautiful = require("beautiful")
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 local theme = beautiful.get()
-theme.font = "sans 11"
+theme.font = "monospace 11"
 beautiful.init(theme)
 
 local color_white = "#ffffff"

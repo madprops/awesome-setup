@@ -158,6 +158,8 @@ function menupanel.focus_hide_button(instance)
 end
 
 function menupanel.create(args)
+  args = args or {}
+  
   if args.speak == nil then
     args.speak = false
   end

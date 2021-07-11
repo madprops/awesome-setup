@@ -40,5 +40,3 @@ left = {
 ```
 
 If a 'widget' argument is provided it will use that instead of creating a textbox with the text.
-
-Accepts text_left and text_right arguments.

@@ -3,6 +3,7 @@ local wibox = require("wibox")
 local multibutton = {}
 
 function multibutton.create(args)
+  args = args or {}
   args.on_click = args.on_click or function() end
   args.on_middle_click = args.on_middle_click or function() end
   args.on_right_click = args.on_right_click or function() end

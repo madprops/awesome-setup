@@ -4,31 +4,32 @@ local gears = require("gears")
 local utils = require("madwidgets/utils")
 
 local cpu = {}
-cpu.modes = {"cpu", "ram"}
-cpu.mode = 1
+local modes = {"cpu", "ram"}
+local mode = 1
+local loading = "---"
 
 local instances = {}
 
 function cpu.get_mode()
-  return cpu.modes[cpu.mode]
+  return modes[mode]
 end
 
 function cpu.update_strings(s)
   for i, instance in ipairs(instances) do
     if cpu.get_mode() == "cpu" then
-      instance.widget.text = cpu.cpustring(s, instance)
+      instance.widget.text = cpu.cpustring(s)
     elseif cpu.get_mode() == "ram" then
-      instance.widget.text = cpu.ramstring(s, instance)
+      instance.widget.text = cpu.ramstring(s)
     end
   end
 end
 
-function cpu.cpustring(s, instance)
-  return instance.args.text_left.."CPU: "..s.."%"..instance.args.text_right
+function cpu.cpustring(s)
+  return "CPU: "..s.."%"
 end
 
-function cpu.ramstring(s, instance)
-  return instance.args.text_left.."RAM: "..s.."%"..instance.args.text_right
+function cpu.ramstring(s)
+  return "RAM: "..s.."%"
 end
 
 function cpu.update()
@@ -54,25 +55,24 @@ end
 function cpu.cycle_mode()
   cpu.timer:stop()
 
-  if cpu.mode < #cpu.modes then
-    cpu.mode = cpu.mode + 1
+  if mode < #modes then
+    mode = mode + 1
   else
-    cpu.mode = 1
+    mode = 1
   end
 
-  cpu.update_strings("000")
+  cpu.update_strings(loading)
   cpu.update()
 end
 
 function cpu.create(args)
-  args.text_left = args.text_left or ""
-  args.text_right = args.text_right or ""
+  args = args or {}
 
   local instance = {}
   instance.args = args
 
   instance.widget = wibox.widget {
-    markup = cpu.cpustring("000", instance),
+    markup = cpu.cpustring(loading),
     align  = 'center',
     valign = 'center',
     widget = wibox.widget.textbox

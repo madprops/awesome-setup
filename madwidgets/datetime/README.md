@@ -19,6 +19,4 @@ right = {
 }
 ```
 
-Accepts text_left and text_right arguments.
-
 Supports all multibutton mouse action arguments.

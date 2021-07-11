@@ -5,12 +5,11 @@ local multibutton = require("madwidgets/multibutton/multibutton")
 local datetime = {}
 
 function datetime.create(args)
-  args.text_left = args.text_left or ""
-  args.text_right = args.text_right or ""
+  args = args or {}
 
   local instance = {}
   instance.args = args
-  args.widget = awful.widget.textclock(args.text_left.."%a %d %b %l:%M %P"..args.text_right, 15)
+  args.widget = awful.widget.textclock("%a %d %b %l:%M %P", 15)
   instance.widget = multibutton.create(args).widget
 
   awful.tooltip {
