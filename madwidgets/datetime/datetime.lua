@@ -6,7 +6,7 @@ local datetime = {}
 
 function datetime.create(args)
   args = args or {}
-  args.format = args.format or "%a-%d-%b %H:%M %P"
+  args.format = args.format or "%a-%d-%b %I:%M %P"
 
   local instance = {}
   instance.args = args
