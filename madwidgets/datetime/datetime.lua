@@ -9,7 +9,7 @@ function datetime.create(args)
 
   local instance = {}
   instance.args = args
-  args.widget = awful.widget.textclock("%a %d %b %l:%M %P", 15)
+  args.widget = wibox.widget.textclock("%a %d %b%l:%M %P", 15)
   instance.widget = multibutton.create(args).widget
 
   awful.tooltip {
@@ -19,7 +19,7 @@ function datetime.create(args)
       text = text..os.date('%T\n%A %B (%m) %d %Y')
       return text
     end
-  }  
+  }
 
   return instance
 end
