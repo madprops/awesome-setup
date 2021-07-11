@@ -59,7 +59,7 @@ function cpu.cycle_mode()
   end
 
   for i, instance in ipairs(instances) do
-    cpu.xstring("---", instance)
+    cpu.xstring("000", instance)
   end
 
   cpu.update()
@@ -73,7 +73,7 @@ function cpu.create(args)
   instance.args = args
 
   instance.widget = wibox.widget {
-    markup = cpu.cpustring("---", instance),
+    markup = cpu.cpustring("000", instance),
     align  = 'center',
     valign = 'center',
     widget = wibox.widget.textbox

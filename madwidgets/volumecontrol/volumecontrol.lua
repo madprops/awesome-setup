@@ -91,7 +91,7 @@ function volumecontrol.create(args)
   instance.args = args
 
   instance.widget = wibox.widget {
-    markup = volumecontrol.volstring("---", instance),
+    markup = volumecontrol.volstring("100", instance),
     align  = 'center',
     valign = 'center',
     widget = wibox.widget.textbox
