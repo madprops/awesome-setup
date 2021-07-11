@@ -246,5 +246,5 @@ function sysmonitor()
 end
 
 function space()
-  return wibox.widget.textbox(" ")
+  return wibox.widget.textbox("  ")
 end

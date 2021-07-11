@@ -45,7 +45,7 @@ awful.screen.connect_for_each_screen(function(s)
   left = {
     layout = wibox.layout.fixed.horizontal,
     multibutton.create({
-      text = " ❇ ",
+      text = " ❇  ",
       on_click = function() 
         show_main_menu()
       end,
@@ -61,7 +61,7 @@ awful.screen.connect_for_each_screen(function(s)
       end,
       on_wheel_up = function()
         unminimize_all()
-      end
+      end,
     })
   }
 
@@ -77,12 +77,6 @@ awful.screen.connect_for_each_screen(function(s)
     datetime.create({
       on_click = function()
         calendar()
-      end,
-      on_wheel_up = function()
-        increase_volume()
-      end,
-      on_wheel_down = function()
-        decrease_volume()
       end
     }),
     space()

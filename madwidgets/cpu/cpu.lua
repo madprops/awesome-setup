@@ -25,11 +25,11 @@ function cpu.update_strings(s)
 end
 
 function cpu.cpustring(s)
-  return "CPU: "..s.."%"
+  return "CPU:"..s.."%"
 end
 
 function cpu.ramstring(s)
-  return "RAM: "..s.."%"
+  return "RAM:"..s.."%"
 end
 
 function cpu.update()
