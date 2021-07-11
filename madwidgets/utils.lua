@@ -1,7 +1,7 @@
 local utils = {}
 
 function utils.numpad(s)
-  s = tonumber(s)
+  s = utils.round(tonumber(s))
   local ss = s
   
   if s < 100 then
@@ -13,6 +13,10 @@ function utils.numpad(s)
   end
 
   return ss
+end
+
+function utils.round(n)
+  return math.floor(n + 0.5)
 end
 
 return utils

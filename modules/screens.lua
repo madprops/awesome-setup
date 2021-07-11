@@ -72,9 +72,7 @@ awful.screen.connect_for_each_screen(function(s)
     wibox.widget.textbox(space),
     wibox.widget.textbox(space),
     wibox.widget.systray(),
-    cpu.create({on_click = function()
-      sysmonitor()
-    end, text_left = space, text_right = space}),
+    cpu.create({text_left = space, text_right = space}),
     volumecontrol.create({
       text_left = "",
       text_right = ""

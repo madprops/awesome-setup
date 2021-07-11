@@ -2,48 +2,48 @@ local awful = require("awful")
 local wibox = require("wibox")
 local gears = require("gears")
 
-local instances = {}
 local menupanel = {}
+local instances = {}
 local modkey = "Shift"
 
-function speak(txt)
+function menupanel.speak(txt)
   awful.util.spawn_with_shell('pkill espeak; espeak "'..txt..'"', false)
 end
 
-function focus_button(instance, btn)
+function menupanel.focus_button(instance, btn)
   btn.bg = instance.args.bgcolor2
   btn.fg = instance.args.fontcolor
   btn.border_color = instance.args.bordercolor2
-  if instance.args.speak then speak(btn.textbox.text) end
+  if instance.args.speak then menupanel.speak(btn.textbox.text) end
   instance.focused = btn.xindex
-  reset_confirm_charges(instance)
-  unfocus_button(instance, instance.hide_button)
+  menupanel.reset_confirm_charges(instance)
+  menupanel.unfocus_button(instance, instance.hide_button)
 end
 
-function unfocus_button(instance, btn)
+function menupanel.unfocus_button(instance, btn)
   btn.bg = instance.args.bgcolor
   btn.fg = instance.args.fontcolor
   btn.border_color = instance.args.bordercolor
 end
 
-function unfocus_except(instance, index)
+function menupanel.unfocus_except(instance, index)
   for i, btn in ipairs(instance.buttons) do
     if i == index then
-      focus_button(instance, btn)
+      menupanel.focus_button(instance, btn)
     else
-      unfocus_button(instance, btn)
+      menupanel.unfocus_button(instance, btn)
     end
   end
 end
 
-function unfocus_all(instance)
+function menupanel.unfocus_all(instance)
   for i, btn in ipairs(instance.buttons) do
-    unfocus_button(instance, btn)
+    menupanel.unfocus_button(instance, btn)
   end
   instance.focused = 0
 end
 
-function hide_all(instance)
+function menupanel.hide_all(instance)
   for i, insta in ipairs(instances) do
     if insta.widget.visible then
       insta.hide()
@@ -51,31 +51,31 @@ function hide_all(instance)
   end
 end
 
-function show_parent(instance)
+function menupanel.show_parent(instance)
   if instance.args.parent ~= nil then
     instance.args.parent.show(true)
   end
 end
 
-function hide2(instance)
+function menupanel.hide2(instance)
   instance.hide()
-  show_parent(instance)
+  menupanel.show_parent(instance)
 end
 
-function action(instance, item, mode)
+function menupanel.action(instance, item, mode)
   if mode == 1 or mode == 2 then
     if item.action ~= nil then 
       if item.needs_confirm then
         if item.confirm_charge < 1 then
-          reset_confirm_charges_except(instance, item.xindex)
+          menupanel.reset_confirm_charges_except(instance, item.xindex)
           item.confirm_charge = item.confirm_charge + 1
           local btn = instance.buttons[item.xindex]
-          confirm_charge_border(btn)
+          menupanel.confirm_charge_border(btn)
           if instance.args.speak then
-            speak("Confirm "..btn.textbox.xoriginaltext)
+            menupanel.speak("Confirm "..btn.textbox.xoriginaltext)
           end
         else
-          reset_confirm_charges(instance)
+          menupanel.reset_confirm_charges(instance)
           if mode == 1 then instance.hide() end
           item.action()
         end
@@ -87,7 +87,7 @@ function action(instance, item, mode)
   end
 end
 
-function reset_confirm_charges(instance)
+function menupanel.reset_confirm_charges(instance)
   for i, item in ipairs(instance.args.items) do
     item.confirm_charge = 0
     local btn = instance.buttons[i]
@@ -95,7 +95,7 @@ function reset_confirm_charges(instance)
   end
 end
 
-function reset_confirm_charges_except(instance, index)
+function menupanel.reset_confirm_charges_except(instance, index)
   for i, item in ipairs(instance.args.items) do
     if i ~= index then
       item.confirm_charge = 0
@@ -105,11 +105,11 @@ function reset_confirm_charges_except(instance, index)
   end
 end
 
-function confirm_charge_border(btn)
+function menupanel.confirm_charge_border(btn)
   btn.textbox.text = "*"..btn.textbox.xoriginaltext.."*"
 end
 
-function basic_button(instance, textbox)
+function menupanel.basic_button(instance, textbox)
   return wibox.widget {
     textbox,
     widget = wibox.container.background,
@@ -118,7 +118,7 @@ function basic_button(instance, textbox)
   }
 end
 
-function create_textbox(text)
+function menupanel.create_textbox(text)
   return wibox.widget {
     text = text,
     align = "center",
@@ -126,35 +126,35 @@ function create_textbox(text)
   }
 end
 
-function prepare_button(instance, textbox, index)
-  local button = basic_button(instance, textbox)
+function menupanel.prepare_button(instance, textbox, index)
+  local button = menupanel.basic_button(instance, textbox)
 
   button.xindex = index
   button.textbox = textbox
   button.textbox.xoriginaltext = textbox.text
 
   button:connect_signal("mouse::enter", function(btn)
-    unfocus_except(instance, index)
+    menupanel.unfocus_except(instance, index)
   end)
 
   return button
 end
 
-function prepare_hide_button(instance, textbox)
-  local button = basic_button(instance, textbox)
+function menupanel.prepare_hide_button(instance, textbox)
+  local button = menupanel.basic_button(instance, textbox)
 
   button:connect_signal("mouse::enter", function(btn)
-    focus_hide_button(instance)
+    menupanel.focus_hide_button(instance)
   end)
 
   return button
 end
 
-function focus_hide_button(instance)
+function menupanel.focus_hide_button(instance)
   instance.hide_button.bg = instance.args.bgcolor2
   instance.hide_button.fg = instance.args.fontcolor
   instance.hide_button.border_color = instance.args.bordercolor2
-  unfocus_all(instance)
+  menupanel.unfocus_all(instance)
 end
 
 function menupanel.create(args)
@@ -197,42 +197,42 @@ function menupanel.create(args)
       {{}, 'Left', function()
         if instance.focused > 1 then
           instance.focused = instance.focused - 1
-          unfocus_except(instance, instance.focused)
+          menupanel.unfocus_except(instance, instance.focused)
         else
           if args.hide_button_placement == "left" then
-            focus_hide_button(instance)
+            menupanel.focus_hide_button(instance)
           end
         end
       end},
       {{}, 'Right', function()
         if instance.focused < #instance.args.items then
           instance.focused = instance.focused + 1
-          unfocus_except(instance, instance.focused)
+          menupanel.unfocus_except(instance, instance.focused)
         else
           if args.hide_button_placement == "right" then
-            focus_hide_button(instance)
+            menupanel.focus_hide_button(instance)
           end
         end
       end},
       {{}, 'Return', function()
         if instance.focused > 0 then
-          action(instance, instance.args.items[instance.focused], 1)
+          menupanel.action(instance, instance.args.items[instance.focused], 1)
         else
-          hide2(instance)
+          menupanel.hide2(instance)
         end
       end},
       {{modkey}, 'Return', function()
         if instance.focused > 0 then
-          action(instance, instance.args.items[instance.focused], 2)
+          menupanel.action(instance, instance.args.items[instance.focused], 2)
         else
-          hide2(instance)
+          menupanel.hide2(instance)
         end
       end},
       {{}, 'Escape', function() 
-        hide2(instance)
+        menupanel.hide2(instance)
       end},
       {{modkey}, 'Escape', function() 
-        hide_all(instance)
+        menupanel.hide_all(instance)
       end}
     }
   }
@@ -240,10 +240,10 @@ function menupanel.create(args)
   -- Methods
 
   function instance.show(samepos)
-    hide_all(instance)
+    menupanel.hide_all(instance)
     instance.screen = awful.screen.focused()
     instance.widget.visible = true
-    reset_confirm_charges(instance)
+    menupanel.reset_confirm_charges(instance)
 
     local w = mouse.current_widget
     if w ~= nil and w.xindex ~= nil then
@@ -253,9 +253,9 @@ function menupanel.create(args)
     end
 
     if instance.focused == 0 then
-      focus_hide_button(instance)
+      menupanel.focus_hide_button(instance)
     else
-      unfocus_except(instance, instance.focused)
+      menupanel.unfocus_except(instance, instance.focused)
     end
     
     instance.keygrabber:start()
@@ -301,14 +301,14 @@ function menupanel.create(args)
     item.xindex = i
     item.confirm_charge = 0
 
-    local textbox = create_textbox(item.name)
+    local textbox = menupanel.create_textbox(item.name)
 
     textbox:connect_signal("button::press", function(_, _, _, mode)
-      action(instance, item, mode)
+      menupanel.action(instance, item, mode)
     end)
 
     textbox.xindex = i
-    table.insert(instance.buttons, prepare_button(instance, textbox, i))
+    table.insert(instance.buttons, menupanel.prepare_button(instance, textbox, i))
   end
 
   -- Setup
@@ -327,14 +327,14 @@ function menupanel.create(args)
   }
 
   if args.hide_button then
-    local textbox = create_textbox(" x ")
+    local textbox = menupanel.create_textbox(" x ")
 
     textbox:connect_signal("button::press", function(_, _, _, mode)
-      hide2(instance)
+      menupanel.hide2(instance)
     end)
-    
+  
     textbox.xindex = 0
-    instance.hide_button = prepare_hide_button(instance, textbox)
+    instance.hide_button = menupanel.prepare_hide_button(instance, textbox)
 
     if args.hide_button_placement == "left" then
       table.insert(left, instance.hide_button)
@@ -352,23 +352,23 @@ function menupanel.create(args)
 
   -- Hide instances when clicking outside
 
-  function on_unfocus()
-    hide_all(instance)
+  function menupanel.on_unfocus()
+    menupanel.hide_all(instance)
   end
 
-  button.connect_signal('press', on_unfocus)
+  button.connect_signal('press', menupanel.on_unfocus)
   
   instance.widget:connect_signal('mouse::leave', function()
-    button.connect_signal('press', on_unfocus)
+    button.connect_signal('press', menupanel.on_unfocus)
   end)
   
   instance.widget:connect_signal('mouse::enter', function()
-    button.disconnect_signal('press', on_unfocus)
+    button.disconnect_signal('press', menupanel.on_unfocus)
   end)
 
   instance.widget:connect_signal('property::visible', function(self)
     if not self.visible then
-      button.disconnect_signal('press', on_unfocus)
+      button.disconnect_signal('press', menupanel.on_unfocus)
     end
   end)
 
