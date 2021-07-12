@@ -11,6 +11,7 @@ Then place it somewhere in the panel:
 
 ```
 cpu.create({
+  default_mode = 1,
   on_click = function()
     sysmonitor()
   end
@@ -18,3 +19,9 @@ cpu.create({
 ```
 
 The mousewheel changes the mode, like CPU to RAM.
+
+Available modes:
+
+- cpu
+- ram
+- tmp

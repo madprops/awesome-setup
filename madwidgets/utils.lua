@@ -19,4 +19,13 @@ function utils.round(n)
   return math.floor(n + 0.5)
 end
 
+function utils.indexof(value, array)
+  for i, instance in ipairs(array) do
+    if array[i] == value then
+      return i
+    end
+  end
+  return -1
+end
+
 return utils
