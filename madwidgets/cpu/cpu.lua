@@ -5,7 +5,6 @@ local utils = require("madwidgets/utils")
 local lockdelay = require("madwidgets/lockdelay/lockdelay")
 
 local cpu = {}
-local modes = {"cpu", "ram", "tmp"}
 local loading = "---"
 
 local instances = {}
@@ -58,24 +57,28 @@ function cpu.update(instance)
 end
 
 function cpu.cycle_mode_dec(instance)
-  local i = utils.indexof(instance.mode, modes)
+  if #instance.args.modes < 2 then return end
+
+  local i = utils.indexof(instance.mode, instance.args.modes)
 
   if i > 1 then
-    instance.mode = modes[i - 1]
+    instance.mode = instance.args.modes[i - 1]
   else
-    instance.mode = modes[#modes]
+    instance.mode = instance.args.modes[#instance.args.modes]
   end
 
   cpu.after_mode_change(instance)
 end
 
 function cpu.cycle_mode_inc(instance)
-  local i = utils.indexof(instance.mode, modes)
+  if #instance.args.modes < 2 then return end
 
-  if i < #modes then
-    instance.mode = modes[i + 1]
+  local i = utils.indexof(instance.mode, instance.args.modes)
+
+  if i < #instance.args.modes then
+    instance.mode = instance.args.modes[i + 1]
   else
-    instance.mode = modes[1]
+    instance.mode = instance.args.modes[1]
   end
 
   cpu.after_mode_change(instance)
@@ -88,18 +91,13 @@ function cpu.after_mode_change(instance)
 end
 
 function cpu.create(args)
-  args.default_mode = args.default_mode or 1
-  
-  if utils.indexof(args.default_mode, modes) == -1 then
-    args.default_mode = "cpu"
-  end
-
   args = args or {}
+  args.modes = args.modes or {"cpu", "ram", "tmp"}
   args.on_click = args.on_click or function() end
 
   local instance = {}
   instance.args = args
-  instance.mode = args.default_mode
+  instance.mode = args.modes[1]
 
   instance.widget = wibox.widget {
     markup = "---:---%",
@@ -125,9 +123,6 @@ function cpu.create(args)
   instance.widget:connect_signal("button::press", function(a, b, c, button, mods)
     if button == 1 then
       args.on_click()
-    elseif button == 3 then
-      instance.mode = args.default_mode
-      cpu.after_mode_change(instance)
     elseif button == 4 then
       cyclelock_dec.trigger()
     elseif button == 5 then
