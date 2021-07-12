@@ -60,7 +60,7 @@ end
 function cpu.cycle_mode_dec(instance)
   local i = utils.indexof(instance.mode, modes)
 
-  if i > 0 then
+  if i > 1 then
     instance.mode = modes[i - 1]
   else
     instance.mode = modes[#modes]

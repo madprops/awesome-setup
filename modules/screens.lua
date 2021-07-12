@@ -89,7 +89,7 @@ awful.screen.connect_for_each_screen(function(s)
       end,
       on_wheel_up = function()
         increase_volume()
-      end,
+      end
     })
   }
 
