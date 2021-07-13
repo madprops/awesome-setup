@@ -69,7 +69,7 @@ function screenshot()
 end
 
 local playerctl_lock = lockdelay.create({
-  action = function(action) spawn("playerctl -i firefox "..action) end,
+  action = function(action) spawn("playerctl -i firefox -p playerctld "..action) end,
   delay = 250
 })
 
