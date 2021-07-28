@@ -30,7 +30,7 @@ ruled.notification.connect_signal("request::rules", function()
   ruled.notification.append_rule {
     rule = {},
     properties = {
-      position = "bottom_right",
+      position = "top_right",
       implicit_timeout = 3,
       never_timeout = false
     }
