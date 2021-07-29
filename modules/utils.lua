@@ -22,13 +22,17 @@ function center(c)
 end
 
 function maximize(c)
-  focus(c)
   c.maximized = not c.maximized
+  focus(c)
 end
 
 function fullscreen(c)
-  focus(c)
   c.fullscreen = not c.fullscreen
+  focus(c)
+end
+
+function check_fullscreen(c)
+  awful.screen.focused().wibar.ontop = not c.fullscreen
 end
 
 function focus(c)

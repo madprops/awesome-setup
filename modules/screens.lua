@@ -12,7 +12,7 @@ awful.screen.connect_for_each_screen(function(s)
   awful.tag({"1"}, s, awful.layout.suit.floating)
   gears.wallpaper.maximized(beautiful.wallpaper)
 
-  s.mytasklist = awful.widget.tasklist {
+  s.tasklist = awful.widget.tasklist {
     screen = s,
     buttons = bindings.tasklist_buttons,
     filter = function() return true end, 
@@ -34,8 +34,8 @@ awful.screen.connect_for_each_screen(function(s)
     end
   }
 
-  s.mainpanel = awful.wibar({
-    ontop = false,
+  s.wibar = awful.wibar({
+    ontop = true,
     position = "bottom",
     screen = s
   })
@@ -94,12 +94,20 @@ awful.screen.connect_for_each_screen(function(s)
     })
   }
 
-  s.mainpanel:setup {
+  s.wibar:setup {
     layout = wibox.layout.align.horizontal,
     left,
-    s.mytasklist,
+    s.tasklist,
     right
   }
 end)
 
 volumecontrol.refresh()
+
+client.connect_signal("focus", function(c)
+  check_fullscreen(c)
+end)
+
+client.connect_signal("property::fullscreen", function(c)
+  check_fullscreen(c)
+end)
