@@ -32,7 +32,7 @@ function fullscreen(c)
 end
 
 function check_fullscreen(c)
-  awful.screen.focused().wibar.ontop = not c.fullscreen
+  screen().wibar.ontop = not c.fullscreen
 end
 
 function focus(c)
@@ -186,11 +186,11 @@ function show_main_menu()
 end
 
 function width_factor(n)
-  return awful.screen.focused().workarea.width * n
+  return screen().workarea.width * n
 end
 
 function height_factor(n)
-  return awful.screen.focused().workarea.height * n
+  return screen().workarea.height * n
 end
 
 function ratio(c)
@@ -237,8 +237,12 @@ function unminimize_all()
   unminimize_lock.trigger()
 end
 
+function screen()
+  return awful.screen.focused()
+end
+
 function tag()
-  return awful.screen.focused().selected_tag
+  return screen().selected_tag
 end
 
 function clients()
