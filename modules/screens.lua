@@ -12,7 +12,7 @@ awful.screen.connect_for_each_screen(function(s)
   awful.tag({"1"}, s, awful.layout.suit.floating)
   gears.wallpaper.maximized(beautiful.wallpaper)
 
-  s.tasklist = awful.widget.tasklist {
+  s.mytasklist = awful.widget.tasklist {
     screen = s,
     buttons = bindings.tasklist_buttons,
     filter = function() return true end, 
@@ -34,7 +34,7 @@ awful.screen.connect_for_each_screen(function(s)
     end
   }
 
-  s.wibar = awful.wibar({
+  s.mywibar = awful.wibar({
     ontop = true,
     position = "bottom",
     screen = s
@@ -94,10 +94,10 @@ awful.screen.connect_for_each_screen(function(s)
     })
   }
 
-  s.wibar:setup {
+  s.mywibar:setup {
     layout = wibox.layout.align.horizontal,
     left,
-    s.tasklist,
+    s.mytasklist,
     right
   }
 end)
