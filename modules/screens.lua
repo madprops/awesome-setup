@@ -6,7 +6,6 @@ local multibutton = require("madwidgets/multibutton/multibutton")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local datetime = require("madwidgets/datetime/datetime")
 local cpu = require("madwidgets/cpu/cpu")
-local shad = require("modules/shad")
 local bindings = require("modules/bindings")
 
 awful.screen.connect_for_each_screen(function(s)
@@ -56,17 +55,8 @@ awful.screen.connect_for_each_screen(function(s)
           right = 10,
           widget = wibox.container.margin
       },
-      id = "3dbutton",
+      id     = 'background_role',
       widget = wibox.container.background,
-      create_callback = function(self, c, _, _)
-        local bg = self:get_children_by_id("3dbutton")[1]
-        c:connect_signal("focus", function()
-            bg.bgimage = shad.button_pressed(beautiful.tasklist_bg_focus)
-        end)
-        c:connect_signal("unfocus", function()
-            bg.bgimage = shad.button_normal(beautiful.tasklist_bg_normal)
-        end)
-      end
     }
   }
 
