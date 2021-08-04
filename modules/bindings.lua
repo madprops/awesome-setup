@@ -153,6 +153,14 @@ bindings.clientkeys = gears.table.join(
 
   awful.key({"Shift"}, "BackSpace", function(c)
     awful.rules.apply(c)
+  end),
+
+  awful.key({modkey}, "KP_Add", function(c)
+    grow_in_place(c)
+  end),
+
+  awful.key({modkey}, "KP_Subtract", function(c)
+    shrink_in_place(c)
   end)
 )
 
