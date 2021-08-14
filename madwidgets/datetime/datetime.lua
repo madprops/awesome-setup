@@ -19,7 +19,8 @@ function datetime.create(args)
       local text = ""
       text = text..os.date('%T\n%A %B (%m) %d %Y')
       return text
-    end
+    end,
+    delay_show = 1
   }
 
   return instance
