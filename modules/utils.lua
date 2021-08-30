@@ -69,7 +69,7 @@ function altab()
 end
 
 function screenshot()
-  spawn("flameshot gui -p " .. os.getenv("HOME") .. "/Downloads/pics/pics1")
+  spawn("spectacle -r " .. os.getenv("HOME") .. "/Downloads/pics/pics1")
 end
 
 local playerctl_lock = lockdelay.create({
