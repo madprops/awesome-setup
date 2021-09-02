@@ -18,10 +18,17 @@ awful.rules.rules = {
     }
   },
   {
-    rule = {class = "Firefox"},
+    rule = {class = "Nightly"},
     properties = {
       maximized = true,
       xindex = 1
+    }
+  },
+  {
+    rule = {class = "Firefox"},
+    properties = {
+      maximized = true,
+      xindex = 1.1
     }
   },
   {
