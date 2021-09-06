@@ -53,11 +53,11 @@ bindings.globalkeys = gears.table.join(
     lockscreen()
   end),
 
-  awful.key({}, "Pause", function()
+  awful.key({"Shift"}, "Pause", function()
     randstring()
   end),
-
-  awful.key({"Control"}, "Pause", function()
+  
+  awful.key({}, "Pause", function()
     randword()
   end),
 
