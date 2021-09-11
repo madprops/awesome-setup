@@ -39,7 +39,7 @@ awful.rules.rules = {
     }
   },
   {
-    rule = {instance = "spotify"},
+    rule = {instance = "psst-gui"},
     properties = {
       placement = function(c)
         awful.placement.bottom_left(c, {honor_workarea = true})

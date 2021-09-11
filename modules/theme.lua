@@ -1,8 +1,9 @@
 local awful = require("awful")
-local gears = require("gears")
 local beautiful = require("beautiful")
+local naughty = require("naughty")
 
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default")
+beautiful.init(theme_path)
 
 local theme = beautiful.get()
 theme.font = "monospace 11"
