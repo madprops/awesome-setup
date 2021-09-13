@@ -172,7 +172,7 @@ function singlespawn(program)
 end
 
 function launch_all()
-  spawn("firefox")
+  spawn("firefox-trunk")
   spawn("code")
   spawn("spotify")
   spawn("strawberry")
