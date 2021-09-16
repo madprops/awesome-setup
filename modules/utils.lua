@@ -73,7 +73,7 @@ function screenshot()
 end
 
 local playerctl_lock = lockdelay.create({
-  action = function(action) spawn("playerctl -p playerctld "..action) end,
+  action = function(action) spawn("playerctl -p spotify "..action) end,
   delay = 100
 })
 
