@@ -8,6 +8,8 @@ local datetime = require("madwidgets/datetime/datetime")
 local cpu = require("madwidgets/cpu/cpu")
 local bindings = require("modules/bindings")
 
+awful.mouse.snap.edge_enabled = false
+
 awful.screen.connect_for_each_screen(function(s)
   awful.tag({"1"}, s, awful.layout.suit.floating)
   gears.wallpaper.maximized(beautiful.wallpaper)
