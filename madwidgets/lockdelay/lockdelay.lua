@@ -13,11 +13,11 @@ function lockdelay.create(args)
     if locked then return
     else
       locked = true
-      args.action(arg)
       gears.timer.start_new(d, function()
         locked = false
         return false
-      end)
+      end)      
+      args.action(arg)
     end
   end
 
