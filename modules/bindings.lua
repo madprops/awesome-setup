@@ -66,7 +66,7 @@ bindings.globalkeys = gears.table.join(
   end),
 
   awful.key({}, "XF86AudioPlay", function()
-    playerctl("play-pause")
+    play_pause()
   end), 
 
   awful.key({}, "XF86AudioNext", function()

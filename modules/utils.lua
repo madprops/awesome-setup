@@ -81,6 +81,10 @@ function playerctl(player)
   playerctl_lock.trigger(player)
 end
 
+function play_pause()
+  spawn("python3 /home/yo/code/empris/empris.py")
+end
+
 function randstring()
   spawn(os.getenv("HOME") .. "/scripts/randword.sh")
 end
