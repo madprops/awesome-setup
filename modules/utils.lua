@@ -72,17 +72,16 @@ function screenshot()
   spawn("spectacle -r " .. os.getenv("HOME") .. "/Downloads/pics/pics1")
 end
 
-local playerctl_lock = lockdelay.create({
-  action = function(action) spawn("playerctl "..action) end,
-  delay = 100
-})
-
-function playerctl(player)
-  playerctl_lock.trigger(player)
+function media_play_pause()
+  spawn("python3 /home/yo/code/empris/empris.py")
 end
 
-function play_pause()
-  spawn("python3 /home/yo/code/empris/empris.py")
+function media_next()
+  spawn("python3 /home/yo/code/empris/empris.py next")
+end
+
+function media_prev()
+  spawn("python3 /home/yo/code/empris/empris.py prev")
 end
 
 function randstring()
@@ -123,7 +122,7 @@ function dropdown()
 end
 
 function stop_all_players()
-  shellspawn("playerctl --all-players pause")
+  spawn("python3 /home/yo/code/empris/empris.py pauseall")
 end
 
 function lockscreen(suspend)
