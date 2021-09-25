@@ -39,7 +39,7 @@ awful.rules.rules = {
     }
   },
   {
-    rule = {instance = "spotify"},
+    rule = {instance = "youtube-music-desktop-app"},
     properties = {
       placement = function(c)
         awful.placement.bottom_left(c, {honor_workarea = true})
