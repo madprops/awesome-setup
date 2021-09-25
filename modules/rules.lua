@@ -27,7 +27,7 @@ awful.rules.rules = {
   {
     rule = {class = "Firefox"},
     properties = {
-      maximized = true,
+      maximized = false,
       xindex = 1.1
     }
   },
@@ -46,7 +46,8 @@ awful.rules.rules = {
       end,
       width = width_factor(0.5),
       height = height_factor(1),
-      xindex = 3.1
+      xindex = 3.1,
+      maximized = false
     }
   },
   {
@@ -57,7 +58,8 @@ awful.rules.rules = {
       end,
       width = width_factor(0.5),
       height = height_factor(0.6),
-      xindex = 3.2
+      xindex = 3.2,
+      maximized = false
     }
   },
   {
@@ -69,18 +71,21 @@ awful.rules.rules = {
       width = width_factor(0.5),
       height = height_factor(0.6),
       xindex = 4,
+      maximized = false
     }
   },
   {
     rule = {instance = "Steam"},
     properties = {
-      xindex = 4.1
+      xindex = 4.1,
+      maximized = true
     }
   },
   {
     rule = {instance = "lutris"},
     properties = {
-      xindex = 4.2
+      xindex = 4.2,
+      maximized = false
     }
   },
   {
@@ -91,15 +96,10 @@ awful.rules.rules = {
     }
   },
   {
-    rule = {instance = "pulseeffects"},
-    properties = {
-      xindex = 5.1
-    }
-  },
-  {
     rule = {instance = "dolphin"},
     properties = {
       xindex = 6,
+      maximized = false
     }
   },
 }
