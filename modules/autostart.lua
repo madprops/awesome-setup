@@ -7,6 +7,8 @@ spawn("setxkbmap -option caps:none", false)
 
 shellspawn("killall -q plug.sh ; /home/yo/scripts/plug.sh")
 shellspawn("killall -q xbindkeys ; xbindkeys")
+shellspawn("pkill -f 'empris.py autopause'")
+shellspawn("python3 /home/yo/code/empris/empris.py autopause")
 
 singlespawn("copyq")
 singlespawn("kdeconnect-indicator")
