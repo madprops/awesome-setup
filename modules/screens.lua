@@ -4,7 +4,6 @@ local gears = require("gears")
 local beautiful = require("beautiful")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
-local datetime = require("madwidgets/datetime/datetime")
 local cpu = require("madwidgets/cpu/cpu")
 local bindings = require("modules/bindings")
 
@@ -108,8 +107,8 @@ awful.screen.connect_for_each_screen(function(s)
     space(),
     volumecontrol.create(),
     space(),
-    datetime.create({
-      format = "%a-%d-%b %I:%M %P ",
+    multibutton.create({
+      widget = wibox.widget.textclock("%a-%d-%b %I:%M:%S %P ", 1),
       on_click = function()
         calendar()
       end,
