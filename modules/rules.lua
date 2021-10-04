@@ -41,13 +41,8 @@ awful.rules.rules = {
   {
     rule = {instance = "youtube-music-desktop-app"},
     properties = {
-      placement = function(c)
-        awful.placement.bottom_left(c, {honor_workarea = true})
-      end,
-      width = width_factor(0.6),
-      height = height_factor(1),
       xindex = 3.1,
-      maximized = false
+      maximized = true
     }
   },
   {
