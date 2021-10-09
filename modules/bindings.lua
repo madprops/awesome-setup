@@ -23,6 +23,7 @@ local closetap = doubletap.create({
         root.fake_input('key_press', "w") 
         root.fake_input('key_release', "w")
         root.fake_input('key_release', "Control_L")
+      else
         c:kill()
       end
     end
