@@ -14,7 +14,8 @@ awful.rules.rules = {
       buttons = bindings.clientbuttons,
       screen = awful.screen.preferred,
       placement = awful.placement.centered,
-      xindex = 0
+      xindex = 0,
+      xkeys = true
     }
   },
   {
@@ -97,4 +98,19 @@ awful.rules.rules = {
       maximized = false
     }
   },
+  {
+    rule = {instance = "ocenaudio"},
+    properties = {
+      xindex = 7,
+      maximized = false
+    }
+  },
+  {
+    rule = {instance = "VirtualBox Machine"},
+    properties = {
+      xindex = 8,
+      maximized = false,
+      xkeys = false
+    }
+  } 
 }

@@ -11,6 +11,7 @@ local closetap = doubletap.create({
   lockdelay = 1000,
   action = function()
     local c = mouse.object_under_pointer()
+    if not c.xkeys then return end
     if c.kill then
       if c.instance == "vivaldi-stable" or 
         c.instance == "Navigator" then
@@ -22,7 +23,6 @@ local closetap = doubletap.create({
         root.fake_input('key_press', "w") 
         root.fake_input('key_release', "w")
         root.fake_input('key_release', "Control_L")
-      else
         c:kill()
       end
     end
@@ -85,42 +85,6 @@ bindings.globalkeys = gears.table.join(
     decrease_volume()
   end), 
 
-  awful.key({modkey}, "#79", function()
-    snap(client.focus, "corner", awful.placement.top_left)
-  end), 
-
-  awful.key({modkey}, "#80", function()
-    snap(client.focus, "horizontally", awful.placement.top)
-  end), 
-
-  awful.key({modkey}, "#81", function()
-    snap(client.focus, "corner", awful.placement.top_right)
-  end), 
-
-  awful.key({modkey}, "#83", function()
-    snap(client.focus, "vertically", awful.placement.left)
-  end), 
-
-  awful.key({modkey}, "#84", function()
-    maximize(client.focus)
-  end), 
-
-  awful.key({modkey}, "#85", function()
-    snap(client.focus, "vertically", awful.placement.right)
-  end), 
-
-  awful.key({modkey}, "#87", function()
-    snap(client.focus, "corner", awful.placement.bottom_left)
-  end), 
-
-  awful.key({modkey}, "#88", function()
-    snap(client.focus, "horizontally", awful.placement.bottom)
-  end), 
-
-  awful.key({modkey}, "#89", function()
-    snap(client.focus, "corner", awful.placement.bottom_right)
-  end), 
-
   awful.key({modkey, "Control"}, "1", function()
     launch_all()
   end),
@@ -136,32 +100,84 @@ bindings.globalkeys = gears.table.join(
 
 bindings.clientkeys = gears.table.join(
   awful.key({altkey}, "F4", function(c)
+    if not c.xkeys then return end
     close(c)
   end), 
 
   awful.key({modkey}, "\\", function(c)
+    if not c.xkeys then return end
     c:move_to_screen()
   end), 
   
   awful.key({modkey}, "BackSpace", function(c)
+    if not c.xkeys then return end
     maximize(c)
   end),
 
   awful.key({modkey, "Shift"}, "BackSpace", function(c)
+    if not c.xkeys then return end
     fullscreen(c)
   end),
 
   awful.key({"Shift"}, "BackSpace", function(c)
+    if not c.xkeys then return end
     awful.rules.apply(c)
   end),
 
   awful.key({modkey}, "KP_Add", function(c)
+    if not c.xkeys then return end
     grow_in_place(c)
   end),
 
   awful.key({modkey}, "KP_Subtract", function(c)
+    if not c.xkeys then return end
     shrink_in_place(c)
-  end)
+  end),
+
+  awful.key({modkey}, "#79", function(c)
+    if not c.xkeys then return end
+    snap(c, "corner", awful.placement.top_left)
+  end), 
+
+  awful.key({modkey}, "#80", function(c)
+    if not c.xkeys then return end
+    snap(c, "horizontally", awful.placement.top)
+  end), 
+
+  awful.key({modkey}, "#81", function(c)
+    if not c.xkeys then return end
+    snap(c, "corner", awful.placement.top_right)
+  end), 
+
+  awful.key({modkey}, "#83", function(c)
+    if not c.xkeys then return end
+    snap(c, "vertically", awful.placement.left)
+  end), 
+
+  awful.key({modkey}, "#84", function(c)
+    if not c.xkeys then return end
+    maximize(c)
+  end), 
+
+  awful.key({modkey}, "#85", function(c)
+    if not c.xkeys then return end
+    snap(c, "vertically", awful.placement.right)
+  end), 
+
+  awful.key({modkey}, "#87", function(c)
+    if not c.xkeys then return end
+    snap(c, "corner", awful.placement.bottom_left)
+  end), 
+
+  awful.key({modkey}, "#88", function(c)
+    if not c.xkeys then return end
+    snap(c, "horizontally", awful.placement.bottom)
+  end), 
+
+  awful.key({modkey}, "#89", function(c)
+    if not c.xkeys then return end
+    snap(c, "corner", awful.placement.bottom_right)
+  end)  
 )
 
 bindings.clientbuttons = gears.table.join(
@@ -170,22 +186,26 @@ bindings.clientbuttons = gears.table.join(
   end), 
 
   awful.button({modkey}, 1, function(c)
+    if not c.xkeys then return end
     focus(c)
     c.maximized = false
     awful.mouse.client.move(c)
   end), 
 
   awful.button({modkey}, 3, function(c)
+    if not c.xkeys then return end
     focus(c)
     c.maximized = false
     awful.mouse.client.resize(c)
   end),
 
   awful.button({modkey}, 4, function(c)
+    if not c.xkeys then return end
     grow_in_place(c)
   end), 
   
   awful.button({modkey}, 5, function(c)
+    if not c.xkeys then return end
     shrink_in_place(c)
   end)
 )
