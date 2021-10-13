@@ -260,3 +260,7 @@ end
 function space()
   return wibox.widget.textbox("  ")
 end
+
+function show_clipboard()
+  spawn("python3 /home/yo/code/clipton/clipton.py")
+end

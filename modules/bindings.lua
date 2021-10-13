@@ -38,6 +38,10 @@ bindings.globalkeys = gears.table.join(
     show_menupanel()
   end),
 
+  awful.key({"Control"}, "`", function()
+    show_clipboard()
+  end),  
+
   awful.key({modkey}, "Return", function()
     prev_client()
   end),
