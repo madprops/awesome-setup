@@ -90,7 +90,14 @@ awful.screen.connect_for_each_screen(function(s)
       on_wheel_up = function()
         unminimize_all()
       end,
-    }),
+    }),       
+  }
+
+  right = {
+    layout = wibox.layout.fixed.horizontal(),
+    space(),
+    wibox.widget.systray(),
+    space(),
     sysmonitor.create({
       mode = "cpu",
       on_click = function()
@@ -110,14 +117,7 @@ awful.screen.connect_for_each_screen(function(s)
       on_click = function()
         system_monitor()
       end
-    }),        
-    space()
-  }
-
-  right = {
-    layout = wibox.layout.fixed.horizontal(),
-    space(),
-    wibox.widget.systray(),
+    }),     
     space(),
     volumecontrol.create(),
     space(),
