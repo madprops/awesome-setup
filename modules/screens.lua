@@ -4,7 +4,7 @@ local gears = require("gears")
 local beautiful = require("beautiful")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
-local cpu = require("madwidgets/cpu/cpu")
+local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local bindings = require("modules/bindings")
 
 awful.mouse.snap.edge_enabled = false
@@ -91,12 +91,26 @@ awful.screen.connect_for_each_screen(function(s)
         unminimize_all()
       end,
     }),
-    cpu.create({
-      modes = {"cpu", "ram", "tmp"},
+    sysmonitor.create({
+      mode = "cpu",
       on_click = function()
-        sysmonitor()
+        system_monitor()
       end
     }),
+    space(),
+    sysmonitor.create({
+      mode = "ram",
+      on_click = function()
+        system_monitor()
+      end
+    }),
+    space(),
+    sysmonitor.create({
+      mode = "tmp",
+      on_click = function()
+        system_monitor()
+      end
+    }),        
     space()
   }
 

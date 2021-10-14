@@ -253,7 +253,7 @@ function clients()
   return mytag():clients()
 end
 
-function sysmonitor()
+function system_monitor()
   spawn("konsole -e htop -d 20")
 end
 
