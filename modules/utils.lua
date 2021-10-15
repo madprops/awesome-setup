@@ -175,16 +175,6 @@ function singlespawn(program)
   awful.spawn.single_instance(program)
 end
 
-function launch_all()
-  spawn("firefox-trunk")
-  spawn("code")
-  spawn("spotify")
-  spawn("strawberry")
-  spawn("hexchat")
-  spawn("steam")
-  spawn("dolphin")
-end
-
 function show_main_menu()
   menupanels.main.show() 
 end
