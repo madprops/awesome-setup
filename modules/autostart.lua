@@ -19,7 +19,6 @@ shellspawn("pkill -f 'playerctl status --follow'")
 sleep(0.1)
 shellspawn("python3 /home/yo/code/empris/empris.py autopause")
 
-shellspawn("pkill -f 'clipton.py watcher'")
 shellspawn("pkill -f 'clipton'")
 sleep(0.1)
 shellspawn("python3 /home/yo/code/clipton/clipton.py watcher")
