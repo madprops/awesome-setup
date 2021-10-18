@@ -8,11 +8,11 @@ local loading = "---"
 
 function sysmonitor.update_strings(s, instance)
   if instance.mode == "cpu" then
-    instance.widget.text = sysmonitor.cpustring(s)
+    instance.textbox_widget.text = " "..sysmonitor.cpustring(s).." "
   elseif instance.mode == "ram" then
-    instance.widget.text = sysmonitor.ramstring(s)
+    instance.textbox_widget.text = " "..sysmonitor.ramstring(s).." "
   elseif instance.mode == "tmp" then
-    instance.widget.text = sysmonitor.tmpstring(s)
+    instance.textbox_widget.text = " "..sysmonitor.tmpstring(s).." "
   end
 end
 
@@ -56,16 +56,25 @@ end
 function sysmonitor.create(args)
   args = args or {}
   args.on_click = args.on_click or function() end
+  args.bgcolor = args.bgcolor or "#333B4B"
+  args.fontcolor = args.fontcolor or "#b8babc"
 
   local instance = {}
   instance.args = args
   instance.mode = args.mode or "cpu"
 
-  instance.widget = wibox.widget {
+  instance.textbox_widget = wibox.widget {
     markup = "---:---%",
     align  = 'center',
     valign = 'center',
     widget = wibox.widget.textbox
+  }
+
+  instance.widget = wibox.widget {
+    instance.textbox_widget,
+    widget = wibox.container.background,
+    bg = args.bgcolor,
+    fg = args.fontcolor
   }
 
   instance.widget:connect_signal("button::press", function(a, b, c, button, mods)

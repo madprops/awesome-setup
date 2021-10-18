@@ -12,7 +12,7 @@ local loading = "---"
 
 function volumecontrol.update_volume(vol)
   for i, instance in ipairs(instances) do
-    instance.widget.text = volumecontrol.volstring(utils.numpad(vol))
+    instance.textbox_widget.text = " "..volumecontrol.volstring(utils.numpad(vol)).." "
   end
 end
 
@@ -81,7 +81,7 @@ function volumecontrol.refresh()
 end
 
 function volumecontrol.volstring(s)
-  return "Vol:"..s.."%"
+  return "VOL:"..s.."%"
 end
 
 function volumecontrol.create(args)
@@ -89,12 +89,21 @@ function volumecontrol.create(args)
 
   local instance = {}
   instance.args = args
+  args.bgcolor = args.bgcolor or "#333B4B"
+  args.fontcolor = args.fontcolor or "#b8babc"
 
-  instance.widget = wibox.widget {
+  instance.textbox_widget = wibox.widget {
     markup = volumecontrol.volstring(loading),
     align  = 'center',
     valign = 'center',
     widget = wibox.widget.textbox
+  }
+
+  instance.widget = wibox.widget {
+    instance.textbox_widget,
+    widget = wibox.container.background,
+    bg = args.bgcolor,
+    fg = args.fontcolor
   }
 
   instance.widget:connect_signal("button::press", function(a, b, c, button, mods)
