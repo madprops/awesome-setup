@@ -104,14 +104,12 @@ awful.screen.connect_for_each_screen(function(s)
         system_monitor()
       end
     }),
-    space(),
     sysmonitor.create({
       mode = "ram",
       on_click = function()
         system_monitor()
       end
     }),
-    space(),
     sysmonitor.create({
       mode = "tmp",
       on_click = function()
