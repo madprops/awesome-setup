@@ -7,7 +7,7 @@ local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local context_client
 
 function msg(txt)
-  naughty.notify({text = " "..tostring(txt).." "})
+  naughty.notify({text = " " .. tostring(txt) .. " "})
 end
 
 function prev_client()
@@ -73,15 +73,15 @@ function screenshot()
 end
 
 function media_play_pause()
-  spawn("python3 /home/yo/code/empris/empris.py")
+  spawn("python3 " .. os.getenv("HOME") .. "/code/empris/empris.py")
 end
 
 function media_next()
-  spawn("python3 /home/yo/code/empris/empris.py next")
+  spawn("python3 " .. os.getenv("HOME") .. "/code/empris/empris.py next")
 end
 
 function media_prev()
-  spawn("python3 /home/yo/code/empris/empris.py prev")
+  spawn("python3 " .. os.getenv("HOME") .. "/code/empris/empris.py prev")
 end
 
 function randstring()
@@ -93,7 +93,7 @@ function randword()
 end
 
 function to_clipboard(text)
-  shellspawn('echo -n "'..trim(text)..'" | xclip -selection clipboard')
+  shellspawn('echo -n "' .. trim(text) .. '" | xclip -selection clipboard')
 end
 
 function trim(text)
@@ -122,7 +122,7 @@ function dropdown()
 end
 
 function stop_all_players()
-  spawn("python3 /home/yo/code/empris/empris.py pauseall")
+  spawn("python3 " .. os.getenv("HOME") .. "/code/empris/empris.py pauseall")
 end
 
 function lockscreen(suspend)
@@ -132,19 +132,19 @@ function lockscreen(suspend)
     s = "systemctl suspend; "
   end
 
-  shellspawn(s.."i3lock --color=000000 -n")
+  shellspawn(s .. "i3lock --color=000000 -n")
 end
 
 local logpath = os.getenv("HOME") .. "/.config/clickthing/clicks.txt"
 
 function add2log(name)
-  local txt = name.." "..os.date("%c")
-  shellspawn("echo -e '"..txt.."' | cat - "..logpath.." | sponge "..logpath)
+  local txt = name .. " " .. os.date("%c")
+  shellspawn("echo -e '" .. txt .. "' | cat - " .. logpath .. " | sponge " .. logpath)
   msg(name .. " added to log")
 end
 
 function showlog(name)
-  shellspawn("kwrite "..logpath)
+  shellspawn("kwrite " .. logpath)
 end
 
 function calendar()
@@ -252,5 +252,5 @@ function space()
 end
 
 function show_clipboard()
-  spawn("python3 /home/yo/code/clipton/clipton.py")
+  spawn("python3 " .. os.getenv("HOME") .. "/code/clipton/clipton.py")
 end
