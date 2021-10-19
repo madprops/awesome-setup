@@ -40,6 +40,20 @@ awful.rules.rules = {
     }
   },
   {
+    rule = {instance = "sublime_text"},
+    properties = {
+      maximized = true,
+      xindex = 2
+    }
+  },
+  {
+    rule = {instance = "gitkraken"},
+    properties = {
+      maximized = true,
+      xindex = 2.1
+    }
+  },    
+  {
     rule = {instance = "youtube-music-desktop-app"},
     properties = {
       xindex = 3.1,
