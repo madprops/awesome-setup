@@ -56,7 +56,7 @@ end
 function sysmonitor.create(args)
   args = args or {}
   args.on_click = args.on_click or function() end
-  args.bgcolor = args.bgcolor or "#333B4B"
+  args.bgcolor = args.bgcolor or "#33393B"
   args.fontcolor = args.fontcolor or "#b8babc"
 
   local instance = {}

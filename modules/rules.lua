@@ -31,23 +31,16 @@ awful.rules.rules = {
       maximized = true,
       xindex = 2
     }
-  },  
-  {
-    rule = {instance = "youtube-music-desktop-app"},
-    properties = {
-      xindex = 3.1,
-      maximized = true
-    }
   },
   {
-    rule = {instance = "strawberry"},
+    rule = {instance = "audacious"},
     properties = {
       placement = function(c)
         awful.placement.bottom_left(c, {honor_workarea = true})
       end,
       width = width_factor(0.5),
       height = height_factor(0.6),
-      xindex = 3.2,
+      xindex = 3,
       maximized = false
     }
   },

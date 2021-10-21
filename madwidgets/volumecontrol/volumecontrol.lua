@@ -90,7 +90,7 @@ function volumecontrol.create(args)
 
   local instance = {}
   instance.args = args
-  args.bgcolor = args.bgcolor or "#333B4B"
+  args.bgcolor = args.bgcolor or "#33393B"
   args.fontcolor = args.fontcolor or "#b8babc"
 
   instance.textbox_widget = wibox.widget {
