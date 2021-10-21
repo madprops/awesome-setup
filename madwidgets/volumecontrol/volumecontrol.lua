@@ -17,13 +17,14 @@ function volumecontrol.update_volume(vol)
 end
 
 function volumecontrol.get_volume(f)
-  awful.spawn.easy_async_with_shell('pulsemixer --get-volume | grep -o "^\\w*\\b"', function(vol)
+  awful.spawn.easy_async_with_shell("pamixer --get-volume", function(vol)
     f(tonumber(vol))
   end)
 end
 
 function volumecontrol.change_volume(vol)
-  awful.util.spawn_with_shell("pactl set-sink-volume @DEFAULT_SINK@ "..vol.."%", false) 
+  msg(vol)
+  awful.util.spawn_with_shell("pamixer --set-volume "..vol, false) 
   volumecontrol.update_volume(vol)
 end
 

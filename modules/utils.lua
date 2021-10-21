@@ -144,7 +144,7 @@ function add2log(name)
 end
 
 function showlog(name)
-  shellspawn("kwrite " .. logpath)
+  shellspawn("geany " .. logpath)
 end
 
 function calendar()
