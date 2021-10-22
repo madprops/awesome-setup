@@ -31,6 +31,10 @@ function fullscreen(c)
   focus(c)
 end
 
+function on_top(c)
+  c.ontop = not c.ontop
+end
+
 function check_fullscreen(c)
   myscreen().mywibar.ontop = not c.fullscreen
 end

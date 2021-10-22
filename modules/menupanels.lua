@@ -128,6 +128,10 @@ menupanels.context = menupanel.create({
       action = function() fullscreen(get_context_client()) end,
     },
     {
+      name = "On Top",
+      action = function() on_top(get_context_client()) end,
+    },
+    {
       name = "Title",
       action = function() show_client_title(get_context_client()) end
     },
