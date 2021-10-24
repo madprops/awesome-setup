@@ -21,7 +21,7 @@ awful.rules.rules = {
   {
     rule = {class = "firefox"},
     properties = {
-      maximized = false,
+      maximized = true,
       xindex = 1
     }
   },
