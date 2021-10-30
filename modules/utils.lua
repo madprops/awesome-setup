@@ -168,11 +168,11 @@ function refresh_volume()
 end
 
 function spawn(program)
-  awful.util.spawn(program, false)
+  awful.spawn(program, false)
 end
 
 function shellspawn(program)
-  awful.util.spawn_with_shell(program, false)
+  awful.spawn.with_shell(program, false)
 end
 
 function singlespawn(program)
