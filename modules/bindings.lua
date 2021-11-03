@@ -74,6 +74,10 @@ bindings.globalkeys = gears.table.join(
     media_play_pause()
   end), 
 
+  awful.key({modkey}, "XF86AudioPlay", function()
+    media_play_pause(true)
+  end), 
+
   awful.key({}, "XF86AudioNext", function()
     media_next()
   end), 

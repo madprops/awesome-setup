@@ -4,6 +4,7 @@ local wibox = require("wibox")
 local menupanels = require("modules/menupanels")
 local lockdelay = require("madwidgets/lockdelay/lockdelay")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
+local default_player = "audacious"
 local context_client
 
 function msg(txt)
@@ -76,16 +77,20 @@ function screenshot()
   spawn("spectacle -r " .. os.getenv("HOME") .. "/Downloads/pics/pics1")
 end
 
-function media_play_pause()
-  spawn("python3 " .. os.getenv("HOME") .. "/code/empris/empris.py")
+function media_play_pause(full)
+  if full then
+    spawn("python " .. os.getenv("HOME") .. "/code/empris/empris.py")
+  else
+    spawn("playerctl -p ".. default_player .. " play-pause")
+  end
 end
 
 function media_next()
-  spawn("python3 " .. os.getenv("HOME") .. "/code/empris/empris.py next")
+  spawn("python " .. os.getenv("HOME") .. "/code/empris/empris.py next")
 end
 
 function media_prev()
-  spawn("python3 " .. os.getenv("HOME") .. "/code/empris/empris.py prev")
+  spawn("python " .. os.getenv("HOME") .. "/code/empris/empris.py prev")
 end
 
 function randstring()
@@ -126,7 +131,7 @@ function dropdown()
 end
 
 function stop_all_players()
-  spawn("python3 " .. os.getenv("HOME") .. "/code/empris/empris.py pauseall")
+  spawn("python " .. os.getenv("HOME") .. "/code/empris/empris.py pauseall")
 end
 
 function lockscreen(suspend)
@@ -256,5 +261,5 @@ function space()
 end
 
 function show_clipboard()
-  spawn("python3 " .. os.getenv("HOME") .. "/code/clipton/clipton.py")
+  spawn("python " .. os.getenv("HOME") .. "/code/clipton/clipton.py")
 end
