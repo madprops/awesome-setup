@@ -7,11 +7,31 @@ local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local bindings = require("modules/bindings")
 
-awful.mouse.snap.edge_enabled = false
-
 awful.screen.connect_for_each_screen(function(s)
-  awful.tag({"1"}, s, awful.layout.suit.floating)
+  awful.tag({ "1", "2", "3", "4" }, s, awful.layout.suit.floating)
   gears.wallpaper.maximized(beautiful.wallpaper)
+
+    -- Create a taglist widget
+    s.mytaglist = awful.widget.taglist {
+      screen  = s,
+      filter  = awful.widget.taglist.filter.all,
+      buttons = {
+        awful.button({ }, 1, function(t) t:view_only() end),
+        awful.button({ modkey }, 1, function(t)
+                                        if client.focus then
+                                            client.focus:move_to_tag(t)
+                                        end
+                                    end),
+        awful.button({ }, 3, awful.tag.viewtoggle),
+        awful.button({ modkey }, 3, function(t)
+                                        if client.focus then
+                                            client.focus:toggle_tag(t)
+                                        end
+                                    end),
+        awful.button({ }, 4, function(t) prev_tag() end),
+        awful.button({ }, 5, function(t) next_tag() end),
+      }
+  }  
 
   s.mytasklist = awful.widget.tasklist {
     screen = s,
@@ -22,10 +42,12 @@ awful.screen.connect_for_each_screen(function(s)
       local unindexed = {}
       
       for _, c in pairs(client.get()) do
-        if c.xindex > 0 then
-          table.insert(result, c)
-        else
-          table.insert(unindexed, c)
+        if c.first_tag.index == s.selected_tag.index then
+          if c.xindex > 0 then
+            table.insert(result, c)
+          else
+            table.insert(unindexed, c)
+          end
         end
       end
 
@@ -85,12 +107,13 @@ awful.screen.connect_for_each_screen(function(s)
         dropdown()
       end,
       on_wheel_down = function()
-        minimize_all()
+        next_tag()
       end,
       on_wheel_up = function()
-        unminimize_all()
+        prev_tag()
       end,
-    }),       
+    }),
+    s.mytaglist       
   }
 
   right = {

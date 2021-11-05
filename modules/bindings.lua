@@ -34,6 +34,33 @@ bindings.globalkeys = gears.table.join(
   awful.key({modkey, "Control"}, "BackSpace", awesome.restart), 
   awful.key({modkey, "Shift"}, "q", awesome.quit), 
 
+  awful.key {
+    modifiers   = { modkey },
+    keygroup    = "numrow",
+    group       = "tag",
+    on_press    = function (index)
+      local screen = awful.screen.focused()
+      local tag = screen.tags[index]
+      if tag then
+        tag:view_only()
+      end
+    end
+  },
+
+  awful.key {
+    modifiers = { modkey, "Shift" },
+    keygroup    = "numrow",
+    group       = "tag",
+    on_press    = function (index)
+      if client.focus then
+        local tag = client.focus.screen.tags[index]
+        if tag then
+          client.focus:move_to_tag(tag)
+        end
+      end
+    end
+  },  
+
   awful.key({modkey}, "`", function()
     show_menupanel()
   end),
@@ -104,6 +131,14 @@ bindings.globalkeys = gears.table.join(
 
   awful.key({altkey}, "Tab", function()
     altab()
+  end),
+  
+  awful.key({modkey}, "Left", function()
+    prev_tag()
+  end),  
+
+  awful.key({modkey}, "Right", function()
+    next_tag()
   end)
 )
 
@@ -186,7 +221,7 @@ bindings.clientkeys = gears.table.join(
   awful.key({modkey}, "#89", function(c)
     if not c.xkeys then return end
     snap(c, "corner", awful.placement.bottom_right)
-  end)  
+  end)
 )
 
 bindings.clientbuttons = gears.table.join(

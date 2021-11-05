@@ -214,32 +214,6 @@ function shrink_in_place(c)
   center(c)
 end
 
-local minimize_lock = lockdelay.create({
-  action = function()
-    for _, c in ipairs(clients()) do
-      c.minimized = true
-    end
-  end,
-  delay = 250
-})
-
-local unminimize_lock = lockdelay.create({
-  action = function()
-    for _, c in ipairs(clients()) do
-      c.minimized = false
-    end
-  end,
-  delay = 250
-})
-
-function minimize_all()
-  minimize_lock.trigger()
-end
-
-function unminimize_all()
-  unminimize_lock.trigger()
-end
-
 function myscreen()
   return awful.screen.focused()
 end
@@ -262,4 +236,16 @@ end
 
 function show_clipboard()
   spawn("python " .. os.getenv("HOME") .. "/code/clipton/clipton.py")
+end
+
+function next_tag()
+  if mytag().index < #myscreen().tags then
+    awful.tag.viewnext(myscreen())
+  end
+end
+
+function prev_tag()
+  if mytag().index > 1 then
+    awful.tag.viewprev(myscreen())
+  end
 end
