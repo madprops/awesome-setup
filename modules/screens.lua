@@ -113,7 +113,8 @@ awful.screen.connect_for_each_screen(function(s)
         prev_tag()
       end,
     }),
-    s.mytaglist       
+    s.mytaglist,
+    space()
   }
 
   right = {

@@ -231,7 +231,7 @@ function system_monitor()
 end
 
 function space()
-  return wibox.widget.textbox("  ")
+  return wibox.widget.textbox(" ")
 end
 
 function show_clipboard()
