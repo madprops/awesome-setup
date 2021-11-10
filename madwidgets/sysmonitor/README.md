@@ -11,7 +11,7 @@ Then place it somewhere in the panel:
 
 ```
 sysmonitor.create({
-  modes = "cpu",
+  mode = "cpu",
   on_click = function()
     sysmonitor()
   end
