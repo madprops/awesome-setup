@@ -13,7 +13,7 @@ Then place it somewhere in the panel:
 sysmonitor.create({
   mode = "cpu",
   on_click = function()
-    sysmonitor()
+    do_something()
   end
 })
 ```
