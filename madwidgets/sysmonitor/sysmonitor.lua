@@ -44,7 +44,7 @@ function sysmonitor.update(instance)
       instance.timer:again()
     end)
   elseif instance.mode == "tmp" then
-    local cmd = "sensors | grep temp1 | awk '{print $2}' | sed 's/[^0-9.]*//g'"
+    local cmd = "sensors | grep Tctl: | awk '{print $2}' | sed 's/[^0-9.]*//g'"
     awful.spawn.easy_async_with_shell(cmd, function(o)
       if instance.mode ~= "tmp" then return end
       sysmonitor.update_strings(utils.numpad(o), instance)
