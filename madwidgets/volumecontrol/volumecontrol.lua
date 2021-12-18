@@ -81,7 +81,7 @@ function volumecontrol.refresh()
 end
 
 function volumecontrol.volstring(s)
-  return "VOL:"..s.."%"
+  return "Vol:"..s.."%"
 end
 
 function volumecontrol.create(args)
