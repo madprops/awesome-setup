@@ -102,8 +102,11 @@ function randword()
 end
 
 function to_clipboard(text)
-  local escaped = string.gsub(text, '"', "\\\"")
-  shellspawn('echo -n "' .. trim(escaped) .. '" | xclip -selection clipboard')
+  shellspawn('echo -n "' .. trim(escape_quotes(text)) .. '" | xclip -selection clipboard')
+end
+
+function escape_quotes(text)
+  return string.gsub(text, '"', "\\\"")
 end
 
 function trim(text)
