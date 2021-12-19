@@ -110,7 +110,7 @@ function escape_quotes(text)
 end
 
 function trim(text)
-  return (string.gsub(text, "^%s*(.-)%s*$", "%1"))
+  return string.gsub(text, "^%s*(.-)%s*$", "%1")
 end
 
 function show_menupanel()
