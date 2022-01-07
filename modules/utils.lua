@@ -77,20 +77,24 @@ function screenshot()
   spawn("spectacle -r " .. os.getenv("HOME") .. "/Downloads/pics/pics1")
 end
 
+local media_lock = lockdelay.create({action=function(cmd)
+  spawn(cmd)
+end, delay=250})
+
 function media_play_pause(full)
   if full then
-    spawn("python " .. os.getenv("HOME") .. "/code/empris/empris.py")
+    media_lock.trigger("python " .. os.getenv("HOME") .. "/code/empris/empris.py")
   else
-    spawn("playerctl -p ".. default_player .. " play-pause")
+    media_lock.trigger("playerctl -p ".. default_player .. " play-pause")
   end
 end
 
 function media_next()
-  spawn("python " .. os.getenv("HOME") .. "/code/empris/empris.py next")
+  media_lock.trigger("python " .. os.getenv("HOME") .. "/code/empris/empris.py next")
 end
 
 function media_prev()
-  spawn("python " .. os.getenv("HOME") .. "/code/empris/empris.py prev")
+  media_lock.trigger("python " .. os.getenv("HOME") .. "/code/empris/empris.py prev")
 end
 
 function randstring()
