@@ -13,8 +13,7 @@ local closetap = doubletap.create({
     local c = mouse.object_under_pointer()
     if not c.xkeys then return end
     if c.kill then
-      if c.instance == "vivaldi-stable" or 
-        c.instance == "Navigator" then
+      if c.instance == "Navigator" then
         client.focus = c
         root.fake_input('key_release', "Super_L")
         root.fake_input('key_release', "Super_R")
@@ -165,7 +164,7 @@ bindings.clientkeys = gears.table.join(
 
   awful.key({"Shift"}, "BackSpace", function(c)
     if not c.xkeys then return end
-    awful.rules.apply(c)
+    reset_rules(c)
   end),
 
   awful.key({modkey}, "KP_Add", function(c)
@@ -266,6 +265,14 @@ bindings.tasklist_buttons = gears.table.join(
   awful.button({}, 3, function(c)
     show_task_context(c)
   end), 
+
+  awful.button({}, 4, function(c)
+    grow_in_place(c)
+  end), 
+
+  awful.button({}, 5, function(c)
+    shrink_in_place(c)
+  end),
 
   awful.button({modkey}, 4, function(c)
     awful.client.swap.byidx(-1, c)

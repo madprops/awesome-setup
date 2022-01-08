@@ -128,6 +128,22 @@ menupanels.context = menupanel.create({
       action = function() fullscreen(get_context_client()) end,
     },
     {
+      name = "Move",
+      action = function() start_move(get_context_client()) end,
+    },
+    {
+      name = "Resize",
+      action = function() start_resize(get_context_client()) end,
+    },
+    {
+      name = "Center",
+      action = function() center(get_context_client()) end,
+    },  
+    {
+      name = "Reset",
+      action = function() reset_rules(get_context_client()) end,
+    },        
+    {
       name = "On Top",
       action = function() on_top(get_context_client()) end,
     },
