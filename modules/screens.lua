@@ -9,9 +9,6 @@ local bindings = require("modules/bindings")
 
 awful.screen.connect_for_each_screen(function(s)
   awful.tag({ "1", "2", "3", "4" }, s, awful.layout.suit.floating)
-  gears.wallpaper.maximized(beautiful.wallpaper)
-
-    -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
       screen  = s,
       filter  = awful.widget.taglist.filter.all,
@@ -42,11 +39,13 @@ awful.screen.connect_for_each_screen(function(s)
       local unindexed = {}
       
       for _, c in pairs(client.get()) do
-        if c.first_tag.index == s.selected_tag.index then
-          if c.xindex > 0 then
-            table.insert(result, c)
-          else
-            table.insert(unindexed, c)
+        if c.screen == s then
+          if c.first_tag.index == s.selected_tag.index then
+            if c.xindex > 0 then
+              table.insert(result, c)
+            else
+              table.insert(unindexed, c)
+            end
           end
         end
       end
@@ -91,6 +90,9 @@ awful.screen.connect_for_each_screen(function(s)
 
   local left
   local right
+  
+  local systray = wibox.widget.systray()
+  systray:set_screen(screen[2])
 
   left = {
     layout = wibox.layout.fixed.horizontal,
@@ -120,7 +122,7 @@ awful.screen.connect_for_each_screen(function(s)
   right = {
     layout = wibox.layout.fixed.horizontal(),
     space(),
-    wibox.widget.systray(),
+    systray,
     space(),
     sysmonitor.create({
       mode = "cpu",
@@ -162,6 +164,24 @@ awful.screen.connect_for_each_screen(function(s)
     left,
     s.mytasklist,
     right
+  }
+end)
+
+screen.connect_signal("request::wallpaper", function(s)
+  awful.wallpaper {
+    screen = s,
+    widget = {
+      {
+        image     = beautiful.wallpaper,
+        upscale   = true,
+        downscale = true,
+        widget    = wibox.widget.imagebox,
+      },
+      valign = "center",
+      halign = "center",
+      tiled  = false,
+      widget = wibox.container.tile,
+    }
   }
 end)
 

@@ -17,3 +17,5 @@ shellspawn("python /home/yo/code/empris/empris.py autopause")
 shellspawn("pkill -f 'clipton'")
 sleep(0.25)
 shellspawn("python /home/yo/code/clipton/clipton.py watcher")
+
+spawn("xrandr --output HDMI-1 --left-of DP-1")

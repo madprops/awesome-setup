@@ -243,7 +243,7 @@ function menupanel.create(args)
 
   function instance.show(samepos)
     menupanel.hide_all(instance)
-    instance.screen = awful.screen.focused()
+    instance.widget.screen = awful.screen.focused()
     instance.widget.visible = true
     menupanel.reset_confirm_charges(instance)
 
