@@ -266,14 +266,6 @@ bindings.tasklist_buttons = gears.table.join(
     show_task_context(c)
   end), 
 
-  awful.button({}, 4, function(c)
-    grow_in_place(c)
-  end), 
-
-  awful.button({}, 5, function(c)
-    shrink_in_place(c)
-  end),
-
   awful.button({modkey}, 4, function(c)
     awful.client.swap.byidx(-1, c)
   end), 

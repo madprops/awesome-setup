@@ -6,6 +6,7 @@ local multibutton = require("madwidgets/multibutton/multibutton")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local bindings = require("modules/bindings")
+local primary = 2
 
 awful.screen.connect_for_each_screen(function(s)
   awful.tag({ "1", "2", "3", "4" }, s, awful.layout.suit.floating)
@@ -119,45 +120,52 @@ awful.screen.connect_for_each_screen(function(s)
     space()
   }
 
-  right = {
-    layout = wibox.layout.fixed.horizontal(),
-    space(),
-    systray,
-    space(),
-    sysmonitor.create({
-      mode = "cpu",
-      on_click = function()
-        system_monitor()
-      end
-    }),
-    sysmonitor.create({
-      mode = "ram",
-      on_click = function()
-        system_monitor()
-      end
-    }),
-    sysmonitor.create({
-      mode = "tmp",
-      on_click = function()
-        system_monitor()
-      end
-    }),     
-    space(),
-    volumecontrol.create(),
-    space(),
-    multibutton.create({
-      widget = wibox.widget.textclock("%a-%d-%b %I:%M:%S %P ", 1),
-      on_click = function()
-        calendar()
-      end,
-      on_wheel_down = function()
-        decrease_volume()
-      end,
-      on_wheel_up = function()
-        increase_volume()
-      end
-    })
-  }
+  if s.index == primary then
+    right = {
+      layout = wibox.layout.fixed.horizontal(),
+      space(),
+      systray,
+      space(),
+      sysmonitor.create({
+        mode = "cpu",
+        on_click = function()
+          system_monitor()
+        end
+      }),
+      sysmonitor.create({
+        mode = "ram",
+        on_click = function()
+          system_monitor()
+        end
+      }),
+      sysmonitor.create({
+        mode = "tmp",
+        on_click = function()
+          system_monitor()
+        end
+      }),     
+      space(),
+      volumecontrol.create(),
+      space(),
+      multibutton.create({
+        widget = wibox.widget.textclock("%a-%d-%b %I:%M:%S %P ", 1),
+        on_click = function()
+          calendar()
+        end,
+        on_wheel_down = function()
+          decrease_volume()
+        end,
+        on_wheel_up = function()
+          increase_volume()
+        end
+      })
+    }
+  else
+    right = {
+      layout = wibox.layout.fixed.horizontal()
+    }
+  end
+
 
   s.mywibar:setup {
     layout = wibox.layout.align.horizontal,
