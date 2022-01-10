@@ -1,6 +1,8 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 local bindings = require("modules/bindings")
+local screen_left = 2
+local screen_right = 1
 
 awful.rules.rules = {
   {
@@ -72,7 +74,7 @@ awful.rules.rules = {
       height = height_factor(0.5),
       maximized = false,
       xindex = 1,
-      screen = 1           
+      screen = screen_right           
     }
   },
   {
@@ -85,7 +87,7 @@ awful.rules.rules = {
       height = height_factor(0.5),
       maximized = false,
       xindex = 2,
-      screen = 1
+      screen = screen_right
     }
   },
   {
@@ -98,7 +100,7 @@ awful.rules.rules = {
       height = height_factor(0.5),
       maximized = false,
       xindex = 3,
-      screen = 1
+      screen = screen_right
     }
   },
   {
@@ -111,7 +113,7 @@ awful.rules.rules = {
       height = height_factor(0.5),
       maximized = false,
       xindex = 4,
-      screen = 1
+      screen = screen_right
     }
   }
 }
