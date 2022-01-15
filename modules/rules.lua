@@ -91,7 +91,7 @@ awful.rules.rules = {
     }
   },
   {
-    rule = {instance = "vlc"},
+    rule = {instance = "Falkon"},
     properties = {
       placement = function(c)
         awful.placement.top_right(c, {honor_workarea = true})
