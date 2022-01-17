@@ -152,6 +152,10 @@ function lockscreen(suspend)
   shellspawn(s .. "i3lock --color=000000 -n")
 end
 
+function unlockscreen()
+  shellspawn("killall i3lock")
+end
+
 local logpath = os.getenv("HOME") .. "/.config/clickthing/clicks.txt"
 
 function add2log(name)

@@ -19,6 +19,10 @@ function utils.round(n)
   return math.floor(n + 0.5)
 end
 
+function utils.roundmult(num, mult)
+	return math.floor(num / mult + 0.5) * mult
+end
+
 function utils.indexof(value, array)
   for i, instance in ipairs(array) do
     if array[i] == value then
