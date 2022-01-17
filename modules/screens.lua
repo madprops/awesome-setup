@@ -3,10 +3,11 @@ local wibox = require("wibox")
 local gears = require("gears")
 local beautiful = require("beautiful")
 local multibutton = require("madwidgets/multibutton/multibutton")
-local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local bindings = require("modules/bindings")
 local primary = 2
+
+volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 
 awful.screen.connect_for_each_screen(function(s)
   awful.tag({ "1", "2", "3", "4" }, s, awful.layout.suit.floating)

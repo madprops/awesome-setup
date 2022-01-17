@@ -120,10 +120,6 @@ bindings.globalkeys = gears.table.join(
     decrease_volume()
   end), 
 
-  awful.key({modkey, "Control"}, "1", function()
-    launch_all()
-  end),
-
   awful.key({modkey}, "Delete", function()
     closetap.trigger()
   end),
