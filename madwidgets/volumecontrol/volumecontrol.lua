@@ -10,6 +10,10 @@ local instances = {}
 local last_volume = 100
 local loading = "---"
 
+local function round(num, mult)
+	return math.floor(num / mult + 0.5) * mult
+end
+
 function volumecontrol.update_volume(vol)
   for i, instance in ipairs(instances) do
     instance.textbox_widget.text = " "..volumecontrol.volstring(utils.numpad(vol)).." "
@@ -29,10 +33,22 @@ end
 
 function volumecontrol.set(vol)
   vol = tonumber(vol)
+
   if vol > volumecontrol.max_volume or vol < 0 then
     return
   end
+
   volumecontrol.change_volume(vol)
+end
+
+function volumecontrol.set_round(vol)
+  vol = round(tonumber(vol), volumecontrol.steps)
+
+  if vol > volumecontrol.max_volume or vol < 0 then
+    return
+  end
+
+  volumecontrol.change_volume(vol)  
 end
 
 function volumecontrol.increase()

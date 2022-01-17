@@ -176,6 +176,10 @@ function decrease_volume()
   volumecontrol.decrease()
 end
 
+function set_volume(v)
+  volumecontrol.set_round(v)
+end
+
 function refresh_volume()
   volumecontrol.refresh()
 end
