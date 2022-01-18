@@ -18,7 +18,13 @@ awful.rules.rules = {
       placement = awful.placement.centered,
       xindex = 0,
       xkeys = true
-    }
+    },
+    callback=function(c)
+      if c.fullscreen then
+        c.fullscreen = false
+        c.fullscreen = true
+      end
+    end
   },
   {
     rule = {class = "firefox"},

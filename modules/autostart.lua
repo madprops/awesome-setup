@@ -1,9 +1,5 @@
 local awful = require("awful")
 
-function sleep(n)
-  os.execute("sleep " .. tonumber(n))
-end
-
 spawn("numlockx")
 spawn("xset m 0 0", false)
 spawn("xset r rate 220 40", false)

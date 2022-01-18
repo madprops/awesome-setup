@@ -297,3 +297,7 @@ end
 function reset_rules(c)
   awful.rules.apply(c)
 end
+
+function sleep(n)
+  os.execute("sleep " .. tonumber(n))
+end
