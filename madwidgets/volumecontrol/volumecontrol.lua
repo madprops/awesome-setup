@@ -4,7 +4,7 @@ local utils = require("madwidgets/utils")
 
 local volumecontrol = {}
 volumecontrol.max_volume = 100
-volumecontrol.steps = 2
+volumecontrol.steps = 5
 
 local instances = {}
 local last_volume = 100
