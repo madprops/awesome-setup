@@ -156,6 +156,16 @@ function unlockscreen()
   shellspawn("killall i3lock")
 end
 
+function alt_lockscreen()
+  stop_all_players()
+  open_empty_tab()
+  lockscreen()
+end
+
+function open_empty_tab()
+  shellspawn("firefox --new-tab --url about:newtab")
+end
+
 local logpath = os.getenv("HOME") .. "/.config/clickthing/clicks.txt"
 
 function add2log(name)
