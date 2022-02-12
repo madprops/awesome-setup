@@ -97,7 +97,7 @@ awful.rules.rules = {
     }
   },
   {
-    rule = {instance = "Falkon"},
+    rule = {instance = "terminator"},
     properties = {
       placement = function(c)
         awful.placement.top_right(c, {honor_workarea = true})
