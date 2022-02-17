@@ -124,15 +124,7 @@ awful.rules.rules = {
   }
 }
 
-client.connect_signal("manage", function(c)
-  check_title(c)
-end)
-
-client.connect_signal("property::name", function(c)
-  check_title(c)
-end)
-
-function check_title(c)
+function check_title_rules(c)
   if startswith(c.name, "[ff_dev1]") then
     c.width = width_factor(0.5)
     c.height = height_factor(1)

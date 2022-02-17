@@ -217,11 +217,3 @@ screen.connect_signal("request::wallpaper", function(s)
 end)
 
 volumecontrol.refresh()
-
-client.connect_signal("focus", function(c)
-  check_fullscreen(c)
-end)
-
-client.connect_signal("property::fullscreen", function(c)
-  check_fullscreen(c)
-end)
