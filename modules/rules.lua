@@ -123,3 +123,27 @@ awful.rules.rules = {
     }
   }
 }
+
+client.connect_signal("manage", function(c)
+  check_title(c)
+end)
+
+client.connect_signal("property::name", function(c)
+  check_title(c)
+end)
+
+function check_title(c)
+  if startswith(c.name, "[ff_dev1]") then
+    c.width = width_factor(0.5)
+    c.height = height_factor(1)
+    c.xindex = 1
+    awful.placement.left(c, {honor_workarea = true})
+  end
+
+  if startswith(c.name, "[ff_dev2]") then
+    c.width = width_factor(0.5)
+    c.height = height_factor(1)
+    c.xindex = 2
+    awful.placement.right(c, {honor_workarea = true})
+  end
+end

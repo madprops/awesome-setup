@@ -117,6 +117,10 @@ function trim(text)
   return string.gsub(text, "^%s*(.-)%s*$", "%1")
 end
 
+function startswith(s1, s2)
+  return string.sub(s1, 1, string.len(s2)) == s2
+end
+
 function show_menupanel()
   menupanels.main.show()
 end
