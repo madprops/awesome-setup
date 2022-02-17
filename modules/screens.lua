@@ -122,29 +122,51 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   if s.index == primary then
+    local cpu_widget = sysmonitor.create({mode = "cpu"}).widget
+    local ram_widget = sysmonitor.create({mode = "ram"}).widget
+    local tmp_widget = sysmonitor.create({mode = "tmp"}).widget
+    
     right = {
       layout = wibox.layout.fixed.horizontal(),
       space(),
       systray,
       space(),
-      sysmonitor.create({
-        mode = "cpu",
+      multibutton.create({
+        widget = cpu_widget,
         on_click = function()
           system_monitor()
+        end,
+        on_wheel_down = function()
+          decrease_volume()
+        end,
+        on_wheel_up = function()
+          increase_volume()
         end
       }),
-      sysmonitor.create({
-        mode = "ram",
+      multibutton.create({
+        widget = ram_widget,
         on_click = function()
           system_monitor()
+        end,
+        on_wheel_down = function()
+          decrease_volume()
+        end,
+        on_wheel_up = function()
+          increase_volume()
         end
       }),
-      sysmonitor.create({
-        mode = "tmp",
+      multibutton.create({
+        widget = tmp_widget,
         on_click = function()
           system_monitor()
+        end,
+        on_wheel_down = function()
+          decrease_volume()
+        end,
+        on_wheel_up = function()
+          increase_volume()
         end
-      }),     
+      }),    
       space(),
       volumecontrol.create(),
       space(),

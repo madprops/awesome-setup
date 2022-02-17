@@ -55,7 +55,6 @@ end
 
 function sysmonitor.create(args)
   args = args or {}
-  args.on_click = args.on_click or function() end
   args.bgcolor = args.bgcolor or "#33393B"
   args.fontcolor = args.fontcolor or "#b8babc"
 
@@ -76,12 +75,6 @@ function sysmonitor.create(args)
     bg = args.bgcolor,
     fg = args.fontcolor
   }
-
-  instance.widget:connect_signal("button::press", function(a, b, c, button, mods)
-    if button == 1 then
-      args.on_click()
-    end
-  end)
 
   instance.timer = gears.timer {
     timeout = 3,
