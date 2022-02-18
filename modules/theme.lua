@@ -13,6 +13,7 @@ local bg0 = "#222020"
 local bg1 = "#2B303B"
 local bg2 = "#252933"
 local border1 = "#445666"
+local border2 = "#61AFEF"
 
 
 beautiful.wibar_height = 25
@@ -25,6 +26,7 @@ beautiful.tasklist_fg_minimize = fg1
 beautiful.tasklist_bg_minimize = bg2
 beautiful.tasklist_shape_border_width = 1
 beautiful.tasklist_shape_border_color = border1
+beautiful.tasklist_shape_border_color_focus = border2
 beautiful.notification_font = "monospace 18px"
 beautiful.notification_icon_size = 100
 beautiful.taglist_fg_focus = fg1
