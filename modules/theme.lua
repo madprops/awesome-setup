@@ -14,7 +14,8 @@ local bg1 = "#2B303B"
 local bg2 = "#252933"
 local border1 = "#445666"
 local border2 = "#61AFEF"
-
+local urgent_bg = "#2775C2"
+local urgent_fg = "#ffffff"
 
 beautiful.wibar_height = 25
 awful.mouse.snap.default_distance = 25
@@ -32,3 +33,5 @@ beautiful.notification_icon_size = 100
 beautiful.taglist_fg_focus = fg1
 beautiful.taglist_bg_focus = bg1
 beautiful.bg_systray = bg0
+beautiful.bg_urgent = urgent_bg
+beautiful.fg_urgent = urgent_fg
