@@ -55,7 +55,7 @@ end
 
 function sysmonitor.create(args)
   args = args or {}
-  args.bgcolor = args.bgcolor or "#252933"
+  args.bgcolor = args.bgcolor or "#2B303B"
   args.fontcolor = args.fontcolor or "#b8babc"
 
   local instance = {}
