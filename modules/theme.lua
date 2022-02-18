@@ -14,7 +14,7 @@ local bg1 = "#2B303B"
 local bg2 = "#252933"
 local border1 = "#445666"
 local border2 = "#61AFEF"
-local urgent_bg = "#2775C2"
+local urgent_bg = "#18911D"
 local urgent_fg = "#ffffff"
 
 beautiful.wibar_height = 25
