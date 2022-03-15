@@ -116,6 +116,7 @@ function check_title_rules(c)
     c.width = width_factor(0.5)
     c.height = height_factor(1)
     c.xindex = 1
+    c.maximized = false
     awful.placement.left(c, {honor_workarea = true})
   end
 
@@ -123,6 +124,7 @@ function check_title_rules(c)
     c.width = width_factor(0.5)
     c.height = height_factor(1)
     c.xindex = 2
+    c.maximized = false
     awful.placement.right(c, {honor_workarea = true})
   end
 end
