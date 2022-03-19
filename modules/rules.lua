@@ -9,7 +9,6 @@ awful.rules.rules = {
     rule = {},
     properties = {
       border_width = 0,
-      border_color = beautiful.border_normal,
       focus = awful.client.focus.filter,
       raise = true,
       keys = bindings.clientkeys,
@@ -117,6 +116,7 @@ function check_title_rules(c)
     c.height = height_factor(1)
     c.xindex = 1
     c.maximized = false
+    c.border_width = 1
     awful.placement.left(c, {honor_workarea = true})
   end
 
@@ -125,6 +125,7 @@ function check_title_rules(c)
     c.height = height_factor(1)
     c.xindex = 2
     c.maximized = false
+    c.border_width = 1
     awful.placement.right(c, {honor_workarea = true})
   end
 end
