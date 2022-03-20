@@ -76,7 +76,7 @@ awful.rules.rules = {
         awful.placement.top_left(c, {honor_workarea = true})
       end, 
       width = width_factor(0.5),
-      height = height_factor(0.5),
+      height = height_factor(0.6),
       maximized = false,
       xindex = 1,
       screen = screen_right           
@@ -89,7 +89,7 @@ awful.rules.rules = {
         awful.placement.bottom_left(c, {honor_workarea = true})
       end,
       width = width_factor(0.5),
-      height = height_factor(0.5),
+      height = height_factor(0.4),
       maximized = false,
       xindex = 2,
       screen = screen_right
