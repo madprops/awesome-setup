@@ -1,8 +1,8 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 local bindings = require("modules/bindings")
-local screen_left = 2
-local screen_right = 1
+local screen_left = 1
+local screen_right = 2
 
 awful.rules.rules = {
   {
