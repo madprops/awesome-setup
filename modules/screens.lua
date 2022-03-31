@@ -5,7 +5,7 @@ local beautiful = require("beautiful")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local bindings = require("modules/bindings")
-local primary = 2
+local primary = 1
 
 volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 
