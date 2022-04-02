@@ -5,6 +5,10 @@ local beautiful = require("beautiful")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local bindings = require("modules/bindings")
+
+spawn("xrandr --output HDMI-1 --primary")
+spawn("xrandr --output HDMI-1 --left-of DP-1")
+
 local primary_screen = 1
 
 volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
