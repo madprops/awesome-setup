@@ -5,7 +5,7 @@ local beautiful = require("beautiful")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local bindings = require("modules/bindings")
-local primary = 1
+local primary_screen = 1
 
 volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 
@@ -83,7 +83,7 @@ awful.screen.connect_for_each_screen(function(s)
   local right
   
   local systray = wibox.widget.systray()
-  systray:set_screen(screen[2])
+  systray:set_screen(screen[primary_screen])
 
   left = {
     layout = wibox.layout.fixed.horizontal,
@@ -110,7 +110,7 @@ awful.screen.connect_for_each_screen(function(s)
     space()
   }
 
-  if s.index == primary then
+  if s.index == primary_screen then
     local cpu_widget = sysmonitor.create({mode = "cpu"}).widget
     local ram_widget = sysmonitor.create({mode = "ram"}).widget
     local tmp_widget = sysmonitor.create({mode = "tmp"}).widget
