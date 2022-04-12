@@ -117,15 +117,15 @@ function check_title_rules(c)
     c.xindex = 1
     c.maximized = false
     c.border_width = 1
-    awful.placement.left(c, {honor_workarea = true})
+    snap(c, "vertically", awful.placement.left)
   end
-
+  
   if startswith(c.name, "[ff_dev2]") then
     c.width = width_factor(0.5)
     c.height = height_factor(1)
     c.xindex = 2
     c.maximized = false
     c.border_width = 1
-    awful.placement.right(c, {honor_workarea = true})
+    snap(c, "vertically", awful.placement.right)
   end
 end
