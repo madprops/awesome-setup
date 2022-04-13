@@ -33,6 +33,8 @@ left = {
     on_mouse_leave = function(btn)
       something()
     end,
+    bgcolor = "#000000",
+    fontcolor = "#ffffff"
   }),
   s.mytaglist,
   wibox.widget.textbox("  "),
@@ -40,3 +42,5 @@ left = {
 ```
 
 If a 'widget' argument is provided it will use that instead of creating a textbox with the text.
+
+Not all arguments need to be provided.

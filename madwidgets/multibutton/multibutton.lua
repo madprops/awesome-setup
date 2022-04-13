@@ -11,8 +11,6 @@ function multibutton.create(args)
   args.on_wheel_down = args.on_wheel_down or function() end
   args.on_mouse_enter = args.on_mouse_enter or function() end
   args.on_mouse_leave = args.on_mouse_leave or function() end
-  args.bgcolor = args.bgcolor or ""
-  args.fontcolor = args.fontcolor or ""
 
   local instance = {}
   instance.args = args
@@ -26,13 +24,18 @@ function multibutton.create(args)
       text = args.text,
       widget = wibox.widget.textbox
     }
+
+    if args.bgcolor and args.fontcolor then
+      instance.widget = wibox.widget {
+        instance.textbox_widget,
+        widget = wibox.container.background,
+        bg = args.bgcolor,
+        fg = args.fontcolor
+      }
+    else
+      instance.widget = instance.textbox_widget
+    end
   
-    instance.widget = wibox.widget {
-      instance.textbox_widget,
-      widget = wibox.container.background,
-      bg = args.bgcolor,
-      fg = args.fontcolor
-    }
   else
     return {}
   end
