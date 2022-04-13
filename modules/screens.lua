@@ -16,6 +16,12 @@ local spacer1 = {
   on_wheel_up = function() increase_volume() end
 }
 
+local spacer2 = {
+  text = " ", bgcolor = "#2B303B", fontcolor = "#b8babc", 
+  on_wheel_down = function() decrease_volume() end,
+  on_wheel_up = function() increase_volume() end
+}
+
 awful.screen.connect_for_each_screen(function(s)
   awful.tag({ "1", "2", "3", "4" }, s, awful.layout.suit.floating)
     s.mytaglist = awful.widget.taglist {
@@ -127,7 +133,7 @@ awful.screen.connect_for_each_screen(function(s)
       space(),
       systray,
       space(),
-      multibutton.create(spacer1),
+      multibutton.create(spacer2),
       multibutton.create({
         widget = cpu_widget,
         on_click = function()
@@ -168,7 +174,7 @@ awful.screen.connect_for_each_screen(function(s)
       }),  
       multibutton.create(spacer1),  
       volumecontrol.create(),
-      multibutton.create(spacer1),
+      multibutton.create(spacer2),
       multibutton.create({
         widget = wibox.widget.textclock(" %a-%d-%b %I:%M:%S %P ", 1),
         on_click = function()
