@@ -9,7 +9,12 @@ local bindings = require("modules/bindings")
 local primary_screen = 1
 
 volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
-spacer1 = {text = "  ", bgcolor = "#2B303B", fontcolor = "#b8babc"}
+
+local spacer1 = {
+  text = "  ", bgcolor = "#2B303B", fontcolor = "#b8babc", 
+  on_wheel_down = function() decrease_volume() end,
+  on_wheel_up = function() increase_volume() end
+}
 
 awful.screen.connect_for_each_screen(function(s)
   awful.tag({ "1", "2", "3", "4" }, s, awful.layout.suit.floating)
