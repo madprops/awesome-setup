@@ -4,12 +4,12 @@ local gears = require("gears")
 local beautiful = require("beautiful")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
-local textblock = require("madwidgets/textblock/textblock")
 local bindings = require("modules/bindings")
 
 local primary_screen = 1
 
 volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
+multibutton_spacer = {text = "  ", bgcolor = "#2B303B", fontcolor = "#b8babc"}
 
 awful.screen.connect_for_each_screen(function(s)
   awful.tag({ "1", "2", "3", "4" }, s, awful.layout.suit.floating)
@@ -122,7 +122,7 @@ awful.screen.connect_for_each_screen(function(s)
       space(),
       systray,
       space(),
-      textblock.create({text = "  "}),
+      multibutton.create(multibutton_spacer),
       multibutton.create({
         widget = cpu_widget,
         on_click = function()
@@ -135,7 +135,7 @@ awful.screen.connect_for_each_screen(function(s)
           increase_volume()
         end
       }),
-      textblock.create({text = "  "}),
+      multibutton.create(multibutton_spacer),
       multibutton.create({
         widget = ram_widget,
         on_click = function()
@@ -148,7 +148,7 @@ awful.screen.connect_for_each_screen(function(s)
           increase_volume()
         end
       }),
-      textblock.create({text = "  "}),
+      multibutton.create(multibutton_spacer),
       multibutton.create({
         widget = tmp_widget,
         on_click = function()
@@ -161,9 +161,9 @@ awful.screen.connect_for_each_screen(function(s)
           increase_volume()
         end
       }),  
-      textblock.create({text = "  "}),  
+      multibutton.create(multibutton_spacer),  
       volumecontrol.create(),
-      textblock.create({text = "  "}),
+      multibutton.create(multibutton_spacer),
       space(),
       multibutton.create({
         widget = wibox.widget.textclock("%a-%d-%b %I:%M:%S %P ", 1),
