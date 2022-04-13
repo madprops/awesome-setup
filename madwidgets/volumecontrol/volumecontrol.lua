@@ -12,7 +12,7 @@ local loading = "---"
 
 function volumecontrol.update_volume(vol)
   for i, instance in ipairs(instances) do
-    instance.textbox_widget.text = " "..volumecontrol.volstring(utils.numpad(vol)).." "
+    instance.textbox_widget.text = volumecontrol.volstring(utils.numpad(vol))
   end
 end
 

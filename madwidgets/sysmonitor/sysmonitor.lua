@@ -8,11 +8,11 @@ local loading = "---"
 
 function sysmonitor.update_strings(s, instance)
   if instance.mode == "cpu" then
-    instance.textbox_widget.text = " "..sysmonitor.cpustring(s).." "
+    instance.textbox_widget.text = sysmonitor.cpustring(s)
   elseif instance.mode == "ram" then
-    instance.textbox_widget.text = " "..sysmonitor.ramstring(s).." "
+    instance.textbox_widget.text = sysmonitor.ramstring(s)
   elseif instance.mode == "tmp" then
-    instance.textbox_widget.text = " "..sysmonitor.tmpstring(s).." "
+    instance.textbox_widget.text = sysmonitor.tmpstring(s)
   end
 end
 
