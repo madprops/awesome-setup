@@ -122,7 +122,7 @@ awful.screen.connect_for_each_screen(function(s)
       space(),
       systray,
       space(),
-      textblock.create(),
+      textblock.create({text = "  "}),
       multibutton.create({
         widget = cpu_widget,
         on_click = function()
@@ -135,7 +135,7 @@ awful.screen.connect_for_each_screen(function(s)
           increase_volume()
         end
       }),
-      textblock.create(),
+      textblock.create({text = "  "}),
       multibutton.create({
         widget = ram_widget,
         on_click = function()
@@ -148,7 +148,7 @@ awful.screen.connect_for_each_screen(function(s)
           increase_volume()
         end
       }),
-      textblock.create(),
+      textblock.create({text = "  "}),
       multibutton.create({
         widget = tmp_widget,
         on_click = function()
@@ -160,10 +160,11 @@ awful.screen.connect_for_each_screen(function(s)
         on_wheel_up = function()
           increase_volume()
         end
-      }),
-      textblock.create(),  
+      }),  
+      textblock.create({text = "  "}),  
       volumecontrol.create(),
-      textblock.create(),
+      textblock.create({text = "  "}),
+      space(),
       multibutton.create({
         widget = wibox.widget.textclock("%a-%d-%b %I:%M:%S %P ", 1),
         on_click = function()
