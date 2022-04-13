@@ -170,7 +170,7 @@ awful.screen.connect_for_each_screen(function(s)
       volumecontrol.create(),
       multibutton.create(spacer1),
       multibutton.create({
-        widget = wibox.widget.textclock(" %a-%d-%b %I:%M:%S %P ", 1),
+        widget = wibox.widget.textclock("  %a-%d-%b %I:%M:%S %P  ", 1),
         on_click = function()
           calendar()
         end,
