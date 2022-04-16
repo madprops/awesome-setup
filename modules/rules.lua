@@ -43,7 +43,7 @@ awful.rules.rules = {
     rule = {instance = "Steam"},
     properties = {
       xindex = 4.1,
-      maximized = true
+      maximized = false
     }
   },
   {
