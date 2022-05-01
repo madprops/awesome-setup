@@ -96,28 +96,15 @@ awful.rules.rules = {
     }
   },
   {
-    rule = {instance = "pavucontrol"},
-    properties = {
-      placement = function(c)
-        awful.placement.top_right(c, {honor_workarea = true})
-      end,
-      width = width_factor(0.5),
-      height = height_factor(0.3),
-      maximized = false,
-      xindex = 3,
-      screen = screen_right
-    }
-  },
-  {
     rule = {instance = "hexchat"},
     properties = {
       placement = function(c)
         awful.placement.bottom_right(c, {honor_workarea = true})
       end,
       width = width_factor(0.5),
-      height = height_factor(0.7),
+      height = height_factor(1),
       maximized = false,
-      xindex = 4,
+      xindex = 3,
       screen = screen_right
     }
   }
