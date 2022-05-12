@@ -81,20 +81,8 @@ local media_lock = lockdelay.create({action=function(cmd)
   spawn(cmd)
 end, delay=250})
 
-function media_play_pause(full)
-  if full then
-    media_lock.trigger("python " .. os.getenv("HOME") .. "/code/empris/empris.py")
-  else
-    media_lock.trigger("playerctl -p ".. default_player .. " play-pause")
-  end
-end
-
-function media_next()
-  media_lock.trigger("python " .. os.getenv("HOME") .. "/code/empris/empris.py next")
-end
-
-function media_prev()
-  media_lock.trigger("python " .. os.getenv("HOME") .. "/code/empris/empris.py prev")
+function media_play_pause()
+  media_lock.trigger("playerctl -p ".. default_player .. " play-pause")
 end
 
 function randstring()
@@ -143,7 +131,7 @@ function dropdown()
 end
 
 function stop_all_players()
-  spawn("python " .. os.getenv("HOME") .. "/code/empris/empris.py pauseall")
+  spawn("playerctl --all-players pause")
 end
 
 function lockscreen(suspend)
