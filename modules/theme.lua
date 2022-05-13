@@ -11,7 +11,6 @@ beautiful.init(theme)
 local grey = "#b8babc"
 local bg0 = "#222020"
 local bg1 = "#2B303B"
-local bg2 = "#252933"
 local border = "#445666"
 local green = "#18911D"
 local white = "#ffffff"
@@ -25,7 +24,7 @@ beautiful.tasklist_bg_normal = bg0
 beautiful.tasklist_fg_focus = white
 beautiful.tasklist_bg_focus = bg1
 beautiful.tasklist_fg_minimize = grey
-beautiful.tasklist_bg_minimize = bg2
+beautiful.tasklist_bg_minimize = bg0
 beautiful.tasklist_shape_border_width = 1
 beautiful.tasklist_shape_border_color = bg1
 beautiful.tasklist_shape_border_color_focus = border
