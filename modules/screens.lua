@@ -24,14 +24,15 @@ local spacer2 = {
 
 awful.screen.connect_for_each_screen(function(s)
   awful.tag({ "1", "2", "3", "4" }, s, awful.layout.suit.floating)
-    s.mytaglist = awful.widget.taglist {
-      screen  = s,
-      filter  = awful.widget.taglist.filter.all,
-      buttons = {
-        awful.button({ }, 1, function(t) t:view_only() end),
-        awful.button({ }, 4, function(t) prev_tag() end),
-        awful.button({ }, 5, function(t) next_tag() end)
-      }
+  
+  s.mytaglist = awful.widget.taglist {
+    screen  = s,
+    filter  = awful.widget.taglist.filter.all,
+    buttons = {
+      awful.button({ }, 1, function(t) t:view_only() end),
+      awful.button({ }, 4, function(t) prev_tag() end),
+      awful.button({ }, 5, function(t) next_tag() end)
+    }
   }  
 
   s.mytasklist = awful.widget.tasklist {
