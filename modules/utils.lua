@@ -270,6 +270,33 @@ function prev_tag()
   end
 end
 
+function next_tag_all()
+  if mytag().index < #myscreen().tags then
+    i = mytag().index + 1
+
+    for s in screen do
+      goto_tag(s, i)
+    end
+  end
+end
+
+function prev_tag_all()
+  if mytag().index > 1 then
+    i = mytag().index - 1
+
+    for s in screen do
+      goto_tag(s, i)
+    end
+  end
+end
+
+function goto_tag(s, i)
+  local tag = s.tags[i]
+  if tag then
+    tag:view_only()
+  end
+end
+
 function start_move(c)
   c.maximized = false
   mouse_on_client_center(c)

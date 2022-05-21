@@ -122,6 +122,14 @@ bindings.globalkeys = gears.table.join(
 
   awful.key({modkey}, "Right", function()
     next_tag()
+  end),
+
+  awful.key({modkey, "Shift"}, "Left", function()
+    prev_tag_all()
+  end),  
+
+  awful.key({modkey, "Shift"}, "Right", function()
+    next_tag_all()
   end)
 )
 
