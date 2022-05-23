@@ -271,22 +271,26 @@ function prev_tag()
 end
 
 function next_tag_all()
-  if mytag().index < #myscreen().tags then
-    i = mytag().index + 1
+  i = mytag().index + 1
 
-    for s in screen do
-      goto_tag(s, i)
-    end
+  if i > #myscreen().tags then
+    i = #myscreen().tags
+  end
+
+  for s in screen do
+    goto_tag(s, i)
   end
 end
 
 function prev_tag_all()
-  if mytag().index > 1 then
-    i = mytag().index - 1
+  i = mytag().index - 1
 
-    for s in screen do
-      goto_tag(s, i)
-    end
+  if i < 1 then
+    i = 1
+  end
+  
+  for s in screen do
+    goto_tag(s, i)
   end
 end
 
