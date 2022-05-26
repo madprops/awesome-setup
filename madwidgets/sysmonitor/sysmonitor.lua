@@ -128,8 +128,6 @@ function sysmonitor.create(args)
     timeout = 1
   end
 
-  msg(timeout)
-
   instance.timer = gears.timer {
     timeout = timeout,
     call_now = false,
