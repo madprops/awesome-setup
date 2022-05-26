@@ -13,6 +13,10 @@ function sysmonitor.update_strings(s, instance)
     instance.textbox_widget.text = sysmonitor.ramstring(s)
   elseif instance.mode == "tmp" then
     instance.textbox_widget.text = sysmonitor.tmpstring(s)
+  elseif instance.mode == "net_download" then
+    instance.textbox_widget.text = sysmonitor.net_download_string(s)
+  elseif instance.mode == "net_upload" then
+    instance.textbox_widget.text = sysmonitor.net_upload_string(s)
   end
 end
 
@@ -26,6 +30,14 @@ end
 
 function sysmonitor.tmpstring(s)
   return "TMP:"..s.."°"
+end
+
+function sysmonitor.net_download_string(s)
+  return "DOWN:"..s.."M"
+end
+
+function sysmonitor.net_upload_string(s)
+  return "UP:"..s.."M"
 end
 
 function sysmonitor.update(instance)
@@ -50,6 +62,38 @@ function sysmonitor.update(instance)
       sysmonitor.update_strings(utils.numpad(o), instance)
       instance.timer:again()
     end)
+  elseif instance.mode == "net_download" then
+    local cmd = string.format("cat /sys/class/net/%s/statistics/rx_bytes", instance.args.net_interface)
+
+    awful.spawn.easy_async_with_shell(cmd, function(o)
+      if instance.mode ~= "net_download" then return end
+      
+      if instance.net_rx == -1 then
+        instance.net_rx = tonumber(o)
+      else
+        local diff = (tonumber(o) - instance.net_rx) / 125000
+        instance.net_rx = tonumber(o)
+        sysmonitor.update_strings(utils.numpad(diff), instance)
+      end
+
+      instance.timer:again()
+    end)
+  elseif instance.mode == "net_upload" then
+    local cmd = string.format("cat /sys/class/net/%s/statistics/tx_bytes", instance.args.net_interface)
+
+    awful.spawn.easy_async_with_shell(cmd, function(o)
+      if instance.mode ~= "net_upload" then return end
+      
+      if instance.net_tx == -1 then
+        instance.net_tx = tonumber(o)
+      else
+        local diff = (tonumber(o) - instance.net_tx) / 125000
+        instance.net_tx = tonumber(o)
+        sysmonitor.update_strings(utils.numpad(diff), instance)
+      end
+
+      instance.timer:again()
+    end)
   end
 end
 
@@ -61,6 +105,8 @@ function sysmonitor.create(args)
   local instance = {}
   instance.args = args
   instance.mode = args.mode or "cpu"
+  instance.net_rx = -1
+  instance.net_tx = -1
 
   instance.textbox_widget = wibox.widget {
     markup = "---:---%",

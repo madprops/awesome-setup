@@ -128,6 +128,8 @@ awful.screen.connect_for_each_screen(function(s)
     local cpu_widget = sysmonitor.create({mode = "cpu"}).widget
     local ram_widget = sysmonitor.create({mode = "ram"}).widget
     local tmp_widget = sysmonitor.create({mode = "tmp"}).widget
+    local net_download_widget = sysmonitor.create({mode = "net_download", net_interface = "enp40s0f3u2u4"}).widget
+    local net_upload_widget = sysmonitor.create({mode = "net_upload", net_interface = "enp40s0f3u2u4"}).widget
     
     right = {
       layout = wibox.layout.fixed.horizontal(),
@@ -172,7 +174,33 @@ awful.screen.connect_for_each_screen(function(s)
         on_wheel_up = function()
           increase_volume()
         end
-      }),  
+      }),
+      multibutton.create(spacer1),
+      multibutton.create({
+        widget = net_download_widget,
+        on_click = function()
+          system_monitor()
+        end,
+        on_wheel_down = function()
+          decrease_volume()
+        end,
+        on_wheel_up = function()
+          increase_volume()
+        end
+      }),
+      multibutton.create(spacer1),
+      multibutton.create({
+        widget = net_upload_widget,
+        on_click = function()
+          system_monitor()
+        end,
+        on_wheel_down = function()
+          decrease_volume()
+        end,
+        on_wheel_up = function()
+          increase_volume()
+        end
+      }), 
       multibutton.create(spacer1),  
       volumecontrol.create(),
       multibutton.create(spacer2),

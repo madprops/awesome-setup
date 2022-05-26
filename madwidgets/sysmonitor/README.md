@@ -20,6 +20,8 @@ Available modes:
 - cpu
 - ram
 - tmp
+- net_download
+- net_upload
 
 Use multibutton to wrap the widget with mouse events:
 
@@ -38,4 +40,11 @@ multibutton.create({
     increase_volume()
   end
 })
+```
+
+`net` modes use "net_interface" which you can pass as an argument.
+
+```
+  sysmonitor.create({mode = "net_download", net_interface = "enp40s0f3u2u4"})
+  sysmonitor.create({mode = "net_upload", net_interface = "enp40s0f3u2u4"})
 ```
