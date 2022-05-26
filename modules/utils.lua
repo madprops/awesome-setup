@@ -250,6 +250,10 @@ function system_monitor()
   spawn("konsole -e htop -d 20")
 end
 
+function network_monitor()
+  spawn("konsole -e vnstat")
+end
+
 function space()
   return wibox.widget.textbox(" ")
 end

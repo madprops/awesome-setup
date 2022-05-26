@@ -122,8 +122,16 @@ function sysmonitor.create(args)
     fg = args.fontcolor
   }
 
+  local timeout = 3
+
+  if instance.mode == "net_download" or instance.mode == "net_upload" then
+    timeout = 1
+  end
+
+  msg(timeout)
+
   instance.timer = gears.timer {
-    timeout = 3,
+    timeout = timeout,
     call_now = false,
     autostart = true,
     single_shot = true,

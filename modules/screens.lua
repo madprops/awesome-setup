@@ -179,7 +179,7 @@ awful.screen.connect_for_each_screen(function(s)
       multibutton.create({
         widget = net_download_widget,
         on_click = function()
-          system_monitor()
+          network_monitor()
         end,
         on_wheel_down = function()
           decrease_volume()
@@ -192,7 +192,7 @@ awful.screen.connect_for_each_screen(function(s)
       multibutton.create({
         widget = net_upload_widget,
         on_click = function()
-          system_monitor()
+          network_monitor()
         end,
         on_wheel_down = function()
           decrease_volume()
