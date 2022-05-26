@@ -250,8 +250,10 @@ function system_monitor()
   spawn("konsole -e htop -d 20")
 end
 
+-- To run nethogs without sudo you need to do this once:
+-- sudo setcap "cap_net_admin,cap_net_raw=ep" /usr/bin/nethogs
 function network_monitor()
-  spawn("konsole -e vnstat")
+  spawn("konsole -e nethogs")
 end
 
 function space()
