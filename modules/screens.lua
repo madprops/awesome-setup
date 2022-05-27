@@ -11,13 +11,13 @@ local primary_screen = 1
 volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 
 local spacer1 = {
-  text = "  ", bgcolor = "#2B303B", fontcolor = "#b8babc", 
+  text = "  ", bgcolor = beautiful.bg_normal, fontcolor = "#b8babc", 
   on_wheel_down = function() decrease_volume() end,
   on_wheel_up = function() increase_volume() end
 }
 
 local spacer2 = {
-  text = " ", bgcolor = "#2B303B", fontcolor = "#b8babc", 
+  text = " ", bgcolor = beautiful.bg_normal, fontcolor = "#b8babc", 
   on_wheel_down = function() decrease_volume() end,
   on_wheel_up = function() increase_volume() end
 }
@@ -125,11 +125,19 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   if s.index == primary_screen then
-    local cpu_widget = sysmonitor.create({mode = "cpu"}).widget
-    local ram_widget = sysmonitor.create({mode = "ram"}).widget
-    local tmp_widget = sysmonitor.create({mode = "tmp"}).widget
-    local net_download_widget = sysmonitor.create({mode = "net_download", net_interface = "enp40s0f3u2u4"}).widget
-    local net_upload_widget = sysmonitor.create({mode = "net_upload", net_interface = "enp40s0f3u2u4"}).widget
+    local cpu_widget = sysmonitor.create({mode = "cpu", bgcolor = beautiful.bg_normal, fontcolor = "#7AC14B"}).widget
+    local ram_widget = sysmonitor.create({mode = "ram", bgcolor = beautiful.bg_normal, fontcolor = "#7AC14B"}).widget
+    local tmp_widget = sysmonitor.create({mode = "tmp", bgcolor = beautiful.bg_normal, fontcolor = "#7AC14B"}).widget
+    
+    local net_download_widget = sysmonitor.create(
+      {mode = "net_download", net_interface = "enp40s0f3u2u4",
+      bgcolor = beautiful.bg_normal, fontcolor = "#01ABF9"
+    }).widget
+
+    local net_upload_widget = sysmonitor.create(
+      {mode = "net_upload", net_interface = "enp40s0f3u2u4",
+      bgcolor = beautiful.bg_normal, fontcolor = "#01ABF9"
+    }).widget
     
     right = {
       layout = wibox.layout.fixed.horizontal(),
@@ -202,7 +210,9 @@ awful.screen.connect_for_each_screen(function(s)
         end
       }), 
       multibutton.create(spacer1),  
-      volumecontrol.create(),
+      volumecontrol.create({
+        bgcolor = beautiful.bg_normal, fontcolor = "white"
+      }),
       multibutton.create(spacer2),
       multibutton.create({
         widget = wibox.widget.textclock(" %a-%d-%b %I:%M:%S %P ", 1),
