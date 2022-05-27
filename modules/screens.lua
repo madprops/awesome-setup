@@ -210,9 +210,7 @@ awful.screen.connect_for_each_screen(function(s)
         end
       }), 
       multibutton.create(spacer1),  
-      volumecontrol.create({
-        bgcolor = beautiful.bg_normal, fontcolor = "white"
-      }),
+      volumecontrol.create({bgcolor = beautiful.bg_normal}),
       multibutton.create(spacer2),
       multibutton.create({
         widget = wibox.widget.textclock(" %a-%d-%b %I:%M:%S %P ", 1),
