@@ -33,7 +33,7 @@ function sysmonitor.tmpstring(s)
 end
 
 function sysmonitor.net_download_string(s)
-  return "DOWN:"..s.."M"
+  return "DW:"..s.."M"
 end
 
 function sysmonitor.net_upload_string(s)
