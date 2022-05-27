@@ -125,18 +125,18 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   if s.index == primary_screen then
-    local cpu_widget = sysmonitor.create({mode = "cpu", bgcolor = beautiful.bg_normal, fontcolor = "#7AC14B"}).widget
-    local ram_widget = sysmonitor.create({mode = "ram", bgcolor = beautiful.bg_normal, fontcolor = "#7AC14B"}).widget
-    local tmp_widget = sysmonitor.create({mode = "tmp", bgcolor = beautiful.bg_normal, fontcolor = "#7AC14B"}).widget
+    local cpu_widget = sysmonitor.create({mode = "cpu", bgcolor = beautiful.bg_normal, fontcolor = "#99EDC3"}).widget
+    local ram_widget = sysmonitor.create({mode = "ram", bgcolor = beautiful.bg_normal, fontcolor = "#99EDC3"}).widget
+    local tmp_widget = sysmonitor.create({mode = "tmp", bgcolor = beautiful.bg_normal, fontcolor = "#99EDC3"}).widget
     
     local net_download_widget = sysmonitor.create(
       {mode = "net_download", net_interface = "enp40s0f3u2u4",
-      bgcolor = beautiful.bg_normal, fontcolor = "#01ABF9"
+      bgcolor = beautiful.bg_normal, fontcolor = "#9BBCDE"
     }).widget
 
     local net_upload_widget = sysmonitor.create(
       {mode = "net_upload", net_interface = "enp40s0f3u2u4",
-      bgcolor = beautiful.bg_normal, fontcolor = "#01ABF9"
+      bgcolor = beautiful.bg_normal, fontcolor = "#9BBCDE"
     }).widget
     
     right = {
