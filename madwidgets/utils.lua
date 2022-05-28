@@ -32,8 +32,12 @@ function utils.indexof(value, array)
   return -1
 end
 
-function utils.isempty(val)
-  return (val == nil or val == "")
+function utils.isnumber(num)
+  if not tonumber(num) then
+    return false
+  else
+    return true
+  end
 end
 
 return utils

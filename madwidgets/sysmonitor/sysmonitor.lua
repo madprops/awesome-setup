@@ -45,8 +45,8 @@ function sysmonitor.update(instance)
     local cmd = "mpstat 1 2 | awk 'END{print 100-$NF}'"
     
     awful.spawn.easy_async_with_shell(cmd, function(o)
-      if (utils.isempty(o)) then return end
-      
+      if not utils.isnumber(o) then return end
+
       if instance.mode ~= "cpu" then return end
       sysmonitor.update_strings(utils.numpad(o), instance)
       instance.timer:again()
@@ -55,7 +55,7 @@ function sysmonitor.update(instance)
     local cmd = "free | grep Mem | awk '{print $3/$2 * 100.0}'"
     
     awful.spawn.easy_async_with_shell(cmd, function(o)
-      if (utils.isempty(o)) then return end
+      if not utils.isnumber(o) then return end
 
       if instance.mode ~= "ram" then return end
       sysmonitor.update_strings(utils.numpad(o), instance)
@@ -65,7 +65,7 @@ function sysmonitor.update(instance)
     local cmd = "sensors | grep Tctl: | awk '{print $2}' | sed 's/[^0-9.]*//g'"
     
     awful.spawn.easy_async_with_shell(cmd, function(o)
-      if (utils.isempty(o)) then return end
+      if not utils.isnumber(o) then return end
 
       if instance.mode ~= "tmp" then return end
       sysmonitor.update_strings(utils.numpad(o), instance)
@@ -75,7 +75,7 @@ function sysmonitor.update(instance)
     local cmd = string.format("cat /sys/class/net/%s/statistics/rx_bytes", instance.args.net_interface)
 
     awful.spawn.easy_async_with_shell(cmd, function(o)
-      if (utils.isempty(o)) then return end
+      if not utils.isnumber(o) then return end
 
       if instance.mode ~= "net_download" then return end
       
@@ -93,7 +93,7 @@ function sysmonitor.update(instance)
     local cmd = string.format("cat /sys/class/net/%s/statistics/tx_bytes", instance.args.net_interface)
 
     awful.spawn.easy_async_with_shell(cmd, function(o)
-      if (utils.isempty(o)) then return end
+      if not utils.isnumber(o) then return end
 
       if instance.mode ~= "net_upload" then return end
       

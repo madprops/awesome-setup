@@ -17,9 +17,9 @@ function volumecontrol.update_volume(vol)
 end
 
 function volumecontrol.get_volume(f)
-  awful.spawn.easy_async_with_shell("pamixer --get-volume", function(vol)
-    if (utils.isempty(vol)) then return end
-    f(tonumber(vol))
+  awful.spawn.easy_async_with_shell("pamixer --get-volume", function(o)
+    if not utils.isnumber(o) then return end
+    f(tonumber(o))
   end)
 end
 
