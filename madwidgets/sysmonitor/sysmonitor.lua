@@ -41,13 +41,13 @@ function sysmonitor.net_upload_string(s, u)
 end
 
 function sysmonitor.calc_net(instance, o, loadtype)
-  local mb = (tonumber(o) - loadtype) / 125000
-  local kb = (tonumber(o) - loadtype) / 125
+  local diff = tonumber(o) - loadtype
+  local mb = diff / 125000
   local v = mb
   local u = "M"
 
   if mb < 1 then
-    v = kb
+    v = diff / 125
     u = "K"
   end
 
