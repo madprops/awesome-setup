@@ -32,4 +32,8 @@ function utils.indexof(value, array)
   return -1
 end
 
+function utils.isempty(val)
+  return (val == nil or val == "")
+end
+
 return utils
