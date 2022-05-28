@@ -6,7 +6,7 @@ local utils = require("madwidgets/utils")
 local sysmonitor = {}
 local loading = "---"
 
-function sysmonitor.update_strings(s, instance)
+function sysmonitor.update_strings(s, instance, u)
   if instance.mode == "cpu" then
     instance.textbox_widget.text = sysmonitor.cpustring(s)
   elseif instance.mode == "ram" then
@@ -14,9 +14,9 @@ function sysmonitor.update_strings(s, instance)
   elseif instance.mode == "tmp" then
     instance.textbox_widget.text = sysmonitor.tmpstring(s)
   elseif instance.mode == "net_download" then
-    instance.textbox_widget.text = sysmonitor.net_download_string(s)
+    instance.textbox_widget.text = sysmonitor.net_download_string(s, u)
   elseif instance.mode == "net_upload" then
-    instance.textbox_widget.text = sysmonitor.net_upload_string(s)
+    instance.textbox_widget.text = sysmonitor.net_upload_string(s, u)
   end
 end
 
@@ -32,12 +32,26 @@ function sysmonitor.tmpstring(s)
   return "TMP:"..s.."°"
 end
 
-function sysmonitor.net_download_string(s)
-  return "DW:"..s.."M"
+function sysmonitor.net_download_string(s, u)
+  return "DW:"..s..u
 end
 
-function sysmonitor.net_upload_string(s)
-  return "UP:"..s.."M"
+function sysmonitor.net_upload_string(s, u)
+  return "UP:"..s..u
+end
+
+function sysmonitor.calc_net(instance, o, loadtype)
+  local mb = (tonumber(o) - loadtype) / 125000
+  local kb = (tonumber(o) - loadtype) / 125
+  local v = mb
+  local u = "M"
+
+  if mb < 1 then
+    v = kb
+    u = "K"
+  end
+
+  sysmonitor.update_strings(utils.numpad(v), instance, u)
 end
 
 function sysmonitor.update(instance)
@@ -45,9 +59,11 @@ function sysmonitor.update(instance)
     local cmd = "mpstat 1 2 | awk 'END{print 100-$NF}'"
     
     awful.spawn.easy_async_with_shell(cmd, function(o)
-      if not utils.isnumber(o) then return end
+      if not utils.isnumber(o) then
+        instance.timer:again()
+        return
+      end
 
-      if instance.mode ~= "cpu" then return end
       sysmonitor.update_strings(utils.numpad(o), instance)
       instance.timer:again()
     end)
@@ -55,9 +71,11 @@ function sysmonitor.update(instance)
     local cmd = "free | grep Mem | awk '{print $3/$2 * 100.0}'"
     
     awful.spawn.easy_async_with_shell(cmd, function(o)
-      if not utils.isnumber(o) then return end
+      if not utils.isnumber(o) then
+        instance.timer:again()
+        return
+      end
 
-      if instance.mode ~= "ram" then return end
       sysmonitor.update_strings(utils.numpad(o), instance)
       instance.timer:again()
     end)
@@ -65,9 +83,11 @@ function sysmonitor.update(instance)
     local cmd = "sensors | grep Tctl: | awk '{print $2}' | sed 's/[^0-9.]*//g'"
     
     awful.spawn.easy_async_with_shell(cmd, function(o)
-      if not utils.isnumber(o) then return end
+      if not utils.isnumber(o) then
+        instance.timer:again()
+        return
+      end
 
-      if instance.mode ~= "tmp" then return end
       sysmonitor.update_strings(utils.numpad(o), instance)
       instance.timer:again()
     end)
@@ -75,16 +95,16 @@ function sysmonitor.update(instance)
     local cmd = string.format("cat /sys/class/net/%s/statistics/rx_bytes", instance.args.net_interface)
 
     awful.spawn.easy_async_with_shell(cmd, function(o)
-      if not utils.isnumber(o) then return end
-
-      if instance.mode ~= "net_download" then return end
+      if not utils.isnumber(o) then
+        instance.timer:again()
+        return
+      end
       
       if instance.net_rx == -1 then
         instance.net_rx = tonumber(o)
       else
-        local diff = (tonumber(o) - instance.net_rx) / 125000
+        sysmonitor.calc_net(instance, o, instance.net_rx)
         instance.net_rx = tonumber(o)
-        sysmonitor.update_strings(utils.numpad(diff), instance)
       end
 
       instance.timer:again()
@@ -93,16 +113,16 @@ function sysmonitor.update(instance)
     local cmd = string.format("cat /sys/class/net/%s/statistics/tx_bytes", instance.args.net_interface)
 
     awful.spawn.easy_async_with_shell(cmd, function(o)
-      if not utils.isnumber(o) then return end
-
-      if instance.mode ~= "net_upload" then return end
+      if not utils.isnumber(o) then
+        instance.timer:again()
+        return
+      end
       
       if instance.net_tx == -1 then
         instance.net_tx = tonumber(o)
       else
-        local diff = (tonumber(o) - instance.net_tx) / 125000
+        sysmonitor.calc_net(instance, o, instance.net_tx)
         instance.net_tx = tonumber(o)
-        sysmonitor.update_strings(utils.numpad(diff), instance)
       end
 
       instance.timer:again()
