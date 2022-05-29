@@ -7,6 +7,8 @@ local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local bindings = require("modules/bindings")
 
 local primary_screen = 1
+local nicegreen = "#99EDC3"
+local niceblue = "#9BBCDE"
 
 volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 
@@ -123,9 +125,6 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytaglist,
     space()
   }
-
-  local nicegreen = "#99EDC3"
-  local niceblue = "#9BBCDE"
 
   if s.index == primary_screen then
     local cpu_widget = sysmonitor.create({mode = "cpu", bgcolor = beautiful.bg_normal, fontcolor = nicegreen}).widget
