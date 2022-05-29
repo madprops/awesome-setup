@@ -147,7 +147,6 @@ awful.screen.connect_for_each_screen(function(s)
       space(),
       systray,
       space(),
-      multibutton.create(spacer2),
       multibutton.create({
         widget = cpu_widget,
         on_click = function()
