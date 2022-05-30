@@ -51,7 +51,16 @@ function sysmonitor.calc_net(instance, o, loadtype)
     u = "K"
   end
 
+  sysmonitor.check_alert(instance, mb)
   sysmonitor.update_strings(utils.numpad(v), instance, u)
+end
+
+function sysmonitor.check_alert(instance, n)
+  if n >= instance.args.alert_max then
+    instance.widget.fg = instance.args.alertcolor
+  else
+    instance.widget.fg = instance.args.fontcolor
+  end
 end
 
 function sysmonitor.update(instance)
@@ -64,6 +73,7 @@ function sysmonitor.update(instance)
         return
       end
 
+      sysmonitor.check_alert(instance, tonumber(o))
       sysmonitor.update_strings(utils.numpad(o), instance)
       instance.timer:again()
     end)
@@ -76,6 +86,7 @@ function sysmonitor.update(instance)
         return
       end
 
+      sysmonitor.check_alert(instance, tonumber(o))
       sysmonitor.update_strings(utils.numpad(o), instance)
       instance.timer:again()
     end)
@@ -88,6 +99,7 @@ function sysmonitor.update(instance)
         return
       end
 
+      sysmonitor.check_alert(instance, tonumber(o))
       sysmonitor.update_strings(utils.numpad(o), instance)
       instance.timer:again()
     end)
@@ -133,7 +145,20 @@ end
 function sysmonitor.create(args)
   args = args or {}
   args.bgcolor = args.bgcolor or "#2B303B"
-  args.fontcolor = args.fontcolor or "#b8babc"
+  args.fontcolor = args.fontcolor or "#B8BABC"
+  args.alertcolor = args.alertcolor or "#E2242C"
+
+  if args.mode == "cpu" then
+    args.alert_max = args.alert_max or 60
+  elseif args.mode == "ram" then
+    args.alert_max = args.alert_max or 80
+  elseif args.mode == "tmp" then
+    args.alert_max = args.alert_max or 70
+  elseif args.mode == "net_download" then
+    args.alert_max = args.alert_max or 100
+  elseif args.mode == "net_upload" then
+    args.alert_max = args.alert_max or 100
+  end
 
   local instance = {}
   instance.args = args
