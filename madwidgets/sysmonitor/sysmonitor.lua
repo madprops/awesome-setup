@@ -149,15 +149,15 @@ function sysmonitor.create(args)
   args.alertcolor = args.alertcolor or "#E2242C"
 
   if args.mode == "cpu" then
-    args.alert_max = args.alert_max or 60
+    args.alert_max = args.alert_max or 70
   elseif args.mode == "ram" then
-    args.alert_max = args.alert_max or 80
+    args.alert_max = args.alert_max or 70
   elseif args.mode == "tmp" then
     args.alert_max = args.alert_max or 70
   elseif args.mode == "net_download" then
-    args.alert_max = args.alert_max or 100
+    args.alert_max = args.alert_max or 10
   elseif args.mode == "net_upload" then
-    args.alert_max = args.alert_max or 100
+    args.alert_max = args.alert_max or 10
   end
 
   local instance = {}
