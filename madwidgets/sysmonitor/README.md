@@ -1,6 +1,6 @@
 # sysmonitor
 
-Show CPU, RAM, or Temperature
+Show CPU, RAM, Temperature, or Net Download/Upload
 
 ## To use it
 
