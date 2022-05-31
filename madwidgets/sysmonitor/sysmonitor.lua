@@ -183,8 +183,8 @@ function sysmonitor.create(args)
 
   instance.textbox_widget = wibox.widget {
     markup = "---:---%",
-    align  = 'center',
-    valign = 'center',
+    align  = "center",
+    valign = "center",
     widget = wibox.widget.textbox
   }
 

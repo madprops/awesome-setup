@@ -19,8 +19,8 @@ function multibutton.create(args)
     instance.widget = args.widget
   elseif args.text then
     instance.textbox_widget = wibox.widget {
-      align  = 'center',
-      valign = 'center',
+      align  = "center",
+      valign = "center",
       text = args.text,
       widget = wibox.widget.textbox
     }

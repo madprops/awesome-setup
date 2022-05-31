@@ -103,12 +103,12 @@ function volumecontrol.create(args)
   local instance = {}
   instance.args = args
   args.bgcolor = args.bgcolor or "#2B303B"
-  args.fontcolor = args.fontcolor or "#b8babc"
+  args.fontcolor = args.fontcolor or "#B8BABC"
 
   instance.textbox_widget = wibox.widget {
     markup = volumecontrol.volstring(loading),
-    align  = 'center',
-    valign = 'center',
+    align  = "center",
+    valign = "center",
     widget = wibox.widget.textbox
   }
 
