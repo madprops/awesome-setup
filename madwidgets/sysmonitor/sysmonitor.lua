@@ -57,9 +57,15 @@ end
 
 function sysmonitor.check_alert(instance, n)
   if n >= instance.args.alert_max then
-    instance.widget.fg = instance.args.alertcolor
+    if instance.args.currentcolor ~= instance.args.alertcolor then
+      instance.widget.fg = instance.args.alertcolor
+      instance.args.currentcolor = instance.args.alertcolor
+    end
   else
-    instance.widget.fg = instance.args.fontcolor
+    if instance.args.currentcolor ~= instance.args.fontcolor then
+      instance.widget.fg = instance.args.fontcolor
+      instance.args.currentcolor = instance.args.fontcolor
+    end
   end
 end
 
@@ -147,6 +153,7 @@ function sysmonitor.create(args)
   args.bgcolor = args.bgcolor or "#2B303B"
   args.fontcolor = args.fontcolor or "#B8BABC"
   args.alertcolor = args.alertcolor or "#E2242C"
+  args.currentcolor = ""
 
   if args.mode == "cpu" then
     args.alert_max = args.alert_max or 70
