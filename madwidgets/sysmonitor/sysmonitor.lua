@@ -7,16 +7,23 @@ local sysmonitor = {}
 local loading = "---"
 
 function sysmonitor.update_strings(s, instance, u)
+  local new_text = ""
+
   if instance.mode == "cpu" then
-    instance.textbox_widget.text = sysmonitor.cpustring(s)
+   new_text = sysmonitor.cpustring(s)
   elseif instance.mode == "ram" then
-    instance.textbox_widget.text = sysmonitor.ramstring(s)
+   new_text = sysmonitor.ramstring(s)
   elseif instance.mode == "tmp" then
-    instance.textbox_widget.text = sysmonitor.tmpstring(s)
+   new_text = sysmonitor.tmpstring(s)
   elseif instance.mode == "net_download" then
-    instance.textbox_widget.text = sysmonitor.net_download_string(s, u)
+   new_text = sysmonitor.net_download_string(s, u)
   elseif instance.mode == "net_upload" then
-    instance.textbox_widget.text = sysmonitor.net_upload_string(s, u)
+   new_text = sysmonitor.net_upload_string(s, u)
+  end
+
+  if instance.current_text ~= new_text then
+    instance.textbox_widget.text = new_text
+    instance.current_text = new_text
   end
 end
 
@@ -57,14 +64,14 @@ end
 
 function sysmonitor.check_alert(instance, n)
   if n >= instance.args.alert_max then
-    if instance.args.currentcolor ~= instance.args.alertcolor then
+    if instance.args.current_color ~= instance.args.alertcolor then
       instance.widget.fg = instance.args.alertcolor
-      instance.args.currentcolor = instance.args.alertcolor
+      instance.args.current_color = instance.args.alertcolor
     end
   else
-    if instance.args.currentcolor ~= instance.args.fontcolor then
+    if instance.args.current_color ~= instance.args.fontcolor then
       instance.widget.fg = instance.args.fontcolor
-      instance.args.currentcolor = instance.args.fontcolor
+      instance.args.current_color = instance.args.fontcolor
     end
   end
 end
@@ -153,7 +160,8 @@ function sysmonitor.create(args)
   args.bgcolor = args.bgcolor or "#2B303B"
   args.fontcolor = args.fontcolor or "#B8BABC"
   args.alertcolor = args.alertcolor or "#E2242C"
-  args.currentcolor = ""
+  args.current_color = ""
+  args.current_text = ""
 
   if args.mode == "cpu" then
     args.alert_max = args.alert_max or 70
