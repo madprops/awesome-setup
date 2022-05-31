@@ -171,11 +171,11 @@ function menupanel.create(args)
   args.height = args.height or 25
   args.hide_button_placement = args.hide_button_placement or "left"
   args.placement = args.placement or "bottom"
-  args.bgcolor = args.bgcolor or "#21252b"
-  args.bgcolor2 = args.bgcolor2 or "#2f333d"
-  args.fontcolor = args.fontcolor or "#b8babc"
+  args.bgcolor = args.bgcolor or "#21252B"
+  args.bgcolor2 = args.bgcolor2 or "#2F333D"
+  args.fontcolor = args.fontcolor or "#B8bABC"
   args.bordercolor = args.bordercolor or "#485767"
-  args.bordercolor2 = args.bordercolor2 or "#11a8cd"
+  args.bordercolor2 = args.bordercolor2 or "#11A8CD"
 
   local instance = {}
   instance.args = args
@@ -196,7 +196,7 @@ function menupanel.create(args)
 
   instance.keygrabber = awful.keygrabber {
     keybindings = {
-      {{}, 'Left', function()
+      {{}, "Left", function()
         if instance.focused > 1 then
           instance.focused = instance.focused - 1
           menupanel.unfocus_except(instance, instance.focused)
@@ -206,7 +206,7 @@ function menupanel.create(args)
           end
         end
       end},
-      {{}, 'Right', function()
+      {{}, "Right", function()
         if instance.focused < #instance.args.items then
           instance.focused = instance.focused + 1
           menupanel.unfocus_except(instance, instance.focused)
@@ -216,24 +216,24 @@ function menupanel.create(args)
           end
         end
       end},
-      {{}, 'Return', function()
+      {{}, "Return", function()
         if instance.focused > 0 then
           menupanel.action(instance, instance.args.items[instance.focused], 1)
         else
           menupanel.hide2(instance)
         end
       end},
-      {{modkey}, 'Return', function()
+      {{modkey}, "Return", function()
         if instance.focused > 0 then
           menupanel.action(instance, instance.args.items[instance.focused], 2)
         else
           menupanel.hide2(instance)
         end
       end},
-      {{}, 'Escape', function() 
+      {{}, "Escape", function() 
         menupanel.hide2(instance)
       end},
-      {{modkey}, 'Escape', function() 
+      {{modkey}, "Escape", function() 
         menupanel.hide_all(instance)
       end}
     }
@@ -358,19 +358,19 @@ function menupanel.create(args)
     menupanel.hide_all(instance)
   end
 
-  button.connect_signal('press', menupanel.on_unfocus)
+  button.connect_signal("press", menupanel.on_unfocus)
   
-  instance.widget:connect_signal('mouse::leave', function()
-    button.connect_signal('press', menupanel.on_unfocus)
+  instance.widget:connect_signal("mouse::leave", function()
+    button.connect_signal("press", menupanel.on_unfocus)
   end)
   
-  instance.widget:connect_signal('mouse::enter', function()
-    button.disconnect_signal('press', menupanel.on_unfocus)
+  instance.widget:connect_signal("mouse::enter", function()
+    button.disconnect_signal("press", menupanel.on_unfocus)
   end)
 
-  instance.widget:connect_signal('property::visible', function(self)
+  instance.widget:connect_signal("property::visible", function(self)
     if not self.visible then
-      button.disconnect_signal('press', menupanel.on_unfocus)
+      button.disconnect_signal("press", menupanel.on_unfocus)
     end
   end)
 
