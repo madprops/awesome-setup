@@ -2,6 +2,8 @@
 
 Show CPU, RAM, Temperature, or Net Download/Upload
 
+![](https://i.imgur.com/NJTjgcW.jpg)
+
 ## To use it
 
 Put this near the top:
