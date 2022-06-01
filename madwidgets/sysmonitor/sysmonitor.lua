@@ -40,12 +40,12 @@ function sysmonitor.tmpstring(s)
 end
 
 function sysmonitor.net_download_string(s, u)
-  local unit = u or "K"
+  local unit = u or "?"
   return "DW:"..s..unit
 end
 
 function sysmonitor.net_upload_string(s, u)
-  local unit = u or "K"
+  local unit = u or "?"
   return "UP:"..s..unit
 end
 
