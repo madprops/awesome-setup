@@ -6,7 +6,7 @@ local utils = require("madwidgets/utils")
 local sysmonitor = {}
 local loading = "---"
 
-function sysmonitor.update_strings(instance, s, u)
+function sysmonitor.update_string(instance, s, u)
   local new_text = ""
 
   if instance.mode == "cpu" then
@@ -61,7 +61,7 @@ function sysmonitor.calc_net(instance, o, loadtype)
   end
 
   sysmonitor.check_alert(instance, mb)
-  sysmonitor.update_strings(instance, utils.numpad(v), u)
+  sysmonitor.update_string(instance, utils.numpad(v), u)
 end
 
 function sysmonitor.check_alert(instance, n)
@@ -79,7 +79,7 @@ function sysmonitor.check_alert(instance, n)
 end
 
 function sysmonitor.default_string(instance)
-  sysmonitor.update_strings(instance, "---")
+  sysmonitor.update_string(instance, "---")
 end
 
 function sysmonitor.update(instance)
@@ -94,7 +94,7 @@ function sysmonitor.update(instance)
       end
 
       sysmonitor.check_alert(instance, tonumber(o))
-      sysmonitor.update_strings(instance, utils.numpad(o))
+      sysmonitor.update_string(instance, utils.numpad(o))
       instance.timer:again()
     end)
   elseif instance.mode == "ram" then
@@ -108,7 +108,7 @@ function sysmonitor.update(instance)
       end
 
       sysmonitor.check_alert(instance, tonumber(o))
-      sysmonitor.update_strings(instance, utils.numpad(o))
+      sysmonitor.update_string(instance, utils.numpad(o))
       instance.timer:again()
     end)
   elseif instance.mode == "tmp" then
@@ -122,7 +122,7 @@ function sysmonitor.update(instance)
       end
 
       sysmonitor.check_alert(instance, tonumber(o))
-      sysmonitor.update_strings(instance, utils.numpad(o))
+      sysmonitor.update_string(instance, utils.numpad(o))
       instance.timer:again()
     end)
   elseif instance.mode == "net_download" then
