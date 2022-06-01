@@ -40,13 +40,13 @@ function sysmonitor.tmpstring(s)
 end
 
 function sysmonitor.net_download_string(s, u)
-  local unit = u or "?"
-  return "DW:"..s..unit
+  u = u or "?"
+  return "DW:"..s..u
 end
 
 function sysmonitor.net_upload_string(s, u)
-  local unit = u or "?"
-  return "UP:"..s..unit
+  u = u or "?"
+  return "UP:"..s..u
 end
 
 function sysmonitor.calc_net(instance, o, loadtype)
