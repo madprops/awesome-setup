@@ -63,23 +63,23 @@ local tmp_widget = sysmonitor.create({
 }).widget
 
 local net_download_widget = sysmonitor.create(
-  {mode = "net_download", net_interface = "enp40s0f3u2u4",
+  {mode = "net_download", cmd_arg_1 = "enp40s0f3u2u4",
   bgcolor = beautiful.bg_normal, fontcolor = niceblue, 
   alertcolor = nicered
 }).widget
 
 local net_upload_widget = sysmonitor.create(
-  {mode = "net_upload", net_interface = "enp40s0f3u2u4",
+  {mode = "net_upload", cmd_arg_1 = "enp40s0f3u2u4",
   bgcolor = beautiful.bg_normal, fontcolor = niceblue, 
   alertcolor = nicered
 }).widget
 ```
 
-`net` modes use "net_interface" which you can pass as an argument.
+`net` modes use "cmd_arg_1" which you can pass as an argument to specify the interface.
 
 ```
-  sysmonitor.create({mode = "net_download", net_interface = "enp40s0f3u2u4"})
-  sysmonitor.create({mode = "net_upload", net_interface = "enp40s0f3u2u4"})
+  sysmonitor.create({mode = "net_download", cmd_arg_1 = "enp40s0f3u2u4"})
+  sysmonitor.create({mode = "net_upload", cmd_arg_1 = "enp40s0f3u2u4"})
 ```
 
 Every type has an `alert_max` value. If not defined as an argument it uses a default.
@@ -87,3 +87,5 @@ Every type has an `alert_max` value. If not defined as an argument it uses a def
 When this limit is reached, the font color turns to alertcolor, else it uses fontcolor.
 
 (alert_max of net monitors are calculated in megabits)
+
+A specific command to be used can be passed with the "command" argument.

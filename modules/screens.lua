@@ -144,13 +144,13 @@ awful.screen.connect_for_each_screen(function(s)
     }).widget
     
     local net_download_widget = sysmonitor.create(
-      {mode = "net_download", net_interface = "enp40s0f3u2u4",
+      {mode = "net_download", cmd_arg_1 = "enp40s0f3u2u4",
       bgcolor = beautiful.bg_normal, fontcolor = niceblue, 
       alertcolor = nicered
     }).widget
 
     local net_upload_widget = sysmonitor.create(
-      {mode = "net_upload", net_interface = "enp40s0f3u2u4",
+      {mode = "net_upload", cmd_arg_1 = "enp40s0f3u2u4",
       bgcolor = beautiful.bg_normal, fontcolor = niceblue, 
       alertcolor = nicered
     }).widget
