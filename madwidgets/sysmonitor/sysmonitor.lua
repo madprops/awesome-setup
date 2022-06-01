@@ -6,7 +6,7 @@ local utils = require("madwidgets/utils")
 local sysmonitor = {}
 local loading = "---"
 
-function sysmonitor.update_strings(s, instance, u)
+function sysmonitor.update_strings(instance, s, u)
   local new_text = ""
 
   if instance.mode == "cpu" then
@@ -16,7 +16,7 @@ function sysmonitor.update_strings(s, instance, u)
   elseif instance.mode == "tmp" then
    new_text = sysmonitor.tmpstring(s)
   elseif instance.mode == "net_download" then
-   new_text = sysmonitor.net_download_string(s, u)
+    new_text = sysmonitor.net_download_string(s, u)
   elseif instance.mode == "net_upload" then
    new_text = sysmonitor.net_upload_string(s, u)
   end
@@ -40,11 +40,13 @@ function sysmonitor.tmpstring(s)
 end
 
 function sysmonitor.net_download_string(s, u)
-  return "DW:"..s..u
+  local unit = u or "K"
+  return "DW:"..s..unit
 end
 
 function sysmonitor.net_upload_string(s, u)
-  return "UP:"..s..u
+  local unit = u or "K"
+  return "UP:"..s..unit
 end
 
 function sysmonitor.calc_net(instance, o, loadtype)
@@ -59,7 +61,7 @@ function sysmonitor.calc_net(instance, o, loadtype)
   end
 
   sysmonitor.check_alert(instance, mb)
-  sysmonitor.update_strings(utils.numpad(v), instance, u)
+  sysmonitor.update_strings(instance, utils.numpad(v), u)
 end
 
 function sysmonitor.check_alert(instance, n)
@@ -76,18 +78,23 @@ function sysmonitor.check_alert(instance, n)
   end
 end
 
+function sysmonitor.default_string(instance)
+  sysmonitor.update_strings(instance, "---")
+end
+
 function sysmonitor.update(instance)
   if instance.mode == "cpu" then
     local cmd = "mpstat 1 2 | awk 'END{print 100-$NF}'"
     
     awful.spawn.easy_async_with_shell(cmd, function(o)
       if not utils.isnumber(o) then
+        sysmonitor.default_string(instance)
         instance.timer:again()
         return
       end
 
       sysmonitor.check_alert(instance, tonumber(o))
-      sysmonitor.update_strings(utils.numpad(o), instance)
+      sysmonitor.update_strings(instance, utils.numpad(o))
       instance.timer:again()
     end)
   elseif instance.mode == "ram" then
@@ -95,12 +102,13 @@ function sysmonitor.update(instance)
     
     awful.spawn.easy_async_with_shell(cmd, function(o)
       if not utils.isnumber(o) then
+        sysmonitor.default_string(instance)
         instance.timer:again()
         return
       end
 
       sysmonitor.check_alert(instance, tonumber(o))
-      sysmonitor.update_strings(utils.numpad(o), instance)
+      sysmonitor.update_strings(instance, utils.numpad(o))
       instance.timer:again()
     end)
   elseif instance.mode == "tmp" then
@@ -108,12 +116,13 @@ function sysmonitor.update(instance)
     
     awful.spawn.easy_async_with_shell(cmd, function(o)
       if not utils.isnumber(o) then
+        sysmonitor.default_string(instance)
         instance.timer:again()
         return
       end
 
       sysmonitor.check_alert(instance, tonumber(o))
-      sysmonitor.update_strings(utils.numpad(o), instance)
+      sysmonitor.update_strings(instance, utils.numpad(o))
       instance.timer:again()
     end)
   elseif instance.mode == "net_download" then
@@ -121,6 +130,8 @@ function sysmonitor.update(instance)
 
     awful.spawn.easy_async_with_shell(cmd, function(o)
       if not utils.isnumber(o) then
+        instance.net_rx = -1
+        sysmonitor.default_string(instance)
         instance.timer:again()
         return
       end
@@ -139,6 +150,8 @@ function sysmonitor.update(instance)
 
     awful.spawn.easy_async_with_shell(cmd, function(o)
       if not utils.isnumber(o) then
+        instance.net_tx = -1
+        sysmonitor.default_string(instance)
         instance.timer:again()
         return
       end
