@@ -28,7 +28,10 @@ Available modes:
 Use multibutton to wrap the widget with mouse events:
 
 ```
-local cpu_widget = sysmonitor.create({mode = "cpu"}).widget
+local cpu_widget = sysmonitor.create({
+  mode = "cpu", bgcolor = beautiful.bg_normal, 
+  fontcolor = nicegreen, alertcolor = nicered
+}).widget
 
 multibutton.create({
   widget = cpu_widget,
@@ -42,44 +45,6 @@ multibutton.create({
     increase_volume()
   end
 })
-```
-
-More Examples:
-
-```
-local cpu_widget = sysmonitor.create({
-  mode = "cpu", bgcolor = beautiful.bg_normal, 
-  fontcolor = nicegreen, alertcolor = nicered
-}).widget
-
-local ram_widget = sysmonitor.create({
-  mode = "ram", bgcolor = beautiful.bg_normal, 
-  fontcolor = nicegreen, alertcolor = nicered
-}).widget
-
-local tmp_widget = sysmonitor.create({
-  mode = "tmp", bgcolor = beautiful.bg_normal, 
-  fontcolor = nicegreen, alertcolor = nicered
-}).widget
-
-local net_download_widget = sysmonitor.create(
-  {mode = "net_download", cmd_arg_1 = "enp40s0f3u2u4",
-  bgcolor = beautiful.bg_normal, fontcolor = niceblue, 
-  alertcolor = nicered
-}).widget
-
-local net_upload_widget = sysmonitor.create(
-  {mode = "net_upload", cmd_arg_1 = "enp40s0f3u2u4",
-  bgcolor = beautiful.bg_normal, fontcolor = niceblue, 
-  alertcolor = nicered
-}).widget
-```
-
-`net` modes use "cmd_arg_1" which you can pass as an argument to specify the interface.
-
-```
-  sysmonitor.create({mode = "net_download", cmd_arg_1 = "enp40s0f3u2u4"})
-  sysmonitor.create({mode = "net_upload", cmd_arg_1 = "enp40s0f3u2u4"})
 ```
 
 Every type has an `alert_max` value. If not defined as an argument it uses a default.

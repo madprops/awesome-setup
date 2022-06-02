@@ -9,7 +9,6 @@ local bindings = require("modules/bindings")
 local primary_screen = 1
 local nicegreen = "#99EDC3"
 local niceblue = "#9BBCDE"
-local nicered = "#E2242C"
 
 volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 
@@ -128,32 +127,11 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   if s.index == primary_screen then
-    local cpu_widget = sysmonitor.create({
-      mode = "cpu", bgcolor = beautiful.bg_normal, 
-      fontcolor = nicegreen, alertcolor = nicered
-    }).widget
-    
-    local ram_widget = sysmonitor.create({
-      mode = "ram", bgcolor = beautiful.bg_normal, 
-      fontcolor = nicegreen, alertcolor = nicered
-    }).widget
-    
-    local tmp_widget = sysmonitor.create({
-      mode = "tmp", bgcolor = beautiful.bg_normal, 
-      fontcolor = nicegreen, alertcolor = nicered
-    }).widget
-    
-    local net_download_widget = sysmonitor.create(
-      {mode = "net_download", cmd_arg_1 = "enp40s0f3u2u4",
-      bgcolor = beautiful.bg_normal, fontcolor = niceblue, 
-      alertcolor = nicered
-    }).widget
-
-    local net_upload_widget = sysmonitor.create(
-      {mode = "net_upload", cmd_arg_1 = "enp40s0f3u2u4",
-      bgcolor = beautiful.bg_normal, fontcolor = niceblue, 
-      alertcolor = nicered
-    }).widget
+    local cpu_widget = sysmonitor.create({mode = "cpu", fontcolor = nicegreen}).widget
+    local ram_widget = sysmonitor.create({mode = "ram", fontcolor = nicegreen}).widget
+    local tmp_widget = sysmonitor.create({mode = "tmp", fontcolor = nicegreen}).widget
+    local net_dw_widget = sysmonitor.create({mode = "net_download", fontcolor = niceblue}).widget
+    local net_up_widget = sysmonitor.create({mode = "net_upload", fontcolor = niceblue}).widget
     
     right = {
       layout = wibox.layout.fixed.horizontal(),
@@ -200,7 +178,7 @@ awful.screen.connect_for_each_screen(function(s)
       }),
       multibutton.create(spacer1),
       multibutton.create({
-        widget = net_download_widget,
+        widget = net_dw_widget,
         on_click = function()
           network_monitor()
         end,
@@ -213,7 +191,7 @@ awful.screen.connect_for_each_screen(function(s)
       }),
       multibutton.create(spacer1),
       multibutton.create({
-        widget = net_upload_widget,
+        widget = net_up_widget,
         on_click = function()
           network_monitor()
         end,
