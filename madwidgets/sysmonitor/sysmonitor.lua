@@ -8,46 +8,33 @@ local sysmonitor = {}
 local loading = "---"
 
 function sysmonitor.update_string(instance, s, u)
-  local new_text = ""
+  local t = ""
+  local mode = instance.args.mode
 
-  if instance.args.mode == "cpu" then
-   new_text = sysmonitor.cpustring(s)
-  elseif instance.args.mode == "ram" then
-   new_text = sysmonitor.ramstring(s)
-  elseif instance.args.mode == "tmp" then
-   new_text = sysmonitor.tmpstring(s)
-  elseif instance.args.mode == "net_download" then
-    new_text = sysmonitor.net_download_string(s, u)
-  elseif instance.args.mode == "net_upload" then
-   new_text = sysmonitor.net_upload_string(s, u)
+  if mode == "cpu" then
+    t = "CPU"
+    u = "%"
+  elseif mode == "ram" then
+    t = "RAM"
+    u = "%"
+  elseif mode == "tmp" then
+    t = "TMP"
+    u = "°"
+  elseif mode == "net_download" then
+    t = "DW"
+  elseif mode == "net_upload" then
+    t = "UP"
+  else
+    return
   end
+
+  u = u or "?"  
+  local new_text = t..":"..s..u
 
   if instance.current_text ~= new_text then
     instance.textbox_widget.text = new_text
     instance.current_text = new_text
   end
-end
-
-function sysmonitor.cpustring(s)
-  return "CPU:"..s.."%"
-end
-
-function sysmonitor.ramstring(s)
-  return "RAM:"..s.."%"
-end
-
-function sysmonitor.tmpstring(s)
-  return "TMP:"..s.."°"
-end
-
-function sysmonitor.net_download_string(s, u)
-  u = u or "?"
-  return "DW:"..s..u
-end
-
-function sysmonitor.net_upload_string(s, u)
-  u = u or "?"
-  return "UP:"..s..u
 end
 
 function sysmonitor.check_alert(instance, n)
@@ -73,7 +60,7 @@ function sysmonitor.calc_net(instance)
 
   awful.spawn.easy_async_with_shell(cmd, function(dev)
     dev = trim(dev)
-    
+
     if not dev or dev == "" then
       sysmonitor.default_string(instance)
       instance.timer:again()
