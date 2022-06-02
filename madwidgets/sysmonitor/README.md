@@ -54,3 +54,5 @@ When this limit is reached, the font color turns to alertcolor, else it uses fon
 (alert_max of net monitors are calculated in megabits)
 
 A specific command to be used can be passed with the "command" argument.
+
+A specific timer timeout to be used can be passed with the "timeout" argument.
