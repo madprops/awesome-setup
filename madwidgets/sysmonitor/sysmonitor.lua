@@ -124,27 +124,23 @@ function sysmonitor.create(args)
   args.bgcolor = args.bgcolor or beautiful.bg_normal
   args.fontcolor = args.fontcolor or beautiful.fg_normal
   args.alertcolor = args.alertcolor or "#E2242C"
+  args.timeout = args.timeout or 1
   args.current_color = ""
   args.current_text = ""
 
   if args.mode == "cpu" then
-    args.timeout = args.timeout or 3
     args.alert_max = args.alert_max or 70
     args.command = args.command or "mpstat 1 2 | awk 'END{print 100-$NF}'"
   elseif args.mode == "ram" then
-    args.timeout = args.timeout or 3
     args.alert_max = args.alert_max or 70
     args.command = args.command or "free | grep Mem | awk '{print $3/$2 * 100.0}'"
   elseif args.mode == "tmp" then
-    args.timeout = args.timeout or 3
     args.alert_max = args.alert_max or 70
     args.command = args.command or "sensors | grep Tctl: | awk '{print $2}' | sed 's/[^0-9.]*//g'"
   elseif args.mode == "net_download" then
-    args.timeout = args.timeout or 3
     args.alert_max = args.alert_max or 10
     args.command = args.command or "cat /sys/class/net/%s/statistics/rx_bytes"
   elseif args.mode == "net_upload" then
-    args.timeout = args.timeout or 3
     args.alert_max = args.alert_max or 10
     args.command = args.command or "cat /sys/class/net/%s/statistics/tx_bytes"
   end
