@@ -140,11 +140,11 @@ function sysmonitor.create(args)
     args.alert_max = args.alert_max or 70
     args.command = args.command or "sensors | grep Tctl: | awk '{print $2}' | sed 's/[^0-9.]*//g'"
   elseif args.mode == "net_download" then
-    args.timeout = args.timeout or 1
+    args.timeout = args.timeout or 3
     args.alert_max = args.alert_max or 10
     args.command = args.command or "cat /sys/class/net/%s/statistics/rx_bytes"
   elseif args.mode == "net_upload" then
-    args.timeout = args.timeout or 1
+    args.timeout = args.timeout or 3
     args.alert_max = args.alert_max or 10
     args.command = args.command or "cat /sys/class/net/%s/statistics/tx_bytes"
   end
