@@ -55,6 +55,12 @@ function sysmonitor.default_string(instance)
   sysmonitor.update_string(instance, "---")
 end
 
+function sysmonitor.on_null(instance)
+  sysmonitor.default_string(instance)
+  sysmonitor.check_alert(instance, 0)
+  instance.timer:again()
+end
+
 function sysmonitor.calc_net(instance)
   local cmd = "ip route show default | awk '/default/ {print $5}'"
 
@@ -62,8 +68,7 @@ function sysmonitor.calc_net(instance)
     dev = trim(dev)
 
     if not dev or dev == "" then
-      sysmonitor.default_string(instance)
-      instance.timer:again()
+      sysmonitor.on_null(instance)
       return
     end
 
@@ -71,15 +76,13 @@ function sysmonitor.calc_net(instance)
 
     awful.spawn.easy_async_with_shell(cmd2.."; sleep 1", function(o)
       if not utils.isnumber(o) then
-        sysmonitor.default_string(instance)
-        instance.timer:again()
+        sysmonitor.on_null(instance)
         return
       end
   
       awful.spawn.easy_async_with_shell(cmd2, function(o2)
         if not utils.isnumber(o2) then
-          sysmonitor.default_string(instance)
-          instance.timer:again()
+          sysmonitor.on_null(instance)
           return
         end
         
@@ -105,8 +108,7 @@ function sysmonitor.update(instance)
   if instance.args.mode == "cpu" or instance.args.mode == "ram" or instance.args.mode == "tmp" then
     awful.spawn.easy_async_with_shell(instance.args.command, function(o)
       if not utils.isnumber(o) then
-        sysmonitor.default_string(instance)
-        instance.timer:again()
+        sysmonitor.on_null(instnace)
         return
       end
 
