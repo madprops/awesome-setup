@@ -335,6 +335,7 @@ end
 
 function reset_rules(c)
   awful.rules.apply(c)
+  check_title_rules(c)
 end
 
 function sleep(n)
