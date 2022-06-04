@@ -307,32 +307,6 @@ function goto_tag(s, i)
   end
 end
 
-function start_move(c)
-  c.maximized = false
-  mouse_on_client_center(c)
-  c:activate({context = "mouse_click", action = "mouse_move"})
-end
-
-function start_resize(c)
-  c.maximized = false
-  mouse_on_client_corner(c)
-  c:activate({context = "mouse_click", action = "mouse_resize"})
-end
-
-function mouse_on_client_center(c)
-  local geometry = c:geometry()
-  local x = geometry.x + geometry.width / 2
-  local y = geometry.y + geometry.height / 2
-  mouse.coords({x = x, y = y}, true)
-end
-
-function mouse_on_client_corner(c)
-  local geometry = c:geometry()
-  local x = geometry.x + geometry.width
-  local y = geometry.y + geometry.height
-  mouse.coords({x = x, y = y}, true)
-end
-
 function reset_rules(c)
   awful.rules.apply(c)
   check_title_rules(c)

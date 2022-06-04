@@ -128,12 +128,8 @@ menupanels.context = menupanel.create({
       action = function() fullscreen(get_context_client()) end,
     },
     {
-      name = "Move",
-      action = function() start_move(get_context_client()) end,
-    },
-    {
-      name = "Resize",
-      action = function() start_resize(get_context_client()) end,
+      name = "On Top",
+      action = function() on_top(get_context_client()) end,
     },
     {
       name = "Center",
@@ -143,14 +139,6 @@ menupanels.context = menupanel.create({
       name = "Reset",
       action = function() reset_rules(get_context_client()) end,
     },        
-    {
-      name = "On Top",
-      action = function() on_top(get_context_client()) end,
-    },
-    {
-      name = "Title",
-      action = function() show_client_title(get_context_client()) end
-    },
     {
       name = "Close",
       action = function() close(get_context_client()) end,
