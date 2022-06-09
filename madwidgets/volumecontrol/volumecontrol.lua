@@ -136,7 +136,7 @@ function volumecontrol.create(args)
 
   if #instances == 1 then
     volumecontrol.timer = gears.timer {
-      timeout = 3,
+      timeout = 2,
       call_now = false,
       autostart = true,
       single_shot = false,

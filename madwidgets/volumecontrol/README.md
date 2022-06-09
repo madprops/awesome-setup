@@ -2,10 +2,6 @@
 
 This creates a text based volume widget and provides volume control functions.
 
-The widget is only updated when the volumecontrol volume functions are used.
-
-So there's no constant polling/checking of volume levels.
-
 The widget includes mouse events on click, middle click, and mousewheel.
 
 ![](https://i.imgur.com/5Ybd9gF.jpg)
@@ -66,7 +62,7 @@ volumecontrol.mute()
 ---
 
 volumecontrol.refresh()
->Updates the volume level. Meant to be ran once at startup
+>Updates the widgets volume text.
 
 ## Variables
 
