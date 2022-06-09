@@ -1,5 +1,6 @@
 local awful = require("awful")
 local wibox = require("wibox")
+local gears = require("gears")
 local utils = require("madwidgets/utils")
 
 local volumecontrol = {}
@@ -132,6 +133,19 @@ function volumecontrol.create(args)
   end)
 
   table.insert(instances, instance)
+
+  if #instances == 1 then
+    volumecontrol.timer = gears.timer {
+      timeout = 3,
+      call_now = false,
+      autostart = true,
+      single_shot = false,
+      callback = function()
+        volumecontrol.refresh()
+      end
+    }
+  end
+
   return instance
 end
 
