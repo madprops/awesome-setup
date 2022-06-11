@@ -13,7 +13,10 @@ local loading = "---"
 
 function volumecontrol.update_volume(vol)
   for i, instance in ipairs(instances) do
-    instance.textbox_widget.text = volumecontrol.volstring(utils.numpad(vol))
+    if instance.shown_volume ~= vol then
+      instance.textbox_widget.text = volumecontrol.volstring(utils.numpad(vol))
+      instance.shown_volume = vol
+    end
   end
 end
 
@@ -119,6 +122,8 @@ function volumecontrol.create(args)
     bg = args.bgcolor,
     fg = args.fontcolor
   }
+
+  instance.shown_volume = -1
 
   instance.widget:connect_signal("button::press", function(a, b, c, button, mods)
     if button == 1 then
