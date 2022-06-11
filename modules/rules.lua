@@ -76,38 +76,38 @@ awful.rules.rules = {
         awful.placement.top_left(c, {honor_workarea = true})
       end, 
       width = width_factor(0.5),
-      height = height_factor(0.6),
+      height = height_factor(1),
       maximized = false,
       xindex = 1,
       screen = screen_right           
     }
   },
   {
-    rule = {instance = "audacious"},
+    rule = {instance = "hexchat"},
     properties = {
       placement = function(c)
-        awful.placement.bottom_left(c, {honor_workarea = true})
+        awful.placement.top_right(c, {honor_workarea = true})
       end,
       width = width_factor(0.5),
-      height = height_factor(0.4),
+      height = height_factor(0.6),
       maximized = false,
       xindex = 2,
       screen = screen_right
     }
   },
   {
-    rule = {instance = "hexchat"},
+    rule = {instance = "audacious"},
     properties = {
       placement = function(c)
         awful.placement.bottom_right(c, {honor_workarea = true})
       end,
       width = width_factor(0.5),
-      height = height_factor(1),
+      height = height_factor(0.4),
       maximized = false,
       xindex = 3,
       screen = screen_right
     }
-  }
+  },
 }
 
 function check_title_rules(c)
