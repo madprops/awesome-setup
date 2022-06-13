@@ -1,3 +1,6 @@
+local awful = require("awful")
+awful.util.shell = "dash"
+
 require("awful.autofocus")
 require("modules/theme")
 require("modules/utils")
