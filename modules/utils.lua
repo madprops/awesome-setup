@@ -162,7 +162,7 @@ local logpath = os.getenv("HOME") .. "/.config/clickthing/clicks.txt"
 
 function add2log(name)
   local txt = name .. " " .. os.date("%c")
-  shellspawn("echo -e '" .. txt .. "' | cat - " .. logpath .. " | sponge " .. logpath)
+  shellspawn("echo '" .. txt .. "' | cat - " .. logpath .. " | sponge " .. logpath)
   msg(name .. " added to log")
 end
 
