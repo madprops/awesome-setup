@@ -28,7 +28,7 @@ function sysmonitor.update_string(instance, s, u)
   end
 
   u = u or "?"  
-  local new_text = instance.args.left..t..":"..s..instance.args.right
+  local new_text = instance.args.left..t..":"..s..u..instance.args.right
 
   if instance.current_text ~= new_text then
     instance.textbox_widget.text = new_text
