@@ -12,17 +12,35 @@ local niceblue = "#9BBCDE"
 
 volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 
-local spacer1 = {
-  text = "  ", bgcolor = beautiful.bg_normal, fontcolor = "#b8babc", 
-  on_wheel_down = function() decrease_volume() end,
-  on_wheel_up = function() increase_volume() end
-}
+function sysmonitor_widget(widget)
+  return multibutton.create({
+    widget = widget,
+    on_click = function()
+      system_monitor()
+    end,
+    on_wheel_down = function()
+      decrease_volume()
+    end,
+    on_wheel_up = function()
+      increase_volume()
+    end
+  })
+end
 
-local spacer2 = {
-  text = " ", bgcolor = beautiful.bg_normal, fontcolor = "#b8babc", 
-  on_wheel_down = function() decrease_volume() end,
-  on_wheel_up = function() increase_volume() end
-}
+function sysmonitor_widget_net(widget)
+  return multibutton.create({
+    widget = widget,
+    on_click = function()
+      network_monitor()
+    end,
+    on_wheel_down = function()
+      decrease_volume()
+    end,
+    on_wheel_up = function()
+      increase_volume()
+    end
+  })
+end
 
 awful.screen.connect_for_each_screen(function(s)
   awful.tag({ "1", "2", "3", "4" }, s, awful.layout.suit.floating)
@@ -127,84 +145,30 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   if s.index == primary_screen then
-    local cpu_widget = sysmonitor.create({mode = "cpu", fontcolor = nicegreen}).widget
-    local ram_widget = sysmonitor.create({mode = "ram", fontcolor = nicegreen}).widget
-    local tmp_widget = sysmonitor.create({mode = "tmp", fontcolor = nicegreen}).widget
-    local net_dw_widget = sysmonitor.create({mode = "net_download", fontcolor = niceblue}).widget
-    local net_up_widget = sysmonitor.create({mode = "net_upload", fontcolor = niceblue}).widget
+    local cpu_widget = sysmonitor.create({mode = "cpu", 
+      fontcolor = nicegreen, left = " ", right = " "}).widget
+
+    local ram_widget = sysmonitor.create({mode = "ram", 
+      fontcolor = nicegreen, left = " ", right = " "}).widget
+
+    local tmp_widget = sysmonitor.create({mode = "tmp", 
+      fontcolor = nicegreen, left = " ", right = " "}).widget
+    local net_dw_widget = sysmonitor.create({mode = "net_download", 
+      fontcolor = niceblue, left = " ", right = " "}).widget
+
+    local net_up_widget = sysmonitor.create({mode = "net_upload", 
+      fontcolor = niceblue, left = " ", right = " "}).widget
     
     right = {
       layout = wibox.layout.fixed.horizontal(),
       space(),
       systray,
-      multibutton.create(spacer2),
-      multibutton.create({
-        widget = cpu_widget,
-        on_click = function()
-          system_monitor()
-        end,
-        on_wheel_down = function()
-          decrease_volume()
-        end,
-        on_wheel_up = function()
-          increase_volume()
-        end
-      }),
-      multibutton.create(spacer1),
-      multibutton.create({
-        widget = ram_widget,
-        on_click = function()
-          system_monitor()
-        end,
-        on_wheel_down = function()
-          decrease_volume()
-        end,
-        on_wheel_up = function()
-          increase_volume()
-        end
-      }),
-      multibutton.create(spacer1),
-      multibutton.create({
-        widget = tmp_widget,
-        on_click = function()
-          system_monitor()
-        end,
-        on_wheel_down = function()
-          decrease_volume()
-        end,
-        on_wheel_up = function()
-          increase_volume()
-        end
-      }),
-      multibutton.create(spacer1),
-      multibutton.create({
-        widget = net_dw_widget,
-        on_click = function()
-          network_monitor()
-        end,
-        on_wheel_down = function()
-          decrease_volume()
-        end,
-        on_wheel_up = function()
-          increase_volume()
-        end
-      }),
-      multibutton.create(spacer1),
-      multibutton.create({
-        widget = net_up_widget,
-        on_click = function()
-          network_monitor()
-        end,
-        on_wheel_down = function()
-          decrease_volume()
-        end,
-        on_wheel_up = function()
-          increase_volume()
-        end
-      }), 
-      multibutton.create(spacer1),  
-      volumecontrol.create({bgcolor = beautiful.bg_normal}),
-      multibutton.create(spacer2),
+      sysmonitor_widget(cpu_widget),
+      sysmonitor_widget(ram_widget),
+      sysmonitor_widget(tmp_widget),
+      sysmonitor_widget_net(net_dw_widget),
+      sysmonitor_widget_net(net_up_widget),
+      volumecontrol.create({bgcolor = beautiful.bg_normal, left = " ", right = " "}),
       multibutton.create({
         widget = wibox.widget.textclock(" %a-%d-%b %I:%M:%S %P ", 1),
         on_click = function()
@@ -223,7 +187,6 @@ awful.screen.connect_for_each_screen(function(s)
       layout = wibox.layout.fixed.horizontal()
     }
   end
-
 
   s.mywibar:setup {
     layout = wibox.layout.align.horizontal,

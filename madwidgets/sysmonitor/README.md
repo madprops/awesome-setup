@@ -30,7 +30,8 @@ Use multibutton to wrap the widget with mouse events:
 ```
 local cpu_widget = sysmonitor.create({
   mode = "cpu", bgcolor = beautiful.bg_normal, 
-  fontcolor = nicegreen, alertcolor = nicered
+  fontcolor = nicegreen, alertcolor = nicered,
+  left = " ", right = " "
 }).widget
 
 multibutton.create({

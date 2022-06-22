@@ -9,12 +9,12 @@ volumecontrol.steps = 5
 
 local instances = {}
 local last_volume = 100
-local loading = "---"
 
 function volumecontrol.update_volume(vol)
   for i, instance in ipairs(instances) do
     if instance.shown_volume ~= vol then
-      instance.textbox_widget.text = volumecontrol.volstring(utils.numpad(vol))
+      local s = volumecontrol.volstring(utils.numpad(vol))
+      instance.textbox_widget.text = instance.args.left..s..instance.args.right
       instance.shown_volume = vol
     end
   end
@@ -108,9 +108,11 @@ function volumecontrol.create(args)
   instance.args = args
   args.bgcolor = args.bgcolor or "#2B303B"
   args.fontcolor = args.fontcolor or "#B8BABC"
+  args.left = args.left or ""
+  args.right = args.right or ""
 
   instance.textbox_widget = wibox.widget {
-    markup = volumecontrol.volstring(loading),
+    markup = args.left..volumecontrol.volstring("---")..args.right,
     align  = "center",
     valign = "center",
     widget = wibox.widget.textbox

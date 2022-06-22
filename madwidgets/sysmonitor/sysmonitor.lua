@@ -5,7 +5,6 @@ local beautiful = require("beautiful")
 local utils = require("madwidgets/utils")
 
 local sysmonitor = {}
-local loading = "---"
 
 function sysmonitor.update_string(instance, s, u)
   local t = ""
@@ -29,7 +28,7 @@ function sysmonitor.update_string(instance, s, u)
   end
 
   u = u or "?"  
-  local new_text = t..":"..s..u
+  local new_text = instance.args.left..t..":"..s..instance.args.right
 
   if instance.current_text ~= new_text then
     instance.textbox_widget.text = new_text
@@ -126,6 +125,8 @@ function sysmonitor.create(args)
   args.bgcolor = args.bgcolor or beautiful.bg_normal
   args.fontcolor = args.fontcolor or beautiful.fg_normal
   args.alertcolor = args.alertcolor or "#E2242C"
+  args.left = args.left or ""
+  args.right = args.right or ""
   args.timeout = args.timeout or 1
   args.current_color = ""
   args.current_text = ""
@@ -151,7 +152,7 @@ function sysmonitor.create(args)
   instance.args = args
 
   instance.textbox_widget = wibox.widget {
-    markup = "---:---%",
+    markup = args.left.."---:---%"..args.right,
     align  = "center",
     valign = "center",
     widget = wibox.widget.textbox

@@ -17,7 +17,11 @@ Then add the widget to the panel, similar to:
 right = {
     layout = right_layout,
     wibox.widget.systray(),
-    volumecontrol.create(),
+
+    volumecontrol.create({
+        left = " ", right = " "
+    }),
+
     mytextclock
 }
 ```
