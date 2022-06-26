@@ -76,6 +76,13 @@ You can use these arguments to customize the look of a menupanel:
 
 >bordercolor2
 
+Whether to use the primary screen when opening with keyboard. Defaults to true
+
+>primary_mode
+
+Define the primary screen. Defaults to 1
+
+>primary_screen
 
 There's an instance method to update an item programatically:
 

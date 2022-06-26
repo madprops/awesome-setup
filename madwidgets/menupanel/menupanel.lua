@@ -14,9 +14,9 @@ function menupanel.get_button_under_cursor(instance)
 end
 
 function menupanel.set_screen(instance, mode)
-  if string.find(mode, "keyboard") then
+  if instance.args.primary_mode and string.find(mode, "keyboard") then
     instance.widget.screen = instance.args.primary_screen
-  elseif string.find(mode, "mouse") then
+  else
     instance.widget.screen = awful.screen.focused()
   end
 end
@@ -192,6 +192,7 @@ function menupanel.create(args)
   args.bordercolor = args.bordercolor or "#485767"
   args.bordercolor2 = args.bordercolor2 or "#11A8CD"
   args.primary_screen = args.primary_screen or 1
+  args.primary_mode = args.primary_mode or true
 
   local instance = {}
   instance.args = args
