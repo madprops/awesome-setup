@@ -40,9 +40,28 @@ local mp_main = menupanel.create({
 
 All arguments are shown in the example above. It's not necessary to define all of them.
 
-You can manually show, hide, and toggle the menu with:
+To start a menu panel use .start()
 
->instance.show()
+Mode are `keyboard` or `mouse`
+
+>instance.start("keyboard")
+
+>instance.start("mouse")
+
+To show a new panel on top of the previous one:
+
+Try something like this:
+
+```
+{
+    name = "Launch",
+    action = function(trigger) somepanel.show(trigger) end,
+},
+```
+
+Action returns a trigger which is either `action_mouse` or `action_keyboard`.
+
+To hide:
 
 >instance.hide()
 
