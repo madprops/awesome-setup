@@ -256,9 +256,11 @@ function menupanel.create(args)
     instance.widget.visible = true
     menupanel.reset_confirm_charges(instance)
 
-    local index = instance.focused
+    local index = 1
 
-    if mode == "keyboard" then
+    if mode == "parent" then
+      index = instance.focused
+    elseif mode == "keyboard" then
       index = 0
     elseif mode == "mouse" or mode == "action_mouse" then
       index = menupanel.get_button_under_cursor(instance)
