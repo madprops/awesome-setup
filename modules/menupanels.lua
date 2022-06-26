@@ -18,15 +18,15 @@ menupanels.main = menupanel.create({
   items = {
     {
       name = "Launch",
-      action = function() menupanels.applications.show() end,
+      action = function(trigger) menupanels.applications.show(trigger) end,
     },
     {
       name = "Log",
-      action = function() menupanels.log.show() end,
+      action = function(trigger) menupanels.log.show(trigger) end,
     },
     {
       name = "Leave",
-      action = function() menupanels.leave.show() end,
+      action = function(trigger) menupanels.leave.show(trigger) end,
     },
   }
 })

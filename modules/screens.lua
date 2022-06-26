@@ -124,7 +124,7 @@ awful.screen.connect_for_each_screen(function(s)
     multibutton.create({
       text = " ❇ ",
       on_click = function() 
-        show_main_menu()
+        show_menupanel("mouse")
       end,
       on_middle_click = function()
         stop_all_players()

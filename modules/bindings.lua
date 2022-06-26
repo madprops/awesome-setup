@@ -61,7 +61,7 @@ bindings.globalkeys = gears.table.join(
   },  
 
   awful.key({modkey}, "`", function()
-    show_menupanel()
+    show_menupanel("keyboard")
   end),
 
   awful.key({"Control"}, "`", function()

@@ -6,6 +6,13 @@ local menupanel = {}
 local instances = {}
 local modkey = "Shift"
 
+function menupanel.get_button_under_cursor(instance)
+  local w = mouse.current_widget
+  if w ~= nil and w.xindex ~= nil then
+    return w.xindex
+  end
+end
+
 function menupanel.speak(txt)
   awful.util.spawn_with_shell('pkill espeak; espeak "'..txt..'"', false)
 end
@@ -53,7 +60,7 @@ end
 
 function menupanel.show_parent(instance)
   if instance.args.parent ~= nil then
-    instance.args.parent.show(true)
+    instance.args.parent.show("parent")
   end
 end
 
@@ -77,11 +84,11 @@ function menupanel.action(instance, item, mode)
         else
           menupanel.reset_confirm_charges(instance)
           if mode == 1 then instance.hide() end
-          item.action()
+          item.action("action_"..instance.trigger)
         end
       else
         if mode == 1 then instance.hide() end
-        item.action()
+        item.action("action_"..instance.trigger)
       end
     end
   end
@@ -218,6 +225,7 @@ function menupanel.create(args)
       end},
       {{}, "Return", function()
         if instance.focused > 0 then
+          instance.trigger = "keyboard"
           menupanel.action(instance, instance.args.items[instance.focused], 1)
         else
           menupanel.hide2(instance)
@@ -225,6 +233,7 @@ function menupanel.create(args)
       end},
       {{modkey}, "Return", function()
         if instance.focused > 0 then
+          instance.trigger = "keyboard"
           menupanel.action(instance, instance.args.items[instance.focused], 2)
         else
           menupanel.hide2(instance)
@@ -241,18 +250,21 @@ function menupanel.create(args)
 
   -- Methods
 
-  function instance.show(samepos)
+  function instance.show(mode)
     menupanel.hide_all(instance)
     instance.widget.screen = awful.screen.focused()
     instance.widget.visible = true
     menupanel.reset_confirm_charges(instance)
 
-    local w = mouse.current_widget
-    if w ~= nil and w.xindex ~= nil then
-      instance.focused = w.xindex
-    elseif not samepos then
-      instance.focused = 1
+    local index = instance.focused
+
+    if mode == "keyboard" then
+      index = 0
+    elseif mode == "mouse" or mode == "action_mouse" then
+      index = menupanel.get_button_under_cursor(instance)
     end
+
+    instance.focused = index
 
     if instance.focused == 0 then
       menupanel.focus_hide_button(instance)
@@ -263,10 +275,9 @@ function menupanel.create(args)
     instance.keygrabber:start()
   end
 
-  function instance.show_with_delay(delay)
-    delay = delay or 0.02
-    gears.timer.start_new(delay, function()
-      instance.show()
+  function instance.start(mode)
+    gears.timer.start_new(0.025, function()
+      instance.show(mode)
     end)
   end
 
@@ -306,6 +317,7 @@ function menupanel.create(args)
     local textbox = menupanel.create_textbox(item.name)
 
     textbox:connect_signal("button::press", function(_, _, _, mode)
+      instance.trigger = "mouse"
       menupanel.action(instance, item, mode)
     end)
 

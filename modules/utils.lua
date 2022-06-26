@@ -109,8 +109,8 @@ function startswith(s1, s2)
   return string.sub(s1, 1, string.len(s2)) == s2
 end
 
-function show_menupanel()
-  menupanels.main.show()
+function show_menupanel(mode)
+  menupanels.main.start(mode)
 end
 
 function get_context_client()
@@ -119,7 +119,7 @@ end
 
 function show_task_context(c)
   context_client = c
-  menupanels.context.show_with_delay()
+  menupanels.context.start("mouse")
 end
 
 function show_client_title(c)
@@ -200,10 +200,6 @@ end
 
 function singlespawn(program)
   awful.spawn.single_instance(program)
-end
-
-function show_main_menu()
-  menupanels.main.show() 
 end
 
 function width_factor(n)
