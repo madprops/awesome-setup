@@ -13,6 +13,14 @@ function menupanel.get_button_under_cursor(instance)
   end
 end
 
+function menupanel.set_screen(instance, mode)
+  if string.find(mode, "keyboard") then
+    instance.widget.screen = instance.args.primary_screen
+  elseif string.find(mode, "mouse") then
+    instance.widget.screen = awful.screen.focused()
+  end
+end
+
 function menupanel.speak(txt)
   awful.util.spawn_with_shell('pkill espeak; espeak "'..txt..'"', false)
 end
@@ -183,6 +191,7 @@ function menupanel.create(args)
   args.fontcolor = args.fontcolor or "#B8bABC"
   args.bordercolor = args.bordercolor or "#485767"
   args.bordercolor2 = args.bordercolor2 or "#11A8CD"
+  args.primary_screen = args.primary_screen or 1
 
   local instance = {}
   instance.args = args
@@ -254,9 +263,9 @@ function menupanel.create(args)
 
   function instance.show(mode)
     menupanel.hide_all(instance)
-    instance.widget.screen = awful.screen.focused()
-    instance.widget.visible = true
+    menupanel.set_screen(instance, mode)
     menupanel.reset_confirm_charges(instance)
+    instance.widget.visible = true
 
     local index = 1
 
@@ -264,7 +273,7 @@ function menupanel.create(args)
       index = instance.focused
     elseif mode == "keyboard" then
       index = 0
-    elseif mode == "mouse" or mode == "action_mouse" or mode == "parent_mouse" then
+    elseif string.find(mode, "mouse") then
       index = menupanel.get_button_under_cursor(instance)
     end
 
