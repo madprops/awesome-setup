@@ -60,7 +60,7 @@ end
 
 function menupanel.show_parent(instance)
   if instance.args.parent ~= nil then
-    instance.args.parent.show("parent")
+    instance.args.parent.show("parent_"..instance.trigger)
   end
 end
 
@@ -224,25 +224,27 @@ function menupanel.create(args)
         end
       end},
       {{}, "Return", function()
+        instance.trigger = "keyboard"
         if instance.focused > 0 then
-          instance.trigger = "keyboard"
           menupanel.action(instance, instance.args.items[instance.focused], 1)
         else
           menupanel.hide2(instance)
         end
       end},
       {{modkey}, "Return", function()
+        instance.trigger = "keyboard"
         if instance.focused > 0 then
-          instance.trigger = "keyboard"
           menupanel.action(instance, instance.args.items[instance.focused], 2)
         else
           menupanel.hide2(instance)
         end
       end},
       {{}, "Escape", function() 
+        instance.trigger = "keyboard"
         menupanel.hide2(instance)
       end},
       {{modkey}, "Escape", function() 
+        instance.trigger = "keyboard"
         menupanel.hide_all(instance)
       end}
     }
@@ -258,11 +260,11 @@ function menupanel.create(args)
 
     local index = 1
 
-    if mode == "parent" then
+    if mode == "parent_keyboard" then
       index = instance.focused
     elseif mode == "keyboard" then
       index = 0
-    elseif mode == "mouse" or mode == "action_mouse" then
+    elseif mode == "mouse" or mode == "action_mouse" or mode == "parent_mouse" then
       index = menupanel.get_button_under_cursor(instance)
     end
 
@@ -346,6 +348,7 @@ function menupanel.create(args)
     local textbox = menupanel.create_textbox(" x ")
 
     textbox:connect_signal("button::press", function(_, _, _, mode)
+      instance.trigger = "mouse"
       menupanel.hide2(instance)
     end)
   
