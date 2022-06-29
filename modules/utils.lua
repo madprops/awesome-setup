@@ -1,11 +1,13 @@
 local awful = require("awful")
 local naughty = require("naughty")
 local wibox = require("wibox")
+local gears = require("gears")
 local menupanels = require("modules/menupanels")
 local lockdelay = require("madwidgets/lockdelay/lockdelay")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local default_player = "audacious"
 local context_client
+local auto_suspend_timer
 
 function msg(txt)
   naughty.notify({text = " " .. tostring(txt) .. " "})
@@ -310,4 +312,25 @@ end
 
 function sleep(n)
   os.execute("sleep " .. tonumber(n))
+end
+
+function do_stop_auto_suspend()
+  if auto_suspend_timer ~= nil then
+    auto_suspend_timer:stop()
+  end
+end
+
+function auto_suspend(m)
+  do_stop_auto_suspend()
+
+  auto_suspend_timer = gears.timer.start_new(m * 60, function()
+    lockscreen(true)
+  end)
+
+  msg("System will auto-suspend in "..m.." minutes")
+end
+
+function cancel_auto_suspend()
+  do_stop_auto_suspend()
+  msg("Auto-suspend cancelled")
 end

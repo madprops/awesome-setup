@@ -70,11 +70,6 @@ menupanels.log = menupanel.create({
       needs_confirm = true,
     },
     {
-      name = "Bath",
-      action = function() add2log("Bath") end,
-      needs_confirm = true,
-    },
-    {
       name = "Meds",
       action = function() add2log("Meds") end,
       needs_confirm = true,
@@ -99,8 +94,7 @@ menupanels.leave = menupanel.create({
     },
     {
       name = "Suspend",
-      action = function() lockscreen(true) end,
-      needs_confirm = true,
+      action = function(trigger) menupanels.suspend.show(trigger) end,
     },
     {
       name = "Reboot",
@@ -112,6 +106,38 @@ menupanels.leave = menupanel.create({
       action = function() shellspawn("shutdown now") end,
       needs_confirm = true,
     },
+  }
+})
+
+menupanels.suspend = menupanel.create({
+  placement = placement,
+  height = height,
+  items = {
+    {
+      name = "Now",
+      action = function() lockscreen(true) end,
+      needs_confirm = true,
+    },
+    {
+      name = "Auto (5 minutes)",
+      action = function() auto_suspend(5) end,
+      needs_confirm = true,
+    },
+    {
+      name = "Auto (30 minutes)",
+      action = function() auto_suspend(30) end,
+      needs_confirm = true,
+    },
+    {
+      name = "Auto (60 minutes)",
+      action = function() auto_suspend(60) end,
+      needs_confirm = true,
+    },
+    {
+      name = "Cancel Auto",
+      action = function() cancel_auto_suspend() end,
+      needs_confirm = true,
+    }           
   }
 })
 
