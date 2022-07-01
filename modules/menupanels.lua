@@ -9,7 +9,7 @@ menupanels.utils = {}
 
 function menupanels.utils.showinfo(text)
   menupanels.info.update_item(1, text)
-  menupanels.info.show_with_delay()
+  menupanels.info.start("mouse")
 end
 
 menupanels.main = menupanel.create({
