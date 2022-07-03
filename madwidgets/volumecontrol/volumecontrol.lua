@@ -76,10 +76,6 @@ function volumecontrol.decrease()
   end)
 end
 
-function volumecontrol.max()
-  volumecontrol.change_volume(volumecontrol.max_volume)
-end
-
 function volumecontrol.mute()
   volumecontrol.get_volume(function(vol)
     if vol == 0 then
@@ -110,6 +106,7 @@ function volumecontrol.create(args)
   args.fontcolor = args.fontcolor or "#B8BABC"
   args.left = args.left or ""
   args.right = args.right or ""
+  args.on_click = args.on_click or function() end
 
   instance.textbox_widget = wibox.widget {
     markup = args.left..volumecontrol.volstring("---")..args.right,
@@ -129,7 +126,7 @@ function volumecontrol.create(args)
 
   instance.widget:connect_signal("button::press", function(a, b, c, button, mods)
     if button == 1 then
-      volumecontrol.max()
+      instance.args.on_click()
     elseif button == 2 then
       volumecontrol.mute()
     elseif button == 4 then

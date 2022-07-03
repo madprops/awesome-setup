@@ -19,7 +19,8 @@ right = {
     wibox.widget.systray(),
 
     volumecontrol.create({
-        left = " ", right = " "
+        left = " ", right = " ",
+        on_click = function() do_something() end
     }),
 
     mytextclock
@@ -52,11 +53,6 @@ volumecontrol.increase()
 
 volumecontrol.decrease()
 >Decrease volume by a % step
-
----
-
-volumecontrol.max()
->Sets volume to 100%
 
 ---
 

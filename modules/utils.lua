@@ -334,3 +334,7 @@ function cancel_auto_suspend()
   do_stop_auto_suspend()
   msg("Auto-suspend cancelled")
 end
+
+function show_audio_controls()
+  spawn("pavucontrol")
+end

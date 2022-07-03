@@ -168,7 +168,11 @@ awful.screen.connect_for_each_screen(function(s)
       sysmonitor_widget(tmp_widget),
       sysmonitor_widget_net(net_dw_widget),
       sysmonitor_widget_net(net_up_widget),
-      volumecontrol.create({bgcolor = beautiful.bg_normal, left = " ", right = " "}),
+      volumecontrol.create({
+        bgcolor = beautiful.bg_normal, 
+        left = " ", right = " ",
+        on_click = function() show_audio_controls() end
+      }),
       multibutton.create({
         widget = wibox.widget.textclock(" %a-%d-%b %I:%M:%S %P ", 1),
         on_click = function()
