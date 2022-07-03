@@ -19,6 +19,7 @@ right = {
     wibox.widget.systray(),
 
     volumecontrol.create({
+        bgcolor = beautiful.bg_normal,
         left = " ", right = " ",
         on_click = function() do_something() end
     }),
