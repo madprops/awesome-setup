@@ -259,7 +259,7 @@ function space()
 end
 
 function show_clipboard()
-  spawn("python " .. os.getenv("HOME") .. "/code/clipton/clipton.py")
+  spawn("clipton")
 end
 
 function next_tag()
