@@ -6,10 +6,10 @@ local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local bindings = require("modules/bindings")
 
-local primary_screen = 1
 local nicegreen = "#99EDC3"
 local niceblue = "#9BBCDE"
 
+primary_screen = 1
 volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 
 function sysmonitor_widget(widget)

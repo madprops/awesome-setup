@@ -10,7 +10,7 @@ local context_client
 local auto_suspend_timer
 
 function msg(txt)
-  naughty.notify({text = " " .. tostring(txt) .. " "})
+  naughty.notify({text = " " .. tostring(txt) .. " ", screen = primary_screen})
 end
 
 function prev_client()
