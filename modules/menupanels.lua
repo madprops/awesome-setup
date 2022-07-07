@@ -38,15 +38,15 @@ menupanels.applications = menupanel.create({
   items = {
     {
       name = "Firefox Dev 1",
-      action = function() spawn("firefox -P dev1") end,
+      action = function() spawn("firefox-developer-edition -P dev1") end,
     },
     {
       name = "Firefox Dev 2",
-      action = function() spawn("firefox -P dev2") end,
+      action = function() spawn("firefox-developer-edition -P dev2") end,
     },
     {
       name = "Firefox Dev 3",
-      action = function() spawn("firefox -P dev3") end,
+      action = function() spawn("firefox-developer-edition -P dev3") end,
     },
     {
       name = "Keyboard",
