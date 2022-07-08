@@ -337,3 +337,10 @@ end
 function show_audio_controls()
   spawn("pavucontrol")
 end
+
+function move_to_tag(t)
+  if client.focus then
+    client.focus:move_to_tag(t)
+    t:view_only()
+  end
+end
