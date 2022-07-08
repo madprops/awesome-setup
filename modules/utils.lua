@@ -5,7 +5,6 @@ local gears = require("gears")
 local menupanels = require("modules/menupanels")
 local lockdelay = require("madwidgets/lockdelay/lockdelay")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
-local default_player = "audacious"
 local context_client
 local auto_suspend_timer
 
@@ -84,7 +83,7 @@ local media_lock = lockdelay.create({action=function(cmd)
 end, delay=250})
 
 function media_play_pause()
-  media_lock.trigger("playerctl -p ".. default_player .. " play-pause")
+  media_lock.trigger("playerctl -p audacious play-pause")
 end
 
 function randstring()
@@ -245,13 +244,13 @@ function clients()
 end
 
 function system_monitor()
-  spawn("konsole -e htop -d 20")
+  spawn("alacritty -e htop -d 20")
 end
 
 -- To run nethogs without sudo you need to do this once:
 -- sudo setcap "cap_net_admin,cap_net_raw=ep" /usr/bin/nethogs
 function network_monitor()
-  spawn("konsole -e nethogs")
+  spawn("alacritty -e nethogs")
 end
 
 function space()
