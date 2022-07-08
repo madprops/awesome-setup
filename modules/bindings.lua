@@ -212,6 +212,14 @@ bindings.clientkeys = gears.table.join(
   awful.key({modkey}, "#89", function(c)
     if not c.xkeys then return end
     snap(c, "corner", awful.placement.bottom_right)
+  end),
+
+  awful.key({modkey, "Control"}, "Left", function()
+    prev_tag(true)
+  end),  
+
+  awful.key({modkey, "Control"}, "Right", function()
+    next_tag(true)
   end)
 )
 

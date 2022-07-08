@@ -261,16 +261,40 @@ function show_clipboard()
   spawn("clipton")
 end
 
-function next_tag()
-  if mytag().index < #myscreen().tags then
-    awful.tag.viewnext(myscreen())
+function switch_tag(direction, sticky)
+  local index = mytag().index
+  local num_tags = #myscreen().tags
+
+  local ok = (direction == "next" and index < num_tags) 
+          or (direction == "prev" and index > 1)
+
+  if ok then
+    local new_index
+
+    if direction == "next" then 
+      new_index = index + 1
+    elseif direction == "prev" then
+      new_index = index - 1
+    end
+
+    local new_tag = myscreen().tags[new_index]
+
+    if sticky then
+      if client.focus and client.focus.screen == myscreen() then
+        client.focus:move_to_tag(new_tag)
+      end
+    end
+
+    new_tag:view_only()
   end
 end
 
-function prev_tag()
-  if mytag().index > 1 then
-    awful.tag.viewprev(myscreen())
-  end
+function next_tag(sticky)
+  switch_tag("next", sticky)
+end
+
+function prev_tag(sticky)
+  switch_tag("prev", sticky)
 end
 
 function next_tag_all()
