@@ -108,6 +108,18 @@ awful.rules.rules = {
       screen = screen_right
     }
   },
+  -- Other Rules
+  {
+    rule = {instance = "Alacritty"},
+    properties = {
+      placement = function(c)
+        awful.placement.centered(c, {honor_workarea = true})
+      end,
+      width = width_factor(0.6),
+      height = height_factor(0.6),
+      maximized = false,
+    }
+  },  
 }
 
 function check_title_rules(c)
