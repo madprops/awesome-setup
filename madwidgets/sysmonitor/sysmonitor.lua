@@ -1,8 +1,8 @@
 local awful = require("awful")
 local wibox = require("wibox")
 local gears = require("gears")
-local beautiful = require("beautiful")
 local utils = require("madwidgets/utils")
+local multibutton = require("madwidgets/multibutton/multibutton")
 
 local sysmonitor = {}
 
@@ -27,25 +27,26 @@ function sysmonitor.update_string(instance, s, u)
     return
   end
 
-  u = u or "?"  
-  local new_text = instance.args.left..t..":"..s..u..instance.args.right
+  u = u or "?" 
+
+  local new_text = t..":"..s..u
 
   if instance.current_text ~= new_text then
-    instance.textbox_widget.text = new_text
+    instance.text_widget.text = new_text
     instance.current_text = new_text
   end
 end
 
 function sysmonitor.check_alert(instance, n)
   if n >= instance.args.alert_max then
-    if instance.args.current_color ~= instance.args.alertcolor then
+    if instance.current_color ~= instance.args.alertcolor then
       instance.widget.fg = instance.args.alertcolor
-      instance.args.current_color = instance.args.alertcolor
+      instance.current_color = instance.args.alertcolor
     end
   else
-    if instance.args.current_color ~= instance.args.fontcolor then
+    if instance.current_color ~= instance.args.fontcolor then
       instance.widget.fg = instance.args.fontcolor
-      instance.args.current_color = instance.args.fontcolor
+      instance.current_color = instance.args.fontcolor
     end
   end
 end
@@ -122,14 +123,8 @@ end
 
 function sysmonitor.create(args)
   args = args or {}
-  args.bgcolor = args.bgcolor or beautiful.bg_normal
-  args.fontcolor = args.fontcolor or beautiful.fg_normal
   args.alertcolor = args.alertcolor or "#E2242C"
-  args.left = args.left or ""
-  args.right = args.right or ""
   args.timeout = args.timeout or 1
-  args.current_color = ""
-  args.current_text = ""
 
   if args.mode == "cpu" then
     args.alert_max = args.alert_max or 70
@@ -150,20 +145,18 @@ function sysmonitor.create(args)
 
   local instance = {}
   instance.args = args
+  instance.current_color = ""
+  instance.current_text = ""
 
-  instance.textbox_widget = wibox.widget {
-    markup = args.left.."---:---%"..args.right,
+  instance.text_widget = wibox.widget {
+    markup = "---:---%",
     align  = "center",
     valign = "center",
     widget = wibox.widget.textbox
   }
 
-  instance.widget = wibox.widget {
-    instance.textbox_widget,
-    widget = wibox.container.background,
-    bg = args.bgcolor,
-    fg = args.fontcolor
-  }
+  args.widget = instance.text_widget
+  instance.widget = multibutton.create(args).widget
 
   instance.timer = gears.timer {
     timeout = args.timeout,

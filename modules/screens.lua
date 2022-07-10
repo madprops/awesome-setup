@@ -12,34 +12,29 @@ local niceblue = "#9BBCDE"
 primary_screen = 1
 volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 
-function sysmonitor_widget(widget)
-  return multibutton.create({
-    widget = widget,
-    on_click = function()
-      system_monitor()
-    end,
-    on_wheel_down = function()
-      decrease_volume()
-    end,
-    on_wheel_up = function()
-      increase_volume()
-    end
-  })
-end
+function sysmonitor_widget(mode, fontcolor)
+  local args = {}
 
-function sysmonitor_widget_net(widget)
-  return multibutton.create({
-    widget = widget,
-    on_click = function()
-      network_monitor()
-    end,
-    on_wheel_down = function()
-      decrease_volume()
-    end,
-    on_wheel_up = function()
-      increase_volume()
-    end
-  })
+  args.mode = mode
+
+  args.on_click = function()
+    system_monitor()
+  end
+
+  args.on_wheel_down = function()
+    decrease_volume()
+  end
+
+  args.on_wheel_up = function()
+    increase_volume()
+  end
+
+  args.fontcolor = fontcolor
+  
+  args.left = " "
+  args.right = " " 
+
+  return sysmonitor.create(args)
 end
 
 awful.screen.connect_for_each_screen(function(s)
@@ -145,32 +140,17 @@ awful.screen.connect_for_each_screen(function(s)
     space()
   }
 
-  if s.index == primary_screen then
-    local cpu_widget = sysmonitor.create({mode = "cpu", 
-      fontcolor = nicegreen, left = " ", right = " "}).widget
-
-    local ram_widget = sysmonitor.create({mode = "ram", 
-      fontcolor = nicegreen, left = " ", right = " "}).widget
-
-    local tmp_widget = sysmonitor.create({mode = "tmp", 
-      fontcolor = nicegreen, left = " ", right = " "}).widget
-    local net_dw_widget = sysmonitor.create({mode = "net_download", 
-      fontcolor = niceblue, left = " ", right = " "}).widget
-
-    local net_up_widget = sysmonitor.create({mode = "net_upload", 
-      fontcolor = niceblue, left = " ", right = " "}).widget
-    
+  if s.index == primary_screen then    
     right = {
       layout = wibox.layout.fixed.horizontal(),
       space(),
       systray,
-      sysmonitor_widget(cpu_widget),
-      sysmonitor_widget(ram_widget),
-      sysmonitor_widget(tmp_widget),
-      sysmonitor_widget_net(net_dw_widget),
-      sysmonitor_widget_net(net_up_widget),
+      sysmonitor_widget("cpu", nicegreen),
+      sysmonitor_widget("ram", nicegreen),
+      sysmonitor_widget("tmp", nicegreen),
+      sysmonitor_widget("net_download", niceblue),
+      sysmonitor_widget("net_upload", niceblue),
       volumecontrol.create({
-        bgcolor = beautiful.bg_normal, 
         left = " ", right = " ",
         on_click = function() show_audio_controls() end
       }),

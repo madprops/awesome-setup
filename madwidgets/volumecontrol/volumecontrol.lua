@@ -2,6 +2,7 @@ local awful = require("awful")
 local wibox = require("wibox")
 local gears = require("gears")
 local utils = require("madwidgets/utils")
+local multibutton = require("madwidgets/multibutton/multibutton")
 
 local volumecontrol = {}
 volumecontrol.max_volume = 100
@@ -14,7 +15,7 @@ function volumecontrol.update_volume(vol)
   for i, instance in ipairs(instances) do
     if instance.shown_volume ~= vol then
       local s = volumecontrol.volstring(utils.numpad(vol))
-      instance.textbox_widget.text = instance.args.left..s..instance.args.right
+      instance.text_widget.text = s
       instance.shown_volume = vol
     end
   end
@@ -102,40 +103,35 @@ function volumecontrol.create(args)
 
   local instance = {}
   instance.args = args
-  args.bgcolor = args.bgcolor or "#2B303B"
-  args.fontcolor = args.fontcolor or "#B8BABC"
-  args.left = args.left or ""
-  args.right = args.right or ""
   args.on_click = args.on_click or function() end
 
-  instance.textbox_widget = wibox.widget {
-    markup = args.left..volumecontrol.volstring("---")..args.right,
+  instance.text_widget = wibox.widget {
+    markup = volumecontrol.volstring("---"),
     align  = "center",
     valign = "center",
     widget = wibox.widget.textbox
   }
 
-  instance.widget = wibox.widget {
-    instance.textbox_widget,
-    widget = wibox.container.background,
-    bg = args.bgcolor,
-    fg = args.fontcolor
-  }
+  args.widget = instance.text_widget
+  
+  args.on_click = function()
+    instance.args.on_click()
+  end
 
+  args.on_middle_click = function()
+    volumecontrol.mute()
+  end
+
+  args.on_wheel_down = function()
+    volumecontrol.decrease()
+  end
+
+  args.on_wheel_up = function()
+    volumecontrol.increase()
+  end
+
+  instance.widget = multibutton.create(args).widget
   instance.shown_volume = -1
-
-  instance.widget:connect_signal("button::press", function(a, b, c, button, mods)
-    if button == 1 then
-      instance.args.on_click()
-    elseif button == 2 then
-      volumecontrol.mute()
-    elseif button == 4 then
-      volumecontrol.increase()  
-    elseif button == 5 then
-      volumecontrol.decrease()
-    end
-  end)
-
   table.insert(instances, instance)
 
   if #instances == 1 then

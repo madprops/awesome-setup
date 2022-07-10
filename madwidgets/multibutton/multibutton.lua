@@ -1,4 +1,5 @@
 local wibox = require("wibox")
+local beautiful = require("beautiful")
 
 local multibutton = {}
 
@@ -11,34 +12,68 @@ function multibutton.create(args)
   args.on_wheel_down = args.on_wheel_down or function() end
   args.on_mouse_enter = args.on_mouse_enter or function() end
   args.on_mouse_leave = args.on_mouse_leave or function() end
+  args.bgcolor = args.bgcolor or beautiful.bg_normal
+  args.fontcolor = args.fontcolor or beautiful.fg_normal
+  args.left = args.left or ""
+  args.right = args.right or ""
 
   local instance = {}
   instance.args = args
 
-  if args.widget then
-    instance.widget = args.widget
-  elseif args.text then
-    instance.textbox_widget = wibox.widget {
+  local left = {
+    layout = wibox.layout.fixed.horizontal,    
+    wibox.widget {
       align  = "center",
       valign = "center",
-      text = args.text,
+      text = args.left,
       widget = wibox.widget.textbox
     }
+  }
 
-    if args.bgcolor and args.fontcolor then
-      instance.widget = wibox.widget {
-        instance.textbox_widget,
-        widget = wibox.container.background,
-        bg = args.bgcolor,
-        fg = args.fontcolor
-      }
-    else
-      instance.widget = instance.textbox_widget
-    end
-  
+  local right = {
+    layout = wibox.layout.fixed.horizontal,    
+    wibox.widget {
+      align  = "center",
+      valign = "center",
+      text = args.right,
+      widget = wibox.widget.textbox
+    }
+  }
+
+  local center
+
+  if args.widget then
+    center = {
+      layout = wibox.layout.fixed.horizontal,
+      args.widget
+    }
+  elseif args.text then
+    center = {
+      layout = wibox.layout.fixed.horizontal,
+      wibox.widget {
+        align  = "center",
+        valign = "center",
+        text = args.text,
+        widget = wibox.widget.textbox
+      }      
+    }
+    
   else
     return {}
   end
+
+  instance.widget = wibox.widget {
+    widget = wibox.container.background,
+    bg = args.bgcolor,
+    fg = args.fontcolor
+  }    
+
+  instance.widget:setup {
+    layout = wibox.layout.align.horizontal,
+    left,
+    center,
+    right
+  }  
   
   instance.widget:connect_signal("button::press", function(a, b, c, button, mods)
     if button == 1 then

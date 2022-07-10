@@ -6,8 +6,6 @@ local menupanels = require("modules/menupanels")
 local lockdelay = require("madwidgets/lockdelay/lockdelay")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local context_client
-local auto_suspend_timer
-local auto_suspend_started = 0
 
 function msg(txt)
   naughty.notify({text = " " .. tostring(txt) .. " ", screen = primary_screen})
@@ -336,46 +334,6 @@ end
 
 function sleep(n)
   os.execute("sleep " .. tonumber(n))
-end
-
-function do_stop_auto_suspend()
-  if auto_suspend_timer ~= nil then
-    auto_suspend_timer:stop()
-    auto_suspend_started = 0
-  end
-end
-
-function auto_suspend(m)
-  do_stop_auto_suspend()
-
-  auto_suspend_timer = gears.timer.start_new(m * 60, function()
-    lockscreen(true)
-  end)
-
-  auto_suspend_started = os.time()
-  msg("System will auto-suspend in "..m.." minutes")
-end
-
-function check_auto_suspend()
-  if auto_suspend_timer == nil or auto_suspend_started == 0 then
-    msg("Auto-suspend is not active")
-    return
-  end
-
-  d = os.time() - auto_suspend_started
-  r = auto_suspend_timer.timeout - d
-  m = math.ceil(r / 60)
-  msg("Suspending in "..m.." minutes")
-end
-
-function cancel_auto_suspend()
-  if auto_suspend_timer == nil or auto_suspend_started == 0 then
-    msg("Auto-suspend is not active")
-    return
-  end
-  
-  do_stop_auto_suspend()
-  msg("Auto-suspend cancelled")
 end
 
 function show_audio_controls()
