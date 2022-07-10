@@ -119,22 +119,31 @@ menupanels.suspend = menupanel.create({
       needs_confirm = true,
     },
     {
-      name = "Auto (5 minutes)",
+      name = "5 minutes",
       action = function() auto_suspend(5) end,
       needs_confirm = true,
     },
     {
-      name = "Auto (30 minutes)",
+      name = "30 minutes",
       action = function() auto_suspend(30) end,
       needs_confirm = true,
     },
     {
-      name = "Auto (60 minutes)",
+      name = "60 minutes",
       action = function() auto_suspend(60) end,
       needs_confirm = true,
     },
     {
-      name = "Cancel Auto",
+      name = "120 minutes",
+      action = function() auto_suspend(120) end,
+      needs_confirm = true,
+    },
+    {
+      name = "Check",
+      action = function() check_auto_suspend() end,
+    },
+    {
+      name = "Cancel",
       action = function() cancel_auto_suspend() end,
       needs_confirm = true,
     }           
