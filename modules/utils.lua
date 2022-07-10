@@ -346,3 +346,11 @@ function move_to_tag(t)
     t:view_only()
   end
 end
+
+function auto_suspend(minutes)
+  autotimer.start("Suspend", function() lockscreen(true) end, minutes)
+end
+
+function cancel_auto_suspend()
+  autotimer.cancel()
+end

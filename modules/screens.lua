@@ -10,7 +10,9 @@ local nicegreen = "#99EDC3"
 local niceblue = "#9BBCDE"
 
 primary_screen = 1
+
 volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
+autotimer = require("madwidgets/autotimer/autotimer")
 
 function sysmonitor_widget(mode, fontcolor)
   local args = {}
@@ -145,6 +147,7 @@ awful.screen.connect_for_each_screen(function(s)
       layout = wibox.layout.fixed.horizontal(),
       space(),
       systray,
+      autotimer.create({minutes = 1, space_left = " ", space_right = " "}),
       sysmonitor_widget("cpu", nicegreen),
       sysmonitor_widget("ram", nicegreen),
       sysmonitor_widget("tmp", nicegreen),

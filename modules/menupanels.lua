@@ -139,10 +139,6 @@ menupanels.suspend = menupanel.create({
       needs_confirm = true,
     },
     {
-      name = "Check",
-      action = function() check_auto_suspend() end,
-    },
-    {
       name = "Cancel",
       action = function() cancel_auto_suspend() end,
       needs_confirm = true,
