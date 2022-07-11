@@ -158,7 +158,7 @@ awful.screen.connect_for_each_screen(function(s)
         on_click = function() show_audio_controls() end
       }),
       multibutton.create({
-        widget = wibox.widget.textclock(" %a-%d-%b %I:%M:%S %P ", 1),
+        widget = wibox.widget.textclock("%a-%d-%b %I:%M:%S %P", 1),
         on_click = function()
           calendar()
         end,
@@ -167,7 +167,8 @@ awful.screen.connect_for_each_screen(function(s)
         end,
         on_wheel_up = function()
           increase_volume()
-        end
+        end,
+        left = " ", right = " "
       })
     }
   else
