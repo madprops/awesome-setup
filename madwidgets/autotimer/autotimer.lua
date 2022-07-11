@@ -26,6 +26,7 @@ function autotimer.start(name, action, minutes)
   autotimer.name = name
 
   autotimer.timer = gears.timer.start_new(minutes * 60, function()
+    autotimer.do_stop()
     action()
   end)
 
