@@ -48,6 +48,7 @@ end
 function autotimer.clear()
   for i, instance in ipairs(instances) do
     instance.text_widget.text = ""
+    instance.widget.visible = false
   end
 end
 
@@ -61,14 +62,13 @@ function autotimer.update()
   m = math.ceil(r / 60)
 
   for i, instance in ipairs(instances) do
-    instance.text_widget.text = instance.args.space_left..autotimer.name.." in "..m.." mins"..instance.args.space_right
+    instance.widget.visible = true
+    instance.text_widget.text = autotimer.name.." in "..m.." mins"
   end
 end
 
 function autotimer.create(args)
   args = args or {}
-  args.space_left = args.space_left or " "
-  args.space_right = args.space_right or " "
   
   local instance = {}
   instance.args = args
@@ -91,6 +91,7 @@ function autotimer.create(args)
   end
   
   instance.widget = multibutton.create(args).widget
+  instance.widget.visible = false
   table.insert(instances, instance)
   return instance
 end  

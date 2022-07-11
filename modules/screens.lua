@@ -153,7 +153,7 @@ awful.screen.connect_for_each_screen(function(s)
       layout = wibox.layout.fixed.horizontal(),
       space(),
       systray,
-      autotimer.create({minutes = 1, space_left = " ", space_right = " "}),
+      autotimer.create({minutes = 1, left = " ", right = " "}),
       sysmonitor_widget("cpu"),
       sysmonitor_widget("ram"),
       sysmonitor_widget("tmp"),

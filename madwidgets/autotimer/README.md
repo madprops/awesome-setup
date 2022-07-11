@@ -13,7 +13,7 @@ You can use this to perform an action after some minutes.
 A widget can be created to show how many minutes are left.
 
 ```
-autotimer.create({minutes = 30, space_left = " ", space_right = " "}),
+autotimer.create({minutes = 30, left = " ", right = " "}),
 ```
 
 Middle clicking the widget cancels the action.
