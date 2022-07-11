@@ -352,5 +352,5 @@ function auto_suspend(minutes)
 end
 
 function cancel_auto_suspend()
-  autotimer.cancel()
+  autotimer.cancel("Suspend")
 end

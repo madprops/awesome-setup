@@ -13,6 +13,7 @@ primary_screen = 1
 
 volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 autotimer = require("madwidgets/autotimer/autotimer")
+autotimer.create({left = " ", right = " "})
 
 function sysmonitor_widget(mode)
   local args = {}
@@ -153,7 +154,7 @@ awful.screen.connect_for_each_screen(function(s)
       layout = wibox.layout.fixed.horizontal(),
       space(),
       systray,
-      autotimer.create({left = " ", right = " "}),
+      autotimer,
       sysmonitor_widget("cpu"),
       sysmonitor_widget("ram"),
       sysmonitor_widget("tmp"),
