@@ -1,8 +1,4 @@
 ```
-autotimer.create({minutes = 30, space_left = " ", space_right = " "}),
-```
-
-```
 function auto_suspend(minutes)
   autotimer.start("Suspend", function() lockscreen(true) end, minutes)
 end
@@ -15,5 +11,9 @@ end
 You can use this to perform an action after some minutes.
 
 A widget can be created to show how many minutes are left.
+
+```
+autotimer.create({minutes = 30, space_left = " ", space_right = " "}),
+```
 
 Middle clicking the widget cancels the action.
