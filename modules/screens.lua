@@ -14,14 +14,10 @@ primary_screen = 1
 volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 autotimer = require("madwidgets/autotimer/autotimer")
 
-function sysmonitor_widget(mode, fontcolor)
+function sysmonitor_widget(mode)
   local args = {}
 
-  args.mode = mode
-
-  args.on_click = function()
-    system_monitor()
-  end
+  args.mode = mode  
 
   args.on_wheel_down = function()
     decrease_volume()
@@ -31,10 +27,20 @@ function sysmonitor_widget(mode, fontcolor)
     increase_volume()
   end
 
-  args.fontcolor = fontcolor
-  
   args.left = " "
   args.right = " " 
+
+  if mode == "cpu" or mode == "ram" or mode == "tmp" then
+    args.fontcolor = nicegreen
+    args.on_click = function()
+      system_monitor()
+    end
+  elseif mode == "net_download" or mode == "net_upload" then
+    args.fontcolor = niceblue
+    args.on_click = function()
+      network_monitor()
+    end
+  end    
 
   return sysmonitor.create(args)
 end
@@ -148,11 +154,11 @@ awful.screen.connect_for_each_screen(function(s)
       space(),
       systray,
       autotimer.create({minutes = 1, space_left = " ", space_right = " "}),
-      sysmonitor_widget("cpu", nicegreen),
-      sysmonitor_widget("ram", nicegreen),
-      sysmonitor_widget("tmp", nicegreen),
-      sysmonitor_widget("net_download", niceblue),
-      sysmonitor_widget("net_upload", niceblue),
+      sysmonitor_widget("cpu"),
+      sysmonitor_widget("ram"),
+      sysmonitor_widget("tmp"),
+      sysmonitor_widget("net_download"),
+      sysmonitor_widget("net_upload"),
       volumecontrol.create({
         left = " ", right = " ",
         on_click = function() show_audio_controls() end
