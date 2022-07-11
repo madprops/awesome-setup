@@ -82,6 +82,10 @@ function autotimer.create(args)
 
   args.widget = instance.text_widget
 
+  args.on_click = function ()
+    msg("Middle click to cancel")
+  end
+
   args.on_middle_click = function()
     autotimer.cancel()
   end
