@@ -58,11 +58,11 @@ function autotimer.start(name, action, minutes)
   if minutes > 1 then
     local m = math.ceil(minutes)
     local ms = utils.pluralstring(m, "minute", "minutes")
-    utils.msg(name.." in "..m.." "..ms)
+    utils.msg(name..": "..m.." "..ms)
   else
     local s = math.ceil(minutes * 60)
     local ss = utils.pluralstring(s, "second", "seconds")
-    utils.msg(name.." in "..s.." "..ss)
+    utils.msg(name..": "..s.." "..ss)
   end
   autotimer.update()
 end
@@ -90,11 +90,11 @@ function autotimer.update()
     if t > 1 then 
       local m = math.ceil(r / 60)
       local ms = utils.pluralstring(m, "min", "mins")
-      action.text_widget.text = action.name.." in "..m.." "..ms
+      action.text_widget.text = action.name..": "..m.." "..ms
     else
       local s = math.ceil(r)
       local ss = utils.pluralstring(s, "sec", "secs")
-      action.text_widget.text = action.name.." in "..s.." "..ss
+      action.text_widget.text = action.name..": "..s.." "..ss
     end
   end
 end
