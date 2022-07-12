@@ -42,7 +42,7 @@ function utils.isnumber(num)
 end
 
 function utils.pluralstring(n, singular, plural)
-  if n == 1 then 
+  if n >= 1 and n < 2 then 
     return singular 
   else 
     return plural 

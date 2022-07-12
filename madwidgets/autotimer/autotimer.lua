@@ -60,10 +60,10 @@ function autotimer.start(name, action, minutes)
 
   if minutes > 1 then
     u = utils.round(minutes)
-    s = utils.pluralstring(m, "minute", "minutes")
+    s = utils.pluralstring(u, "minute", "minutes")
   else
     u = utils.round(minutes * 60)
-    s = utils.pluralstring(s, "second", "seconds")
+    s = utils.pluralstring(u, "second", "seconds")
   end
 
   utils.msg(name..": "..u.." "..s)
@@ -95,10 +95,10 @@ function autotimer.update()
 
     if t > 1 then 
       u = utils.round(r / 60)
-      s = utils.pluralstring(m, "min", "mins")
+      s = utils.pluralstring(u, "min", "mins")
     else
       u = utils.round(r)
-      s = utils.pluralstring(s, "sec", "secs")
+      s = utils.pluralstring(u, "sec", "secs")
     end
 
     action.text_widget.text = action.name..": "..u.." "..s

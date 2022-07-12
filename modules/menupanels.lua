@@ -85,7 +85,7 @@ menupanels.timer = menupanel.create({
   placement = placement,
   height = height,
   parent = menupanels.main,
-  items = {
+  items = {    
     {
       name = "5 minutes",
       action = function() timer(5) end,
