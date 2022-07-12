@@ -40,4 +40,12 @@ function utils.isnumber(num)
   end
 end
 
+function utils.pluralstring(n, singular, plural)
+  if n == 1 then 
+    return singular 
+  else 
+    return plural 
+  end
+end
+
 return utils

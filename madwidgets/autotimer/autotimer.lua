@@ -1,5 +1,6 @@
 local gears = require("gears")
 local wibox = require("wibox")
+local utils = require("madwidgets/utils")
 local multibutton = require("madwidgets/multibutton/multibutton")
 
 local autotimer = {}
@@ -53,7 +54,8 @@ function autotimer.start(name, action, minutes)
   autotimer.actions[name].widget = multibutton.create(args).widget
   autotimer.widget:add(autotimer.actions[name].widget)
   autotimer.actions[name].date_started = os.time()
-  msg(name.." in "..minutes.." minutes")
+  local ms = utils.pluralstring(minutes, "minute", "minutes")
+  msg(name.." in "..minutes.." "..ms)
   autotimer.update()
 end
 
@@ -77,7 +79,8 @@ function autotimer.update()
     r = action.timer.timeout - d
     m = math.ceil(r / 60)
     
-    action.text_widget.text = action.name.." in "..m.." mins"
+    local ms = utils.pluralstring(m, "min", "mins")
+    action.text_widget.text = action.name.." in "..m.." "..ms
   end
 end
 
