@@ -89,6 +89,7 @@ menupanels.timer = menupanel.create({
     {
       name = "5 minutes",
       action = function() timer(5) end,
+      needs_confirm = true,
     },
     {
       name = "30 minutes",
