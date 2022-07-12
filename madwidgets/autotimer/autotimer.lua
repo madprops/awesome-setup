@@ -55,15 +55,18 @@ function autotimer.start(name, action, minutes)
   autotimer.widget:add(autotimer.actions[name].widget)
   autotimer.actions[name].date_started = os.time()
 
+  local u
+  local s
+
   if minutes > 1 then
-    local m = math.ceil(minutes)
-    local ms = utils.pluralstring(m, "minute", "minutes")
-    utils.msg(name..": "..m.." "..ms)
+    u = utils.round(minutes)
+    s = utils.pluralstring(m, "minute", "minutes")
   else
-    local s = math.ceil(minutes * 60)
-    local ss = utils.pluralstring(s, "second", "seconds")
-    utils.msg(name..": "..s.." "..ss)
+    u = utils.round(minutes * 60)
+    s = utils.pluralstring(s, "second", "seconds")
   end
+
+  utils.msg(name..": "..u.." "..s)
   autotimer.update()
 end
 
@@ -86,16 +89,19 @@ function autotimer.update()
     local d = os.time() - action.date_started
     local r = action.timer.timeout - d
     local t = r / 60
+    
+    local u
+    local s
 
     if t > 1 then 
-      local m = math.ceil(r / 60)
-      local ms = utils.pluralstring(m, "min", "mins")
-      action.text_widget.text = action.name..": "..m.." "..ms
+      u = utils.round(r / 60)
+      s = utils.pluralstring(m, "min", "mins")
     else
-      local s = math.ceil(r)
-      local ss = utils.pluralstring(s, "sec", "secs")
-      action.text_widget.text = action.name..": "..s.." "..ss
+      u = utils.round(r)
+      s = utils.pluralstring(s, "sec", "secs")
     end
+
+    action.text_widget.text = action.name..": "..u.." "..s
   end
 end
 
