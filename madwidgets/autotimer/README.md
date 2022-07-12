@@ -2,15 +2,11 @@
 function auto_suspend(minutes)
   autotimer.start("Suspend", function() suspend() end, minutes)
 end
-
-function cancel_auto_suspend()
-  autotimer.cancel()
-end
 ```
 
-You can use this to perform an action after some minutes.
+Use this to perform an action after some minutes.
 
-A widget can be created to show how many minutes are left.
+A widget has to be created to show how many minutes are left.
 
 First initialize autotimer:
 
@@ -27,4 +23,4 @@ autotimer,
 [widget],
 ```
 
-Middle clicking the widget cancels the actions.
+Middle clicking the widgets cancels the actions.

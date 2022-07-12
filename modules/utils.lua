@@ -355,10 +355,6 @@ function auto_suspend(minutes)
   autotimer.start("Suspend", function() suspend() end, minutes)
 end
 
-function cancel_auto_suspend()
-  autotimer.cancel("Suspend")
-end
-
 function timer(minutes)
   autotimer.start("Timer", function() 
     local u = round(minutes)
