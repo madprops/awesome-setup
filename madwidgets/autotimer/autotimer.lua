@@ -54,8 +54,16 @@ function autotimer.start(name, action, minutes)
   autotimer.actions[name].widget = multibutton.create(args).widget
   autotimer.widget:add(autotimer.actions[name].widget)
   autotimer.actions[name].date_started = os.time()
-  local ms = utils.pluralstring(minutes, "minute", "minutes")
-  utils.msg(name.." in "..minutes.." "..ms)
+
+  if minutes > 1 then
+    local m = math.ceil(minutes)
+    local ms = utils.pluralstring(m, "minute", "minutes")
+    utils.msg(name.." in "..m.." "..ms)
+  else
+    local s = math.ceil(minutes * 60)
+    local ss = utils.pluralstring(s, "second", "seconds")
+    utils.msg(name.." in "..s.." "..ss)
+  end
   autotimer.update()
 end
 
