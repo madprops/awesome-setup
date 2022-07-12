@@ -25,10 +25,6 @@ menupanels.main = menupanel.create({
       action = function(trigger) menupanels.log.show(trigger) end,
     },
     {
-      name = "Timer",
-      action = function(trigger) menupanels.timer.show(trigger) end,
-    },
-    {
       name = "Leave",
       action = function(trigger) menupanels.leave.show(trigger) end,
     },
@@ -76,34 +72,6 @@ menupanels.log = menupanel.create({
     {
       name = "Meds",
       action = function() add2log("Meds") end,
-      needs_confirm = true,
-    }
-  }
-})
-
-menupanels.timer = menupanel.create({
-  placement = placement,
-  height = height,
-  parent = menupanels.main,
-  items = {    
-    {
-      name = "5 minutes",
-      action = function() timer(5) end,
-      needs_confirm = true,
-    },
-    {
-      name = "30 minutes",
-      action = function() timer(30) end,
-      needs_confirm = true,
-    },
-    {
-      name = "60 minutes",
-      action = function() timer(60) end,
-      needs_confirm = true,
-    },
-    {
-      name = "90 minutes",
-      action = function() timer(90) end,
       needs_confirm = true,
     }
   }
