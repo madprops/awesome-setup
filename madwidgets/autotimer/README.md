@@ -1,6 +1,6 @@
 ```
 function auto_suspend(minutes)
-  autotimer.start("Suspend", function() lockscreen(true) end, minutes)
+  autotimer.start("Suspend", function() suspend() end, minutes)
 end
 
 function cancel_auto_suspend()

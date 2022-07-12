@@ -144,6 +144,10 @@ function lockscreen(suspend)
   shellspawn(s .. "i3lock --color=000000 -n")
 end
 
+function suspend()
+  lockscreen(true)
+end
+
 function unlockscreen()
   shellspawn("killall i3lock")
 end
@@ -348,7 +352,7 @@ function move_to_tag(t)
 end
 
 function auto_suspend(minutes)
-  autotimer.start("Suspend", function() lockscreen(true) end, minutes)
+  autotimer.start("Suspend", function() suspend() end, minutes)
 end
 
 function cancel_auto_suspend()

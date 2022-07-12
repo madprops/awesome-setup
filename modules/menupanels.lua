@@ -115,7 +115,7 @@ menupanels.suspend = menupanel.create({
   items = {
     {
       name = "Now",
-      action = function() lockscreen(true) end,
+      action = function() suspend() end,
       needs_confirm = true,
     },
     {
