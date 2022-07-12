@@ -348,11 +348,6 @@ function move_to_tag(t)
 end
 
 function auto_suspend(minutes)
-  autotimer.start("The Thing", function() msg("Hello world") end, 1)
-  autotimer.start("Broom", function() msg(22222) end, 0.2)
-end
-
-function autosuspend(minutes)
   autotimer.start("Suspend", function() lockscreen(true) end, minutes)
 end
 

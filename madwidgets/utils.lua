@@ -1,3 +1,4 @@
+local naughty = require("naughty")
 local utils = {}
 
 function utils.numpad(s)
@@ -46,6 +47,10 @@ function utils.pluralstring(n, singular, plural)
   else 
     return plural 
   end
+end
+
+function utils.msg(txt)
+  naughty.notify({text = " " .. tostring(txt) .. " "})
 end
 
 return utils

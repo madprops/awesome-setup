@@ -7,7 +7,7 @@ local autotimer = {}
 autotimer.actions = {}
 
 function autotimer.do_stop(name)
-  if autotimer.actions[name] == nil then
+  if not autotimer.active(name) then
     return
   end
 
@@ -44,7 +44,7 @@ function autotimer.start(name, action, minutes)
   args.right = autotimer.args.right
 
   args.on_click = function ()
-    msg("Middle click to cancel")
+    utils.msg("Middle click to cancel")
   end
 
   args.on_middle_click = function()
@@ -55,18 +55,18 @@ function autotimer.start(name, action, minutes)
   autotimer.widget:add(autotimer.actions[name].widget)
   autotimer.actions[name].date_started = os.time()
   local ms = utils.pluralstring(minutes, "minute", "minutes")
-  msg(name.." in "..minutes.." "..ms)
+  utils.msg(name.." in "..minutes.." "..ms)
   autotimer.update()
 end
 
 function autotimer.cancel(name)
   if not autotimer.active(name) then
-    msg(name.." is not active")
+    utils.msg(name.." is not active")
     return
   end
   
   autotimer.do_stop(name)
-  msg(name.." cancelled")
+  utils.msg(name.." cancelled")
 end
 
 function autotimer.update()
@@ -75,12 +75,19 @@ function autotimer.update()
       return
     end
     
-    d = os.time() - action.date_started
-    r = action.timer.timeout - d
-    m = math.ceil(r / 60)
-    
-    local ms = utils.pluralstring(m, "min", "mins")
-    action.text_widget.text = action.name.." in "..m.." "..ms
+    local d = os.time() - action.date_started
+    local r = action.timer.timeout - d
+    local t = r / 60
+
+    if t > 1 then 
+      local m = math.ceil(r / 60)
+      local ms = utils.pluralstring(m, "min", "mins")
+      action.text_widget.text = action.name.." in "..m.." "..ms
+    else
+      local s = math.ceil(r)
+      local ss = utils.pluralstring(s, "sec", "secs")
+      action.text_widget.text = action.name.." in "..s.." "..ss
+    end
   end
 end
 
@@ -99,7 +106,7 @@ function autotimer.create(args)
 end
 
 autotimer.update_timer = gears.timer {
-  timeout = 5,
+  timeout = 1,
   call_now = false,
   autostart = true,
   single_shot = false,
