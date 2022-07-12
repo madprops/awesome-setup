@@ -58,7 +58,7 @@ function autotimer.start(name, action, minutes)
   local u
   local s
 
-  if minutes > 1 then
+  if minutes >= 1 then
     u = utils.round(minutes)
     s = utils.pluralstring(u, "minute", "minutes")
   else
@@ -93,7 +93,7 @@ function autotimer.update()
     local u
     local s
 
-    if t > 1 then 
+    if t >= 1 then 
       u = utils.round(r / 60)
       s = utils.pluralstring(u, "min", "mins")
     else
