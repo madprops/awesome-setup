@@ -1,14 +1,16 @@
 local naughty = require("naughty")
 local utils = {}
 
-function utils.numpad(s)
+function utils.numpad(s, n)
   s = utils.round(tonumber(s))
   local ss = s
   
-  if s < 100 then
-    ss = "0"..s
+  if n == 3 then
+    if s < 100 then
+      ss = "0"..s
+    end
   end
-  
+    
   if s < 10 then
     ss = "0"..ss
   end

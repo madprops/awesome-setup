@@ -97,7 +97,7 @@ function sysmonitor.calc_net(instance)
         end
       
         sysmonitor.check_alert(instance, mb)
-        sysmonitor.update_string(instance, utils.numpad(v), u)
+        sysmonitor.update_string(instance, utils.numpad(v, 3), u)
         instance.timer:again()
       end)
     end)
@@ -113,7 +113,7 @@ function sysmonitor.update(instance)
       end
 
       sysmonitor.check_alert(instance, tonumber(o))
-      sysmonitor.update_string(instance, utils.numpad(o))
+      sysmonitor.update_string(instance, utils.numpad(o, 3))
       instance.timer:again()
     end)
   elseif instance.args.mode == "net_download" or instance.args.mode == "net_upload" then

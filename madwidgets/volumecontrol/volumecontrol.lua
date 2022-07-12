@@ -14,7 +14,7 @@ local last_volume = 100
 function volumecontrol.update_volume(vol)
   for i, instance in ipairs(instances) do
     if instance.shown_volume ~= vol then
-      local s = volumecontrol.volstring(utils.numpad(vol))
+      local s = volumecontrol.volstring(utils.numpad(vol, 3))
       instance.text_widget.text = s
       instance.shown_volume = vol
     end

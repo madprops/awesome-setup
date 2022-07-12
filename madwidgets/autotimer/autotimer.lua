@@ -95,13 +95,13 @@ function autotimer.update()
 
     if t >= 1 then 
       u = utils.round(r / 60)
-      s = utils.pluralstring(u, "min", "mins")
+      s = "mins"
     else
       u = utils.round(r)
-      s = utils.pluralstring(u, "sec", "secs")
+      s = "secs"
     end
 
-    action.text_widget.text = action.name..": "..u.." "..s
+    action.text_widget.text = action.name..": "..utils.numpad(u, 2).." "..s
   end
 end
 
