@@ -58,7 +58,10 @@ function autotimer.start(name, action, minutes)
   local u
   local s
 
-  if minutes >= 1 then
+  if minutes >= 60 then
+    u = utils.round_decimal(minutes / 60, 1)
+    s = "hours"
+  elseif minutes >= 1 then
     u = utils.round(minutes)
     s = utils.pluralstring(u, "minute", "minutes")
   else
@@ -93,15 +96,18 @@ function autotimer.update()
     local u
     local s
 
-    if t >= 1 then 
-      u = utils.round(r / 60)
+    if t >= 60 then
+      u = utils.round_decimal(r / 60 / 60, 1)
+      s = "hrs"
+    elseif t >= 1 then 
+      u = utils.numpad(utils.round(r / 60))
       s = "mins"
     else
-      u = utils.round(r)
+      u = utils.numpad(utils.round(r))
       s = "secs"
     end
 
-    action.text_widget.text = action.name..": "..utils.numpad(u, 2).." "..s
+    action.text_widget.text = action.name..": "..u.." "..s
   end
 end
 
