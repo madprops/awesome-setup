@@ -357,20 +357,6 @@ end
 
 function timer(minutes)
   autotimer.start("Timer", function() 
-    local u = round(minutes)
-    local s = pluralstring(u, "minute", "minutes")
-    msg(u.." "..s.." timer ended") 
+    msg("Timer ended") 
   end, minutes)
-end
-
-function pluralstring(n, singular, plural)
-  if n >= 1 and n < 2 then 
-    return singular 
-  else 
-    return plural 
-  end
-end
-
-function round(n)
-  return math.floor(n + 0.5)
 end
