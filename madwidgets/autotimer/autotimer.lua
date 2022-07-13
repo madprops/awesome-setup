@@ -38,6 +38,7 @@ end
 function autotimer.start_counter(name)
   autotimer.start(name)
   autotimer.actions[name].mode = "counter"
+  autotimer.update()
 end
 
 function autotimer.start(name)
