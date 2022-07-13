@@ -1,3 +1,9 @@
+![](https://i.imgur.com/AfhYwS3.jpg)
+
+![](https://i.imgur.com/tDSVpl4.jpg)
+
+![](https://i.imgur.com/y8wtB0S.jpg)
+
 ```lua
 function auto_suspend(minutes)
   autotimer.start("Suspend", function() suspend() end, minutes)
