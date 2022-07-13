@@ -63,7 +63,7 @@ function autotimer.start(name)
   end
 
   args.on_middle_click = function()
-    autotimer.cancel(name)
+    autotimer.stop(name)
   end
 
   autotimer.actions[name].widget = multibutton.create(args).widget
@@ -72,7 +72,7 @@ function autotimer.start(name)
   utils.msg("Started "..name)
 end
 
-function autotimer.cancel(name)
+function autotimer.stop(name)
   if not autotimer.active(name) then
     utils.msg(name.." is not active")
     return

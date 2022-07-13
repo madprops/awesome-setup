@@ -37,4 +37,4 @@ autotimer,
 [widget],
 ```
 
-Middle clicking the widgets cancels the actions.
+Middle clicking the widgets stop the actions.
