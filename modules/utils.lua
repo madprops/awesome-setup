@@ -352,7 +352,7 @@ function move_to_tag(t)
 end
 
 function auto_suspend(minutes)
-  autotimer.start("Suspend", function() suspend() end, minutes)
+  autotimer.start_timer("Suspend", function() suspend() end, minutes)
 end
 
 function timer(minutes)
