@@ -163,7 +163,7 @@ Ctrl + `
 
 Right click on tag
 
->Move window to that tag
+>Move client to that tag
 
 ---
 
