@@ -216,3 +216,11 @@ Double tap the mouse DPI button
 To do this, bind Win + Delete to the DPI button
 
 That's what I do at least, and it's very efficient
+
+---
+
+PrtSc
+
+>Open Spectacle to take a region screenshot
+
+Using Escape to cancel this shows more screenshot options
