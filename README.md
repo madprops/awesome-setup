@@ -17,7 +17,7 @@ I make heavy use of the widgets and libraries that I wrote in "madwidgets".
 You should be able to use madwidgets in other setups too, if you copy the whole thing.
 
 I make heavy use of Rofi in my workflow.
-Since it's easy to show list results of text or get input for commands. It's easy to create a .desktop file in ~/.local/share/applications to make scripts visible.
+Since it's easy to show list results of text or get input for commands. It's easy to create .desktop files in ~/.local/share/applications to make scripts visible.
 
 To use, clone this in ~/.config
 
