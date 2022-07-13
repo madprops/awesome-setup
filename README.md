@@ -211,7 +211,7 @@ Alt + F4
 
 Double tap the mouse DPI button
 
->Close client
+>Close client under cursor
 
 To do this, bind Win + Delete to the DPI button
 
