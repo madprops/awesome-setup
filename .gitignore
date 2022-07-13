@@ -3,6 +3,7 @@
 !.gitignore
 !rc.lua
 !LICENSE
+!README.md
 !/madwidgets/
 !/madwidgets/**
 !/modules/
