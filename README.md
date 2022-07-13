@@ -200,3 +200,19 @@ Click on volume control
 Click on date
 
 >Open the osmo calendar
+
+---
+
+Alt + F4
+
+>Close client
+
+---
+
+Double tap the mouse DPI button
+
+>Close client
+
+To do this, bind Win + Delete to the DPI button
+
+That's what I do at least, and it's very efficient
