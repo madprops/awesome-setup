@@ -94,3 +94,53 @@ Client signals
 >sponge
 
 >onboard
+
+# Some shortcuts
+
+>Win + Backspace
+
+Toggle maximize
+
+>Win + Shift + Backspace
+
+Toggle fullscreen
+
+>Win + Numpad number
+
+Snap to the region represented by the numpad
+
+>Win + \
+
+Move to other monitor
+
+>Win + Mouse wheel
+
+Resize at center
+
+>ScrLk
+
+Show dropdown terminal
+
+>Middle click on bottom left icon
+
+Lock screen
+
+>Win + Spacebar
+
+Open Rofi
+
+>Win + `
+
+Open the main menupanel
+
+>Ctrl + `
+
+Open the clipboard manager
+
+>Right click on tag
+
+Move window to that tag
+
+>Alt + Tab
+
+Show Rofi in altab mode
