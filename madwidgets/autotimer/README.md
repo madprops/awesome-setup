@@ -57,4 +57,4 @@ if __name__ == "__main__": main()
 
 Now call this script somehow to start custom timers.
 
-Use awesome-client to call the timer function.
+What I do is create a .desktop file.
