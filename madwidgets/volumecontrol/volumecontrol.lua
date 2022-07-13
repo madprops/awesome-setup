@@ -114,10 +114,6 @@ function volumecontrol.create(args)
 
   args.widget = instance.text_widget
   
-  args.on_click = function()
-    instance.args.on_click()
-  end
-
   args.on_middle_click = function()
     volumecontrol.mute()
   end
