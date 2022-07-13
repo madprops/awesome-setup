@@ -273,7 +273,7 @@ function menupanel.create(args)
     if mode == "parent_keyboard" then
       index = instance.focused
     elseif mode == "keyboard" then
-      index = 0
+      index = 1
     elseif string.find(mode, "mouse") then
       index = menupanel.get_button_under_cursor(instance)
     end
