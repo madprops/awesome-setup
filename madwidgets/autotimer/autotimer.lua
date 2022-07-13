@@ -11,7 +11,10 @@ function autotimer.do_stop(name)
     return
   end
 
-  autotimer.actions[name].timer:stop()
+  if autotimer.actions[name].mode == "timer" then
+    autotimer.actions[name].timer:stop()
+  end
+
   autotimer.widget:remove_widgets(autotimer.actions[name].widget)
   autotimer.actions[name] = nil
 end
@@ -20,16 +23,27 @@ function autotimer.active(name)
   return autotimer.actions[name] ~= nil
 end
 
-function autotimer.start(name, action, minutes)
-  autotimer.do_stop(name)
-
-  autotimer.actions[name] = {}
-  autotimer.actions[name].name = name
+function autotimer.start_timer(name, action, minutes)
+  autotimer.start(name)
+  autotimer.actions[name].mode = "timer"
   
   autotimer.actions[name].timer = gears.timer.start_new(minutes * 60, function()
     autotimer.do_stop(name)
     action()
   end)
+
+  autotimer.update()
+end
+
+function autotimer.start_counter(name)
+  autotimer.start(name)
+  autotimer.actions[name].mode = "counter"
+end
+
+function autotimer.start(name)
+  autotimer.do_stop(name)
+  autotimer.actions[name] = {}
+  autotimer.actions[name].name = name
 
   autotimer.actions[name].text_widget = wibox.widget {
     text = "",
@@ -44,7 +58,7 @@ function autotimer.start(name, action, minutes)
   args.right = autotimer.args.right
 
   args.on_click = function ()
-    utils.msg("Middle click to cancel")
+    utils.msg("Middle click to stop")
   end
 
   args.on_middle_click = function()
@@ -54,23 +68,7 @@ function autotimer.start(name, action, minutes)
   autotimer.actions[name].widget = multibutton.create(args).widget
   autotimer.widget:add(autotimer.actions[name].widget)
   autotimer.actions[name].date_started = os.time()
-
-  local u
-  local s
-
-  if minutes >= 60 then
-    u = utils.round_decimal(minutes / 60, 1)
-    s = "hours"
-  elseif minutes >= 1 then
-    u = utils.round(minutes)
-    s = utils.pluralstring(u, "minute", "minutes")
-  else
-    u = utils.round(minutes * 60)
-    s = utils.pluralstring(u, "second", "seconds")
-  end
-
-  utils.msg(name..": "..u.." "..s)
-  autotimer.update()
+  utils.msg("Started "..name)
 end
 
 function autotimer.cancel(name)
@@ -80,7 +78,7 @@ function autotimer.cancel(name)
   end
   
   autotimer.do_stop(name)
-  utils.msg(name.." cancelled")
+  utils.msg(name.." stopped")
 end
 
 function autotimer.update()
@@ -89,10 +87,20 @@ function autotimer.update()
       return
     end
     
+    local r
     local d = os.time() - action.date_started
-    local r = action.timer.timeout - d
+
+    if action.mode == "timer" then
+      if (action.timer == nil) then
+        return
+      end
+
+      r = action.timer.timeout - d
+    elseif action.mode == "counter" then
+      r = d
+    end
+
     local t = r / 60
-    
     local u
     local s
 

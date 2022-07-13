@@ -6,11 +6,19 @@
 
 ```lua
 function auto_suspend(minutes)
-  autotimer.start("Suspend", function() suspend() end, minutes)
+  autotimer.start_timer("Suspend", function() suspend() end, minutes)
 end
 ```
 
 Use this to perform an action after some minutes.
+
+Or count upwards:
+
+```lua
+function counter()
+  autotimer.start_counter("My Counter")
+end
+```
 
 A widget has to be created to show how many minutes are left.
 
@@ -30,37 +38,3 @@ autotimer,
 ```
 
 Middle clicking the widgets cancels the actions.
-
-## Example timer tool
-
-First make a lua function:
-
-```lua
-function timer(minutes)
-  autotimer.start("Timer", function() 
-    msg("Timer ended") 
-  end, minutes)
-end
-```
-
-Then make a python script:
-
-```python
-import os
-from subprocess import Popen, PIPE
-
-# Get input information using rofi
-def get_input(prompt: str) -> str:
-  proc = Popen(f"rofi -dmenu -p '{prompt}'", stdout=PIPE, stdin=PIPE, shell=True, text=True)
-  return proc.communicate()[0].strip()
-
-def main() -> None:
-  minutes = get_input("Enter minutes")
-  os.popen(f"awesome-client 'timer({minutes})'").read()
-
-if __name__ == "__main__": main()
-```
-
-Now call this script somehow to start custom timers.
-
-What I do is create a .desktop file.
