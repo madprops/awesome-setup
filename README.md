@@ -95,52 +95,108 @@ Client signals
 
 >onboard
 
+>htop
+
+>nethogs
+
 # Some shortcuts
 
->Win + Backspace
+Win + Backspace
 
-Toggle maximize
+>Toggle maximize
 
->Win + Shift + Backspace
+---
 
-Toggle fullscreen
+Win + Shift + Backspace
 
->Win + Numpad number
+>Toggle fullscreen
 
-Snap to the region represented by the numpad
+---
 
->Win + \
+Win + Numpad number
 
-Move to other monitor
+>Snap to the region represented by the numpad
 
->Win + Mouse wheel
+---
 
-Resize at center
+Win + \
 
->ScrLk
+>Move to other monitor
 
-Show dropdown terminal
+---
 
->Middle click on bottom left icon
+Win + Mouse wheel
 
-Lock screen
+>Resize at center
 
->Win + Spacebar
+---
 
-Open Rofi
+ScrLk
 
->Win + `
+>Toggle dropdown terminal
 
-Open the main menupanel
+---
 
->Ctrl + `
+Middle click on bottom left icon
 
-Open the clipboard manager
+>Lock screen
 
->Right click on tag
+---
 
-Move window to that tag
+Win + Spacebar
 
->Alt + Tab
+>Open Rofi
 
-Show Rofi in altab mode
+---
+
+Win + `
+
+>Open the main menupanel
+
+---
+
+Ctrl + `
+
+>Open the clipboard manager
+
+---
+
+Right click on tag
+
+>Move window to that tag
+
+---
+
+Alt + Tab
+
+>Show Rofi in altab mode
+
+---
+
+Right click tasklist item
+
+>Show a menupanel with actions on that client
+
+---
+
+Click green sysmonitors
+
+>Open htop
+
+---
+
+Click on blue sysmonitors
+
+>Open nethogs
+
+---
+
+Click on volume control
+
+>Open pavucontrol
+
+---
+
+Click on date
+
+>Open the osmo calendar
