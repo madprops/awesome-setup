@@ -227,3 +227,7 @@ PrtSc
 >Open Spectacle to take a region screenshot
 
 Using Escape to cancel this shows more screenshot options
+
+# Notes
+
+If your mouse has topside buttons, you can use them for virtual desktop changing.
