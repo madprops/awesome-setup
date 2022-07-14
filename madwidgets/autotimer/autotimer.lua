@@ -53,10 +53,8 @@ function autotimer.start(name)
     widget = wibox.widget.textbox
   }
 
-  local args = {}
+  local args = utils.deepcopy(autotimer.args)
   args.widget = autotimer.actions[name].text_widget
-  args.left = autotimer.args.left
-  args.right = autotimer.args.right
 
   args.on_click = function ()
     utils.msg("Middle click to stop")
