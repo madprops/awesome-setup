@@ -66,11 +66,11 @@ function snap(c, axis, position)
 end
 
 function launcher()
-  spawn("rofi -modi drun -show drun -show-icons -width 22 -no-click-to-exit")
+  spawn("rofi -modi drun -show drun -show-icons -no-click-to-exit")
 end
 
 function altab()  
-  spawn("rofi -show window -show-icons -width 44 -no-click-to-exit")
+  spawn("rofi -show window -show-icons -no-click-to-exit")
 end
 
 function screenshot()
