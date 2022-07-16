@@ -47,14 +47,6 @@ function utils.isnumber(num)
   end
 end
 
-function utils.pluralstring(n, singular, plural)
-  if n >= 1 and n < 2 then 
-    return singular 
-  else 
-    return plural 
-  end
-end
-
 function utils.msg(txt)
   naughty.notify({text = " " .. tostring(txt) .. " "})
 end
