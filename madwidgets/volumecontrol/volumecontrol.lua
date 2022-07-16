@@ -44,7 +44,7 @@ function volumecontrol.set(vol)
 end
 
 function volumecontrol.set_round(vol)
-  vol = utils.roundmult(tonumber(vol), volumecontrol.steps)
+  vol = utils.round_mult(tonumber(vol), volumecontrol.steps)
 
   if vol > volumecontrol.max_volume or vol < 0 then
     return

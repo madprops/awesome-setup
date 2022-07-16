@@ -26,7 +26,7 @@ function utils.round_decimal(n, p)
   return tonumber(string.format("%."..p.."f", n))
 end
 
-function utils.roundmult(num, mult)
+function utils.round_mult(num, mult)
 	return math.floor(num / mult + 0.5) * mult
 end
 
