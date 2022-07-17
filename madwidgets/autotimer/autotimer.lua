@@ -23,15 +23,17 @@ function autotimer.active(name)
   return autotimer.actions[name] ~= nil
 end
 
-function autotimer.start_timer(name, action, minutes)
-  autotimer.start(name)
-  autotimer.actions[name].mode = "timer"
-  
+function init_timer(name, minutes)
   autotimer.actions[name].timer = gears.timer.start_new(minutes * 60, function()
     autotimer.do_stop(name)
     action()
   end)
+end
 
+function autotimer.start_timer(name, action, minutes)
+  autotimer.start(name)
+  autotimer.actions[name].mode = "timer"
+  init_timer(name, minutes)
   autotimer.update()
 end
 
@@ -57,7 +59,15 @@ function autotimer.start(name)
   args.widget = autotimer.actions[name].text_widget
 
   args.on_click = function ()
-    utils.msg("Middle click to stop")
+    msg("Middle click to stop. Wheel to increase or decrease")
+  end
+
+  args.on_wheel_down = function ()
+    autotimer.add_minutes(name, 5)
+  end
+  
+  args.on_wheel_up = function ()
+    autotimer.add_minutes(name, -5)
   end
 
   args.on_middle_click = function()
@@ -68,6 +78,25 @@ function autotimer.start(name)
   autotimer.widget:add(autotimer.actions[name].widget)
   autotimer.actions[name].date_started = os.time()
   utils.msg("Started "..name)
+end
+
+function autotimer.add_minutes(name, minutes)
+  local action = autotimer.actions[name]
+
+  if action.mode == "timer" then
+    action.timer:stop()
+    local d = os.time() - action.date_started
+    local m = ((action.timer.timeout - d) / 60) + minutes
+    local new_m = utils.round_mult(m, 5)
+    
+    if new_m < 1 then
+      return
+    end
+
+    action.date_started = os.time()
+    init_timer(name, new_m)
+    autotimer.update()
+  end
 end
 
 function autotimer.stop(name)
