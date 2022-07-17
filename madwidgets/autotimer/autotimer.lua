@@ -86,12 +86,26 @@ function autotimer.add_minutes(name, minutes)
   if action.mode == "timer" then
     action.timer:stop()
     local d = os.time() - action.date_started
-    local m = ((action.timer.timeout - d) / 60) + minutes
-    local new_m = utils.round_mult(m, 5)
-    
-    if new_m < 1 then
-      return
+    local s = action.timer.timeout - d
+    local sm = utils.round(s / 60)
+    local m = utils.round_mult(s / 60, 5)
+    local new_m
+
+    if minutes > 0 then
+      if m > sm then
+        new_m = m
+      else
+        new_m = m + minutes
+      end
+    else
+      if m < sm then
+        new_m = m
+      else
+        new_m = m + minutes
+      end
     end
+
+    new_m = math.max(new_m, 1)
 
     action.date_started = os.time()
     init_timer(name, new_m)
