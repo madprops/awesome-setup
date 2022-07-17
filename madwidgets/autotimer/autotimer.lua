@@ -63,11 +63,11 @@ function autotimer.start(name)
   end
 
   args.on_wheel_down = function ()
-    autotimer.add_minutes(name, 5)
+    autotimer.add_minutes(name, -5)
   end
   
   args.on_wheel_up = function ()
-    autotimer.add_minutes(name, -5)
+    autotimer.add_minutes(name, 5)
   end
 
   args.on_middle_click = function()
