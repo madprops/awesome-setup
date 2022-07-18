@@ -61,7 +61,11 @@ function autotimer.start(name)
   args.widget = autotimer.actions[name].text_widget
 
   args.on_click = function ()
-    msg("Middle click to stop. Wheel to increase or decrease")
+    if autotimer.actions[name].mode == "timer" then
+      msg("Middle click to stop. Wheel to increase or decrease")
+    elseif autotimer.actions[name].mode == "counter" then
+      msg("Middle click to stop")
+    end
   end
 
   args.on_wheel_down = function ()
