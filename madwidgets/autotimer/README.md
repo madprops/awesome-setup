@@ -6,7 +6,7 @@
 
 ```lua
 function auto_suspend(minutes)
-  autotimer.start_timer("Suspend", function() suspend() end, minutes)
+  autotimer.start_timer("Suspend", minutes, function() suspend() end)
 end
 ```
 

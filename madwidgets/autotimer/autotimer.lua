@@ -31,10 +31,13 @@ function init_timer(name, minutes)
   end)
 end
 
-function autotimer.start_timer(name, action, minutes)
+function autotimer.start_timer(name, minutes, action)
   autotimer.start(name)
   autotimer.actions[name].mode = "timer"
-  autotimer.actions[name].action = action
+  
+  local a = action or function () end
+  autotimer.actions[name].action = a
+
   init_timer(name, minutes)
   autotimer.update()
 end
