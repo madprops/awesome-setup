@@ -76,7 +76,7 @@ Client signals
 
 >firefox
 
->some scripts of mine
+>some scripts
 
 >geany
 
@@ -101,6 +101,32 @@ Client signals
 >htop
 
 >nethogs
+
+>ip
+
+## Used by widgets
+
+>awk
+
+>sensors
+
+>free
+
+>cat
+
+>mpstat
+
+>sleep
+
+>sed
+
+>grep
+
+>pamixer
+
+>pkill
+
+>espeak
 
 # Some shortcuts
 

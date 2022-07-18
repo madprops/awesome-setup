@@ -33,6 +33,7 @@ function volumecontrol.change_volume(vol)
   volumecontrol.update_volume(vol)
 end
 
+
 function volumecontrol.set(vol)
   vol = tonumber(vol)
 
