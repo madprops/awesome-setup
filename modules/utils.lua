@@ -356,7 +356,9 @@ function auto_suspend(minutes)
 end
 
 function timer(minutes)
-  autotimer.start_timer("Timer", minutes)
+  autotimer.start_timer("Timer", minutes, function() 
+    msg("Timer ended") 
+  end)
 end
 
 function counter(minutes)
