@@ -361,6 +361,6 @@ function timer(minutes)
   end)
 end
 
-function counter(minutes)
+function counter()
   autotimer.start_counter("Counter")
 end
