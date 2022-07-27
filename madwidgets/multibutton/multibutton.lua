@@ -16,6 +16,8 @@ function multibutton.create(args)
   args.fontcolor = args.fontcolor or beautiful.fg_normal
   args.left = args.left or ""
   args.right = args.right or ""
+  args.left_color = args.left_color or args.fontcolor
+  args.right_color = args.right_color or args.fontcolor
 
   local instance = {}
   instance.args = args
@@ -25,7 +27,7 @@ function multibutton.create(args)
     wibox.widget {
       align  = "center",
       valign = "center",
-      text = args.left,
+      markup = "<span foreground='"..args.left_color.."'>"..args.left.."</span>",
       widget = wibox.widget.textbox
     }
   }
@@ -35,7 +37,7 @@ function multibutton.create(args)
     wibox.widget {
       align  = "center",
       valign = "center",
-      text = args.right,
+      markup = "<span foreground='"..args.right_color.."'>"..args.right.."</span>",
       widget = wibox.widget.textbox
     }
   }

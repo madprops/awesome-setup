@@ -6,9 +6,6 @@ local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local bindings = require("modules/bindings")
 
-local nicegreen = "#99EDC3"
-local niceblue = "#7FC6E7"
-
 primary_screen = 1
 
 volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
@@ -28,29 +25,34 @@ function sysmonitor_widget(mode)
     increase_volume()
   end
 
-  args.left = " "
-  args.right = " " 
+  args.left_color = "#6FE2C8"
 
   if mode == "cpu" then
-    args.fontcolor = nicegreen
+    args.left = " "
     args.on_click = function()
       system_monitor()
     end
   elseif mode == "ram" then
-    args.fontcolor = nicegreen
+    args.left = "|"
     args.on_click = function()
       system_monitor()
     end
   elseif mode == "tmp" then
+    args.left = "|"
     args.on_click = function()
       system_monitor_temp()
     end    
-  elseif mode == "net_download" or mode == "net_upload" then
-    args.fontcolor = niceblue
+  elseif mode == "net_download" then
+    args.left = "|"
     args.on_click = function()
       network_monitor()
     end
-  end    
+  elseif mode == "net_upload" then
+    args.left = "|"
+    args.on_click = function()
+      network_monitor()
+    end
+  end
 
   return sysmonitor.create(args)
 end
@@ -164,13 +166,16 @@ awful.screen.connect_for_each_screen(function(s)
       space(),
       systray,
       autotimer,
-      sysmonitor_widget("tmp"),
       sysmonitor_widget("cpu"),
       sysmonitor_widget("ram"),
+      sysmonitor_widget("tmp"),
       sysmonitor_widget("net_download"),
       sysmonitor_widget("net_upload"),
       volumecontrol.create({
-        left = " ", right = " ",
+        left = " | ",
+        right = " |",
+        left_color = "#1880EB",
+        right_color = "#1880EB",
         on_click = function() show_audio_controls() end
       }),
       multibutton.create({
