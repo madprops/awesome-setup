@@ -14,4 +14,4 @@ spawn("setxkbmap -option caps:none", false)
 spawn("systemctl --user start clipton", false)
 
 -- Wallpaper
-spawn("feh --bg-scale "..beautiful.wallpaper, false)
+spawn("feh --bg-fill "..beautiful.wallpaper, false)
