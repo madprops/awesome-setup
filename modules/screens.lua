@@ -31,11 +31,21 @@ function sysmonitor_widget(mode)
   args.left = " "
   args.right = " " 
 
-  if mode == "cpu" or mode == "ram" or mode == "tmp" then
+  if mode == "cpu" then
     args.fontcolor = nicegreen
     args.on_click = function()
       system_monitor()
     end
+  elseif mode == "ram" then
+    args.fontcolor = nicegreen
+    args.on_click = function()
+      system_monitor_ram()
+    end
+  elseif mode == "tmp" then
+    args.fontcolor = nicegreen
+    args.on_click = function()
+      system_monitor_temp()
+    end    
   elseif mode == "net_download" or mode == "net_upload" then
     args.fontcolor = niceblue
     args.on_click = function()
