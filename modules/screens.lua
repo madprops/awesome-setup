@@ -208,21 +208,3 @@ awful.screen.connect_for_each_screen(function(s)
     right
   }
 end)
-
-screen.connect_signal("request::wallpaper", function(s)
-  awful.wallpaper {
-    screen = s,
-    widget = {
-      {
-        image     = beautiful.wallpaper,
-        upscale   = true,
-        downscale = true,
-        widget    = wibox.widget.imagebox,
-      },
-      valign = "center",
-      halign = "center",
-      tiled  = false,
-      widget = wibox.container.tile,
-    }
-  }
-end)

@@ -1,4 +1,5 @@
 local awful = require("awful")
+local beautiful = require("beautiful")
 
 -- X Settings
 spawn("numlockx")
@@ -11,3 +12,6 @@ spawn("setxkbmap -option caps:none", false)
 
 -- Clipboard Manager
 spawn("systemctl --user start clipton", false)
+
+-- Wallpaper
+spawn("feh --bg-scale "..beautiful.wallpaper, false)
