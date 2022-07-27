@@ -246,22 +246,26 @@ function clients()
   return mytag():clients()
 end
 
+function open_terminal(cmd)
+  spawn("alacritty -o font.size=12 -e "..cmd)
+end
+
 function system_monitor()
-  spawn("alacritty -e htop -d 20")
+  open_terminal("htop -d 20")
 end
 
 function system_monitor_ram()
-  spawn("alacritty -e htop -d 20 --sort-key=PERCENT_MEM")
+  open_terminal("htop -d 20 --sort-key=PERCENT_MEM")
 end
 
 function system_monitor_temp()
-  spawn("alacritty -e watch -n 2 sensors")
+  open_terminal("watch -n 2 sensors")
 end
 
 -- To run nethogs without sudo you need to do this once:
 -- sudo setcap "cap_net_admin,cap_net_raw=ep" /usr/bin/nethogs
 function network_monitor()
-  spawn("alacritty -e nethogs")
+  open_terminal("nethogs")
 end
 
 function space()
