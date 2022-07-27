@@ -12,6 +12,9 @@ volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 autotimer = require("madwidgets/autotimer/autotimer")
 autotimer.create({left = " ", right = " "})
 
+local nicegreen = "#6FE2C8"
+local niceblue = "#1880EB"
+
 function sysmonitor_widget(mode)
   local args = {}
 
@@ -25,7 +28,7 @@ function sysmonitor_widget(mode)
     increase_volume()
   end
 
-  args.left_color = "#6FE2C8"
+  args.left_color = nicegreen
 
   if mode == "cpu" then
     args.left = " "
@@ -174,8 +177,8 @@ awful.screen.connect_for_each_screen(function(s)
       volumecontrol.create({
         left = " | ",
         right = " |",
-        left_color = "#1880EB",
-        right_color = "#1880EB",
+        left_color = niceblue,
+        right_color = niceblue,
         on_click = function() show_audio_controls() end
       }),
       multibutton.create({
