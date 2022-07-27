@@ -251,11 +251,7 @@ function open_terminal(cmd)
 end
 
 function system_monitor()
-  open_terminal("htop -d 20")
-end
-
-function system_monitor_ram()
-  open_terminal("htop -d 20 --sort-key=PERCENT_MEM")
+  open_terminal("btop")
 end
 
 function system_monitor_temp()

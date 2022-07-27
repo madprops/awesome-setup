@@ -124,7 +124,7 @@ end
 function sysmonitor.create(args)
   args = args or {}
   args.alertcolor = args.alertcolor or "#E2242C"
-  args.timeout = args.timeout or 1
+  args.timeout = args.timeout or 3
 
   if args.mode == "cpu" then
     args.alert_max = args.alert_max or 70

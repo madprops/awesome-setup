@@ -115,8 +115,8 @@ awful.rules.rules = {
       placement = function(c)
         awful.placement.centered(c, {honor_workarea = true})
       end,
-      width = width_factor(0.6),
-      height = height_factor(0.6),
+      width = width_factor(0.7),
+      height = height_factor(0.7),
       maximized = false,
     }
   },  

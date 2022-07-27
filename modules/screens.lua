@@ -7,7 +7,7 @@ local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local bindings = require("modules/bindings")
 
 local nicegreen = "#99EDC3"
-local niceblue = "#9BBCDE"
+local niceblue = "#7FC6E7"
 
 primary_screen = 1
 
@@ -39,10 +39,9 @@ function sysmonitor_widget(mode)
   elseif mode == "ram" then
     args.fontcolor = nicegreen
     args.on_click = function()
-      system_monitor_ram()
+      system_monitor()
     end
   elseif mode == "tmp" then
-    args.fontcolor = nicegreen
     args.on_click = function()
       system_monitor_temp()
     end    
@@ -165,9 +164,9 @@ awful.screen.connect_for_each_screen(function(s)
       space(),
       systray,
       autotimer,
+      sysmonitor_widget("tmp"),
       sysmonitor_widget("cpu"),
       sysmonitor_widget("ram"),
-      sysmonitor_widget("tmp"),
       sysmonitor_widget("net_download"),
       sysmonitor_widget("net_upload"),
       volumecontrol.create({
