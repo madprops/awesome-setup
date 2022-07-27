@@ -33,22 +33,22 @@ function sysmonitor_widget(mode)
       system_monitor()
     end
   elseif mode == "ram" then
-    args.left = "|"
+    args.left = " | "
     args.on_click = function()
       system_monitor()
     end
   elseif mode == "tmp" then
-    args.left = "|"
+    args.left = " | "
     args.on_click = function()
       system_monitor_temp()
     end    
   elseif mode == "net_download" then
-    args.left = "|"
+    args.left = " | "
     args.on_click = function()
       network_monitor()
     end
   elseif mode == "net_upload" then
-    args.left = "|"
+    args.left = " | "
     args.on_click = function()
       network_monitor()
     end
