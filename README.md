@@ -98,7 +98,7 @@ Client signals
 
 >onboard
 
->htop
+>btop
 
 >nethogs
 
@@ -208,13 +208,11 @@ Right click tasklist item
 
 ---
 
-Click green sysmonitors
+Click on sysmonitors
 
->Open htop
+>Open btop
 
----
-
-Click on blue sysmonitors
+>Open sensors
 
 >Open nethogs
 
