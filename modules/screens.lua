@@ -5,15 +5,15 @@ local beautiful = require("beautiful")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local bindings = require("modules/bindings")
+local nicegreen = "#6FE2C8"
+local niceblue = "#1880EB"
+local nicered = "#E9006A"
 
 primary_screen = 1
 
 volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 autotimer = require("madwidgets/autotimer/autotimer")
-autotimer.create({left = " ", right = " "})
-
-local nicegreen = "#6FE2C8"
-local niceblue = "#1880EB"
+autotimer.create({left = " |", right = "|", left_color = nicered, right_color = nicered})
 
 function sysmonitor_widget(mode)
   local args = {}

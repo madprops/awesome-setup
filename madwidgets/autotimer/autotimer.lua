@@ -6,6 +6,18 @@ local multibutton = require("madwidgets/multibutton/multibutton")
 local autotimer = {}
 autotimer.actions = {}
 
+function autotimer.count_active()
+  local count = 0
+
+  for i, action in pairs(autotimer.actions) do
+    if action then
+      count = count + 1
+    end
+  end
+
+  return count
+end
+
 function autotimer.do_stop(name)
   if not autotimer.active(name) then
     return
@@ -15,8 +27,12 @@ function autotimer.do_stop(name)
     autotimer.actions[name].timer:stop()
   end
 
-  autotimer.widget:remove_widgets(autotimer.actions[name].widget)
+  autotimer.container:remove_widgets(autotimer.actions[name].widget)
   autotimer.actions[name] = nil
+
+  if autotimer.count_active() == 0 then
+    autotimer.widget.visible = false
+  end
 end
 
 function autotimer.active(name)
@@ -60,8 +76,10 @@ function autotimer.start(name)
     widget = wibox.widget.textbox
   }
 
-  local args = utils.deepcopy(autotimer.args)
+  local args = {}
   args.widget = autotimer.actions[name].text_widget
+  args.left = " "
+  args.right = " "
 
   args.on_click = function ()
     if autotimer.actions[name].mode == "timer" then
@@ -84,8 +102,9 @@ function autotimer.start(name)
   end
 
   autotimer.actions[name].widget = multibutton.create(args).widget
-  autotimer.widget:add(autotimer.actions[name].widget)
+  autotimer.container:add(autotimer.actions[name].widget)
   autotimer.actions[name].date_started = os.time()
+  autotimer.widget.visible = true
   utils.msg("Started "..name)
 end
 
@@ -172,9 +191,8 @@ end
 
 function autotimer.create(args)
   args = args or {}
-  autotimer.args = args
 
-  autotimer.widget = wibox.widget {
+  autotimer.container = wibox.widget {
     spacing = 5,
     spacing_widget = {
         shape  = gears.shape.circle,
@@ -182,6 +200,10 @@ function autotimer.create(args)
     },
     widget = wibox.layout.fixed.horizontal
   }
+
+  args.widget = autotimer.container
+  autotimer.widget = multibutton.create(args).widget
+  autotimer.widget.visible = false
 end
 
 autotimer.update_timer = gears.timer {
