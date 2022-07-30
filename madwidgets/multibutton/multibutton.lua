@@ -93,18 +93,10 @@ function multibutton.create(args)
   
   instance.widget:connect_signal("mouse::enter", function()
     args.on_mouse_enter(instance)
-    local w = mouse.current_wibox
-    instance.old_cursor = w.cursor
-    instance.old_wibox = w
-    w.cursor = "hand2"
   end)
 
   instance.widget:connect_signal("mouse::leave", function()
-    args.on_mouse_leave(instance)
-    if instance.old_wibox then
-      instance.old_wibox.cursor = instance.old_cursor
-      instance.old_wibox = nil
-    end    
+    args.on_mouse_leave(instance)  
   end)
 
   return instance
