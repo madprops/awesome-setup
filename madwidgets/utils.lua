@@ -51,10 +51,4 @@ function utils.msg(txt)
   naughty.notify({text = " " .. tostring(txt) .. " "})
 end
 
-function utils.fix_html(s)
-  s = string.gsub(s, "<", "&lt;")
-  s = string.gsub(s, ">", "&gt;")
-  return s
-end
-
 return utils

@@ -1,4 +1,5 @@
 local wibox = require("wibox")
+local gears = require("gears")
 local beautiful = require("beautiful")
 local utils = require("madwidgets/utils")
 
@@ -28,7 +29,7 @@ function multibutton.create(args)
     wibox.widget {
       align  = "center",
       valign = "center",
-      markup = "<span foreground='"..args.left_color.."'>"..utils.fix_html(args.left).."</span>",
+      markup = "<span foreground='"..args.left_color.."'>"..gears.string.xml_escape(args.left).."</span>",
       widget = wibox.widget.textbox
     }
   }
@@ -38,7 +39,7 @@ function multibutton.create(args)
     wibox.widget {
       align  = "center",
       valign = "center",
-      markup = "<span foreground='"..args.right_color.."'>"..utils.fix_html(args.right).."</span>",
+      markup = "<span foreground='"..args.right_color.."'>"..gears.string.xml_escape(args.right).."</span>",
       widget = wibox.widget.textbox
     }
   }
