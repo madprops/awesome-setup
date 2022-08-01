@@ -15,7 +15,7 @@ function msg(txt, info)
   end
 
   local n = naughty.notify({title = " " .. tostring(txt) .. " ", screen = primary_screen})
-
+  
   n:connect_signal("destroyed", function(n, reason)
     if reason == naughty.notification_closed_reason.dismissed_by_user then
       run()
@@ -171,7 +171,7 @@ function alt_lockscreen()
 end
 
 function open_tab(url)
-  shellspawn("firefox-developer-edition --new-tab --url "..url)
+  shellspawn("firefox-developer-edition --new-tab --url '"..url.."'")
 end
 
 function open_empty_tab()
