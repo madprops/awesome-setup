@@ -26,7 +26,7 @@ awful.rules.rules = {
     end
   },
   {
-    rule = {class = "firefox"},
+    rule = {class = "firefoxdeveloperedition"},
     properties = {
       maximized = true,
       xindex = 1

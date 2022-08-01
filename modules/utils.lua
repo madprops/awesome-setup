@@ -159,7 +159,7 @@ function alt_lockscreen()
 end
 
 function open_empty_tab()
-  shellspawn("firefox --new-tab --url about:newtab")
+  shellspawn("firefox-developer-edition --new-tab --url about:newtab")
 end
 
 local logpath = os.getenv("HOME") .. "/.config/clickthing/clicks.txt"

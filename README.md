@@ -74,7 +74,7 @@ Client signals
 
 >i3lock
 
->firefox
+>firefox-developer-edition
 
 >some scripts
 
