@@ -48,7 +48,7 @@ function utils.isnumber(num)
 end
 
 function utils.msg(txt)
-  naughty.notify({text = " " .. tostring(txt) .. " "})
+  naughty.notify({title = " " .. tostring(txt) .. " "})
 end
 
 return utils

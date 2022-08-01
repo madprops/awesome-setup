@@ -7,8 +7,20 @@ local lockdelay = require("madwidgets/lockdelay/lockdelay")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local context_client
 
-function msg(txt)
-  naughty.notify({text = " " .. tostring(txt) .. " ", screen = primary_screen})
+function msg(txt, info)
+  local run = function() end
+
+  if info and startswith(info, "https://") then
+    run = function() open_tab(info) end
+  end
+
+  local n = naughty.notify({title = " " .. tostring(txt) .. " ", screen = primary_screen})
+
+  n:connect_signal("destroyed", function(n, reason)
+    if reason == naughty.notification_closed_reason.dismissed_by_user then
+      run()
+    end
+  end)
 end
 
 function prev_client()
@@ -156,6 +168,10 @@ function alt_lockscreen()
   stop_all_players()
   open_empty_tab()
   lockscreen()
+end
+
+function open_tab(url)
+  shellspawn("firefox-developer-edition --new-tab --url "..url)
 end
 
 function open_empty_tab()
