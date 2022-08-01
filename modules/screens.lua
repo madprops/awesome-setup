@@ -13,7 +13,7 @@ primary_screen = 1
 
 volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 autotimer = require("madwidgets/autotimer/autotimer")
-autotimer.create({left = " |", right = "|", left_color = nicered, right_color = nicered})
+autotimer.create({left = " >", right = "<", left_color = nicered, right_color = nicered})
 
 function sysmonitor_widget(mode)
   local args = {}
