@@ -50,6 +50,8 @@ function init_timer(name, minutes)
 end
 
 function autotimer.start_timer(name, minutes, action)
+  if (minutes == 0) then return end
+  
   autotimer.start(name)
   autotimer.actions[name].mode = "timer"
   
