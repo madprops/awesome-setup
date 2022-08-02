@@ -16,7 +16,7 @@ ruled.notification.connect_signal("request::rules", function()
       position = "bottom_right",
       implicit_timeout = 5,
       never_timeout = false,
-      height = 30
+      height = 40
     }
   }
 end)
