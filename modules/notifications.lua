@@ -15,7 +15,16 @@ ruled.notification.connect_signal("request::rules", function()
     properties = {
       position = "bottom_right",
       implicit_timeout = 5,
-      never_timeout = false
+      never_timeout = false,
+      height = 30
     }
+  }
+end)
+
+naughty.connect_signal("request::display", function(n)
+  n.title = string.format("<span>%s</span>", n.title)
+  n.icon = ""
+  naughty.layout.box {
+    notification = n,
   }
 end)

@@ -12,7 +12,6 @@ beautiful.wibar_height = 25
 awful.mouse.snap.default_distance = 25
 beautiful.tasklist_shape_border_width = 1
 beautiful.notification_font = "monospace 18px"
-beautiful.notification_icon_size = 100
 
 -- Colors
 local grey = "#b8babc"
