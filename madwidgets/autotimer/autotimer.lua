@@ -40,7 +40,9 @@ function autotimer.active(name)
 end
 
 function init_timer(name, minutes)
-  autotimer.actions[name].timer = gears.timer.start_new(minutes * 60, function()
+  local m = math.min(60000, minutes)
+
+  autotimer.actions[name].timer = gears.timer.start_new(m * 60, function()
     local action = autotimer.actions[name].action
     autotimer.do_stop(name)
     action()
