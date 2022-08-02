@@ -4,6 +4,7 @@ local utils = require("madwidgets/utils")
 local multibutton = require("madwidgets/multibutton/multibutton")
 
 local autotimer = {}
+autotimer.max_minutes = 7200
 autotimer.actions = {}
 
 function autotimer.count_active()
@@ -40,7 +41,7 @@ function autotimer.active(name)
 end
 
 function init_timer(name, minutes)
-  local m = math.min(6000, minutes)
+  local m = math.min(autotimer.max_minutes, minutes)
 
   autotimer.actions[name].timer = gears.timer.start_new(m * 60, function()
     local action = autotimer.actions[name].action
@@ -51,7 +52,7 @@ end
 
 function autotimer.start_timer(name, minutes, action)
   if (minutes == 0) then return end
-  
+
   autotimer.start(name)
   autotimer.actions[name].mode = "timer"
   
@@ -171,6 +172,11 @@ function autotimer.update()
 
       r = action.timer.timeout - d
     elseif action.mode == "counter" then
+      if d / 60 >= autotimer.max_minutes then
+        autotimer.do_stop(action.name)
+        return
+      end
+
       r = d
     end
 
