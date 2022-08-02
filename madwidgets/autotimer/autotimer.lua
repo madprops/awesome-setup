@@ -4,7 +4,7 @@ local utils = require("madwidgets/utils")
 local multibutton = require("madwidgets/multibutton/multibutton")
 
 local autotimer = {}
-autotimer.max_minutes = 7200
+autotimer.max_minutes = 60000
 autotimer.actions = {}
 
 function autotimer.count_active()
