@@ -1,5 +1,6 @@
 local ruled = require("ruled")
 local naughty = require("naughty")
+local gears = require("gears")
 
 naughty.connect_signal("request::display_error", function(message, startup)
   naughty.notification {
@@ -20,10 +21,12 @@ ruled.notification.connect_signal("request::rules", function()
   }
 end)
 
+local icon = gears.filesystem.get_configuration_dir().."icon.png"
+
 naughty.connect_signal("request::display", function(n)
   n.title = string.format("<span>%s</span>", n.title)
-  n.icon = ""
+  n.icon = icon
   naughty.layout.box {
-    notification = n,
+    notification = n
   }
 end)
