@@ -258,7 +258,7 @@ There's a simple log system that saves information to ~/.awm_log
 
 It automatically saves "critical" notifications to it.
 
-And other information can be added manually with the `add_to_log` function.
+Other information can be added manually with the `add_to_log` function.
 
 # Notes
 
