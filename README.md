@@ -1,4 +1,4 @@
-![](https://i.imgur.com/IVpRXUC.jpg)
+![](https://i.imgur.com/tgjR5m1.jpg)
 
 Here is my awesomewm setup.
 
