@@ -28,7 +28,7 @@ naughty.connect_signal("request::display", function(n)
     local text = trim(n.title)
     local msg = trim(n.message)
   
-    if not isempty(m) then
+    if not isempty(msg) then
       text = text .. " > " .. msg
     end
   
