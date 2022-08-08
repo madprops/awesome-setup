@@ -180,17 +180,17 @@ end
 
 local logpath = os.getenv("HOME") .. "/.awm_log"
 
-function add_to_file(text, filepath)
-  shellspawn("echo '" .. text .. "' | cat - " .. filepath .. " | sponge " .. filepath)
+function add_to_file(path, text)
+  shellspawn("echo '" .. text .. "' | cat - " .. path .. " | sponge " .. path)
 end
 
-function limit_file(path, n)
-  shellspawn("sed -i '" .. n..",$ d' " .. path)
+function limit_file(path, num)
+  shellspawn("sed -i '" .. num..",$ d' " .. path)
 end
 
 function add_to_log(text)
   local txt = os.date("%c") .. " " .. trim(text)
-  add_to_file(txt, logpath)
+  add_to_file(logpath, txt)
   limit_file(logpath, 1000)
 end
 
