@@ -179,11 +179,27 @@ function open_empty_tab()
 end
 
 local logpath = os.getenv("HOME") .. "/.config/clickthing/clicks.txt"
+local file_logpath = os.getenv("HOME") .. "/.awm_logs"
+
+function add_to_file(text, filepath)
+  shellspawn("echo '" .. text .. "' | cat - " .. filepath .. " | sponge " .. filepath)
+end
+
+function limit_file(path, n)
+  shellspawn("sed -i '" .. n..",$ d' " .. path)
+end
 
 function add2log(name)
   local txt = name .. " " .. os.date("%c")
-  shellspawn("echo '" .. txt .. "' | cat - " .. logpath .. " | sponge " .. logpath)
+  add_to_file(txt, logpath)
+  limit_file(logpath, 1000)
   msg(name .. " added to log")
+end
+
+function add_to_file_log(text)
+  local txt = os.date("%c") .. " " .. text
+  add_to_file(txt, file_logpath)
+  limit_file(file_logpath, 1000)
 end
 
 function showlog(name)
