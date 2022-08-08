@@ -252,6 +252,14 @@ PrtSc
 
 Using Escape to cancel this shows more screenshot options
 
+# Log
+
+There's a simple log system that saves information to ~/.awm_log
+
+It automatically saves "critical" notifications to it.
+
+And other information can be added manually.
+
 # Notes
 
 If your mouse has topside buttons, you can use them for virtual desktop changing.
