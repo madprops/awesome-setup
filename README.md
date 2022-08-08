@@ -104,6 +104,8 @@ Client signals
 
 >ip
 
+>sed
+
 ## Used by widgets
 
 >awk
