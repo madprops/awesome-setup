@@ -24,8 +24,15 @@ end)
 local icon = gears.filesystem.get_configuration_dir().."icon.png"
 
 naughty.connect_signal("request::display", function(n)
-  add_to_file_log(n.title)
-  
+  local txt = trim(n.title)
+  local m = trim(n.message)
+
+  if not isempty(m) then
+    txt = txt .. " > " .. m
+  end
+
+  add_to_log(txt)
+
   n.title = string.format("<span>%s</span>", n.title)
   n.icon = icon
 

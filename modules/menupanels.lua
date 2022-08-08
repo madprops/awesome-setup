@@ -62,16 +62,16 @@ menupanels.log = menupanel.create({
   items = {
     {
       name = "Show Log",
-      action = function() showlog() end,
+      action = function() show_log() end,
     },
     {
       name = "Wake",
-      action = function() add2log("Wake") end,
+      action = function() add_to_log("Wake") end,
       needs_confirm = true,
     },
     {
       name = "Meds",
-      action = function() add2log("Meds") end,
+      action = function() add_to_log("Meds") end,
       needs_confirm = true,
     }
   }

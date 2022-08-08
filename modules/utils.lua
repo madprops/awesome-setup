@@ -178,8 +178,7 @@ function open_empty_tab()
   shellspawn("firefox-developer-edition --new-tab --url about:newtab")
 end
 
-local logpath = os.getenv("HOME") .. "/.config/clickthing/clicks.txt"
-local file_logpath = os.getenv("HOME") .. "/.awm_logs"
+local logpath = os.getenv("HOME") .. "/.awm_log"
 
 function add_to_file(text, filepath)
   shellspawn("echo '" .. text .. "' | cat - " .. filepath .. " | sponge " .. filepath)
@@ -189,20 +188,13 @@ function limit_file(path, n)
   shellspawn("sed -i '" .. n..",$ d' " .. path)
 end
 
-function add2log(name)
-  local txt = name .. " " .. os.date("%c")
+function add_to_log(text)
+  local txt = os.date("%c") .. " " .. trim(text)
   add_to_file(txt, logpath)
   limit_file(logpath, 1000)
-  msg(name .. " added to log")
 end
 
-function add_to_file_log(text)
-  local txt = os.date("%c") .. " " .. text
-  add_to_file(txt, file_logpath)
-  limit_file(file_logpath, 1000)
-end
-
-function showlog(name)
+function show_log(name)
   shellspawn("geany " .. logpath)
 end
 
@@ -405,4 +397,8 @@ end
 
 function counter()
   autotimer.start_counter("Counter")
+end
+
+function isempty(s)
+  return s == nil or s == ""
 end
