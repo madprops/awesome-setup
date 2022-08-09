@@ -51,4 +51,8 @@ function utils.msg(txt)
   naughty.notify({title = " " .. tostring(txt) .. " "})
 end
 
+function utils.trim(text)
+  return string.gsub(text, "^%s*(.-)%s*$", "%1")
+end
+
 return utils

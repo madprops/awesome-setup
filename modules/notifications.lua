@@ -25,14 +25,14 @@ local icon = gears.filesystem.get_configuration_dir().."icon.png"
 
 naughty.connect_signal("request::display", function(n)
   if n.urgency == "critical" then
-    local text = trim(n.title)
-    local msg = trim(n.message)
+    local text = Utils.trim(n.title)
+    local msg = Utils.trim(n.message)
   
-    if not isempty(msg) then
+    if not Utils.isempty(msg) then
       text = text .. " > " .. msg
     end
   
-    add_to_log(text)
+    Utils.add_to_log(text)
   end
 
   n.title = string.format("<span>%s</span>", n.title)

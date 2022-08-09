@@ -61,51 +61,51 @@ bindings.globalkeys = gears.table.join(
   },  
 
   awful.key({modkey}, "`", function()
-    show_menupanel("keyboard")
+    Utils.show_menupanel("keyboard")
   end),
 
   awful.key({"Control"}, "`", function()
-    show_clipboard()
+    Utils.show_clipboard()
   end),  
 
   awful.key({modkey}, "Return", function()
-    prev_client()
+    Utils.prev_client()
   end),
 
   awful.key({modkey}, "space", function()
-    launcher()
+    Utils.launcher()
   end),
 
   awful.key({}, "Scroll_Lock", function()
-    dropdown()
+    Utils.dropdown()
   end),
 
   awful.key({modkey}, "l", function()
-    lockscreen()
+    Utils.lockscreen()
   end),
 
   awful.key({"Shift"}, "Pause", function()
-    randstring()
+    Utils.randstring()
   end),
   
   awful.key({}, "Pause", function()
-    randword()
+    Utils.randword()
   end),
 
   awful.key({}, "Print", function()
-    screenshot()
+    Utils.screenshot()
   end),
 
   awful.key({}, "XF86AudioPlay", function()
-    media_play_pause()
+    Utils.media_play_pause()
   end), 
 
   awful.key({}, "XF86AudioRaiseVolume", function()
-    increase_volume()
+    Utils.increase_volume()
   end), 
 
   awful.key({}, "XF86AudioLowerVolume", function()
-    decrease_volume()
+    Utils.decrease_volume()
   end), 
 
   awful.key({modkey}, "Delete", function()
@@ -113,30 +113,30 @@ bindings.globalkeys = gears.table.join(
   end),
 
   awful.key({altkey}, "Tab", function()
-    altab()
+    Utils.altab()
   end),
   
   awful.key({modkey}, "Left", function()
-    prev_tag()
+    Utils.prev_tag()
   end),  
 
   awful.key({modkey}, "Right", function()
-    next_tag()
+    Utils.next_tag()
   end),
 
   awful.key({modkey, "Shift"}, "Left", function()
-    prev_tag_all()
+    Utils.prev_tag_all()
   end),  
 
   awful.key({modkey, "Shift"}, "Right", function()
-    next_tag_all()
+    Utils.next_tag_all()
   end)
 )
 
 bindings.clientkeys = gears.table.join(
   awful.key({altkey}, "F4", function(c)
     if not c.xkeys then return end
-    close(c)
+    Utils.close(c)
   end), 
 
   awful.key({modkey}, "\\", function(c)
@@ -146,110 +146,110 @@ bindings.clientkeys = gears.table.join(
   
   awful.key({modkey}, "BackSpace", function(c)
     if not c.xkeys then return end
-    maximize(c)
+    Utils.maximize(c)
   end),
 
   awful.key({modkey, "Shift"}, "BackSpace", function(c)
     if not c.xkeys then return end
-    fullscreen(c)
+    Utils.fullscreen(c)
   end),
 
   awful.key({"Shift"}, "BackSpace", function(c)
     if not c.xkeys then return end
-    reset_rules(c)
+    Rules.reset_rules(c)
   end),
 
   awful.key({modkey}, "KP_Add", function(c)
     if not c.xkeys then return end
-    grow_in_place(c)
+    Utils.grow_in_place(c)
   end),
 
   awful.key({modkey}, "KP_Subtract", function(c)
     if not c.xkeys then return end
-    shrink_in_place(c)
+    Utils.shrink_in_place(c)
   end),
 
   awful.key({modkey}, "#79", function(c)
     if not c.xkeys then return end
-    snap(c, "corner", awful.placement.top_left)
+    Utils.snap(c, "corner", awful.placement.top_left)
   end), 
 
   awful.key({modkey}, "#80", function(c)
     if not c.xkeys then return end
-    snap(c, "horizontally", awful.placement.top)
+    Utils.snap(c, "horizontally", awful.placement.top)
   end), 
 
   awful.key({modkey}, "#81", function(c)
     if not c.xkeys then return end
-    snap(c, "corner", awful.placement.top_right)
+    Utils.snap(c, "corner", awful.placement.top_right)
   end), 
 
   awful.key({modkey}, "#83", function(c)
     if not c.xkeys then return end
-    snap(c, "vertically", awful.placement.left)
+    Utils.snap(c, "vertically", awful.placement.left)
   end), 
 
   awful.key({modkey}, "#84", function(c)
     if not c.xkeys then return end
-    maximize(c)
+    Utils.maximize(c)
   end), 
 
   awful.key({modkey}, "#85", function(c)
     if not c.xkeys then return end
-    snap(c, "vertically", awful.placement.right)
+    Utils.snap(c, "vertically", awful.placement.right)
   end), 
 
   awful.key({modkey}, "#87", function(c)
     if not c.xkeys then return end
-    snap(c, "corner", awful.placement.bottom_left)
+    Utils.snap(c, "corner", awful.placement.bottom_left)
   end), 
 
   awful.key({modkey}, "#88", function(c)
     if not c.xkeys then return end
-    snap(c, "horizontally", awful.placement.bottom)
+    Utils.snap(c, "horizontally", awful.placement.bottom)
   end), 
 
   awful.key({modkey}, "#89", function(c)
     if not c.xkeys then return end
-    snap(c, "corner", awful.placement.bottom_right)
+    Utils.snap(c, "corner", awful.placement.bottom_right)
   end),
 
   awful.key({modkey, "Control"}, "Left", function()
-    prev_tag(true)
+    Utils.prev_tag(true)
   end),  
 
   awful.key({modkey, "Control"}, "Right", function()
-    next_tag(true)
+    Utils.next_tag(true)
   end)
 )
 
 bindings.clientbuttons = gears.table.join(
   awful.button({}, 1, function(c)
-    focus(c)
+    Utils.focus(c)
   end), 
 
   awful.button({modkey}, 1, function(c)
     if not c.xkeys then return end
-    focus(c)
+    Utils.focus(c)
     c.maximized = false
     awful.mouse.client.move(c)
   end), 
 
   awful.button({modkey}, 3, function(c)
     if not c.xkeys then return end
-    focus(c)
+    Utils.focus(c)
     c.maximized = false
     awful.mouse.client.resize(c)
   end),
 
   awful.button({modkey}, 4, function(c)
     if not c.xkeys then return end
-    grow_in_place(c)
+    Utils.grow_in_place(c)
   end), 
   
   awful.button({modkey}, 5, function(c)
     if not c.xkeys then return end
-    shrink_in_place(c)
+    Utils.shrink_in_place(c)
   end)
 )
 
@@ -259,11 +259,11 @@ bindings.tasklist_buttons = gears.table.join(
   end), 
 
   awful.button({}, 2, function(c)
-    show_client_title(c)
+    Utils.show_client_title(c)
   end), 
 
   awful.button({}, 3, function(c)
-    show_task_context(c)
+    Utils.show_task_context(c)
   end), 
 
   awful.button({modkey}, 4, function(c)

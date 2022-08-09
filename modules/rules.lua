@@ -1,3 +1,5 @@
+Rules = {}
+
 local awful = require("awful")
 local beautiful = require("beautiful")
 local bindings = require("modules/bindings")
@@ -75,8 +77,8 @@ awful.rules.rules = {
       placement = function(c)
         awful.placement.top_left(c, {honor_workarea = true})
       end, 
-      width = width_factor(0.5),
-      height = height_factor(1),
+      width = Utils.width_factor(0.5),
+      height = Utils.height_factor(1),
       maximized = false,
       xindex = 1,
       screen = screen_right           
@@ -88,8 +90,8 @@ awful.rules.rules = {
       placement = function(c)
         awful.placement.top_right(c, {honor_workarea = true})
       end,
-      width = width_factor(0.5),
-      height = height_factor(0.6),
+      width = Utils.width_factor(0.5),
+      height = Utils.height_factor(0.6),
       maximized = false,
       xindex = 2,
       screen = screen_right
@@ -101,8 +103,8 @@ awful.rules.rules = {
       placement = function(c)
         awful.placement.bottom_right(c, {honor_workarea = true})
       end,
-      width = width_factor(0.5),
-      height = height_factor(0.4),
+      width = Utils.width_factor(0.5),
+      height = Utils.height_factor(0.4),
       maximized = false,
       xindex = 3,
       screen = screen_right
@@ -115,29 +117,34 @@ awful.rules.rules = {
       placement = function(c)
         awful.placement.centered(c, {honor_workarea = true})
       end,
-      width = width_factor(0.7),
-      height = height_factor(0.7),
+      width = Utils.width_factor(0.7),
+      height = Utils.height_factor(0.7),
       maximized = false,
     }
   },  
 }
 
-function check_title_rules(c)
-  if startswith(c.name, "[ff_dev1]") then
-    c.width = width_factor(0.5)
-    c.height = height_factor(1)
+function Rules.check_title_rules(c)
+  if Utils.startswith(c.name, "[ff_dev1]") then
+    c.width = Utils.width_factor(0.5)
+    c.height = Utils.height_factor(1)
     c.xindex = 1
     c.maximized = false
     c.border_width = 1
-    snap(c, "vertically", awful.placement.left)
+    Utils.snap(c, "vertically", awful.placement.left)
   end
   
-  if startswith(c.name, "[ff_dev2]") then
-    c.width = width_factor(0.5)
-    c.height = height_factor(1)
+  if Utils.startswith(c.name, "[ff_dev2]") then
+    c.width = Utils.width_factor(0.5)
+    c.height = Utils.height_factor(1)
     c.xindex = 2
     c.maximized = false
     c.border_width = 1
-    snap(c, "vertically", awful.placement.right)
+    Utils.snap(c, "vertically", awful.placement.right)
   end
+end
+
+function Rules.reset_rules(c)
+  awful.rules.apply(c)
+  Rules.check_title_rules(c)
 end

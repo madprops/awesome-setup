@@ -1,3 +1,5 @@
+Utils = {}
+
 local awful = require("awful")
 local naughty = require("naughty")
 local wibox = require("wibox")
@@ -7,11 +9,11 @@ local lockdelay = require("madwidgets/lockdelay/lockdelay")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local context_client
 
-function msg(txt, info)
+function Utils.msg(txt, info)
   local run = function() end
 
-  if info and startswith(info, "https://") then
-    run = function() open_tab(info) end
+  if info and Utils.startswith(info, "https://") then
+    run = function() Utils.open_tab(info) end
   end
 
   local n = naughty.notify({title = " " .. tostring(txt) .. " ", screen = primary_screen})
@@ -23,44 +25,44 @@ function msg(txt, info)
   end)
 end
 
-function prev_client()
+function Utils.prev_client()
   awful.client.focus.history.previous()
   if client.focus then
     client.focus:raise()
   end
 end
 
-function center(c)
+function Utils.center(c)
   awful.placement.centered(c, {honor_workarea = true})
 end
 
-function maximize(c)
+function Utils.maximize(c)
   c.maximized = not c.maximized
-  focus(c)
+  Utils.focus(c)
 end
 
-function fullscreen(c)
+function Utils.fullscreen(c)
   c.fullscreen = not c.fullscreen
-  focus(c)
+  Utils.focus(c)
 end
 
-function on_top(c)
+function Utils.on_top(c)
   c.ontop = not c.ontop
 end
 
-function check_fullscreen(c)
-  myscreen().mywibar.ontop = not c.fullscreen
+function Utils.check_fullscreen(c)
+  Utils.myscreen().mywibar.ontop = not c.fullscreen
 end
 
-function focus(c)
+function Utils.focus(c)
   c:emit_signal("request::activate", "tasklist", {raise = true})
 end
 
-function close(c)
+function Utils.close(c)
   c:kill()
 end
 
-function snap(c, axis, position)
+function Utils.snap(c, axis, position)
   local f
   
   c.maximized = false
@@ -77,228 +79,228 @@ function snap(c, axis, position)
   })
 end
 
-function launcher()
-  spawn("rofi -modi drun -show drun -show-icons -no-click-to-exit")
+function Utils.launcher()
+  Utils.spawn("rofi -modi drun -show drun -show-icons -no-click-to-exit")
 end
 
-function altab()  
-  spawn("rofi -show window -show-icons -no-click-to-exit")
+function Utils.altab()  
+  Utils.spawn("rofi -show window -show-icons -no-click-to-exit")
 end
 
-function screenshot()
-  spawn("spectacle -r " .. os.getenv("HOME") .. "/Downloads/pics/pics1")
+function Utils.screenshot()
+  Utils.spawn("spectacle -r " .. os.getenv("HOME") .. "/Downloads/pics/pics1")
 end
 
 local media_lock = lockdelay.create({action=function(cmd)
-  spawn(cmd)
+  Utils.spawn(cmd)
 end, delay=250})
 
-function media_play_pause()
+function Utils.media_play_pause()
   media_lock.trigger("playerctl -p audacious play-pause")
 end
 
-function randstring()
-  spawn(os.getenv("HOME") .. "/scripts/randword.sh")
+function Utils.randstring()
+  Utils.spawn(os.getenv("HOME") .. "/scripts/randword.sh")
 end
 
-function randword()
-  spawn(os.getenv("HOME") .. "/scripts/randword.sh word")
+function Utils.randword()
+  Utils.spawn(os.getenv("HOME") .. "/scripts/randword.sh word")
 end
 
-function to_clipboard(text)
-  shellspawn('echo -n "' .. trim(escape_quotes(text)) .. '" | xclip -selection clipboard')
+function Utils.to_clipboard(text)
+  Utils.shellspawn('echo -n "' .. Utils.trim(Utils.escape_quotes(text)) .. '" | xclip -selection clipboard')
 end
 
-function escape_quotes(text)
+function Utils.escape_quotes(text)
   return string.gsub(text, '"', "\\\"")
 end
 
-function trim(text)
+function Utils.trim(text)
   return string.gsub(text, "^%s*(.-)%s*$", "%1")
 end
 
-function startswith(s1, s2)
+function Utils.startswith(s1, s2)
   return string.sub(s1, 1, string.len(s2)) == s2
 end
 
-function show_menupanel(mode)
+function Utils.show_menupanel(mode)
   menupanels.main.start(mode)
 end
 
-function get_context_client()
+function Utils.get_context_client()
   return context_client
 end
 
-function show_task_context(c)
+function Utils.show_task_context(c)
   context_client = c
   menupanels.context.start("mouse")
 end
 
-function show_client_title(c)
+function Utils.show_client_title(c)
   menupanels.utils.showinfo(c.name)
 end
 
-function dropdown()
-  spawn("tilix --quake")
+function Utils.dropdown()
+  Utils.spawn("tilix --quake")
 end
 
-function stop_all_players()
-  spawn("playerctl --all-players pause")
+function Utils.stop_all_players()
+  Utils.spawn("playerctl --all-players pause")
 end
 
-function lockscreen(suspend)
+function Utils.lockscreen(suspend)
   local s = ""
 
   if suspend then
     s = "systemctl suspend; "
   end
 
-  shellspawn(s .. "i3lock --color=000000 -n")
+  Utils.shellspawn(s .. "i3lock --color=000000 -n")
 end
 
-function suspend()
-  lockscreen(true)
+function Utils.suspend()
+  Utils.lockscreen(true)
 end
 
-function unlockscreen()
-  shellspawn("killall i3lock")
+function Utils.unlockscreen()
+  Utils.shellspawn("killall i3lock")
 end
 
-function alt_lockscreen()
-  stop_all_players()
-  open_empty_tab()
-  lockscreen()
+function Utils.alt_lockscreen()
+  Utils.stop_all_players()
+  Utils.open_empty_tab()
+  Utils.lockscreen()
 end
 
-function open_tab(url)
-  shellspawn("firefox-developer-edition --new-tab --url '"..url.."'")
+function Utils.open_tab(url)
+  Utils.shellspawn("firefox-developer-edition --new-tab --url '"..url.."'")
 end
 
-function open_empty_tab()
-  shellspawn("firefox-developer-edition --new-tab --url about:newtab")
+function Utils.open_empty_tab()
+  Utils.shellspawn("firefox-developer-edition --new-tab --url about:newtab")
+end
+
+function Utils.add_to_file(path, text)
+  Utils.shellspawn("echo '" .. text .. "' | cat - " .. path .. " | sponge " .. path)
+end
+
+function Utils.limit_file(path, num)
+  Utils.shellspawn("sed -i '" .. num..",$ d' " .. path)
 end
 
 local logpath = os.getenv("HOME") .. "/.awm_log"
 
-function add_to_file(path, text)
-  shellspawn("echo '" .. text .. "' | cat - " .. path .. " | sponge " .. path)
+function Utils.add_to_log(text)
+  local txt = os.date("%c") .. " " .. Utils.trim(text)
+  Utils.add_to_file(logpath, txt)
+  Utils.limit_file(logpath, 1000)
 end
 
-function limit_file(path, num)
-  shellspawn("sed -i '" .. num..",$ d' " .. path)
+function Utils.show_log(name)
+  Utils.shellspawn("geany " .. logpath)
 end
 
-function add_to_log(text)
-  local txt = os.date("%c") .. " " .. trim(text)
-  add_to_file(logpath, txt)
-  limit_file(logpath, 1000)
+function Utils.calendar()
+  Utils.spawn("osmo")
 end
 
-function show_log(name)
-  shellspawn("geany " .. logpath)
-end
-
-function calendar()
-  spawn("osmo")
-end
-
-function increase_volume()
+function Utils.increase_volume()
   volumecontrol.increase()
 end
 
-function decrease_volume()
+function Utils.decrease_volume()
   volumecontrol.decrease()
 end
 
-function set_volume(v)
+function Utils.set_volume(v)
   volumecontrol.set_round(v)
 end
 
-function refresh_volume()
+function Utils.refresh_volume()
   volumecontrol.refresh()
 end
 
-function spawn(program)
+function Utils.spawn(program)
   awful.spawn(program, false)
 end
 
-function shellspawn(program)
+function Utils.shellspawn(program)
   awful.spawn.with_shell(program, false)
 end
 
-function singlespawn(program)
+function Utils.singlespawn(program)
   awful.spawn.single_instance(program)
 end
 
-function width_factor(n)
-  return myscreen().workarea.width * n
+function Utils.width_factor(n)
+  return Utils.myscreen().workarea.width * n
 end
 
-function height_factor(n)
-  return myscreen().workarea.height * n
+function Utils.height_factor(n)
+  return Utils.myscreen().workarea.height * n
 end
 
-function ratio(c)
+function Utils.ratio(c)
   return c.width / c.height
 end
 
-function grow_in_place(c)
-  focus(c)
+function Utils.grow_in_place(c)
+  Utils.focus(c)
   c.maximized = false
   c.height = c.height + 20
   c.width = c.width + (20 * ratio(c))
-  center(c)
+  Utils.center(c)
 end
 
-function shrink_in_place(c)
-  focus(c)
+function Utils.shrink_in_place(c)
+  Utils.focus(c)
   c.maximized = false
   c.height = c.height - 20
   c.width = c.width - (20 * ratio(c))
-  center(c)
+  Utils.center(c)
 end
 
-function myscreen()
+function Utils.myscreen()
   return awful.screen.focused()
 end
 
-function mytag()
-  return myscreen().selected_tag
+function Utils.mytag()
+  return Utils.myscreen().selected_tag
 end
 
-function clients()
-  return mytag():clients()
+function Utils.clients()
+  return Utils.mytag():clients()
 end
 
-function open_terminal(cmd)
-  spawn("alacritty -o font.size=12 -e "..cmd)
+function Utils.open_terminal(cmd)
+  Utils.spawn("alacritty -o font.size=12 -e "..cmd)
 end
 
-function system_monitor()
-  open_terminal("btop")
+function Utils.system_monitor()
+  Utils.open_terminal("btop")
 end
 
-function system_monitor_temp()
-  open_terminal("watch -n 2 sensors")
+function Utils.system_monitor_temp()
+  Utils.open_terminal("watch -n 2 sensors")
 end
 
 -- To run nethogs without sudo you need to do this once:
 -- sudo setcap "cap_net_admin,cap_net_raw=ep" /usr/bin/nethogs
-function network_monitor()
-  open_terminal("nethogs")
+function Utils.network_monitor()
+  Utils.open_terminal("nethogs")
 end
 
-function space()
+function Utils.space()
   return wibox.widget.textbox(" ")
 end
 
-function show_clipboard()
-  spawn("clipton")
+function Utils.show_clipboard()
+  Utils.spawn("clipton")
 end
 
-function switch_tag(direction, sticky)
-  local index = mytag().index
-  local num_tags = #myscreen().tags
+function Utils.switch_tag(direction, sticky)
+  local index = Utils.mytag().index
+  local num_tags = #Utils.myscreen().tags
 
   local ok = (direction == "next" and index < num_tags) 
           or (direction == "prev" and index > 1)
@@ -312,10 +314,10 @@ function switch_tag(direction, sticky)
       new_index = index - 1
     end
 
-    local new_tag = myscreen().tags[new_index]
+    local new_tag = Utils.myscreen().tags[new_index]
 
     if sticky then
-      if client.focus and client.focus.screen == myscreen() then
+      if client.focus and client.focus.screen == Utils.myscreen() then
         client.focus:move_to_tag(new_tag)
       end
     end
@@ -324,81 +326,77 @@ function switch_tag(direction, sticky)
   end
 end
 
-function next_tag(sticky)
-  switch_tag("next", sticky)
+function Utils.next_tag(sticky)
+  Utils.switch_tag("next", sticky)
 end
 
-function prev_tag(sticky)
-  switch_tag("prev", sticky)
+function Utils.prev_tag(sticky)
+  Utils.switch_tag("prev", sticky)
 end
 
-function next_tag_all()
-  i = mytag().index + 1
+function Utils.next_tag_all()
+  i = Utils.mytag().index + 1
 
-  if i > #myscreen().tags then
-    i = #myscreen().tags
+  if i > #Utils.myscreen().tags then
+    i = #Utils.myscreen().tags
   end
 
   for s in screen do
-    goto_tag(s, i)
+    Utils.goto_tag(s, i)
   end
 end
 
-function prev_tag_all()
-  i = mytag().index - 1
+function Utils.prev_tag_all()
+  i = Utils.mytag().index - 1
 
   if i < 1 then
     i = 1
   end
   
   for s in screen do
-    goto_tag(s, i)
+    Utils.goto_tag(s, i)
   end
 end
 
-function goto_tag(s, i)
+function Utils.goto_tag(s, i)
   local tag = s.tags[i]
+  
   if tag then
     tag:view_only()
   end
 end
 
-function reset_rules(c)
-  awful.rules.apply(c)
-  check_title_rules(c)
-end
-
-function sleep(n)
+function Utils.sleep(n)
   os.execute("sleep " .. tonumber(n))
 end
 
-function show_audio_controls()
-  spawn("pavucontrol")
+function Utils.show_audio_controls()
+  Utils.spawn("pavucontrol")
 end
 
-function move_to_tag(t)
+function Utils.move_to_tag(t)
   if client.focus then
     client.focus:move_to_tag(t)
     t:view_only()
   end
 end
 
-function auto_suspend(minutes)
+function Utils.auto_suspend(minutes)
   autotimer.start_timer("Suspend", minutes, function() 
-    suspend() 
+    Utils.suspend() 
   end)
 end
 
-function timer(minutes)
+function Utils.timer(minutes)
   autotimer.start_timer("Timer", minutes, function() 
-    msg("Timer ended") 
+    Utils.msg("Timer ended") 
   end)
 end
 
-function counter()
+function Utils.counter()
   autotimer.start_counter("Counter")
 end
 
-function isempty(s)
+function Utils.isempty(s)
   return s == nil or s == ""
 end

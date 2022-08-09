@@ -38,19 +38,19 @@ menupanels.applications = menupanel.create({
   items = {
     {
       name = "Firefox Dev 1",
-      action = function() spawn("firefox-developer-edition -P dev1") end,
+      action = function() Utils.spawn("firefox-developer-edition -P dev1") end,
     },
     {
       name = "Firefox Dev 2",
-      action = function() spawn("firefox-developer-edition -P dev2") end,
+      action = function() Utils.spawn("firefox-developer-edition -P dev2") end,
     },
     {
       name = "Firefox Dev 3",
-      action = function() spawn("firefox-developer-edition -P dev3") end,
+      action = function() Utils.spawn("firefox-developer-edition -P dev3") end,
     },
     {
       name = "Keyboard",
-      action = function() spawn("onboard") end,
+      action = function() Utils.spawn("onboard") end,
     }
   }
 })
@@ -62,16 +62,16 @@ menupanels.log = menupanel.create({
   items = {
     {
       name = "Show Log",
-      action = function() show_log() end,
+      action = function() Utils.show_log() end,
     },
     {
       name = "Wake",
-      action = function() add_to_log("Wake") end,
+      action = function() Utils.add_to_log("Wake") end,
       needs_confirm = true,
     },
     {
       name = "Meds",
-      action = function() add_to_log("Meds") end,
+      action = function() Utils.add_to_log("Meds") end,
       needs_confirm = true,
     }
   }
@@ -98,12 +98,12 @@ menupanels.leave = menupanel.create({
     },
     {
       name = "Reboot",
-      action = function() shellspawn("reboot") end,
+      action = function() Utils.shellspawn("reboot") end,
       needs_confirm = true,
     },
     {
       name = "Shutdown",
-      action = function() shellspawn("shutdown now") end,
+      action = function() Utils.shellspawn("shutdown now") end,
       needs_confirm = true,
     },
   }
@@ -115,27 +115,27 @@ menupanels.suspend = menupanel.create({
   items = {
     {
       name = "Now",
-      action = function() suspend() end,
+      action = function() Utils.suspend() end,
       needs_confirm = true,
     },
     {
       name = "5 minutes",
-      action = function() auto_suspend(5) end,
+      action = function() Utils.auto_suspend(5) end,
       needs_confirm = true,
     },
     {
       name = "30 minutes",
-      action = function() auto_suspend(30) end,
+      action = function() Utils.auto_suspend(30) end,
       needs_confirm = true,
     },
     {
       name = "60 minutes",
-      action = function() auto_suspend(60) end,
+      action = function() Utils.auto_suspend(60) end,
       needs_confirm = true,
     },
     {
       name = "90 minutes",
-      action = function() auto_suspend(90) end,
+      action = function() Utils.auto_suspend(90) end,
       needs_confirm = true,
     }          
   }
@@ -147,27 +147,27 @@ menupanels.context = menupanel.create({
   items = {
     {
       name = "Maximize",
-      action = function() maximize(get_context_client()) end,
+      action = function() Utils.maximize(Utils.get_context_client()) end,
     },
     {
       name = "Fullscreen",
-      action = function() fullscreen(get_context_client()) end,
+      action = function() Utils.fullscreen(Utils.get_context_client()) end,
     },
     {
       name = "On Top",
-      action = function() on_top(get_context_client()) end,
+      action = function() Utils.on_top(Utils.get_context_client()) end,
     },
     {
       name = "Center",
-      action = function() center(get_context_client()) end,
+      action = function() Utils.center(Utils.get_context_client()) end,
     },  
     {
       name = "Reset",
-      action = function() reset_rules(get_context_client()) end,
+      action = function() Rules.reset_rules(Utils.get_context_client()) end,
     },        
     {
       name = "Close",
-      action = function() close(get_context_client()) end,
+      action = function() Utils.close(Utils.get_context_client()) end,
       needs_confirm = true,
     },
   }
@@ -180,7 +180,7 @@ menupanels.info = menupanel.create({
     {
       name = "- Empty -",
       action = function() 
-        to_clipboard(menupanels.info.get_item(1).name) 
+        Utils.to_clipboard(menupanels.info.get_item(1).name) 
       end,
     },
   }

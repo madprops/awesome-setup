@@ -29,7 +29,7 @@ function volumecontrol.get_volume(f)
 end
 
 function volumecontrol.change_volume(vol)
-  awful.util.spawn_with_shell("pamixer --set-volume "..vol, false) 
+  awful.spawn.with_shell("pamixer --set-volume "..vol, false) 
   volumecontrol.update_volume(vol)
 end
 

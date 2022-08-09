@@ -17,15 +17,14 @@ autotimer.create({left = " >", right = "<", left_color = nicered, right_color = 
 
 function sysmonitor_widget(mode)
   local args = {}
-
   args.mode = mode  
 
   args.on_wheel_down = function()
-    decrease_volume()
+    Utils.decrease_volume()
   end
 
   args.on_wheel_up = function()
-    increase_volume()
+    Utils.increase_volume()
   end
 
   args.left_color = nicegreen
@@ -33,27 +32,27 @@ function sysmonitor_widget(mode)
   if mode == "cpu" then
     args.left = " "
     args.on_click = function()
-      system_monitor()
+      Utils.system_monitor()
     end
   elseif mode == "ram" then
     args.left = " | "
     args.on_click = function()
-      system_monitor()
+      Utils.system_monitor()
     end
   elseif mode == "tmp" then
     args.left = " | "
     args.on_click = function()
-      system_monitor_temp()
+      Utils.system_monitor_temp()
     end    
   elseif mode == "net_download" then
     args.left = " | "
     args.on_click = function()
-      network_monitor()
+      Utils.network_monitor()
     end
   elseif mode == "net_upload" then
     args.left = " | "
     args.on_click = function()
-      network_monitor()
+      Utils.network_monitor()
     end
   end
 
@@ -68,9 +67,9 @@ awful.screen.connect_for_each_screen(function(s)
     filter  = awful.widget.taglist.filter.all,
     buttons = {
       awful.button({ }, 1, function(t) t:view_only() end),
-      awful.button({ }, 3, function(t) move_to_tag(t) end),
-      awful.button({ }, 4, function(t) prev_tag() end),
-      awful.button({ }, 5, function(t) next_tag() end)
+      awful.button({ }, 3, function(t) Utils.move_to_tag(t) end),
+      awful.button({ }, 4, function(t) Utils.prev_tag() end),
+      awful.button({ }, 5, function(t) Utils.next_tag() end)
     }
   }  
 
@@ -143,30 +142,30 @@ awful.screen.connect_for_each_screen(function(s)
     multibutton.create({
       text = " ❇ ",
       on_click = function() 
-        show_menupanel("mouse")
+        Utils.show_menupanel("mouse")
       end,
       on_middle_click = function()
-        stop_all_players()
-        lockscreen()
+        Utils.stop_all_players()
+        Utils.lockscreen()
       end,
       on_right_click = function()
-        dropdown()
+        Utils.dropdown()
       end,
       on_wheel_down = function()
-        next_tag()
+        Utils.next_tag()
       end,
       on_wheel_up = function()
-        prev_tag()
+        Utils.prev_tag()
       end,
     }),
     s.mytaglist,
-    space()
+    Utils.space()
   }
 
   if s.index == primary_screen then    
     right = {
       layout = wibox.layout.fixed.horizontal(),
-      space(),
+      Utils.space(),
       systray,
       autotimer,
       sysmonitor_widget("cpu"),
@@ -184,13 +183,13 @@ awful.screen.connect_for_each_screen(function(s)
       multibutton.create({
         widget = wibox.widget.textclock("%a-%d-%b %I:%M:%S %P", 1),
         on_click = function()
-          calendar()
+          Utils.calendar()
         end,
         on_wheel_down = function()
-          decrease_volume()
+          Utils.decrease_volume()
         end,
         on_wheel_up = function()
-          increase_volume()
+          Utils.increase_volume()
         end,
         left = " ", right = " "
       })

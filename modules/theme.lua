@@ -21,6 +21,7 @@ local bg1 = "#2B303B"
 local border = "#445666"
 local green = "#18911D"
 local white = "#ffffff"
+
 beautiful.fg_normal = grey
 beautiful.bg_normal = bg0
 beautiful.tasklist_shape_border_color = bg1

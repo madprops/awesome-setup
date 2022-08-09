@@ -2,16 +2,16 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 
 -- X Settings
-spawn("numlockx")
-spawn("xset m 0 0", false)
-spawn("xset r rate 220 40", false)
-spawn("xset s off", false)
-spawn("xset -dpms", false)
-spawn("xset s noblank", false)
-spawn("setxkbmap -option caps:none", false)
+Utils.spawn("numlockx")
+Utils.spawn("xset m 0 0", false)
+Utils.spawn("xset r rate 220 40", false)
+Utils.spawn("xset s off", false)
+Utils.spawn("xset -dpms", false)
+Utils.spawn("xset s noblank", false)
+Utils.spawn("setxkbmap -option caps:none", false)
 
 -- Clipboard Manager
-spawn("systemctl --user start clipton", false)
+Utils.spawn("systemctl --user start clipton", false)
 
 -- Wallpaper
-spawn("feh --bg-fill "..beautiful.wallpaper, false)
+Utils.spawn("feh --bg-fill "..beautiful.wallpaper, false)

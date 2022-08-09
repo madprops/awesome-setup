@@ -22,7 +22,7 @@ function menupanel.set_screen(instance, mode)
 end
 
 function menupanel.speak(txt)
-  awful.util.spawn_with_shell('pkill espeak; espeak "'..txt..'"', false)
+  awful.spawn.with_shell('pkill espeak; espeak "'..txt..'"', false)
 end
 
 function menupanel.focus_button(instance, btn)
@@ -136,6 +136,7 @@ end
 function menupanel.create_textbox(text)
   return wibox.widget {
     text = text,
+    font = "monospace 11",
     align = "center",
     widget = wibox.widget.textbox
   }
@@ -204,7 +205,7 @@ function menupanel.create(args)
     border_width = 0,
     minimum_height = args.height,
     minimum_width = awful.screen.focused().geometry.width,
-    widget = wibox.widget.background,
+    widget = wibox.container.background,
     bg = args.bgcolor,
     fg = args.fontcolor
   })
