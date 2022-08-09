@@ -15,7 +15,7 @@ volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 autotimer = require("madwidgets/autotimer/autotimer")
 autotimer.create({left = " >", right = "<", left_color = nicered, right_color = nicered})
 
-function sysmonitor_widget(mode)
+local function sysmonitor_widget(mode)
   local args = {}
   args.mode = mode  
 
