@@ -4,15 +4,12 @@ local beautiful = require("beautiful")
 
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
-local theme = beautiful.get()
-theme.font = "monospace 11"
-beautiful.init(theme)
-
+beautiful.font = "monospace 11"
 beautiful.wibar_height = 25
-awful.mouse.snap.default_distance = 25
 beautiful.tasklist_shape_border_width = 1
 beautiful.notification_font = "monospace 18px"
 beautiful.notification_icon_size = 30
+awful.mouse.snap.default_distance = 25
 
 -- Colors
 local grey = "#b8babc"
