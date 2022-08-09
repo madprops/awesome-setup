@@ -190,10 +190,14 @@ end
 
 local logpath = os.getenv("HOME") .. "/.awm_log"
 
-function Utils.add_to_log(text)
+function Utils.add_to_log(text, announce)
   local txt = os.date("%c") .. " " .. Utils.trim(text)
   Utils.add_to_file(logpath, txt)
   Utils.limit_file(logpath, 1000)
+
+  if announce then
+    Utils.msg("Added to log: " .. text)
+  end
 end
 
 function Utils.show_log(name)

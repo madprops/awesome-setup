@@ -66,12 +66,12 @@ menupanels.log = menupanel.create({
     },
     {
       name = "Wake",
-      action = function() Utils.add_to_log("Wake") end,
+      action = function() Utils.add_to_log("Wake", true) end,
       needs_confirm = true,
     },
     {
       name = "Meds",
-      action = function() Utils.add_to_log("Meds") end,
+      action = function() Utils.add_to_log("Meds", true) end,
       needs_confirm = true,
     }
   }
