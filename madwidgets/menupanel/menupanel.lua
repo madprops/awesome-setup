@@ -1,7 +1,6 @@
 local awful = require("awful")
 local wibox = require("wibox")
 local gears = require("gears")
-local beautiful = require("beautiful")
 
 local menupanel = {}
 local instances = {}
@@ -137,7 +136,6 @@ end
 function menupanel.create_textbox(text)
   return wibox.widget {
     text = text,
-    font = beautiful.font,
     align = "center",
     widget = wibox.widget.textbox
   }
