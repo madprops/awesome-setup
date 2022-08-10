@@ -15,33 +15,30 @@ local function sysmonitor_widget(mode)
     Utils.increase_volume()
   end
 
+  args.left_color = Globals.nicedark
+
   if mode == "cpu" then
     args.left = " "
-    args.left_color = Globals.nicedark
     args.on_click = function()
       Utils.system_monitor()
     end
   elseif mode == "ram" then
     args.left = " | "
-    args.left_color = Globals.nicedark
     args.on_click = function()
       Utils.system_monitor()
     end
   elseif mode == "tmp" then
     args.left = " | "
-    args.left_color = Globals.nicedark
     args.on_click = function()
       Utils.system_monitor_temp()
     end    
   elseif mode == "net_download" then
     args.left = " "..Globals.star.." "
-    args.left_color = Globals.nicedark
     args.on_click = function()
       Utils.network_monitor()
     end
   elseif mode == "net_upload" then
     args.left = " | "
-    args.left_color = Globals.nicedark
     args.on_click = function()
       Utils.network_monitor()
     end
