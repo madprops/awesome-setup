@@ -15,30 +15,33 @@ local function sysmonitor_widget(mode)
     Utils.increase_volume()
   end
 
-  args.left_color = Globals.nicegreen
-
   if mode == "cpu" then
     args.left = " "
+    args.left_color = Globals.nicedark
     args.on_click = function()
       Utils.system_monitor()
     end
   elseif mode == "ram" then
     args.left = " | "
+    args.left_color = Globals.nicedark
     args.on_click = function()
       Utils.system_monitor()
     end
   elseif mode == "tmp" then
     args.left = " | "
+    args.left_color = Globals.nicedark
     args.on_click = function()
       Utils.system_monitor_temp()
     end    
   elseif mode == "net_download" then
-    args.left = " | "
+    args.left = " "..Globals.star.." "
+    args.left_color = Globals.nicedark
     args.on_click = function()
       Utils.network_monitor()
     end
   elseif mode == "net_upload" then
     args.left = " | "
+    args.left_color = Globals.nicedark
     args.on_click = function()
       Utils.network_monitor()
     end
@@ -128,7 +131,7 @@ awful.screen.connect_for_each_screen(function(s)
   left = {
     layout = wibox.layout.fixed.horizontal,
     multibutton.create({
-      text = " ❇ ",
+      text = " "..Globals.flower.." ",
       on_click = function() 
         Utils.show_menupanel("mouse")
       end,
@@ -162,10 +165,10 @@ awful.screen.connect_for_each_screen(function(s)
       sysmonitor_widget("net_download"),
       sysmonitor_widget("net_upload"),
       Globals.volumecontrol.create({
-        left = " | ",
-        right = " |",
-        left_color = Globals.niceblue,
-        right_color = Globals.niceblue,
+        left = " "..Globals.star.." ",
+        right = " "..Globals.star.." ",
+        left_color = Globals.nicedark,
+        right_color = Globals.nicedark,
         on_click = function() show_audio_controls() end
       }),
       multibutton.create({
@@ -179,7 +182,7 @@ awful.screen.connect_for_each_screen(function(s)
         on_wheel_up = function()
           Utils.increase_volume()
         end,
-        left = " ", right = " "
+        right = " "
       })
     }
   else
