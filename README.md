@@ -59,6 +59,8 @@ Holds some global variables
 
 # Other programs used
 
+>dash
+
 >numlockx
 
 >xset
