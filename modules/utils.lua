@@ -5,6 +5,7 @@ local naughty = require("naughty")
 local wibox = require("wibox")
 local gears = require("gears")
 local lockdelay = require("madwidgets/lockdelay/lockdelay")
+local autotimer = require("madwidgets/autotimer/autotimer")
 local context_client
 
 function Utils.msg(txt, info)
@@ -384,19 +385,19 @@ function Utils.move_to_tag(t)
 end
 
 function Utils.auto_suspend(minutes)
-  Globals.autotimer.start_timer("Suspend", minutes, function() 
+  autotimer.start_timer("Suspend", minutes, function() 
     Utils.suspend() 
   end)
 end
 
 function Utils.timer(minutes)
-  Globals.autotimer.start_timer("Timer", minutes, function() 
+  autotimer.start_timer("Timer", minutes, function() 
     Utils.msg("Timer ended") 
   end)
 end
 
 function Utils.counter()
-  Globals.autotimer.start_counter("Counter")
+  autotimer.start_counter("Counter")
 end
 
 function Utils.isempty(s)

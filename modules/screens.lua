@@ -2,6 +2,11 @@ local awful = require("awful")
 local wibox = require("wibox")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
+local autotimer = require("madwidgets/autotimer/autotimer")
+
+autotimer.create({
+  fontcolor = Globals.niceblue
+})
 
 local function sysmonitor_widget(mode)
   local args = {}
@@ -155,7 +160,7 @@ awful.screen.connect_for_each_screen(function(s)
       layout = wibox.layout.fixed.horizontal(),
       Utils.space(),
       systray,
-      Globals.autotimer,
+      autotimer,
       sysmonitor_widget("cpu"),
       sysmonitor_widget("ram"),
       sysmonitor_widget("tmp"),

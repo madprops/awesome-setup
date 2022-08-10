@@ -8,7 +8,3 @@ Globals.flower = "❇"
 Globals.star = "⍟"
 Globals.primary_screen = 1
 Globals.volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
-Globals.autotimer = require("madwidgets/autotimer/autotimer")
-Globals.autotimer.create({
-  left = " >", right = "<", left_color = Globals.nicered, right_color = Globals.nicered
-})

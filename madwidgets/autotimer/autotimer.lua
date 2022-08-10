@@ -106,6 +106,9 @@ function autotimer.start(name)
     autotimer.stop(name)
   end
 
+  args.fontcolor = autotimer.args.fontcolor
+  args.bgcolor = autotimer.args.bgcolor
+
   autotimer.actions[name].widget = multibutton.create(args).widget
   autotimer.container:add(autotimer.actions[name].widget)
   autotimer.actions[name].date_started = os.time()
@@ -214,6 +217,7 @@ function autotimer.create(args)
   args.widget = autotimer.container
   autotimer.widget = multibutton.create(args).widget
   autotimer.widget.visible = false
+  autotimer.args = args
 end
 
 autotimer.update_timer = gears.timer {
