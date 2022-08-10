@@ -54,6 +54,9 @@ Utilities and functions
 ## clients.lua
 Client signals
 
+## globals.lua
+Holds some global variables
+
 # Other programs used
 
 >numlockx
