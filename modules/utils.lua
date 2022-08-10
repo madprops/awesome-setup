@@ -6,7 +6,6 @@ local wibox = require("wibox")
 local gears = require("gears")
 local menupanels = require("modules/menupanels")
 local lockdelay = require("madwidgets/lockdelay/lockdelay")
-local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local context_client
 
 function Utils.msg(txt, info)
@@ -16,7 +15,7 @@ function Utils.msg(txt, info)
     run = function() Utils.open_tab(info) end
   end
 
-  local n = naughty.notify({title = " " .. tostring(txt) .. " ", screen = primary_screen})
+  local n = naughty.notify({title = " " .. tostring(txt) .. " "})
   
   n:connect_signal("destroyed", function(n, reason)
     if reason == naughty.notification_closed_reason.dismissed_by_user then
@@ -209,19 +208,19 @@ function Utils.calendar()
 end
 
 function Utils.increase_volume()
-  volumecontrol.increase()
+  Global.volumecontrol.increase()
 end
 
 function Utils.decrease_volume()
-  volumecontrol.decrease()
+  Global.volumecontrol.decrease()
 end
 
 function Utils.set_volume(v)
-  volumecontrol.set_round(v)
+  Global.volumecontrol.set_round(v)
 end
 
 function Utils.refresh_volume()
-  volumecontrol.refresh()
+  Global.volumecontrol.refresh()
 end
 
 function Utils.spawn(program)
@@ -386,19 +385,19 @@ function Utils.move_to_tag(t)
 end
 
 function Utils.auto_suspend(minutes)
-  autotimer.start_timer("Suspend", minutes, function() 
+  Global.autotimer.start_timer("Suspend", minutes, function() 
     Utils.suspend() 
   end)
 end
 
 function Utils.timer(minutes)
-  autotimer.start_timer("Timer", minutes, function() 
+  Global.autotimer.start_timer("Timer", minutes, function() 
     Utils.msg("Timer ended") 
   end)
 end
 
 function Utils.counter()
-  autotimer.start_counter("Counter")
+  Global.autotimer.start_counter("Counter")
 end
 
 function Utils.isempty(s)

@@ -5,15 +5,6 @@ local beautiful = require("beautiful")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local bindings = require("modules/bindings")
-local nicegreen = "#6FE2C8"
-local niceblue = "#1880EB"
-local nicered = "#E9006A"
-
-primary_screen = 1
-
-volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
-autotimer = require("madwidgets/autotimer/autotimer")
-autotimer.create({left = " >", right = "<", left_color = nicered, right_color = nicered})
 
 local function sysmonitor_widget(mode)
   local args = {}
@@ -27,7 +18,7 @@ local function sysmonitor_widget(mode)
     Utils.increase_volume()
   end
 
-  args.left_color = nicegreen
+  args.left_color = Global.nicegreen
 
   if mode == "cpu" then
     args.left = " "
@@ -135,7 +126,7 @@ awful.screen.connect_for_each_screen(function(s)
   local right
   
   local systray = wibox.widget.systray()
-  systray:set_screen(screen[primary_screen])
+  systray:set_screen(screen[Global.primary_screen])
 
   left = {
     layout = wibox.layout.fixed.horizontal,
@@ -162,22 +153,22 @@ awful.screen.connect_for_each_screen(function(s)
     Utils.space()
   }
 
-  if s.index == primary_screen then    
+  if s.index == Global.primary_screen then    
     right = {
       layout = wibox.layout.fixed.horizontal(),
       Utils.space(),
       systray,
-      autotimer,
+      Global.autotimer,
       sysmonitor_widget("cpu"),
       sysmonitor_widget("ram"),
       sysmonitor_widget("tmp"),
       sysmonitor_widget("net_download"),
       sysmonitor_widget("net_upload"),
-      volumecontrol.create({
+      Global.volumecontrol.create({
         left = " | ",
         right = " |",
-        left_color = niceblue,
-        right_color = niceblue,
+        left_color = Global.niceblue,
+        right_color = Global.niceblue,
         on_click = function() show_audio_controls() end
       }),
       multibutton.create({
