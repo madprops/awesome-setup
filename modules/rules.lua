@@ -73,7 +73,7 @@ awful.rules.rules = {
     rule = {instance = "dolphin"},
     properties = {
       placement = function(c)
-        awful.placement.top_left(c, {honor_workarea = true})
+        awful.placement.left(c, {honor_workarea = true})
       end, 
       width = Utils.width_factor(0.5),
       height = Utils.height_factor(1),
