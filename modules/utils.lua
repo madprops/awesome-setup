@@ -250,7 +250,7 @@ function Utils.grow_in_place(c)
   Utils.focus(c)
   c.maximized = false
   c.height = c.height + 20
-  c.width = c.width + (20 * ratio(c))
+  c.width = c.width + (20 * Utils.ratio(c))
   Utils.center(c)
 end
 
@@ -258,7 +258,7 @@ function Utils.shrink_in_place(c)
   Utils.focus(c)
   c.maximized = false
   c.height = c.height - 20
-  c.width = c.width - (20 * ratio(c))
+  c.width = c.width - (20 * Utils.ratio(c))
   Utils.center(c)
 end
 
