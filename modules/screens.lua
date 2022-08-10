@@ -17,7 +17,7 @@ local function sysmonitor_widget(mode)
     Utils.increase_volume()
   end
 
-  args.left_color = Global.nicegreen
+  args.left_color = Globals.nicegreen
 
   if mode == "cpu" then
     args.left = " "
@@ -125,7 +125,7 @@ awful.screen.connect_for_each_screen(function(s)
   local right
   
   local systray = wibox.widget.systray()
-  systray:set_screen(screen[Global.primary_screen])
+  systray:set_screen(screen[Globals.primary_screen])
 
   left = {
     layout = wibox.layout.fixed.horizontal,
@@ -152,22 +152,22 @@ awful.screen.connect_for_each_screen(function(s)
     Utils.space()
   }
 
-  if s.index == Global.primary_screen then    
+  if s.index == Globals.primary_screen then    
     right = {
       layout = wibox.layout.fixed.horizontal(),
       Utils.space(),
       systray,
-      Global.autotimer,
+      Globals.autotimer,
       sysmonitor_widget("cpu"),
       sysmonitor_widget("ram"),
       sysmonitor_widget("tmp"),
       sysmonitor_widget("net_download"),
       sysmonitor_widget("net_upload"),
-      Global.volumecontrol.create({
+      Globals.volumecontrol.create({
         left = " | ",
         right = " |",
-        left_color = Global.niceblue,
-        right_color = Global.niceblue,
+        left_color = Globals.niceblue,
+        right_color = Globals.niceblue,
         on_click = function() show_audio_controls() end
       }),
       multibutton.create({

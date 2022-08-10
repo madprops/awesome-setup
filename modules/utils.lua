@@ -207,19 +207,19 @@ function Utils.calendar()
 end
 
 function Utils.increase_volume()
-  Global.volumecontrol.increase()
+  Globals.volumecontrol.increase()
 end
 
 function Utils.decrease_volume()
-  Global.volumecontrol.decrease()
+  Globals.volumecontrol.decrease()
 end
 
 function Utils.set_volume(v)
-  Global.volumecontrol.set_round(v)
+  Globals.volumecontrol.set_round(v)
 end
 
 function Utils.refresh_volume()
-  Global.volumecontrol.refresh()
+  Globals.volumecontrol.refresh()
 end
 
 function Utils.spawn(program)
@@ -384,19 +384,19 @@ function Utils.move_to_tag(t)
 end
 
 function Utils.auto_suspend(minutes)
-  Global.autotimer.start_timer("Suspend", minutes, function() 
+  Globals.autotimer.start_timer("Suspend", minutes, function() 
     Utils.suspend() 
   end)
 end
 
 function Utils.timer(minutes)
-  Global.autotimer.start_timer("Timer", minutes, function() 
+  Globals.autotimer.start_timer("Timer", minutes, function() 
     Utils.msg("Timer ended") 
   end)
 end
 
 function Utils.counter()
-  Global.autotimer.start_counter("Counter")
+  Globals.autotimer.start_counter("Counter")
 end
 
 function Utils.isempty(s)
