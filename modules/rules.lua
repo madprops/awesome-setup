@@ -1,7 +1,6 @@
 Rules = {}
 
 local awful = require("awful")
-local beautiful = require("beautiful")
 local screen_left = 1
 local screen_right = 2
 

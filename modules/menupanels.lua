@@ -1,6 +1,5 @@
 Menupanels = {}
 
-local awful = require("awful")
 local menupanel = require("madwidgets/menupanel/menupanel")
 
 local placement = "bottom"

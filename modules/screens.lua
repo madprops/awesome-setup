@@ -1,7 +1,5 @@
 local awful = require("awful")
 local wibox = require("wibox")
-local gears = require("gears")
-local beautiful = require("beautiful")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 
