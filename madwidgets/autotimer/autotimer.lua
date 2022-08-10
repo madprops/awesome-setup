@@ -83,8 +83,6 @@ function autotimer.start(name)
 
   local args = {}
   args.widget = autotimer.actions[name].text_widget
-  args.left = " "
-  args.right = " "
 
   args.on_click = function ()
     if autotimer.actions[name].mode == "timer" then
@@ -206,11 +204,13 @@ function autotimer.create(args)
   args = args or {}
 
   autotimer.container = wibox.widget {
-    spacing = 5,
+    spacing = 25,
     spacing_widget = {
-        shape  = gears.shape.circle,
-        widget = wibox.widget.separator,
-    },
+      text   = "|",
+      align  = "center",
+      valign = "center",
+      widget = wibox.widget.textbox,
+  },
     widget = wibox.layout.fixed.horizontal
   }
 
