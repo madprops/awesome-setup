@@ -2,7 +2,6 @@ Rules = {}
 
 local awful = require("awful")
 local beautiful = require("beautiful")
-local bindings = require("modules/bindings")
 local screen_left = 1
 local screen_right = 2
 
@@ -13,8 +12,8 @@ awful.rules.rules = {
       border_width = 0,
       focus = awful.client.focus.filter,
       raise = true,
-      keys = bindings.clientkeys,
-      buttons = bindings.clientbuttons,
+      keys = Bindings.clientkeys,
+      buttons = Bindings.clientbuttons,
       screen = awful.screen.preferred,
       placement = awful.placement.centered,
       xindex = 0,

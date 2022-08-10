@@ -4,7 +4,6 @@ local gears = require("gears")
 local beautiful = require("beautiful")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
-local bindings = require("modules/bindings")
 
 local function sysmonitor_widget(mode)
   local args = {}
@@ -66,7 +65,7 @@ awful.screen.connect_for_each_screen(function(s)
 
   s.mytasklist = awful.widget.tasklist {
     screen = s,
-    buttons = bindings.tasklist_buttons,
+    buttons = Bindings.tasklist_buttons,
     filter = function() return true end, 
     source = function()
       local result = {}

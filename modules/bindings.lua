@@ -1,8 +1,9 @@
+Bindings = {}
+
 local gears = require("gears")
 local awful = require("awful")
 local doubletap = require("madwidgets/doubletap/doubletap")
 
-local bindings = {}
 local altkey = "Mod1"
 local modkey = "Mod4"
 
@@ -29,7 +30,7 @@ local closetap = doubletap.create({
   end
 })
 
-bindings.globalkeys = gears.table.join(
+Bindings.globalkeys = gears.table.join(
   awful.key({modkey, "Control"}, "BackSpace", awesome.restart), 
   awful.key({modkey, "Shift"}, "q", awesome.quit), 
 
@@ -133,7 +134,7 @@ bindings.globalkeys = gears.table.join(
   end)
 )
 
-bindings.clientkeys = gears.table.join(
+Bindings.clientkeys = gears.table.join(
   awful.key({altkey}, "F4", function(c)
     if not c.xkeys then return end
     Utils.close(c)
@@ -223,7 +224,7 @@ bindings.clientkeys = gears.table.join(
   end)
 )
 
-bindings.clientbuttons = gears.table.join(
+Bindings.clientbuttons = gears.table.join(
   awful.button({}, 1, function(c)
     Utils.focus(c)
   end), 
@@ -253,7 +254,7 @@ bindings.clientbuttons = gears.table.join(
   end)
 )
 
-bindings.tasklist_buttons = gears.table.join(
+Bindings.tasklist_buttons = gears.table.join(
   awful.button({}, 1, function(c)
     c:activate { context = "tasklist", action = "toggle_minimization" }
   end), 
@@ -275,5 +276,4 @@ bindings.tasklist_buttons = gears.table.join(
   end)
 )
 
-root.keys(bindings.globalkeys)
-return bindings
+root.keys(Bindings.globalkeys)

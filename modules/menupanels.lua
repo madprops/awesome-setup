@@ -1,40 +1,41 @@
+Menupanels = {}
+
 local awful = require("awful")
 local menupanel = require("madwidgets/menupanel/menupanel")
 
-local menupanels = {}
 local placement = "bottom"
 local height = 25
 
-menupanels.utils = {}
+Menupanels.utils = {}
 
-function menupanels.utils.showinfo(text)
-  menupanels.info.update_item(1, text)
-  menupanels.info.start("mouse")
+function Menupanels.utils.showinfo(text)
+  Menupanels.info.update_item(1, text)
+  Menupanels.info.start("mouse")
 end
 
-menupanels.main = menupanel.create({
+Menupanels.main = menupanel.create({
   placement = placement,
   height = height,
   items = {
     {
       name = "Launch",
-      action = function(trigger) menupanels.applications.show(trigger) end,
+      action = function(trigger) Menupanels.applications.show(trigger) end,
     },
     {
       name = "Log",
-      action = function(trigger) menupanels.log.show(trigger) end,
+      action = function(trigger) Menupanels.log.show(trigger) end,
     },
     {
       name = "Leave",
-      action = function(trigger) menupanels.leave.show(trigger) end,
+      action = function(trigger) Menupanels.leave.show(trigger) end,
     },
   }
 })
 
-menupanels.applications = menupanel.create({
+Menupanels.applications = menupanel.create({
   placement = placement,
   height = height,
-  parent = menupanels.main,
+  parent = Menupanels.main,
   items = {
     {
       name = "Firefox Dev 1",
@@ -55,10 +56,10 @@ menupanels.applications = menupanel.create({
   }
 })
 
-menupanels.log = menupanel.create({
+Menupanels.log = menupanel.create({
   placement = placement,
   height = height,
-  parent = menupanels.main,
+  parent = Menupanels.main,
   items = {
     {
       name = "Show Log",
@@ -77,10 +78,10 @@ menupanels.log = menupanel.create({
   }
 })
 
-menupanels.leave = menupanel.create({
+Menupanels.leave = menupanel.create({
   placement = placement,
   height = height, 
-  parent = menupanels.main,
+  parent = Menupanels.main,
   items = {
     {
       name = "Restart",
@@ -94,7 +95,7 @@ menupanels.leave = menupanel.create({
     },
     {
       name = "Suspend",
-      action = function(trigger) menupanels.suspend.show(trigger) end,
+      action = function(trigger) Menupanels.suspend.show(trigger) end,
     },
     {
       name = "Reboot",
@@ -109,7 +110,7 @@ menupanels.leave = menupanel.create({
   }
 })
 
-menupanels.suspend = menupanel.create({
+Menupanels.suspend = menupanel.create({
   placement = placement,
   height = height,
   items = {
@@ -141,7 +142,7 @@ menupanels.suspend = menupanel.create({
   }
 })
 
-menupanels.context = menupanel.create({
+Menupanels.context = menupanel.create({
   placement = placement,
   height = height,
   items = {
@@ -173,17 +174,15 @@ menupanels.context = menupanel.create({
   }
 })
 
-menupanels.info = menupanel.create({
+Menupanels.info = menupanel.create({
   placement = placement,
   height = height,
   items = {
     {
       name = "- Empty -",
       action = function() 
-        Utils.to_clipboard(menupanels.info.get_item(1).name) 
+        Utils.to_clipboard(Menupanels.info.get_item(1).name) 
       end,
     },
   }
 })
-
-return menupanels

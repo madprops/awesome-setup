@@ -4,7 +4,6 @@ local awful = require("awful")
 local naughty = require("naughty")
 local wibox = require("wibox")
 local gears = require("gears")
-local menupanels = require("modules/menupanels")
 local lockdelay = require("madwidgets/lockdelay/lockdelay")
 local context_client
 
@@ -123,7 +122,7 @@ function Utils.startswith(s1, s2)
 end
 
 function Utils.show_menupanel(mode)
-  menupanels.main.start(mode)
+  Menupanels.main.start(mode)
 end
 
 function Utils.get_context_client()
@@ -132,11 +131,11 @@ end
 
 function Utils.show_task_context(c)
   context_client = c
-  menupanels.context.start("mouse")
+  Menupanels.context.start("mouse")
 end
 
 function Utils.show_client_title(c)
-  menupanels.utils.showinfo(c.name)
+  Menupanels.utils.showinfo(c.name)
 end
 
 function Utils.dropdown()
