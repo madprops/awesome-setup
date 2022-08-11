@@ -1,5 +1,6 @@
 local gears = require("gears")
 local wibox = require("wibox")
+local beautiful = require("beautiful")
 local utils = require("madwidgets/utils")
 local multibutton = require("madwidgets/multibutton/multibutton")
 
@@ -203,7 +204,7 @@ end
 function autotimer.create(args)
   args = args or {}
   args.separator = args.separator or "|"
-  args.separator_color = args.separator_color or args.fontcolor or "green"
+  args.separator_color = args.separator_color or beautiful.fg_normal
 
   autotimer.container = wibox.widget {
     spacing = 25,

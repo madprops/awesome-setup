@@ -55,5 +55,5 @@ Supports multibutton args plus:
 ```lua
 args = args or {}
 args.separator = args.separator or "|"
-args.separator_color = args.separator_color or args.fontcolor or "green"
+args.separator_color = args.separator_color or beautiful.fg_normal
 ```
