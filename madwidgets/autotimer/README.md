@@ -38,3 +38,22 @@ autotimer,
 ```
 
 Middle clicking the widgets stop the actions.
+
+Example:
+
+```lua
+autotimer.create({
+  fontcolor = "blue",
+  left = " ", right = " * ", 
+  right_color = "grey",
+  separator = "|", separator_color = "red"
+})
+```
+
+Supports multibutton args plus:
+
+```lua
+args = args or {}
+args.separator = args.separator or "|"
+args.separator_color = args.separator_color or args.fontcolor or "green"
+```
