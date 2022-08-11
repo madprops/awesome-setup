@@ -202,11 +202,13 @@ end
 
 function autotimer.create(args)
   args = args or {}
+  args.separator = args.separator or "|"
+  args.separator_color = args.separator_color or args.fontcolor or "green"
 
   autotimer.container = wibox.widget {
     spacing = 25,
     spacing_widget = {
-      text   = "|",
+      markup = "<span fgcolor='"..args.separator_color.."'>"..gears.string.xml_escape(args.separator).."</span>",
       align  = "center",
       valign = "center",
       widget = wibox.widget.textbox,
