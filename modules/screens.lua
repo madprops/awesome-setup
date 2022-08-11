@@ -7,7 +7,8 @@ local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 
 autotimer.create({
   fontcolor = Globals.niceblue,
-  left = " ", right = " "
+  left = " ", right = " "..Globals.star, 
+  right_color = Globals.nicedark
 })
 
 local function sysmonitor_widget(mode)

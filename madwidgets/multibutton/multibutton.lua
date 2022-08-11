@@ -18,8 +18,8 @@ function multibutton.create(args)
   args.fontcolor = args.fontcolor or beautiful.fg_normal
   args.left = args.left or ""
   args.right = args.right or ""
-  args.left_color = args.left_color or args.fontcolor
-  args.right_color = args.right_color or args.fontcolor
+  args.left_color = args.left_color or beautiful.fg_normal
+  args.right_color = args.right_color or beautiful.fg_normal
 
   local instance = {}
   instance.args = args
