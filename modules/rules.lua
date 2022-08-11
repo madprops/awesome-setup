@@ -73,7 +73,7 @@ awful.rules.rules = {
     rule = {instance = "dolphin"},
     properties = {
       placement = function(c)
-        awful.placement.left(c)
+        awful.placement.left(c, {honor_workarea = true})
       end, 
       width = Utils.width_factor(0.5),
       height = Utils.height_factor(1),
@@ -86,7 +86,7 @@ awful.rules.rules = {
     rule = {instance = "hexchat"},
     properties = {
       placement = function(c)
-        awful.placement.top_right(c)
+        awful.placement.top_right(c, {honor_workarea = true})
       end,
       width = Utils.width_factor(0.5),
       height = Utils.height_factor(0.6),
@@ -99,7 +99,7 @@ awful.rules.rules = {
     rule = {instance = "audacious"},
     properties = {
       placement = function(c)
-        awful.placement.bottom_right(c)
+        awful.placement.bottom_right(c, {honor_workarea = true})
       end,
       width = Utils.width_factor(0.5),
       height = Utils.height_factor(0.4),
@@ -113,7 +113,7 @@ awful.rules.rules = {
     rule = {instance = "Alacritty"},
     properties = {
       placement = function(c)
-        awful.placement.centered(c)
+        awful.placement.centered(c, {honor_workarea = true})
       end,
       width = Utils.width_factor(0.7),
       height = Utils.height_factor(0.7),
