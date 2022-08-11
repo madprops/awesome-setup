@@ -6,6 +6,7 @@ local wibox = require("wibox")
 local gears = require("gears")
 local lockdelay = require("madwidgets/lockdelay/lockdelay")
 local autotimer = require("madwidgets/autotimer/autotimer")
+local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local context_client
 
 function Utils.msg(txt, info)
@@ -208,19 +209,19 @@ function Utils.calendar()
 end
 
 function Utils.increase_volume()
-  Globals.volumecontrol.increase()
+  volumecontrol.increase()
 end
 
 function Utils.decrease_volume()
-  Globals.volumecontrol.decrease()
+  volumecontrol.decrease()
 end
 
 function Utils.set_volume(v)
-  Globals.volumecontrol.set_round(v)
+  volumecontrol.set_round(v)
 end
 
 function Utils.refresh_volume()
-  Globals.volumecontrol.refresh()
+  volumecontrol.refresh()
 end
 
 function Utils.spawn(program)
