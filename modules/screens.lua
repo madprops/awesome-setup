@@ -32,12 +32,12 @@ local function sysmonitor_widget(mode)
       Utils.system_monitor()
     end
   elseif mode == "ram" then
-    args.left = " | "
+    args.left = " "
     args.on_click = function()
       Utils.system_monitor()
     end
   elseif mode == "tmp" then
-    args.left = " | "
+    args.left = " "
     args.on_click = function()
       Utils.system_monitor_temp()
     end    
@@ -47,7 +47,7 @@ local function sysmonitor_widget(mode)
       Utils.network_monitor()
     end
   elseif mode == "net_upload" then
-    args.left = " | "
+    args.left = " "
     args.on_click = function()
       Utils.network_monitor()
     end
