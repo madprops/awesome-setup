@@ -391,14 +391,14 @@ function Utils.auto_suspend(minutes)
   end)
 end
 
-function Utils.timer(minutes)
-  autotimer.start_timer("Timer", minutes, function() 
+function Utils.timer(title, minutes)
+  autotimer.start_timer(title, minutes, function() 
     Utils.msg("Timer ended") 
   end)
 end
 
-function Utils.counter()
-  autotimer.start_counter("Counter")
+function Utils.counter(title)
+  autotimer.start_counter(title)
 end
 
 function Utils.isempty(s)
