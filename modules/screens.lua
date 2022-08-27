@@ -7,7 +7,7 @@ local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 
 autotimer.create({
   fontcolor = Globals.niceblue,
-  left = " ", right = " "..Globals.star, 
+  left = " ", 
   right_color = Globals.nicedark,
   separator = "|", separator_color = Globals.nicedark
 })
@@ -164,7 +164,6 @@ awful.screen.connect_for_each_screen(function(s)
       layout = wibox.layout.fixed.horizontal(),
       Utils.space(),
       systray,
-      autotimer,
       sysmonitor_widget("cpu"),
       sysmonitor_widget("ram"),
       sysmonitor_widget("tmp"),
@@ -193,7 +192,8 @@ awful.screen.connect_for_each_screen(function(s)
     }
   else
     right = {
-      layout = wibox.layout.fixed.horizontal()
+      layout = wibox.layout.fixed.horizontal(),
+      autotimer
     }
   end
 
