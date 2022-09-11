@@ -88,7 +88,7 @@ function Utils.altab()
 end
 
 function Utils.screenshot()
-  Utils.spawn("spectacle -r " .. os.getenv("HOME") .. "/Downloads/pics/pics1")
+  Utils.spawn("spectacle -r")
 end
 
 local media_lock = lockdelay.create({action=function(cmd)
