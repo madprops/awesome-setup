@@ -6,9 +6,8 @@ local autotimer = require("madwidgets/autotimer/autotimer")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 
 autotimer.create({
-  fontcolor = Globals.niceblue,
   left = " ", 
-  right_color = Globals.nicedark,
+  fontcolor = Globals.niceblue,
   separator = "|", separator_color = Globals.nicedark
 })
 
