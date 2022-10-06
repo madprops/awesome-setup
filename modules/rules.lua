@@ -70,19 +70,6 @@ awful.rules.rules = {
   },
   -- Screen Right
   {
-    rule = {instance = "dolphin"},
-    properties = {
-      placement = function(c)
-        awful.placement.left(c, {honor_workarea = true})
-      end, 
-      width = Utils.width_factor(0.5),
-      height = Utils.height_factor(1),
-      maximized = false,
-      xindex = 1,
-      screen = screen_right           
-    }
-  },
-  {
     rule = {instance = "hexchat"},
     properties = {
       placement = function(c)
@@ -128,7 +115,6 @@ function Rules.check_title_rules(c)
     c.height = Utils.height_factor(1)
     c.xindex = 1
     c.maximized = false
-    c.border_width = 1
     Utils.snap(c, "vertically", awful.placement.left)
   end
   
@@ -137,7 +123,6 @@ function Rules.check_title_rules(c)
     c.height = Utils.height_factor(1)
     c.xindex = 2
     c.maximized = false
-    c.border_width = 1
     Utils.snap(c, "vertically", awful.placement.right)
   end
 end
