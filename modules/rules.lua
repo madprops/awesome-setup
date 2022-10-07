@@ -109,7 +109,6 @@ awful.rules.rules = {
       screen = screen_right,
       tag = "4",
       skip_taskbar = true,
-      ontop = true,
       xutil = true
     }
   },
@@ -125,7 +124,6 @@ awful.rules.rules = {
       screen = screen_right,
       tag = "4",
       skip_taskbar = true,
-      ontop = true,
       xutil = true
     }
   },  
@@ -141,7 +139,6 @@ awful.rules.rules = {
       screen = screen_right,
       tag = "4",
       skip_taskbar = true,
-      ontop = true,
       xutil = true
     }
   },    
