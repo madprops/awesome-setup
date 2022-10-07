@@ -101,12 +101,11 @@ awful.rules.rules = {
     rule = {instance = "dolphin"},
     properties = {
       placement = function(c)
-        awful.placement.top(c, {honor_workarea = true})
+        awful.placement.top_left(c, {honor_workarea = true})
       end,
-      width = Utils.width_factor(1),
+      width = Utils.width_factor(0.6),
       height = Utils.height_factor(0.5),
       maximized = false,
-      xindex = 1,
       screen = screen_right,
       tag = "4",
       skip_taskbar = true,
@@ -114,6 +113,22 @@ awful.rules.rules = {
       xutil = true
     }
   },
+  {
+    rule = {instance = "speedcrunch"},
+    properties = {
+      placement = function(c)
+        awful.placement.top_right(c, {honor_workarea = true})
+      end,
+      width = Utils.width_factor(0.4),
+      height = Utils.height_factor(0.5),
+      maximized = false,
+      screen = screen_right,
+      tag = "4",
+      skip_taskbar = true,
+      ontop = true,
+      xutil = true
+    }
+  },  
   {
     rule = {instance = "tilix"},
     properties = {
@@ -123,7 +138,6 @@ awful.rules.rules = {
       width = Utils.width_factor(1),
       height = Utils.height_factor(0.5),
       maximized = false,
-      xindex = 2,
       screen = screen_right,
       tag = "4",
       skip_taskbar = true,

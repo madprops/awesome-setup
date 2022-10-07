@@ -4,7 +4,6 @@ local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local autotimer = require("madwidgets/autotimer/autotimer")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
--- local quake = lain.util.quake()
 
 autotimer.create({
   left = " ", 
@@ -146,7 +145,7 @@ awful.screen.connect_for_each_screen(function(s)
         Utils.lockscreen()
       end,
       on_right_click = function()
-        Utils.show_util_screen()
+        Utils.toggle_util_screen()
       end,
       on_wheel_down = function()
         Utils.next_tag()

@@ -1,4 +1,5 @@
 Utils = {}
+Utils.util_screen_on = false
 
 local awful = require("awful")
 local naughty = require("naughty")
@@ -140,26 +141,35 @@ function Utils.show_client_title(c)
   Menupanels.utils.showinfo(c.name)
 end
 
+function Utils.toggle_util_screen()
+  if Utils.util_screen_on then
+    Utils.hide_util_screen()
+  else
+    Utils.show_util_screen()
+  end
+end
+
 function Utils.show_util_screen()
+  local t = Utils.mytag()
+  
   for _, c in ipairs(client.get()) do
     if c.xutil then
-      local t = Utils.mytag()
-      local is_here = false
-
-      for _, t2 in ipairs(c:tags()) do
-        if t.index == t2.index then
-          is_here = true
-        end
-      end
-
-      if t.index ~= 4 and is_here then
-        c:move_to_tag(Utils.myscreen().tags[4])
-      else
-        c:move_to_tag(t)
-        c:raise()
-      end
+      c:move_to_tag(t)
+      c:raise()
     end
   end
+  
+  Utils.util_screen_on = true
+end
+
+function Utils.hide_util_screen()
+  for _, c in ipairs(client.get()) do
+    if c.xutil then
+      c:move_to_tag(Utils.myscreen().tags[4])
+    end
+  end
+
+  Utils.util_screen_on = false
 end
 
 function Utils.stop_all_players()

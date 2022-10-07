@@ -9,3 +9,11 @@ end)
 client.connect_signal("property::fullscreen", function(c)
   Utils.check_fullscreen(c)
 end)
+
+client.connect_signal("focus", function(c)
+  if Utils.util_screen_on then
+    if not c.xutil then
+      Utils.hide_util_screen()
+    end
+  end
+end)
