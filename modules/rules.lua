@@ -95,6 +95,39 @@ awful.rules.rules = {
       screen = screen_right
     }
   },
+  -- Util screen
+  {
+    rule = {instance = "dolphin"},
+    properties = {
+      placement = function(c)
+        awful.placement.top(c, {honor_workarea = true})
+      end,
+      width = Utils.width_factor(1),
+      height = Utils.height_factor(0.5),
+      maximized = false,
+      xindex = 1,
+      screen = screen_right,
+      tag = "4",
+      skip_taskbar = true,
+      ontop = true
+    }
+  },
+  {
+    rule = {instance = "tilix"},
+    properties = {
+      placement = function(c)
+        awful.placement.bottom(c, {honor_workarea = true})
+      end,
+      width = Utils.width_factor(1),
+      height = Utils.height_factor(0.5),
+      maximized = false,
+      xindex = 2,
+      screen = screen_right,
+      tag = "4",
+      skip_taskbar = true,
+      ontop = true
+    }
+  },    
   -- Other Rules
   {
     rule = {instance = "Alacritty"},

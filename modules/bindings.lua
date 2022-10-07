@@ -80,7 +80,7 @@ Bindings.globalkeys = gears.table.join(
   end),
 
   awful.key({}, "Scroll_Lock", function()
-    Utils.dropdown()
+    Utils.show_util_screen()
   end),
 
   awful.key({modkey}, "l", function()

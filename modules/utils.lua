@@ -140,8 +140,26 @@ function Utils.show_client_title(c)
   Menupanels.utils.showinfo(c.name)
 end
 
-function Utils.dropdown()
-  Utils.spawn("tilix --quake")
+function Utils.show_util_screen()
+  for _, c in ipairs(client.get()) do
+    if c.instance == "dolphin" or c.instance == "tilix" then
+      local t = Utils.mytag()
+      local is_here = false
+
+      for _, t2 in ipairs(c:tags()) do
+        if t.index == t2.index then
+          is_here = true
+        end
+      end
+
+      if t.index ~= 4 and is_here then
+        c:move_to_tag(Utils.myscreen().tags[4])
+      else
+        c:move_to_tag(t)
+        c:raise()
+      end
+    end
+  end
 end
 
 function Utils.stop_all_players()
