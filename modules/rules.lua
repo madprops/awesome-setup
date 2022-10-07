@@ -16,7 +16,8 @@ awful.rules.rules = {
       screen = awful.screen.preferred,
       placement = awful.placement.centered,
       xindex = 0,
-      xkeys = true
+      xkeys = true,
+      xutil = false
     },
     callback=function(c)
       if c.fullscreen then
@@ -109,7 +110,8 @@ awful.rules.rules = {
       screen = screen_right,
       tag = "4",
       skip_taskbar = true,
-      ontop = true
+      ontop = true,
+      xutil = true
     }
   },
   {
@@ -125,7 +127,8 @@ awful.rules.rules = {
       screen = screen_right,
       tag = "4",
       skip_taskbar = true,
-      ontop = true
+      ontop = true,
+      xutil = true
     }
   },    
   -- Other Rules

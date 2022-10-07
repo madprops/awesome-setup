@@ -142,7 +142,7 @@ end
 
 function Utils.show_util_screen()
   for _, c in ipairs(client.get()) do
-    if c.instance == "dolphin" or c.instance == "tilix" then
+    if c.xutil then
       local t = Utils.mytag()
       local is_here = false
 
