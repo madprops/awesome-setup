@@ -14,6 +14,7 @@ local closetap = doubletap.create({
     local c = mouse.object_under_pointer()
     if not c then return end
     if not c.xkeys then return end
+    if c.xutil then return end
 
     if c.kill then
       if c.instance == "Navigator" then
