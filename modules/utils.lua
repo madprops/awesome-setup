@@ -144,7 +144,7 @@ end
 function Utils.start_util_screen()
   Utils.spawn("dolphin")
   Utils.spawn("speedcrunch")
-  Utils.spawn("tilix")
+  Utils.spawn("tilix --session ~/other/tilix.json")
 end
 
 function Utils.toggle_util_screen()
