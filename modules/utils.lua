@@ -141,6 +141,12 @@ function Utils.show_client_title(c)
   Menupanels.utils.showinfo(c.name)
 end
 
+function Utils.start_util_screen()
+  Utils.spawn("dolphin")
+  Utils.spawn("speedcrunch")
+  Utils.spawn("tilix")
+end
+
 function Utils.toggle_util_screen()
   if Utils.util_screen_on then
     Utils.hide_util_screen()
@@ -149,14 +155,15 @@ function Utils.toggle_util_screen()
   end
 end
 
-function Utils.show_util_screen()
+function Utils.show_util_screen()  
   local t = Utils.mytag()
   
   for _, c in ipairs(client.get()) do
     if c.xutil then
-      Rules.reset_rules(c)
       c:move_to_tag(t)
+      c.hidden = false
       c:raise()
+      Rules.reset_rules(c)
     end
   end
   
@@ -167,7 +174,7 @@ end
 function Utils.hide_util_screen()
   for _, c in ipairs(client.get()) do
     if c.xutil then
-      c:move_to_tag(Utils.myscreen().tags[4])
+      c.hidden = true
     end
   end
 
@@ -360,12 +367,22 @@ function Utils.switch_tag(direction, sticky)
   end
 end
 
+function Utils.check_util_screen_hide()
+  if Utils.util_screen_on then
+    if Utils.util_screen_screen == Utils.myscreen() then
+      Utils.hide_util_screen()
+    end
+  end
+end
+
 function Utils.next_tag(sticky)
   Utils.switch_tag("next", sticky)
+  Utils.check_util_screen_hide()
 end
 
 function Utils.prev_tag(sticky)
   Utils.switch_tag("prev", sticky)
+  Utils.check_util_screen_hide()
 end
 
 function Utils.next_tag_all()

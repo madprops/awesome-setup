@@ -79,6 +79,10 @@ Bindings.globalkeys = gears.table.join(
     Utils.launcher()
   end),
 
+  awful.key({"Shift"}, "Scroll_Lock", function()
+    Utils.start_util_screen()
+  end),  
+
   awful.key({}, "Scroll_Lock", function()
     Utils.toggle_util_screen()
   end),

@@ -106,8 +106,6 @@ awful.rules.rules = {
       width = Utils.width_factor(0.75),
       height = Utils.height_factor(0.5),
       maximized = false,
-      screen = screen_right,
-      tag = "4",
       skip_taskbar = true,
       xutil = true
     }
@@ -121,8 +119,6 @@ awful.rules.rules = {
       width = Utils.width_factor(0.25),
       height = Utils.height_factor(0.5),
       maximized = false,
-      screen = screen_right,
-      tag = "4",
       skip_taskbar = true,
       xutil = true
     }
@@ -136,8 +132,6 @@ awful.rules.rules = {
       width = Utils.width_factor(1),
       height = Utils.height_factor(0.5),
       maximized = false,
-      screen = screen_right,
-      tag = "4",
       skip_taskbar = true,
       xutil = true
     }
