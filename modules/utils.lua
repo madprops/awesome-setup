@@ -160,6 +160,7 @@ function Utils.show_util_screen()
   end
   
   Utils.util_screen_on = true
+  Utils.util_screen_screen = Utils.myscreen()
 end
 
 function Utils.hide_util_screen()
