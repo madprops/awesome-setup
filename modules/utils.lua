@@ -151,7 +151,7 @@ function Utils.toggle_util_screen()
   if Utils.util_screen_on then
     local highest = Utils.highest_in_tag(Utils.util_screen_tag)
 
-    if highest ~= nil and not highest.xutil then
+    if not Utils.util_screen_tag.selected or (highest ~= nil and not highest.xutil) then
       Utils.show_util_screen()
     else
       Utils.hide_util_screen()
@@ -167,9 +167,9 @@ function Utils.show_util_screen()
   for _, c in ipairs(client.get()) do
     if c.xutil then
       c:move_to_tag(t)
-      c.hidden = false
       c:raise()
       Rules.reset_rules(c)
+      c.hidden = false
     end
   end
   
@@ -374,22 +374,12 @@ function Utils.switch_tag(direction, sticky)
   end
 end
 
-function Utils.check_util_screen_hide()
-  if Utils.util_screen_on then
-    if Utils.util_screen_screen == Utils.myscreen() then
-      Utils.hide_util_screen()
-    end
-  end
-end
-
 function Utils.next_tag(sticky)
   Utils.switch_tag("next", sticky)
-  Utils.check_util_screen_hide()
 end
 
 function Utils.prev_tag(sticky)
   Utils.switch_tag("prev", sticky)
-  Utils.check_util_screen_hide()
 end
 
 function Utils.next_tag_all()
