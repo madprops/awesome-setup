@@ -148,14 +148,13 @@ function Utils.start_util_screen()
 end
 
 function Utils.toggle_util_screen()
-  
   if Utils.util_screen_on then
-    local highest = Utils.highest_in_tag(Utils.mytag())
+    local highest = Utils.highest_in_tag(Utils.util_screen_tag)
 
-    if highest ~= nil and highest.xutil then
-      Utils.hide_util_screen()
-    else
+    if highest ~= nil and not highest.xutil then
       Utils.show_util_screen()
+    else
+      Utils.hide_util_screen()
     end
   else
     Utils.show_util_screen()
@@ -176,6 +175,7 @@ function Utils.show_util_screen()
   
   Utils.util_screen_on = true
   Utils.util_screen_screen = Utils.myscreen()
+  Utils.util_screen_tag = Utils.mytag()
 end
 
 function Utils.hide_util_screen()
