@@ -440,7 +440,7 @@ end
 
 function Utils.timer(title, minutes)
   autotimer.start_timer(title, minutes, function() 
-    Utils.msg("Timer ended") 
+    Utils.msg(title.." ended") 
   end)
 end
 
