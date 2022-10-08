@@ -148,8 +148,15 @@ function Utils.start_util_screen()
 end
 
 function Utils.toggle_util_screen()
+  
   if Utils.util_screen_on then
-    Utils.hide_util_screen()
+    local highest = Utils.highest_in_tag(Utils.mytag())
+
+    if highest ~= nil and highest.xutil then
+      Utils.hide_util_screen()
+    else
+      Utils.show_util_screen()
+    end
   else
     Utils.show_util_screen()
   end
@@ -450,4 +457,22 @@ end
 
 function Utils.isempty(s)
   return s == nil or s == ""
+end
+
+function Utils.highest_in_tag(tag)
+  for _, c in ipairs(client.get(tag.screen, true)) do
+    if Utils.table_contains(c:tags(), tag) then
+      return c
+    end
+  end
+end
+
+function Utils.table_contains(tab, val)
+  for index, value in ipairs(tab) do
+    if value == val then
+      return true
+    end
+  end
+
+  return false
 end
