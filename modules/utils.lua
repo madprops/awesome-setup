@@ -374,12 +374,22 @@ function Utils.switch_tag(direction, sticky)
   end
 end
 
+function Utils.check_util_screen_hide()
+  if Utils.util_screen_on then
+    if Utils.util_screen_screen == Utils.myscreen() then
+      Utils.hide_util_screen()
+    end
+  end
+end
+
 function Utils.next_tag(sticky)
   Utils.switch_tag("next", sticky)
+  Utils.check_util_screen_hide()
 end
 
 function Utils.prev_tag(sticky)
   Utils.switch_tag("prev", sticky)
+  Utils.check_util_screen_hide()
 end
 
 function Utils.next_tag_all()
