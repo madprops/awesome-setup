@@ -27,26 +27,29 @@ local function sysmonitor_widget(mode)
 
   if mode == "cpu" then
     args.left = " "
+    args.right = " | "
+    args.right_color = Globals.nicedark
     args.on_click = function()
       Utils.system_monitor()
     end
   elseif mode == "ram" then
-    args.left = " "
+    args.right = " | "
+    args.right_color = Globals.nicedark
     args.on_click = function()
       Utils.system_monitor()
     end
   elseif mode == "tmp" then
-    args.left = " "
     args.on_click = function()
       Utils.system_monitor_temp()
     end    
   elseif mode == "net_download" then
     args.left = " "..Globals.star.." "
+    args.right = " | "
+    args.right_color = Globals.nicedark
     args.on_click = function()
       Utils.network_monitor()
     end
   elseif mode == "net_upload" then
-    args.left = " "
     args.on_click = function()
       Utils.network_monitor()
     end
