@@ -169,7 +169,9 @@ Win + Mouse wheel
 
 ScrLk
 
->Toggle dropdown terminal
+>Toggle Util Screen terminal
+
+(Same is achieved by ctrl + Delete when the pointer is at the top of the screen)
 
 ---
 
