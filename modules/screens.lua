@@ -147,9 +147,6 @@ awful.screen.connect_for_each_screen(function(s)
         Utils.stop_all_players()
         Utils.lockscreen()
       end,
-      on_right_click = function()
-        Utils.toggle_util_screen()
-      end,
       on_wheel_down = function()
         Utils.next_tag()
       end,

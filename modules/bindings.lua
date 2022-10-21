@@ -117,6 +117,11 @@ Bindings.globalkeys = gears.table.join(
   end), 
 
   awful.key({modkey}, "Delete", function()
+    if mouse.coords().y <= 25 then
+      Utils.toggle_util_screen()
+      return
+    end
+
     closetap.trigger()
   end),
 
