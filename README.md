@@ -111,6 +111,8 @@ Holds some global variables
 
 >sed
 
+>speedcrunch
+
 ## Used by widgets
 
 >awk
