@@ -66,9 +66,7 @@ awful.screen.connect_for_each_screen(function(s)
     filter  = awful.widget.taglist.filter.all,
     buttons = {
       awful.button({ }, 1, function(t) t:view_only() end),
-      awful.button({ }, 3, function(t) Utils.move_to_tag(t) end),
-      awful.button({ }, 4, function(t) Utils.prev_tag() end),
-      awful.button({ }, 5, function(t) Utils.next_tag() end)
+      awful.button({ }, 3, function(t) Utils.move_to_tag(t) end)
     }
   }  
 
@@ -146,13 +144,7 @@ awful.screen.connect_for_each_screen(function(s)
       on_middle_click = function()
         Utils.stop_all_players()
         Utils.lockscreen()
-      end,
-      on_wheel_down = function()
-        Utils.next_tag()
-      end,
-      on_wheel_up = function()
-        Utils.prev_tag()
-      end,
+      end
     }),
     s.mytaglist,
     Utils.space()
