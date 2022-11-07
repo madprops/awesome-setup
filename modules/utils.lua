@@ -232,7 +232,7 @@ local logpath = os.getenv("HOME") .. "/.awm_log"
 
 function Utils.add_to_log(text, announce)
   local txt = os.date("%c") .. " " .. Utils.trim(text)
-  Utils.add_to_file(logpath, txt, 3)
+  Utils.add_to_file(logpath, txt, 1000)
 
   if announce then
     Utils.msg("Added to log: " .. text)
