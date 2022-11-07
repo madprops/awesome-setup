@@ -224,20 +224,15 @@ function Utils.open_empty_tab()
   Utils.shellspawn("firefox-developer-edition --new-tab --url about:newtab")
 end
 
-function Utils.add_to_file(path, text)
-  Utils.shellspawn("echo '" .. text .. "' | cat - " .. path .. " | sponge " .. path)
-end
-
-function Utils.limit_file(path, num)
-  Utils.shellspawn("sed -i '" .. num..",$ d' " .. path)
+function Utils.add_to_file(path, text, num)
+  Utils.shellspawn("echo '" .. text .. "' | cat - " .. path .. " | sponge " .. path .. " && sed -i '" .. num..",$ d' " .. path)
 end
 
 local logpath = os.getenv("HOME") .. "/.awm_log"
 
 function Utils.add_to_log(text, announce)
   local txt = os.date("%c") .. " " .. Utils.trim(text)
-  Utils.add_to_file(logpath, txt)
-  Utils.limit_file(logpath, 1000)
+  Utils.add_to_file(logpath, txt, 3)
 
   if announce then
     Utils.msg("Added to log: " .. text)
