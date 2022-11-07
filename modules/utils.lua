@@ -212,16 +212,11 @@ end
 
 function Utils.alt_lockscreen()
   Utils.stop_all_players()
-  Utils.open_empty_tab()
   Utils.lockscreen()
 end
 
 function Utils.open_tab(url)
   Utils.shellspawn("firefox-developer-edition --new-tab --url '"..url.."'")
-end
-
-function Utils.open_empty_tab()
-  Utils.shellspawn("firefox-developer-edition --new-tab --url about:newtab")
 end
 
 function Utils.add_to_file(path, text, num)
