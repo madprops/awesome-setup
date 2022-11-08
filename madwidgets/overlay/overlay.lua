@@ -45,6 +45,7 @@ function overlay.create(args)
 
   function instance.show(text)
     instance.textbox.text = " "..text.." "
+    instance.widget.screen = awful.screen.focused()
     instance.widget.visible = true
 
     if instance.timer.started then
