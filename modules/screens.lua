@@ -4,6 +4,13 @@ local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local autotimer = require("madwidgets/autotimer/autotimer")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
+local overlay = require("madwidgets/overlay/overlay")
+
+Overlay = overlay.create({
+  delay = 2,
+  bgcolor = Globals.nicedark,
+  fontcolor = "#ffffff"
+})
 
 autotimer.create({
   left = " ", 
@@ -194,4 +201,8 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist,
     right
   }
+end)
+
+tag.connect_signal("property::selected", function(t) 
+  Overlay.show("Desktop: " .. t.index)
 end)
