@@ -6,10 +6,7 @@ local autotimer = require("madwidgets/autotimer/autotimer")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local overlay = require("madwidgets/overlay/overlay")
 
-Overlay = overlay.create({
-  bgcolor = Globals.nicedark,
-  fontcolor = "#ffffff"
-})
+Overlay = overlay.create({})
 
 autotimer.create({
   left = " ", 
