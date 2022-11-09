@@ -7,7 +7,7 @@ local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local overlay = require("madwidgets/overlay/overlay")
 
 Overlay = overlay.create({
-  delay = 2,
+  delay = 1,
   bgcolor = Globals.nicedark,
   fontcolor = "#ffffff"
 })
