@@ -9,7 +9,7 @@ function overlay.create(args)
   args.delay = args.delay or 2
   args.bgcolor = args.bgcolor or "#2b303b"
   args.fontcolor = args.fontcolor or "#ffffff"
-  args.bordercolor = args.bordercolor or "#333b4b"
+  args.bordercolor = args.bordercolor or "#6c9290"
   args.font = args.font or "monospace 18"
   args.height = args.height or 55
 
