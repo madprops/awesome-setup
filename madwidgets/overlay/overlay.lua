@@ -10,7 +10,7 @@ function overlay.create(args)
   args.bgcolor = args.bgcolor or "#000000"
   args.fontcolor = args.fontcolor or "#ffffff"
   args.bordercolor = args.bordercolor or "#d8dee9"
-  args.font = args.font or "monospace 20"
+  args.font = args.font or "monospace 18"
 
   instance.widget = awful.popup({
     placement = "centered",
