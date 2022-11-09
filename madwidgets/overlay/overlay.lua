@@ -7,7 +7,7 @@ local overlay = {}
 function overlay.create(args)
   local instance = {}
   args.delay = args.delay or 2
-  args.bgcolor = args.bgcolor or "#2b303b"
+  args.bgcolor = args.bgcolor or "#445666"
   args.fontcolor = args.fontcolor or "#d5dAf0"
   args.bordercolor = args.bordercolor or "#d5dAf0"
   args.font = args.font or "monospace 18"
