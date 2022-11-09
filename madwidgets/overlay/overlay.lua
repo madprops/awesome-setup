@@ -30,7 +30,7 @@ function overlay.create(args)
     valign = "center",
     widget = wibox.widget.textbox,
     font = args.font,
-    forced_height = 66
+    forced_height = 55
   }  
 
   instance.widget:setup {
