@@ -12,6 +12,7 @@ function overlay.create(args)
   args.bordercolor = args.bordercolor or "#d5dAf0"
   args.font = args.font or "monospace 18"
   args.height = args.height or 55
+  args.borderwidth = args.borderwidth or 1
 
   instance.widget = awful.popup({
     placement = "centered",
@@ -22,7 +23,7 @@ function overlay.create(args)
     bg = args.bgcolor,
     fg =  args.fontcolor,
     border_color = args.bordercolor,
-    border_width = 2,
+    border_width = args.borderwidth
   })
   
   instance.textbox = wibox.widget {

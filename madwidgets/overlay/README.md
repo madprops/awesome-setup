@@ -9,6 +9,7 @@ args.fontcolor = args.fontcolor or "#ffffff"
 args.bordercolor = args.bordercolor or "#d8dee9"
 args.font = args.font or "monospace 18"
 args.height = args.height or 55
+args.borderwidth = args.borderwidth or 1
 ```
 
 ```lua
