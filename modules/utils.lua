@@ -10,6 +10,24 @@ local autotimer = require("madwidgets/autotimer/autotimer")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local context_client
 
+local media_lock = lockdelay.create({action=function(cmd)
+  Utils.spawn(cmd)
+end, delay=250})
+
+local tag_next_lock = lockdelay.create({action=function(sticky)
+  Utils.switch_tag("next", sticky)
+  Utils.check_util_screen_hide()
+end, delay=100})
+
+local tag_prev_lock = lockdelay.create({action=function(sticky)
+  Utils.switch_tag("prev", sticky)
+  Utils.check_util_screen_hide()
+end, delay=100})
+
+local util_screen_lock = lockdelay.create({action=function()
+  Utils.do_show_util_screen()
+end, delay=250})
+
 function Utils.msg(txt, info)
   local run = function() end
 
@@ -92,10 +110,6 @@ function Utils.screenshot()
   Utils.spawn("spectacle -r")
 end
 
-local media_lock = lockdelay.create({action=function(cmd)
-  Utils.spawn(cmd)
-end, delay=250})
-
 function Utils.media_play_pause()
   media_lock.trigger("playerctl -p audacious play-pause")
 end
@@ -162,6 +176,10 @@ function Utils.toggle_util_screen()
 end
 
 function Utils.show_util_screen()  
+  util_screen_lock.trigger()
+end
+
+function Utils.do_show_util_screen()
   local t = Utils.mytag()
   
   for _, c in ipairs(client.get()) do
@@ -373,13 +391,11 @@ function Utils.check_util_screen_hide()
 end
 
 function Utils.next_tag(sticky)
-  Utils.switch_tag("next", sticky)
-  Utils.check_util_screen_hide()
+  tag_next_lock.trigger(sticky)
 end
 
 function Utils.prev_tag(sticky)
-  Utils.switch_tag("prev", sticky)
-  Utils.check_util_screen_hide()
+  tag_prev_lock.trigger(sticky)
 end
 
 function Utils.next_tag_all()
