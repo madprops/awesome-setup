@@ -9,6 +9,7 @@ function overlay.create(args)
   args.delay = args.delay or 2
   args.bgcolor = args.bgcolor or "#000000"
   args.fontcolor = args.fontcolor or "#ffffff"
+  args.bordercolor = args.bordercolor or "#d8dee9"
   args.font = args.font or "monospace 20"
 
   instance.widget = awful.popup({
@@ -18,15 +19,18 @@ function overlay.create(args)
     border_width = 1,
     widget = wibox.container.background,
     bg = args.bgcolor,
-    fg =  args.fontcolor
+    fg =  args.fontcolor,
+    border_color = args.bordercolor,
+    border_width = 2,
   })
-
+  
   instance.textbox = wibox.widget {
     markup = "---:---%",
     align  = "center",
     valign = "center",
     widget = wibox.widget.textbox,
-    font = args.font
+    font = args.font,
+    forced_height = 66
   }  
 
   instance.widget:setup {
