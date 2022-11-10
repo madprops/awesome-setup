@@ -39,6 +39,10 @@ function overlay.create(args)
     layout = wibox.layout.align.horizontal,
     instance.textbox
   } 
+
+  instance.widget:connect_signal("mouse::enter", function()
+    instance.hide()
+  end)  
   
   instance.timer = gears.timer {
     timeout = args.delay,
@@ -46,8 +50,12 @@ function overlay.create(args)
   } 
 
   instance.timer:connect_signal("timeout", function()
-    instance.widget.visible = false
+    instance.hide()
   end)  
+  
+  function instance.hide()
+    instance.widget.visible = false
+  end
 
   function instance.show(text)
     instance.textbox.text = " "..text.." "
