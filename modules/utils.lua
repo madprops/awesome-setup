@@ -357,21 +357,21 @@ end
 function Utils.switch_tag(direction, sticky)
   local index = Utils.mytag().index
   local num_tags = #Utils.myscreen().tags
-
   local ok = (direction == "next" and index < num_tags) 
-          or (direction == "prev" and index > 1)
-
+  or (direction == "prev" and index > 1)
+  local new_index
+  
   if ok then
-    local new_index
-
     if direction == "next" then 
       new_index = index + 1
     elseif direction == "prev" then
       new_index = index - 1
     end
 
+    s_index = new_index
+    
     local new_tag = Utils.myscreen().tags[new_index]
-
+    
     if sticky then
       if client.focus and client.focus.screen == Utils.myscreen() then
         client.focus:move_to_tag(new_tag)
@@ -380,6 +380,24 @@ function Utils.switch_tag(direction, sticky)
 
     new_tag:view_only()
   end
+
+  Utils.show_tag_overlay(new_index or index)
+end
+
+function Utils.show_tag_overlay(index)
+  local s = ""
+
+  if index == 1 then
+    s = "1 _ _ _"
+  elseif index == 2 then
+    s = "_ 2 _ _"
+  elseif index == 3 then
+    s = "_ _ 3 _"
+  elseif index == 4 then
+    s = "_ _ _ 4"
+  end
+
+  Overlay.show("Desktop: " .. s)  
 end
 
 function Utils.check_util_screen_hide()
