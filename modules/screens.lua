@@ -199,6 +199,18 @@ awful.screen.connect_for_each_screen(function(s)
   }
 end)
 
-tag.connect_signal("property::selected", function(t) 
-  Overlay.show("Desktop: " .. t.index)
+tag.connect_signal("property::selected", function(t)
+  local s = ""
+
+  if t.index == 1 then
+    s = "1 _ _ _"
+  elseif t.index == 2 then
+    s = "_ 2 _ _"
+  elseif t.index == 3 then
+    s = "_ _ 3 _"
+  elseif t.index == 4 then
+    s = "_ _ _ 4"
+  end
+
+  Overlay.show("Desktop: " .. s)
 end)
