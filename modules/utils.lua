@@ -386,16 +386,19 @@ end
 
 function Utils.show_tag_overlay(index)
   local s = ""
+  local num_tags = #Utils.myscreen().tags
 
-  if index == 1 then
-    s = "1 _ _ _"
-  elseif index == 2 then
-    s = "_ 2 _ _"
-  elseif index == 3 then
-    s = "_ _ 3 _"
-  elseif index == 4 then
-    s = "_ _ _ 4"
-  end
+  for i = 1, num_tags do
+    if i == index then
+      s = s .. index
+    else
+      s = s .. "_"
+    end
+
+    if i < num_tags then
+      s = s .. " "
+    end
+  end 
 
   Overlay.show("Desktop: " .. s)  
 end
