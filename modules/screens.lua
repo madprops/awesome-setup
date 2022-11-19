@@ -224,14 +224,18 @@ awful.screen.connect_for_each_screen(function(s)
       },
       id     = 'background_role',
       widget = wibox.container.background,
-    }  
+    }, 
+    style = {
+      bg_normal = "#2B303B",
+      bg_focus = "#2B303B"
+    }
   }
   
   local cont = wibox.widget {
     tsk,
     widget = wibox.container.background,
-    forced_height = 80,
-    forced_width = 360
+    forced_height = 69,
+    forced_width = 540
   }
   
   s.Overlay = overlay.create({
