@@ -196,6 +196,8 @@ awful.screen.connect_for_each_screen(function(s)
     right
   }
 
+  local overlay_color = "#2B303B"
+
   local tsk = awful.widget.tasklist {
     screen = s,
     filter = awful.widget.tasklist.filter.currenttags,
@@ -226,20 +228,27 @@ awful.screen.connect_for_each_screen(function(s)
       widget = wibox.container.background,
     }, 
     style = {
-      bg_normal = "#2B303B",
-      bg_focus = "#2B303B"
+      bg_normal = overlay_color,
+      bg_focus = overlay_color,
+      shape_border_color = overlay_color,
+      shape_border_color_focus = overlay_color
     }
   }
   
   local cont = wibox.widget {
     tsk,
-    widget = wibox.container.background,
-    forced_height = 69,
-    forced_width = 540
+    widget = wibox.container.margin,
+    forced_height = 60,
+    forced_width = 440,
+    left = 5,
+    right = 5,
+    top = 0,
+    bottom = 10
   }
   
   s.Overlay = overlay.create({
     screen = s,
-    widget = cont
+    widget = cont,
+    bgcolor = overlay_color
   })  
 end)
