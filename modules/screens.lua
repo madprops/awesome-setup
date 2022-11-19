@@ -61,7 +61,7 @@ local function sysmonitor_widget(mode)
 end
 
 awful.screen.connect_for_each_screen(function(s)
-  awful.tag({ "1", "2", "3", "4" }, s, awful.layout.suit.floating)
+  awful.tag({ "1", "2", "3", "4", "5"}, s, awful.layout.suit.floating)
   
   s.mytaglist = awful.widget.taglist {
     screen  = s,

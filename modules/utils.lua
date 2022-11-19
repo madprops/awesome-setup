@@ -487,10 +487,14 @@ function Utils.browser_hotcorner()
   for _, c in ipairs(client.get()) do
     if c.xhotcorner == "1_top_left" then
       Utils.focus(c)
-      c.first_tag:view_only()
+
+      if c.first_tag ~= Utils.mytag() then
+        c.first_tag:view_only()
+        return
+      end
 
       local timer = gears.timer {
-        timeout = 0.1
+        timeout = 0.09
       }
 
       timer:connect_signal("timeout", function()

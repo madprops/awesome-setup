@@ -20,6 +20,7 @@ function multibutton.create(args)
   args.right = args.right or ""
   args.left_color = args.left_color or beautiful.fg_normal
   args.right_color = args.right_color or beautiful.fg_normal
+  args.opacity = args.opacity or 1
 
   local instance = {}
   instance.args = args
@@ -69,7 +70,8 @@ function multibutton.create(args)
   instance.widget = wibox.widget {
     widget = wibox.container.background,
     bg = args.bgcolor,
-    fg = args.fontcolor
+    fg = args.fontcolor,
+    opacity = args.opacity
   }    
 
   instance.widget:setup {
