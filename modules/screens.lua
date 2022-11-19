@@ -243,13 +243,15 @@ awful.screen.connect_for_each_screen(function(s)
     forced_width = 440,
     left = 5,
     right = 5,
-    top = 0,
+    top = 14,
     bottom = 14
   }
   
   s.Overlay = overlay.create({
     screen = s,
     widget = cont,
-    bgcolor = overlay_color
+    bgcolor = overlay_color,
+    textbox_bgcolor = "#394753",
+    height = 50
   })  
 end)

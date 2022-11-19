@@ -9,9 +9,11 @@ function overlay.create(args)
   args.delay = args.delay or 2
   args.bgcolor = args.bgcolor or "#445666"
   args.fontcolor = args.fontcolor or "#d5dAf0"
+  args.textbox_bgcolor = args.textbox_bgcolor or "#445666"
+  args.textbox_fontcolor = args.textbox_fontcolor or "#d5dAf0"
   args.bordercolor = args.bordercolor or "#d5dAf0"
   args.font = args.font or "monospace 16"
-  args.height = args.height or 60
+  args.height = args.height or 55
   args.borderwidth = args.borderwidth or 1
   args.widget = args.widget or wibox.widget{}
   args.screen = args.screen or 1
@@ -37,9 +39,16 @@ function overlay.create(args)
     forced_height = args.height
   }  
 
+  local textbox = wibox.widget {
+    instance.textbox,
+    widget = wibox.container.background,
+    bg = args.textbox_bgcolor,
+    fg = args.textbox_fontcolor
+  }
+
   instance.widget:setup {
     layout = wibox.layout.align.vertical,
-    instance.textbox,
+    textbox,
     args.widget
   } 
 
