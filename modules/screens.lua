@@ -230,6 +230,7 @@ awful.screen.connect_for_each_screen(function(s)
     style = {
       bg_normal = overlay_color,
       bg_focus = overlay_color,
+      bg_minimize = overlay_color,
       shape_border_color = overlay_color,
       shape_border_color_focus = overlay_color
     }
@@ -243,7 +244,7 @@ awful.screen.connect_for_each_screen(function(s)
     left = 5,
     right = 5,
     top = 0,
-    bottom = 10
+    bottom = 14
   }
   
   s.Overlay = overlay.create({

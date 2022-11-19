@@ -11,7 +11,7 @@ function overlay.create(args)
   args.fontcolor = args.fontcolor or "#d5dAf0"
   args.bordercolor = args.bordercolor or "#d5dAf0"
   args.font = args.font or "monospace 16"
-  args.height = args.height or 50
+  args.height = args.height or 60
   args.borderwidth = args.borderwidth or 1
   args.widget = args.widget or wibox.widget{}
   args.screen = args.screen or 1
