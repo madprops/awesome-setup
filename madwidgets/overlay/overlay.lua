@@ -13,6 +13,8 @@ function overlay.create(args)
   args.font = args.font or "monospace 18"
   args.height = args.height or 55
   args.borderwidth = args.borderwidth or 1
+  args.widget = args.widget or wibox.widget{}
+  args.screen = args.screen or 1
 
   instance.widget = awful.popup({
     placement = "centered",
@@ -36,8 +38,9 @@ function overlay.create(args)
   }  
 
   instance.widget:setup {
-    layout = wibox.layout.align.horizontal,
-    instance.textbox
+    layout = wibox.layout.align.vertical,
+    instance.textbox,
+    args.widget
   } 
 
   instance.widget:connect_signal("mouse::enter", function()
@@ -59,7 +62,7 @@ function overlay.create(args)
 
   function instance.show(text)
     instance.textbox.text = " "..text.." "
-    instance.widget.screen = awful.screen.focused()
+    instance.widget.screen = args.screen
     instance.widget.visible = true
 
     if instance.timer.started then

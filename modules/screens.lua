@@ -6,8 +6,6 @@ local autotimer = require("madwidgets/autotimer/autotimer")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local overlay = require("madwidgets/overlay/overlay")
 
-Overlay = overlay.create({})
-
 autotimer.create({
   left = " ", 
   fontcolor = Globals.niceblue,
@@ -197,4 +195,47 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist,
     right
   }
+
+  local tsk = awful.widget.tasklist {
+    screen = s,
+    filter = awful.widget.tasklist.filter.currenttags,
+    widget_template = {
+      {
+          {
+              {
+                  {
+                      id     = 'icon_role',
+                      widget = wibox.widget.imagebox,
+                  },
+                  right = 10,
+                  top = 2,
+                  bottom = 2,
+                  widget  = wibox.container.margin,
+              },
+              {
+                  id     = 'text_role',
+                  widget = wibox.widget.textbox,
+              },
+              layout = wibox.layout.fixed.horizontal,
+          },
+          left  = 10,
+          right = 10,
+          widget = wibox.container.margin
+      },
+      id     = 'background_role',
+      widget = wibox.container.background,
+    }  
+  }
+  
+  local cont = wibox.widget {
+    tsk,
+    widget = wibox.container.background,
+    forced_height = 80,
+    forced_width = 360
+  }
+  
+  s.Overlay = overlay.create({
+    screen = s,
+    widget = cont
+  })  
 end)

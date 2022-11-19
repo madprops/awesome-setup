@@ -400,7 +400,7 @@ function Utils.show_tag_overlay(index)
     end
   end 
 
-  Overlay.show("Desktop: " .. s)  
+  Utils.myscreen().Overlay.show("Desktop: " .. s)  
 end
 
 function Utils.check_util_screen_hide()
