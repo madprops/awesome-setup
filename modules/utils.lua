@@ -380,27 +380,6 @@ function Utils.switch_tag(direction, sticky)
 
     new_tag:view_only()
   end
-
-  Utils.show_tag_overlay(new_index or index)
-end
-
-function Utils.show_tag_overlay(index)
-  local s = ""
-  local num_tags = #Utils.myscreen().tags
-
-  for i = 1, num_tags do
-    if i == index then
-      s = s .. index
-    else
-      s = s .. "_"
-    end
-
-    if i < num_tags then
-      s = s .. " "
-    end
-  end 
-
-  Utils.myscreen().Overlay.show("Desktop: " .. s)  
 end
 
 function Utils.check_util_screen_hide()

@@ -4,7 +4,7 @@ local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local autotimer = require("madwidgets/autotimer/autotimer")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
-local overlay = require("madwidgets/overlay/overlay")
+local tagview = require("madwidgets/tagview/tagview")
 
 autotimer.create({
   left = " ", 
@@ -196,63 +196,9 @@ awful.screen.connect_for_each_screen(function(s)
     right
   }
 
-  local overlay_color = "#2B303B"
-
-  local tsk = awful.widget.tasklist {
-    screen = s,
-    filter = awful.widget.tasklist.filter.currenttags,
-    widget_template = {
-      {
-          {
-              {
-                  {
-                      id     = 'icon_role',
-                      widget = wibox.widget.imagebox,
-                  },
-                  right = 10,
-                  top = 2,
-                  bottom = 2,
-                  widget  = wibox.container.margin,
-              },
-              {
-                  id     = 'text_role',
-                  widget = wibox.widget.textbox,
-              },
-              layout = wibox.layout.fixed.horizontal,
-          },
-          left  = 10,
-          right = 10,
-          widget = wibox.container.margin
-      },
-      id     = 'background_role',
-      widget = wibox.container.background,
-    }, 
-    style = {
-      bg_normal = overlay_color,
-      bg_focus = overlay_color,
-      bg_minimize = overlay_color,
-      shape_border_color = overlay_color,
-      shape_border_color_focus = overlay_color,
-      font = "monospace 14"
-    }
-  }
-  
-  local cont = wibox.widget {
-    tsk,
-    widget = wibox.container.margin,
-    forced_height = 60,
-    forced_width = 440,
-    left = 5,
-    right = 5,
-    top = 14,
-    bottom = 14
-  }
-  
-  s.Overlay = overlay.create({
-    screen = s,
-    widget = cont,
-    bgcolor = overlay_color,
-    textbox_bgcolor = "#394753",
-    height = 50
-  })  
+  tagview.create({
+    screen = s
+  })
 end)
+
+tagview.setup()
