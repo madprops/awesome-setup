@@ -232,7 +232,8 @@ awful.screen.connect_for_each_screen(function(s)
       bg_focus = overlay_color,
       bg_minimize = overlay_color,
       shape_border_color = overlay_color,
-      shape_border_color_focus = overlay_color
+      shape_border_color_focus = overlay_color,
+      font = "monospace 14"
     }
   }
   
