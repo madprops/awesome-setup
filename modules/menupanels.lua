@@ -70,8 +70,13 @@ Menupanels.log = menupanel.create({
       needs_confirm = true,
     },
     {
-      name = "Meds",
-      action = function() Utils.add_to_log("Meds", true) end,
+      name = "Meds 1",
+      action = function() Utils.add_to_log("Meds 1", true) end,
+      needs_confirm = true,
+    },
+    {
+      name = "Meds 2",
+      action = function() Utils.add_to_log("Meds 2", true) end,
       needs_confirm = true,
     }
   }
