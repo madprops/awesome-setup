@@ -482,3 +482,32 @@ function Utils.table_contains(tab, val)
 
   return false
 end
+
+function Utils.browser_hotcorner()
+  for _, c in ipairs(client.get()) do
+    if c.xhotcorner == "1_top_left" then
+      Utils.focus(c)
+      c.first_tag:view_only()
+
+      local timer = gears.timer {
+        timeout = 0.1
+      }
+
+      timer:connect_signal("timeout", function()
+        root.fake_input('key_release', "Super_L")
+        root.fake_input('key_release', "Super_R")
+        root.fake_input('key_release', "Delete")
+        root.fake_input('key_press', "Control_L")
+        root.fake_input('key_press', "space") 
+        root.fake_input('key_release', "space")
+        root.fake_input('key_release', "Control_L")
+        timer:stop()
+      end) 
+
+      timer:start()
+           
+      return
+    end
+  end
+
+end

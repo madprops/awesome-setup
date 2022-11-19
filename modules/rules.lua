@@ -30,7 +30,8 @@ awful.rules.rules = {
     rule = {class = "firefoxdeveloperedition"},
     properties = {
       maximized = true,
-      xindex = 1
+      xindex = 1,
+      xhotcorner = "1_top_left"
     }
   },
   {
