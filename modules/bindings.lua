@@ -17,15 +17,25 @@ local closetap = doubletap.create({
     if c.xutil then return end
 
     if c.kill then
-      if c.instance == "Navigator" then
-        client.focus = c
-        root.fake_input('key_release', "Super_L")
-        root.fake_input('key_release', "Super_R")
-        root.fake_input('key_release', "Delete")
-        root.fake_input('key_press', "Control_L")
-        root.fake_input('key_press', "w") 
-        root.fake_input('key_release', "w")
-        root.fake_input('key_release', "Control_L")
+      if c.instance == "Navigator" then  
+        Utils.focus(c)
+
+        local timer = gears.timer {
+          timeout = 0.09
+        }
+  
+        timer:connect_signal("timeout", function()
+          root.fake_input('key_release', "Super_L")
+          root.fake_input('key_release', "Super_R")
+          root.fake_input('key_release', "Delete")
+          root.fake_input('key_press', "Control_L")
+          root.fake_input('key_press', "w") 
+          root.fake_input('key_release', "w")
+          root.fake_input('key_release', "Control_L")
+          timer:stop()
+        end) 
+  
+        timer:start()
       else
         c:kill()
       end
