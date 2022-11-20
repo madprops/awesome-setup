@@ -494,7 +494,7 @@ function Utils.browser_hotcorner()
       end
 
       local timer = gears.timer {
-        timeout = 0.09
+        timeout = 0.1
       }
 
       timer:connect_signal("timeout", function()

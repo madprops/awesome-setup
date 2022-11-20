@@ -21,7 +21,7 @@ local closetap = doubletap.create({
         Utils.focus(c)
 
         local timer = gears.timer {
-          timeout = 0.09
+          timeout = 0.1
         }
   
         timer:connect_signal("timeout", function()
