@@ -483,6 +483,40 @@ function Utils.table_contains(tab, val)
   return false
 end
 
+function Utils.fake_input_do(ctrl, shift, key)
+  local timer = gears.timer {
+    timeout = 0.09
+  }
+
+  timer:connect_signal("timeout", function()
+    root.fake_input('key_release', "Super_L")
+    root.fake_input('key_release', "Control_L")
+    root.fake_input('key_release', "Shift_L")
+
+    if ctrl then
+      root.fake_input('key_press', "Control_L")
+    end
+    
+    if shift then
+      root.fake_input('key_press', "Shift_L")
+    end
+    
+    root.fake_input('key_press', key) 
+    root.fake_input('key_release', key)
+    
+    if ctrl then
+      root.fake_input('key_release', "Control_L")
+    end
+    
+    if shift then
+      root.fake_input('key_release', "Shift_L")
+    end 
+    timer:stop()
+  end) 
+
+  timer:start()
+end
+
 function Utils.browser_hotcorner()
   for _, c in ipairs(client.get()) do
     if c.xhotcorner == "1_top_left" and c.screen.index == 1 then
@@ -493,24 +527,40 @@ function Utils.browser_hotcorner()
         return
       end
 
-      local timer = gears.timer {
-        timeout = 0.09
-      }
-
-      timer:connect_signal("timeout", function()
-        root.fake_input('key_release', "Super_L")
-        root.fake_input('key_release', "Super_R")
-        root.fake_input('key_release', "Delete")
-        root.fake_input('key_press', "Control_L")
-        root.fake_input('key_press', "space") 
-        root.fake_input('key_release', "space")
-        root.fake_input('key_release', "Control_L")
-        timer:stop()
-      end) 
-
-      timer:start()
+      Utils.fake_input_do(true, false, "space")
       return
     end
   end
+end
 
+function Utils.browser_hotcorner_next()
+  for _, c in ipairs(client.get()) do
+    if c.xhotcorner == "1_top_left" and c.screen.index == 1 then
+      Utils.focus(c)
+
+      if c.first_tag ~= Utils.mytag() then
+        c.first_tag:view_only()
+        return
+      end
+
+      Utils.fake_input_do(true, false, "Tab")
+      return
+    end
+  end
+end
+
+function Utils.browser_hotcorner_prev()
+  for _, c in ipairs(client.get()) do
+    if c.xhotcorner == "1_top_left" and c.screen.index == 1 then
+      Utils.focus(c)
+
+      if c.first_tag ~= Utils.mytag() then
+        c.first_tag:view_only()
+        return
+      end
+
+      Utils.fake_input_do(true, true, "Tab")
+      return
+    end
+  end
 end
