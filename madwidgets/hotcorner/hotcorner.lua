@@ -21,7 +21,6 @@ function hotcorner.create(args)
     y = args.screen.geometry.y
   end
 
-
   instance.widget = wibox {
     x = x,
     y = y,

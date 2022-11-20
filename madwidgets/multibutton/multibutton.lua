@@ -62,7 +62,6 @@ function multibutton.create(args)
         widget = wibox.widget.textbox
       }      
     }
-    
   else
     return {}
   end
