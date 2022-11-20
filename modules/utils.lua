@@ -485,7 +485,7 @@ end
 
 function Utils.browser_hotcorner()
   for _, c in ipairs(client.get()) do
-    if c.xhotcorner == "1_top_left" then
+    if c.xhotcorner == "1_top_left" and c.screen.index == 1 then
       Utils.focus(c)
 
       if c.first_tag ~= Utils.mytag() then
@@ -509,7 +509,6 @@ function Utils.browser_hotcorner()
       end) 
 
       timer:start()
-           
       return
     end
   end
