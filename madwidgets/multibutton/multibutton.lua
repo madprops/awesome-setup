@@ -8,6 +8,7 @@ local multibutton = {}
 function multibutton.create(args)
   args = args or {}
   args.on_click = args.on_click or function() end
+  args.on_click_2 = args.on_click_2 or function() end
   args.on_middle_click = args.on_middle_click or function() end
   args.on_right_click = args.on_right_click or function() end
   args.on_wheel_up = args.on_wheel_up or function() end
@@ -91,6 +92,12 @@ function multibutton.create(args)
       args.on_wheel_up(instance)
     elseif button == 5 then 
       args.on_wheel_down(instance)
+    end
+  end)
+
+  instance.widget:connect_signal("button::release", function(a, b, c, button, mods)
+    if button == 1 then
+      args.on_click_2(instance)
     end
   end)
   

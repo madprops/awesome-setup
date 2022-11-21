@@ -205,7 +205,7 @@ awful.screen.connect_for_each_screen(function(s)
     hotcorner.create({
       screen = s,
       placement = "top_left",
-      on_click = function()
+      on_click_2 = function()
         Utils.browser_hotcorner()
       end,
       on_wheel_down = function()
