@@ -1,7 +1,6 @@
 local awful = require("awful")
 local wibox = require("wibox")
 local overlay = require("madwidgets/overlay/overlay")
-local utils = require("madwidgets/utils")
 
 local tagview = {}
 local instances = {}
