@@ -528,7 +528,7 @@ function Utils.browser_hotcorner()
         return
       end
 
-      Utils.fake_input_do(true, true, "comma")
+      Utils.fake_input_do(true, false, "space")
       return
     end
   end
