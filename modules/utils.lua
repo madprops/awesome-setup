@@ -110,8 +110,8 @@ function Utils.screenshot()
   Utils.spawn("spectacle -r")
 end
 
-function Utils.media_play_pause()
-  media_lock.trigger("playerctl -p audacious play-pause")
+function Utils.show_media_players()
+  Utils.spawn("python " .. os.getenv("HOME") .. "/code/empris/empris.py")
 end
 
 function Utils.randstring()

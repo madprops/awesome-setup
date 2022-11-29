@@ -99,7 +99,7 @@ Bindings.globalkeys = gears.table.join(
   end),
 
   awful.key({}, "XF86AudioPlay", function()
-    Utils.media_play_pause()
+    Utils.show_media_players()
   end), 
 
   awful.key({}, "XF86AudioRaiseVolume", function()
