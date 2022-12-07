@@ -391,10 +391,20 @@ function Utils.check_util_screen_hide()
 end
 
 function Utils.next_tag(sticky)
+  if Utils.util_screen_on then
+    Utils.hide_util_screen()
+    return
+  end
+  
   tag_next_lock.trigger(sticky)
 end
 
 function Utils.prev_tag(sticky)
+  if Utils.util_screen_on then
+    Utils.hide_util_screen()
+    return
+  end
+
   tag_prev_lock.trigger(sticky)
 end
 
