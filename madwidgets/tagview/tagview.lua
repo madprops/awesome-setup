@@ -13,23 +13,8 @@ function tagview.setup()
 
     for _, instance in ipairs(instances) do  
       if instance.args.screen == t.screen then
-        local num_tags = #instance.args.screen.tags
         local index = instance.args.screen.selected_tag.index
-        local s = ""
-      
-        for i = 1, num_tags do
-          if i == index then
-            s = s .. index
-          else
-            s = s .. "_"
-          end
-      
-          if i < num_tags then
-            s = s .. " "
-          end
-        end 
-      
-        instance.widget.show("Desktop: " .. s)
+        instance.widget.show("Desktop: " .. index)
       end
     end    
   end)
