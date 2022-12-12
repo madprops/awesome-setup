@@ -80,7 +80,7 @@ awful.rules.rules = {
       width = Utils.width_factor(0.5),
       height = Utils.height_factor(0.6),
       maximized = false,
-      xindex = 2,
+      xindex = 3,
       screen = screen_right
     }
   },
@@ -93,7 +93,7 @@ awful.rules.rules = {
       width = Utils.width_factor(0.5),
       height = Utils.height_factor(0.4),
       maximized = false,
-      xindex = 3,
+      xindex = 4,
       screen = screen_right
     }
   },
@@ -166,6 +166,23 @@ function Rules.check_title_rules(c)
     c.xindex = 2
     c.maximized = false
     Utils.snap(c, "vertically", awful.placement.right)
+  end
+
+  if Utils.startswith(c.name, "[ff_tile1]") then
+    c.width = Utils.width_factor(0.5)
+    c.height = Utils.height_factor(0.5)
+    c.xindex = 1
+    c.maximized = false
+    xindex = 1
+    Utils.snap(c, "corner", awful.placement.top_left)
+  end
+
+  if Utils.startswith(c.name, "[ff_tile2]") then
+    c.width = Utils.width_factor(0.5)
+    c.height = Utils.height_factor(0.5)
+    c.xindex = 2
+    c.maximized = false
+    Utils.snap(c, "corner", awful.placement.bottom_left)
   end
 end
 
