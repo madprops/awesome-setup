@@ -5,7 +5,6 @@ local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local autotimer = require("madwidgets/autotimer/autotimer")
 local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local tagview = require("madwidgets/tagview/tagview")
-local hotcorner = require("madwidgets/hotcorner/hotcorner")
 
 autotimer.create({
   left = " ", 
@@ -200,22 +199,6 @@ awful.screen.connect_for_each_screen(function(s)
   tagview.create({
     screen = s
   })
-
-  if (s.index == 1) then
-    hotcorner.create({
-      screen = s,
-      placement = "top_left",
-      on_click_2 = function()
-        Utils.browser_hotcorner()
-      end,
-      on_wheel_down = function()
-        Utils.browser_hotcorner_next()
-      end,
-      on_wheel_up = function()
-        Utils.browser_hotcorner_prev()
-      end
-    })
-  end
 end)
 
 tagview.setup()
