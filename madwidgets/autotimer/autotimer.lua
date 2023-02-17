@@ -141,7 +141,6 @@ function autotimer.add_minutes(name, minutes)
     end
 
     new_m = math.max(new_m, 1)
-
     action.date_started = os.time()
     init_timer(name, new_m)
     autotimer.update()
