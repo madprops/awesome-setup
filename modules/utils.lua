@@ -262,12 +262,12 @@ function Utils.calendar()
   Utils.spawn("osmo")
 end
 
-function Utils.increase_volume()
-  volumecontrol.increase()
+function Utils.increase_volume(osd)
+  volumecontrol.increase(osd)
 end
 
-function Utils.decrease_volume()
-  volumecontrol.decrease()
+function Utils.decrease_volume(osd)
+  volumecontrol.decrease(osd)
 end
 
 function Utils.set_volume(v)

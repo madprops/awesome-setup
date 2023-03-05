@@ -53,7 +53,11 @@ function volumecontrol.set_round(vol)
   volumecontrol.change_volume(vol)  
 end
 
-function volumecontrol.increase()
+function volumecontrol.osd(vol)
+  utils.msg("Volume:" .. vol .. "%")
+end
+
+function volumecontrol.increase(osd)
   volumecontrol.get_volume(function(vol)
     if vol < volumecontrol.max_volume then
       vol = vol + volumecontrol.steps
@@ -64,11 +68,15 @@ function volumecontrol.increase()
 
       vol = utils.round_mult(vol, volumecontrol.steps)
       volumecontrol.change_volume(vol)
-    end
+
+      if osd ~= nil then
+        volumecontrol.osd(vol)
+      end       
+    end 
   end)
 end
 
-function volumecontrol.decrease()
+function volumecontrol.decrease(osd)
   volumecontrol.get_volume(function(vol)
     if vol > 0 then
       vol = vol - volumecontrol.steps
@@ -79,6 +87,10 @@ function volumecontrol.decrease()
 
       vol = utils.round_mult(tonumber(vol), volumecontrol.steps)
       volumecontrol.change_volume(vol)
+      
+      if osd ~= nil then
+        volumecontrol.osd(vol)
+      end
     end
   end)
 end

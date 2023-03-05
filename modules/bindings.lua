@@ -103,11 +103,11 @@ Bindings.globalkeys = gears.table.join(
   end), 
 
   awful.key({}, "XF86AudioRaiseVolume", function()
-    Utils.increase_volume()
+    Utils.increase_volume(true)
   end), 
 
   awful.key({}, "XF86AudioLowerVolume", function()
-    Utils.decrease_volume()
+    Utils.decrease_volume(true)
   end), 
 
   awful.key({modkey}, "Delete", function()
