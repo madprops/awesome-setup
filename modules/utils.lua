@@ -116,10 +116,6 @@ function Utils.screenshot()
   Utils.spawn("spectacle -r")
 end
 
-function Utils.show_media_players()
-  Utils.spawn("python " .. os.getenv("HOME") .. "/code/empris/empris.py")
-end
-
 function Utils.randstring()
   Utils.spawn(os.getenv("HOME") .. "/scripts/randword.sh")
 end
@@ -573,4 +569,9 @@ function Utils.browser_hotcorner_prev()
       return
     end
   end
+end
+
+function Utils.show_quick_actions()
+  local cmd = os.getenv("HOME") .. "/code/rofimenu/rofimenu"
+  Utils.shellspawn("cat " .. gears.filesystem.get_configuration_dir() .. "quick_actions.txt | " .. cmd)
 end
