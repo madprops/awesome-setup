@@ -1,0 +1,5 @@
+Players = python /home/yo/code/empris/empris.py
+Clipboard = clipton
+Screenshot (Region) = spectacle -r
+Screenshot (Window) = spectacle -a
+Screenshot (Monitor) = spectacle -m
