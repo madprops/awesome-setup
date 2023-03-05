@@ -15,3 +15,6 @@ Utils.spawn("systemctl --user start clipton")
 
 -- Wallpaper
 Utils.spawn("feh --bg-fill "..beautiful.wallpaper)
+
+
+
