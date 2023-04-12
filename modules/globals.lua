@@ -7,3 +7,5 @@ Globals.nicedark = "#445666"
 Globals.flower = "❇"
 Globals.star = "⍟"
 Globals.primary_screen = 1
+Globals.volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
+Globals.volumecontrol.max_volume = 80

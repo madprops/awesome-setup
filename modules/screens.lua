@@ -3,7 +3,6 @@ local wibox = require("wibox")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local autotimer = require("madwidgets/autotimer/autotimer")
-local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 local tagview = require("madwidgets/tagview/tagview")
 
 autotimer.create({
@@ -161,7 +160,7 @@ awful.screen.connect_for_each_screen(function(s)
       sysmonitor_widget("tmp"),
       sysmonitor_widget("net_download"),
       sysmonitor_widget("net_upload"),
-      volumecontrol.create({
+      Globals.volumecontrol.create({
         left = " "..Globals.star.." ",
         right = " "..Globals.star.." ",
         left_color = Globals.nicedark,
