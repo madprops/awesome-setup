@@ -15,11 +15,7 @@ end
 Menupanels.main = menupanel.create({
   placement = placement,
   height = height,
-  items = {
-    {
-      name = "Quick",
-      action = function() Utils.show_quick_actions() end,
-    },    
+  items = {   
     {
       name = "Launch",
       action = function(trigger) Menupanels.applications.show(trigger) end,
