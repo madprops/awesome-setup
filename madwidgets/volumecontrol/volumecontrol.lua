@@ -29,7 +29,7 @@ function volumecontrol.get_volume(f)
 end
 
 function volumecontrol.change_volume(vol)
-  awful.spawn.with_shell("pamixer --set-volume "..vol, false) 
+  awful.spawn.with_shell("pamixer --set-volume "..vol, false)
   volumecontrol.update_volume(vol)
 end
 
@@ -50,7 +50,7 @@ function volumecontrol.set_round(vol)
     return
   end
 
-  volumecontrol.change_volume(vol)  
+  volumecontrol.change_volume(vol)
 end
 
 function volumecontrol.osd(vol)
@@ -59,38 +59,44 @@ end
 
 function volumecontrol.increase(osd)
   volumecontrol.get_volume(function(vol)
-    if vol < volumecontrol.max_volume then
-      vol = vol + volumecontrol.steps
+    if vol >= volumecontrol.max_volume then
+      volumecontrol.update_volume(vol)
+      return
+    end
 
-      if vol > volumecontrol.max_volume then
-        vol = volumecontrol.max_volume
-      end
+    vol = vol + volumecontrol.steps
 
-      vol = utils.round_mult(vol, volumecontrol.steps)
-      volumecontrol.change_volume(vol)
+    if vol > volumecontrol.max_volume then
+      vol = volumecontrol.max_volume
+    end
 
-      if osd ~= nil then
-        volumecontrol.osd(vol)
-      end       
-    end 
+    vol = utils.round_mult(vol, volumecontrol.steps)
+    volumecontrol.change_volume(vol)
+
+    if osd ~= nil then
+      volumecontrol.osd(vol)
+    end
   end)
 end
 
 function volumecontrol.decrease(osd)
   volumecontrol.get_volume(function(vol)
-    if vol > 0 then
-      vol = vol - volumecontrol.steps
+    if vol == 0 then
+      volumecontrol.update_volume(vol)
+      return
+    end
 
-      if vol < 0 then
-        vol = 0
-      end
+    vol = vol - volumecontrol.steps
 
-      vol = utils.round_mult(tonumber(vol), volumecontrol.steps)
-      volumecontrol.change_volume(vol)
-      
-      if osd ~= nil then
-        volumecontrol.osd(vol)
-      end
+    if vol < 0 then
+      vol = 0
+    end
+
+    vol = utils.round_mult(tonumber(vol), volumecontrol.steps)
+    volumecontrol.change_volume(vol)
+
+    if osd ~= nil then
+      volumecontrol.osd(vol)
     end
   end)
 end
@@ -131,7 +137,7 @@ function volumecontrol.create(args)
   }
 
   args.widget = instance.text_widget
-  
+
   args.on_middle_click = function()
     volumecontrol.mute()
   end
