@@ -17,7 +17,7 @@ local closetap = doubletap.create({
     if c.xutil then return end
 
     if c.kill then
-      if c.instance == "Navigator" then  
+      if c.instance == "Navigator" then
         Utils.focus(c)
         Utils.fake_input_do(true, false, "w")
       else
@@ -28,8 +28,8 @@ local closetap = doubletap.create({
 })
 
 Bindings.globalkeys = gears.table.join(
-  awful.key({modkey, "Control"}, "BackSpace", awesome.restart), 
-  awful.key({modkey, "Shift"}, "q", awesome.quit), 
+  awful.key({modkey, "Control"}, "BackSpace", awesome.restart),
+  awful.key({modkey, "Shift"}, "q", awesome.quit),
 
   awful.key {
     modifiers   = { modkey },
@@ -56,7 +56,7 @@ Bindings.globalkeys = gears.table.join(
         end
       end
     end
-  },  
+  },
 
   awful.key({modkey}, "`", function()
     Utils.show_menupanel("keyboard")
@@ -64,7 +64,7 @@ Bindings.globalkeys = gears.table.join(
 
   awful.key({"Control"}, "`", function()
     Utils.show_clipboard()
-  end),  
+  end),
 
   awful.key({modkey}, "Return", function()
     Utils.prev_client()
@@ -76,7 +76,7 @@ Bindings.globalkeys = gears.table.join(
 
   awful.key({"Shift"}, "Scroll_Lock", function()
     Utils.start_util_screen()
-  end),  
+  end),
 
   awful.key({}, "Scroll_Lock", function()
     Utils.toggle_util_screen()
@@ -89,7 +89,7 @@ Bindings.globalkeys = gears.table.join(
   awful.key({"Shift"}, "Pause", function()
     Utils.randstring()
   end),
-  
+
   awful.key({}, "Pause", function()
     Utils.randword()
   end),
@@ -100,15 +100,15 @@ Bindings.globalkeys = gears.table.join(
 
   awful.key({modkey, "Shift"}, "space", function()
     Utils.show_quick_actions()
-  end), 
+  end),
 
   awful.key({}, "XF86AudioRaiseVolume", function()
     Utils.increase_volume(true)
-  end), 
+  end),
 
   awful.key({}, "XF86AudioLowerVolume", function()
     Utils.decrease_volume(true)
-  end), 
+  end),
 
   awful.key({modkey}, "Delete", function()
     if mouse.coords().y <= 25 then
@@ -119,13 +119,18 @@ Bindings.globalkeys = gears.table.join(
     closetap.trigger()
   end),
 
+  awful.key({modkey, "Shift"}, "Delete", function()
+    local c = mouse.object_under_pointer()
+    Utils.minimize(c)
+  end),
+
   awful.key({altkey}, "Tab", function()
     Utils.altab()
   end),
-  
+
   awful.key({modkey}, "Left", function()
     Utils.prev_tag()
-  end),  
+  end),
 
   awful.key({modkey}, "Right", function()
     Utils.next_tag()
@@ -133,7 +138,7 @@ Bindings.globalkeys = gears.table.join(
 
   awful.key({modkey, "Shift"}, "Left", function()
     Utils.prev_tag_all()
-  end),  
+  end),
 
   awful.key({modkey, "Shift"}, "Right", function()
     Utils.next_tag_all()
@@ -144,13 +149,13 @@ Bindings.clientkeys = gears.table.join(
   awful.key({altkey}, "F4", function(c)
     if not c.xkeys then return end
     Utils.close(c)
-  end), 
+  end),
 
   awful.key({modkey}, "\\", function(c)
     if not c.xkeys then return end
     c:move_to_screen()
-  end), 
-  
+  end),
+
   awful.key({modkey}, "BackSpace", function(c)
     if not c.xkeys then return end
     Utils.maximize(c)
@@ -179,42 +184,42 @@ Bindings.clientkeys = gears.table.join(
   awful.key({modkey}, "#79", function(c)
     if not c.xkeys then return end
     Utils.snap(c, "corner", awful.placement.top_left)
-  end), 
+  end),
 
   awful.key({modkey}, "#80", function(c)
     if not c.xkeys then return end
     Utils.snap(c, "horizontally", awful.placement.top)
-  end), 
+  end),
 
   awful.key({modkey}, "#81", function(c)
     if not c.xkeys then return end
     Utils.snap(c, "corner", awful.placement.top_right)
-  end), 
+  end),
 
   awful.key({modkey}, "#83", function(c)
     if not c.xkeys then return end
     Utils.snap(c, "vertically", awful.placement.left)
-  end), 
+  end),
 
   awful.key({modkey}, "#84", function(c)
     if not c.xkeys then return end
     Utils.maximize(c)
-  end), 
+  end),
 
   awful.key({modkey}, "#85", function(c)
     if not c.xkeys then return end
     Utils.snap(c, "vertically", awful.placement.right)
-  end), 
+  end),
 
   awful.key({modkey}, "#87", function(c)
     if not c.xkeys then return end
     Utils.snap(c, "corner", awful.placement.bottom_left)
-  end), 
+  end),
 
   awful.key({modkey}, "#88", function(c)
     if not c.xkeys then return end
     Utils.snap(c, "horizontally", awful.placement.bottom)
-  end), 
+  end),
 
   awful.key({modkey}, "#89", function(c)
     if not c.xkeys then return end
@@ -223,7 +228,7 @@ Bindings.clientkeys = gears.table.join(
 
   awful.key({modkey, "Control"}, "Left", function()
     Utils.prev_tag(true)
-  end),  
+  end),
 
   awful.key({modkey, "Control"}, "Right", function()
     Utils.next_tag(true)
@@ -233,14 +238,14 @@ Bindings.clientkeys = gears.table.join(
 Bindings.clientbuttons = gears.table.join(
   awful.button({}, 1, function(c)
     Utils.focus(c)
-  end), 
+  end),
 
   awful.button({modkey}, 1, function(c)
     if not c.xkeys then return end
     Utils.focus(c)
     c.maximized = false
     awful.mouse.client.move(c)
-  end), 
+  end),
 
   awful.button({modkey}, 3, function(c)
     if not c.xkeys then return end
@@ -252,8 +257,8 @@ Bindings.clientbuttons = gears.table.join(
   awful.button({modkey}, 4, function(c)
     if not c.xkeys then return end
     Utils.grow_in_place(c)
-  end), 
-  
+  end),
+
   awful.button({modkey}, 5, function(c)
     if not c.xkeys then return end
     Utils.shrink_in_place(c)
@@ -262,20 +267,20 @@ Bindings.clientbuttons = gears.table.join(
 
 Bindings.tasklist_buttons = gears.table.join(
   awful.button({}, 1, function(c)
-    c:activate { context = "tasklist", action = "toggle_minimization" }
-  end), 
+    Utils.minimize(c)
+  end),
 
   awful.button({}, 2, function(c)
     Utils.show_client_title(c)
-  end), 
+  end),
 
   awful.button({}, 3, function(c)
     Utils.show_task_context(c)
-  end), 
+  end),
 
   awful.button({modkey}, 4, function(c)
     awful.client.swap.byidx(-1, c)
-  end), 
+  end),
 
   awful.button({modkey}, 5, function(c)
     awful.client.swap.byidx(1, c)

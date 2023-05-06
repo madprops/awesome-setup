@@ -25,7 +25,7 @@ local tag_prev_lock = lockdelay.create({action=function(sticky)
   if Utils.check_util_screen_hide() then
     return
   end
-    
+
   Utils.switch_tag("prev", sticky)
 end, delay=100})
 
@@ -41,7 +41,7 @@ function Utils.msg(txt, info)
   end
 
   local n = naughty.notify({title = " " .. tostring(txt) .. " "})
-  
+
   n:connect_signal("destroyed", function(n, reason)
     if reason == naughty.notification_closed_reason.dismissed_by_user then
       run()
@@ -88,7 +88,7 @@ end
 
 function Utils.snap(c, axis, position)
   local f
-  
+
   c.maximized = false
 
   if axis == "corner" then
@@ -107,7 +107,7 @@ function Utils.launcher()
   Utils.spawn("rofi -modi drun -show drun -show-icons -no-click-to-exit")
 end
 
-function Utils.altab()  
+function Utils.altab()
   Utils.spawn("rofi -show window -show-icons -no-click-to-exit")
 end
 
@@ -176,13 +176,13 @@ function Utils.toggle_util_screen()
   end
 end
 
-function Utils.show_util_screen()  
+function Utils.show_util_screen()
   util_screen_lock.trigger()
 end
 
 function Utils.do_show_util_screen()
   local t = Utils.mytag()
-  
+
   for _, c in ipairs(client.get()) do
     if c.xutil then
       c:move_to_tag(t)
@@ -191,7 +191,7 @@ function Utils.do_show_util_screen()
       Rules.reset_rules(c)
     end
   end
-  
+
   Utils.util_screen_on = true
   Utils.util_screen_screen = Utils.myscreen()
   Utils.util_screen_tag = Utils.mytag()
@@ -358,21 +358,21 @@ end
 function Utils.switch_tag(direction, sticky)
   local index = Utils.mytag().index
   local num_tags = #Utils.myscreen().tags
-  local ok = (direction == "next" and index < num_tags) 
+  local ok = (direction == "next" and index < num_tags)
   or (direction == "prev" and index > 1)
   local new_index
-  
+
   if ok then
-    if direction == "next" then 
+    if direction == "next" then
       new_index = index + 1
     elseif direction == "prev" then
       new_index = index - 1
     end
 
     s_index = new_index
-    
+
     local new_tag = Utils.myscreen().tags[new_index]
-    
+
     if sticky then
       if client.focus and client.focus.screen == Utils.myscreen() then
         client.focus:move_to_tag(new_tag)
@@ -394,7 +394,7 @@ function Utils.check_util_screen_hide()
   return false
 end
 
-function Utils.next_tag(sticky)  
+function Utils.next_tag(sticky)
   tag_next_lock.trigger(sticky)
 end
 
@@ -420,7 +420,7 @@ function Utils.prev_tag_all()
   if i < 1 then
     i = 1
   end
-  
+
   for s in screen do
     Utils.goto_tag(s, i)
   end
@@ -428,7 +428,7 @@ end
 
 function Utils.goto_tag(s, i)
   local tag = s.tags[i]
-  
+
   if tag then
     tag:view_only()
   end
@@ -450,14 +450,14 @@ function Utils.move_to_tag(t)
 end
 
 function Utils.auto_suspend(minutes)
-  autotimer.start_timer("Suspend", minutes, function() 
-    Utils.suspend() 
+  autotimer.start_timer("Suspend", minutes, function()
+    Utils.suspend()
   end)
 end
 
 function Utils.timer(title, minutes)
-  autotimer.start_timer(title, minutes, function() 
-    Utils.msg(title.." ended") 
+  autotimer.start_timer(title, minutes, function()
+    Utils.msg(title.." ended")
   end)
 end
 
@@ -501,23 +501,23 @@ function Utils.fake_input_do(ctrl, shift, key)
     if ctrl then
       root.fake_input('key_press', "Control_L")
     end
-    
+
     if shift then
       root.fake_input('key_press', "Shift_L")
     end
-    
-    root.fake_input('key_press', key) 
+
+    root.fake_input('key_press', key)
     root.fake_input('key_release', key)
-    
+
     if ctrl then
       root.fake_input('key_release', "Control_L")
     end
-    
+
     if shift then
       root.fake_input('key_release', "Shift_L")
-    end 
+    end
     timer:stop()
-  end) 
+  end)
 
   timer:start()
 end
@@ -573,4 +573,8 @@ end
 function Utils.show_quick_actions()
   local cmd = os.getenv("HOME") .. "/code/rofimenu/rofimenu"
   Utils.shellspawn("cat " .. gears.filesystem.get_configuration_dir() .. "quick_actions.txt | " .. cmd)
+end
+
+function Utils.minimize(c)
+  c:activate {context = "tasklist", action = "toggle_minimization"}
 end
