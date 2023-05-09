@@ -505,8 +505,11 @@ function Utils.fake_input_do(ctrl, shift, key)
 
   timer:connect_signal("timeout", function()
     root.fake_input('key_release', "Super_L")
+    root.fake_input('key_release', "Super_R")
     root.fake_input('key_release', "Control_L")
+    root.fake_input('key_release', "Control_R")
     root.fake_input('key_release', "Shift_L")
+    root.fake_input('key_release', "Shift_R")
     root.fake_input('key_release', "Delete")
 
     if ctrl then
@@ -527,6 +530,7 @@ function Utils.fake_input_do(ctrl, shift, key)
     if shift then
       root.fake_input('key_release', "Shift_L")
     end
+
     timer:stop()
   end)
 
