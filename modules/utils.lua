@@ -500,7 +500,7 @@ end
 
 function Utils.fake_input_do(ctrl, shift, key)
   local timer = gears.timer {
-    timeout = 0.09
+    timeout = 0.15
   }
 
   timer:connect_signal("timeout", function()
