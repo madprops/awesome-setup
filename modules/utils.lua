@@ -357,6 +357,17 @@ end
 
 function Utils.switch_tag(direction, sticky)
   local index = Utils.mytag().index
+
+  if index == 1 and direction == "prev" then
+    local c = mouse.object_under_pointer()
+
+    if c.instance == "Navigator" then
+      Utils.focus(c)
+      Utils.fake_input_do(true, false, "period")
+      return
+    end
+  end
+
   local num_tags = #Utils.myscreen().tags
   local ok = (direction == "next" and index < num_tags)
   or (direction == "prev" and index > 1)
