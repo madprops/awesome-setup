@@ -17,7 +17,7 @@ local closetap = doubletap.create({
     if c.xutil then return end
 
     if c.kill then
-      if c.instance == "Navigator" then
+      if c.instance == "Navigator" or c.instance == "code" then
         Utils.focus(c)
         Utils.fake_input_do(true, false, "w")
       else
