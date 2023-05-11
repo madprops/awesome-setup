@@ -85,7 +85,7 @@ awful.rules.rules = {
     }
   },
   {
-    rule = {instance = "audacious"},
+    rule = {instance = "com.github.taiko2k.tauonmb"},
     properties = {
       placement = function(c)
         awful.placement.bottom_right(c, {honor_workarea = true})
@@ -123,7 +123,7 @@ awful.rules.rules = {
       skip_taskbar = true,
       xutil = true
     }
-  },  
+  },
   {
     rule = {instance = "tilix"},
     properties = {
@@ -136,7 +136,7 @@ awful.rules.rules = {
       skip_taskbar = true,
       xutil = true
     }
-  },    
+  },
   -- Other Rules
   {
     rule = {instance = "Alacritty"},
@@ -148,7 +148,7 @@ awful.rules.rules = {
       height = Utils.height_factor(0.7),
       maximized = false,
     }
-  },  
+  },
 }
 
 function Rules.check_title_rules(c)
@@ -159,7 +159,7 @@ function Rules.check_title_rules(c)
     c.maximized = false
     Utils.snap(c, "vertically", awful.placement.left)
   end
-  
+
   if Utils.startswith(c.name, "[ff_dev2]") then
     c.width = Utils.width_factor(0.5)
     c.height = Utils.height_factor(1)
