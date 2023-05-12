@@ -165,8 +165,9 @@ end
 function Utils.toggle_util_screen()
   if Utils.util_screen_on then
     local highest = Utils.highest_in_tag(Utils.util_screen_tag)
+    local same_tag = Utils.util_screen_tag == Utils.mytag()
 
-    if not Utils.util_screen_tag.selected or (highest ~= nil and not highest.xutil) then
+    if not same_tag or not Utils.util_screen_tag.selected or (highest ~= nil and not highest.xutil) then
       Utils.show_util_screen()
     else
       Utils.hide_util_screen()
