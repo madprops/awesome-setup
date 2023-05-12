@@ -14,16 +14,16 @@ local media_lock = lockdelay.create({action=function(cmd)
 end, delay=250})
 
 local tag_next_lock = lockdelay.create({action=function(sticky)
-  if Utils.check_util_screen_hide() then
-    return
+  if Utils.util_screen_on then
+    Utils.hide_util_screen()
   end
 
   Utils.switch_tag("next", sticky)
 end, delay=100})
 
 local tag_prev_lock = lockdelay.create({action=function(sticky)
-  if Utils.check_util_screen_hide() then
-    return
+  if Utils.util_screen_on then
+    Utils.hide_util_screen()
   end
 
   Utils.switch_tag("prev", sticky)
@@ -382,17 +382,6 @@ function Utils.switch_tag(direction, sticky)
 
     new_tag:view_only()
   end
-end
-
-function Utils.check_util_screen_hide()
-  if Utils.util_screen_on then
-    if Utils.util_screen_screen == Utils.myscreen() then
-      Utils.hide_util_screen()
-      return true
-    end
-  end
-
-  return false
 end
 
 function Utils.next_tag(sticky)
