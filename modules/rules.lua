@@ -78,7 +78,7 @@ awful.rules.rules = {
         awful.placement.top_right(c, {honor_workarea = true})
       end,
       width = Utils.width_factor(0.5),
-      height = Utils.height_factor(0.65),
+      height = Utils.height_factor(0.64),
       maximized = false,
       xindex = 3,
       screen = screen_right
@@ -91,7 +91,7 @@ awful.rules.rules = {
         awful.placement.bottom_right(c, {honor_workarea = true})
       end,
       width = Utils.width_factor(0.5),
-      height = Utils.height_factor(0.35),
+      height = Utils.height_factor(0.36),
       maximized = false,
       xindex = 4,
       screen = screen_right
@@ -170,7 +170,7 @@ function Rules.check_title_rules(c)
 
   if Utils.startswith(c.name, "[ff_tile1]") then
     c.width = Utils.width_factor(0.5)
-    c.height = Utils.height_factor(0.65)
+    c.height = Utils.height_factor(0.64)
     c.xindex = 1
     c.maximized = false
     xindex = 1
@@ -179,7 +179,7 @@ function Rules.check_title_rules(c)
 
   if Utils.startswith(c.name, "[ff_tile2]") then
     c.width = Utils.width_factor(0.5)
-    c.height = Utils.height_factor(0.35)
+    c.height = Utils.height_factor(0.36)
     c.xindex = 2
     c.maximized = false
     awful.placement.bottom_left(c, {honor_workarea = true})
