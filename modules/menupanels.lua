@@ -15,7 +15,7 @@ end
 Menupanels.main = menupanel.create({
   placement = placement,
   height = height,
-  items = {   
+  items = {
     {
       name = "Launch",
       action = function(trigger) Menupanels.applications.show(trigger) end,
@@ -92,7 +92,7 @@ Menupanels.log = menupanel.create({
 
 Menupanels.leave = menupanel.create({
   placement = placement,
-  height = height, 
+  height = height,
   parent = Menupanels.main,
   items = {
     {
@@ -150,7 +150,7 @@ Menupanels.suspend = menupanel.create({
       name = "90 minutes",
       action = function() Utils.auto_suspend(90) end,
       needs_confirm = true,
-    }          
+    }
   }
 })
 
@@ -173,11 +173,11 @@ Menupanels.context = menupanel.create({
     {
       name = "Center",
       action = function() Utils.center(Utils.get_context_client()) end,
-    },  
+    },
     {
       name = "Reset",
-      action = function() Rules.reset_rules(Utils.get_context_client()) end,
-    },        
+      action = function() Utils.reset_rules(Utils.get_context_client()) end,
+    },
     {
       name = "Close",
       action = function() Utils.close(Utils.get_context_client()) end,
@@ -192,8 +192,8 @@ Menupanels.info = menupanel.create({
   items = {
     {
       name = "- Empty -",
-      action = function() 
-        Utils.to_clipboard(Menupanels.info.get_item(1).name) 
+      action = function()
+        Utils.to_clipboard(Menupanels.info.get_item(1).name)
       end,
     },
   }

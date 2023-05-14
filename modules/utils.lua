@@ -572,3 +572,8 @@ end
 function Utils.minimize(c)
   c:activate {context = "tasklist", action = "toggle_minimization"}
 end
+
+function Utils.reset_rules(c)
+  Rules.reset_rules(c)
+  Rules.check_title_rules(c)
+end
