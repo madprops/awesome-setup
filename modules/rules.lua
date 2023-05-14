@@ -152,22 +152,6 @@ awful.rules.rules = {
 }
 
 function Rules.check_title_rules(c)
-  if Utils.startswith(c.name, "[ff_dev1]") then
-    c.width = Utils.width_factor(0.5)
-    c.height = Utils.height_factor(1)
-    c.xindex = 1
-    c.maximized = false
-    Utils.snap(c, "vertically", awful.placement.left)
-  end
-
-  if Utils.startswith(c.name, "[ff_dev2]") then
-    c.width = Utils.width_factor(0.5)
-    c.height = Utils.height_factor(1)
-    c.xindex = 2
-    c.maximized = false
-    Utils.snap(c, "vertically", awful.placement.right)
-  end
-
   if Utils.startswith(c.name, "[ff_tile1]") then
     c.width = Utils.width_factor(0.5)
     c.height = Utils.height_factor(0.64)
