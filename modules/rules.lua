@@ -90,7 +90,7 @@ awful.rules.rules = {
       placement = function(c)
         awful.placement.bottom_right(c, {honor_workarea = true})
       end,
-      width = Utils.width_factor(0.65),
+      width = Utils.width_factor(0.615),
       height = Utils.height_factor(0.36),
       maximized = false,
       xindex = 4,
@@ -162,7 +162,7 @@ function Rules.check_title_rules(c)
   end
 
   if Utils.startswith(c.name, "[ff_tile2]") then
-    c.width = Utils.width_factor(0.35)
+    c.width = Utils.width_factor(0.385)
     c.height = Utils.height_factor(0.36)
     c.xindex = 2
     c.maximized = false
