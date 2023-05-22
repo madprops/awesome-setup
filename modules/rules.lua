@@ -85,12 +85,12 @@ awful.rules.rules = {
     }
   },
   {
-    rule = {instance = "com.github.taiko2k.tauonmb"},
+    rule = {instance = "audacious"},
     properties = {
       placement = function(c)
         awful.placement.bottom_right(c, {honor_workarea = true})
       end,
-      width = Utils.width_factor(0.615),
+      width = Utils.width_factor(0.5),
       height = Utils.height_factor(0.36),
       maximized = false,
       xindex = 4,
@@ -162,7 +162,7 @@ function Rules.check_title_rules(c)
   end
 
   if Utils.startswith(c.name, "[ff_tile2]") then
-    c.width = Utils.width_factor(0.385)
+    c.width = Utils.width_factor(0.5)
     c.height = Utils.height_factor(0.36)
     c.xindex = 2
     c.maximized = false
