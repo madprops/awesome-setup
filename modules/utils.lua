@@ -15,7 +15,9 @@ end, delay=250})
 
 local tag_next_lock = lockdelay.create({action=function(sticky)
   if Utils.util_screen_on then
-    Utils.hide_util_screen()
+    if Utils.util_screen_screen == Utils.myscreen() then
+      Utils.hide_util_screen()
+    end
   end
 
   Utils.switch_tag("next", sticky)
@@ -23,7 +25,9 @@ end, delay=100})
 
 local tag_prev_lock = lockdelay.create({action=function(sticky)
   if Utils.util_screen_on then
-    Utils.hide_util_screen()
+    if Utils.util_screen_screen == Utils.myscreen() then
+      Utils.hide_util_screen()
+    end
   end
 
   Utils.switch_tag("prev", sticky)
