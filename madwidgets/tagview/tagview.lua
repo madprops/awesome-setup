@@ -11,12 +11,12 @@ function tagview.setup()
       return
     end
 
-    for _, instance in ipairs(instances) do  
+    for _, instance in ipairs(instances) do
       if instance.args.screen == t.screen then
         local index = instance.args.screen.selected_tag.index
         instance.widget.show("Desktop: " .. index)
       end
-    end    
+    end
   end)
 end
 
@@ -34,7 +34,7 @@ function tagview.create(args)
           {
               {
                   {
-                      id     = 'icon_role',
+                      id     = "icon_role",
                       widget = wibox.widget.imagebox,
                   },
                   right = 10,
@@ -43,7 +43,7 @@ function tagview.create(args)
                   widget  = wibox.container.margin,
               },
               {
-                  id     = 'text_role',
+                  id     = "text_role",
                   widget = wibox.widget.textbox,
               },
               layout = wibox.layout.fixed.horizontal,
@@ -52,9 +52,9 @@ function tagview.create(args)
           right = 10,
           widget = wibox.container.margin
       },
-      id     = 'background_role',
+      id     = "background_role",
       widget = wibox.container.background,
-    }, 
+    },
     style = {
       bg_normal = args.overlay_color,
       bg_focus = args.overlay_color,
@@ -64,7 +64,7 @@ function tagview.create(args)
       font = "monospace 14"
     }
   }
-  
+
   local cont = wibox.widget {
     tsk,
     widget = wibox.container.margin,
@@ -75,15 +75,15 @@ function tagview.create(args)
     top = 14,
     bottom = 14
   }
-  
+
   instance.widget = overlay.create({
     screen = args.screen,
     widget = cont,
     bgcolor = args.overlay_color,
     textbox_bgcolor = args.textbox_bgcolor,
     height = 50
-  }) 
-  
+  })
+
   table.insert(instances, instance)
   return instance
 end

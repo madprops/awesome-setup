@@ -6,7 +6,7 @@ local overlay = {}
 
 function overlay.create(args)
   local instance = {}
-  args.delay = args.delay or 2
+  args.delay = args.delay or 1
   args.bgcolor = args.bgcolor or "#445666"
   args.fontcolor = args.fontcolor or "#d5dAf0"
   args.textbox_bgcolor = args.textbox_bgcolor or "#445666"
@@ -29,7 +29,7 @@ function overlay.create(args)
     border_color = args.bordercolor,
     border_width = args.borderwidth
   })
-  
+
   instance.textbox = wibox.widget {
     markup = "---:---%",
     align  = "center",
@@ -37,7 +37,7 @@ function overlay.create(args)
     widget = wibox.widget.textbox,
     font = args.font,
     forced_height = args.height
-  }  
+  }
 
   local textbox = wibox.widget {
     instance.textbox,
@@ -50,21 +50,21 @@ function overlay.create(args)
     layout = wibox.layout.align.vertical,
     textbox,
     args.widget
-  } 
+  }
 
   instance.widget:connect_signal("mouse::enter", function()
     instance.hide()
-  end)  
-  
+  end)
+
   instance.timer = gears.timer {
     timeout = args.delay,
     autostart = false
-  } 
+  }
 
   instance.timer:connect_signal("timeout", function()
     instance.hide()
-  end)  
-  
+  end)
+
   function instance.hide()
     instance.widget.visible = false
   end
