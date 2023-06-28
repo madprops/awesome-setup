@@ -247,11 +247,11 @@ function Utils.add_to_file(path, text, num)
   Utils.shellspawn("echo '" .. text .. "' | cat - " .. path .. " | sponge " .. path .. " && sed -i '" .. num..",$ d' " .. path)
 end
 
-local logpath = os.getenv("HOME") .. "/.awm_log"
+local log_path = os.getenv("HOME") .. "/.awm_log"
 
 function Utils.add_to_log(text, announce)
   local txt = os.date("%c") .. " " .. Utils.trim(text)
-  Utils.add_to_file(logpath, txt, 1000)
+  Utils.add_to_file(log_path, txt, 1000)
 
   if announce then
     Utils.msg("Added to log: " .. text)
@@ -259,7 +259,18 @@ function Utils.add_to_log(text, announce)
 end
 
 function Utils.show_log(name)
-  Utils.shellspawn("geany " .. logpath)
+  Utils.shellspawn("geany " .. log_path)
+end
+
+local notifications_path = os.getenv("HOME") .. "/.awm_notifications"
+
+function Utils.add_to_notifications(text)
+  local txt = os.date("%c") .. " " .. Utils.trim(text)
+  Utils.add_to_file(notifications_path, txt, 1000)
+end
+
+function Utils.show_notifications(name)
+  Utils.shellspawn("geany " .. notifications_path)
 end
 
 function Utils.calendar()

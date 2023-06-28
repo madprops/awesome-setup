@@ -25,6 +25,10 @@ Menupanels.main = menupanel.create({
       action = function(trigger) Menupanels.log.show(trigger) end,
     },
     {
+      name = "Notifications",
+      action = function() Utils.show_notifications() end,
+    },
+    {
       name = "Leave",
       action = function(trigger) Menupanels.leave.show(trigger) end,
     },
