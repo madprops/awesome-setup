@@ -99,7 +99,7 @@ Bindings.globalkeys = gears.table.join(
   end),
 
   awful.key({modkey, "Shift"}, "space", function()
-    Utils.show_quick_actions()
+    Utils.minimize_under_cursor()
   end),
 
   awful.key({}, "XF86AudioRaiseVolume", function()
@@ -120,8 +120,7 @@ Bindings.globalkeys = gears.table.join(
   end),
 
   awful.key({modkey, "Shift"}, "Delete", function()
-    local c = mouse.object_under_pointer()
-    Utils.minimize(c)
+    Utils.minimize_under_cursor()
   end),
 
   awful.key({altkey}, "Tab", function()

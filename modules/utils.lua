@@ -579,11 +579,6 @@ function Utils.browser_hotcorner_prev()
   end
 end
 
-function Utils.show_quick_actions()
-  local cmd = os.getenv("HOME") .. "/code/rofimenu/rofimenu"
-  Utils.shellspawn("cat " .. gears.filesystem.get_configuration_dir() .. "quick_actions.txt | " .. cmd)
-end
-
 function Utils.minimize(c)
   c:activate {context = "tasklist", action = "toggle_minimization"}
 end
@@ -591,4 +586,12 @@ end
 function Utils.reset_rules(c)
   Rules.reset_rules(c)
   Rules.check_title_rules(c)
+end
+
+function Utils.minimize_under_cursor()
+  local c = mouse.object_under_pointer()
+
+  if c then
+    Utils.minimize(c)
+  end
 end
