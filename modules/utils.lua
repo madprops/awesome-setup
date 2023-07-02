@@ -595,3 +595,11 @@ function Utils.minimize_under_cursor()
     Utils.minimize(c)
   end
 end
+
+function Utils.reset_rules_under_cursor()
+  local c = mouse.object_under_pointer()
+
+  if c then
+    Rules.reset_rules(c)
+  end
+end
