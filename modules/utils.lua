@@ -265,7 +265,13 @@ end
 local notifications_path = os.getenv("HOME") .. "/.awm_notifications"
 
 function Utils.add_to_notifications(text)
-  local txt = os.date("%c") .. " " .. Utils.trim(text)
+  local clean = Utils.trim(text)
+
+  if Utils.startswith(clean, "Volume:") then
+    return
+  end
+
+  local txt = os.date("%c") .. " " .. clean
   Utils.add_to_file(notifications_path, txt, 1000)
 end
 
