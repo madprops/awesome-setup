@@ -98,10 +98,6 @@ Bindings.globalkeys = gears.table.join(
     Utils.screenshot()
   end),
 
-  awful.key({modkey, "Shift"}, "space", function()
-    Utils.minimize_under_cursor()
-  end),
-
   awful.key({}, "XF86AudioRaiseVolume", function()
     Utils.increase_volume(true)
   end),
