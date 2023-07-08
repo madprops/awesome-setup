@@ -606,6 +606,6 @@ function Utils.reset_rules_under_cursor()
   local c = mouse.object_under_pointer()
 
   if c then
-    Rules.reset_rules(c)
+    Utils.reset_rules(c)
   end
 end
