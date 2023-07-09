@@ -69,7 +69,7 @@ function tagview.create(args)
     tsk,
     widget = wibox.container.margin,
     forced_height = 60,
-    forced_width = 440,
+    forced_width = 600,
     left = 5,
     right = 5,
     top = 14,
