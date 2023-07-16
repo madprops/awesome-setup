@@ -119,6 +119,10 @@ function Utils.screenshot()
   Utils.spawn("spectacle -r")
 end
 
+function Utils.screenshot_window()
+  Utils.spawn("spectacle -a")
+end
+
 function Utils.randstring()
   Utils.spawn(os.getenv("HOME") .. "/scripts/randword.sh")
 end
