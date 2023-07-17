@@ -98,8 +98,12 @@ Bindings.globalkeys = gears.table.join(
     Utils.screenshot()
   end),
 
-  awful.key({modkey}, "Print", function()
+  awful.key({"Control"}, "Print", function()
     Utils.screenshot_window()
+  end),
+
+  awful.key({"Control", "Shift"}, "Print", function()
+    Utils.screenshot_screen()
   end),
 
   awful.key({}, "XF86AudioRaiseVolume", function()
