@@ -114,9 +114,10 @@ Bindings.globalkeys = gears.table.join(
     Utils.decrease_volume(true)
   end),
 
-  awful.key({modkey}, "Delete", function()
+  awful.key({modkey, "Shift"}, "Delete", function()
     if mouse.coords().y <= 25 then
       Utils.toggle_util_screen()
+      util_screen_lock.trigger()
       return
     end
 
