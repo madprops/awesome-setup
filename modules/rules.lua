@@ -157,8 +157,6 @@ function Rules.check_title_rules(c)
     c.height = Utils.height_factor(0.64)
     c.xindex = 1
     c.maximized = false
-    c.fullscreen = true
-    xindex = 1
     awful.placement.top_left(c, {honor_workarea = true})
   end
 
@@ -167,7 +165,6 @@ function Rules.check_title_rules(c)
     c.height = Utils.height_factor(0.36)
     c.xindex = 2
     c.maximized = false
-    c.fullscreen = true
     awful.placement.bottom_left(c, {honor_workarea = true})
   end
 end
