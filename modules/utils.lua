@@ -458,7 +458,7 @@ function Utils.sleep(n)
 end
 
 function Utils.show_audio_controls()
-  Utils.spawn("pavucontrol")
+  Utils.shellspawn("python ~/code/empris/empris.py")
 end
 
 function Utils.move_to_tag(t)
