@@ -605,7 +605,7 @@ end
 function Utils.minimize_under_cursor()
   local c = mouse.object_under_pointer()
 
-  if c then
+  if c and c.type == "normal" then
     Utils.minimize(c)
   end
 end
@@ -613,7 +613,7 @@ end
 function Utils.reset_rules_under_cursor()
   local c = mouse.object_under_pointer()
 
-  if c then
+  if c and c.type == "normal" then
     Utils.reset_rules(c)
   end
 end
