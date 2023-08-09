@@ -97,6 +97,19 @@ awful.rules.rules = {
       screen = screen_right
     }
   },
+  {
+    rule = {instance = "com.github.taiko2k.tauonmb"},
+    properties = {
+      placement = function(c)
+        awful.placement.bottom_right(c, {honor_workarea = true})
+      end,
+      width = Utils.width_factor(0.5),
+      height = Utils.height_factor(0.36),
+      maximized = false,
+      xindex = 4,
+      screen = screen_right
+    }
+  },
   -- Util screen
   {
     rule = {instance = "dolphin"},
