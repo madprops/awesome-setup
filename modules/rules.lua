@@ -17,7 +17,8 @@ awful.rules.rules = {
       placement = awful.placement.centered,
       xindex = 0,
       xkeys = true,
-      xutil = false
+      xutil = false,
+      xrules_applied = false
     },
     callback=function(c)
       if c.fullscreen then
@@ -166,17 +167,25 @@ awful.rules.rules = {
 
 function Rules.check_title_rules(c)
   if Utils.startswith(c.name, "[ff_tile1]") then
-    c.width = Utils.width_factor(0.5)
-    c.height = Utils.height_factor(0.64)
-    c.xindex = 1
-    awful.placement.top_left(c, {honor_workarea = true})
+    if not c.xrules_applied then
+      c.width = Utils.width_factor(0.5)
+      c.height = Utils.height_factor(0.64)
+      c.xindex = 1
+      c.maximized = false
+      awful.placement.top_left(c, {honor_workarea = true})
+      c.xrules_applied = true
+    end
   end
 
   if Utils.startswith(c.name, "[ff_tile2]") then
-    c.width = Utils.width_factor(0.5)
-    c.height = Utils.height_factor(0.36)
-    c.xindex = 2
-    awful.placement.bottom_left(c, {honor_workarea = true})
+    if not c.xrules_applied then
+      c.width = Utils.width_factor(0.5)
+      c.height = Utils.height_factor(0.36)
+      c.xindex = 2
+      c.maximized = false
+      awful.placement.bottom_left(c, {honor_workarea = true})
+      c.xrules_applied = true
+    end
   end
 end
 
