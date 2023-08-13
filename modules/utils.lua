@@ -599,7 +599,7 @@ end
 
 function Utils.reset_rules(c)
   Rules.reset_rules(c)
-  Rules.check_title_rules(c)
+  Rules.check_title_rules(c, true)
 end
 
 function Utils.minimize_under_cursor()

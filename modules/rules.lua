@@ -165,9 +165,13 @@ awful.rules.rules = {
   },
 }
 
-function Rules.check_title_rules(c)
+function Rules.check_title_rules(c, force)
+  if force == nil then
+    force = false
+  end
+
   if Utils.startswith(c.name, "[ff_tile1]") then
-    if not c.xrules_applied then
+    if not c.xrules_applied or force then
       c.width = Utils.width_factor(0.5)
       c.height = Utils.height_factor(0.64)
       c.xindex = 1
@@ -178,7 +182,7 @@ function Rules.check_title_rules(c)
   end
 
   if Utils.startswith(c.name, "[ff_tile2]") then
-    if not c.xrules_applied then
+    if not c.xrules_applied or force then
       c.width = Utils.width_factor(0.5)
       c.height = Utils.height_factor(0.36)
       c.xindex = 2
