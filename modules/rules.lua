@@ -18,7 +18,8 @@ awful.rules.rules = {
       xindex = 0,
       xkeys = true,
       xutil = false,
-      xrules_applied = false
+      xrules_applied = false,
+      xtiled = false
     },
     callback=function(c)
       if c.fullscreen then
@@ -178,6 +179,7 @@ function Rules.check_title_rules(c, force)
       c.maximized = false
       awful.placement.top_left(c, {honor_workarea = true})
       c.xrules_applied = true
+      c.xtiled = true
     end
   end
 
@@ -189,6 +191,7 @@ function Rules.check_title_rules(c, force)
       c.maximized = false
       awful.placement.bottom_left(c, {honor_workarea = true})
       c.xrules_applied = true
+      c.xtiled = true
     end
   end
 end

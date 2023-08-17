@@ -602,18 +602,14 @@ function Utils.reset_rules(c)
   Rules.check_title_rules(c, true)
 end
 
-function Utils.minimize_under_cursor()
+function Utils.smart_minimize(c)
   local c = mouse.object_under_pointer()
 
-  if c and c.type == "normal" then
-    Utils.minimize(c)
-  end
-end
-
-function Utils.reset_rules_under_cursor()
-  local c = mouse.object_under_pointer()
-
-  if c and c.type == "normal" then
-    Utils.reset_rules(c)
+  if c then
+    if c.xtiled then
+      Utils.reset_rules(c)
+    else
+      Utils.minimize(c)
+    end
   end
 end

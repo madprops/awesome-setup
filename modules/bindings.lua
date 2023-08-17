@@ -124,11 +124,7 @@ Bindings.globalkeys = gears.table.join(
   end),
 
   awful.key({modkey, "Control"}, "space", function()
-    Utils.minimize_under_cursor()
-  end),
-
-  awful.key({modkey, "Control", "Shift"}, "space", function()
-    Utils.reset_rules_under_cursor()
+    Utils.smart_minimize()
   end),
 
   awful.key({altkey}, "Tab", function()
