@@ -83,7 +83,8 @@ awful.rules.rules = {
       height = Utils.height_factor(0.64),
       maximized = false,
       xindex = 3,
-      screen = screen_right
+      screen = screen_right,
+      xtiled = true
     }
   },
   {
@@ -96,7 +97,8 @@ awful.rules.rules = {
       height = Utils.height_factor(0.36),
       maximized = false,
       xindex = 4,
-      screen = screen_right
+      screen = screen_right,
+      xtiled = true
     }
   },
   {
@@ -109,7 +111,8 @@ awful.rules.rules = {
       height = Utils.height_factor(0.36),
       maximized = false,
       xindex = 4,
-      screen = screen_right
+      screen = screen_right,
+      xtiled = true
     }
   },
   -- Util screen
