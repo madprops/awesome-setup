@@ -127,6 +127,10 @@ Bindings.globalkeys = gears.table.join(
     Utils.smart_minimize()
   end),
 
+  awful.key({modkey, "Shift", "Control"}, "space", function()
+    Utils.show_audio_controls()
+  end),
+
   awful.key({altkey}, "Tab", function()
     Utils.altab()
   end),
@@ -145,6 +149,14 @@ Bindings.globalkeys = gears.table.join(
 
   awful.key({modkey, "Shift"}, "Right", function()
     Utils.next_tag_all()
+  end),
+
+  awful.key({modkey, "Control"}, "Left", function()
+    Utils.music_prev()
+  end),
+
+  awful.key({modkey, "Control"}, "Right", function()
+    Utils.music_next()
   end)
 )
 
