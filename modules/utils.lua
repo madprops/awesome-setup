@@ -116,7 +116,7 @@ function Utils.altab()
 end
 
 function Utils.screenshot()
-  Utils.spawn("spectacle -r")
+  Utils.spawn("flameshot gui")
 end
 
 function Utils.screenshot_window()
