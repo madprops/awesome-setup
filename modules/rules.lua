@@ -19,7 +19,8 @@ awful.rules.rules = {
       xkeys = true,
       xutil = false,
       xrules_applied = false,
-      xtiled = false
+      xtiled = false,
+      xclient = true
     },
     callback=function(c)
       if c.fullscreen then

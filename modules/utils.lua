@@ -605,7 +605,11 @@ end
 function Utils.smart_minimize(c)
   local c = mouse.object_under_pointer()
 
-  if c then
+  if not c then
+    return
+  end
+
+  if c.xclient then
     if c.xtiled then
       Utils.reset_rules(c)
     else
