@@ -1,4 +1,15 @@
 #!/usr/bin/env ruby
+
+# Add this to the fish config:
+
+# function intercept --on-event fish_postexec
+#   if [ "$status" != 0 ]
+#     return
+#   end
+
+#   ruby ~/.config/awesome/scripts/save_command.rb $argv
+# end
+
 if ARGV[0].nil?
   return
 end
