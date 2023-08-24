@@ -12,6 +12,8 @@
 !/themes/**
 !/icons/
 !/icons/**
+!/scripts/
+!/scripts/*.rb
 !wallpaper.jpg
 !icon.png
 !quick_actions.txt
