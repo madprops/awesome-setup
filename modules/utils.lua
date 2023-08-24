@@ -617,13 +617,9 @@ function Utils.smart_button(c)
     return
   end
 
-  if c.instance == "dolphin" then
-    Utils.focus(c)
-    Utils.show_commands()
-    return
-  end
+  local cmds = {"dolphin", "tilix"}
 
-  if c.instance == "tilix" then
+  if Utils.table_contains(cmds, c.instance) then
     Utils.focus(c)
     Utils.show_commands()
     return
