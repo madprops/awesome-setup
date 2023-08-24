@@ -15,6 +15,7 @@
 !/scripts/
 !/scripts/*.rb
 !/scripts/*.desktop
+!/scripts/*.txt
 !wallpaper.jpg
 !icon.png
 !quick_actions.txt
