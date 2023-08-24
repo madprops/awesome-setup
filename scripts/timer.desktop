@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=timer
+Comment=Time Stuff
+GenericName=Timer
+Exec=/home/yo/.config/awesome/scripts/timer.rb
+Icon=application-x-executable
+StartupNotify=true
+Terminal=false
+Type=Application
