@@ -13,9 +13,7 @@
 !/icons/
 !/icons/**
 !/scripts/
-!/scripts/*.rb
-!/scripts/desktop/
-!/scripts/desktop/**
+!/scripts/**
 !/scripts/*.txt
 !wallpaper.jpg
 !icon.png
