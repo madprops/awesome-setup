@@ -20,7 +20,8 @@ awful.rules.rules = {
       xutil = false,
       xrules_applied = false,
       xtiled = false,
-      xclient = true
+      xclient = true,
+      xcommands = false
     },
     callback=function(c)
       if c.fullscreen then
@@ -41,7 +42,8 @@ awful.rules.rules = {
     rule = {instance = "code"},
     properties = {
       maximized = true,
-      xindex = 2
+      xindex = 2,
+      xcommands = true
     }
   },
   {
@@ -127,7 +129,8 @@ awful.rules.rules = {
       height = Utils.height_factor(0.5),
       maximized = false,
       skip_taskbar = true,
-      xutil = true
+      xutil = true,
+      xcommands = true
     }
   },
   {
@@ -153,7 +156,8 @@ awful.rules.rules = {
       height = Utils.height_factor(0.5),
       maximized = false,
       skip_taskbar = true,
-      xutil = true
+      xutil = true,
+      xcommands = true
     }
   },
   -- Other Rules

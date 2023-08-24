@@ -617,16 +617,11 @@ function Utils.smart_button(c)
     return
   end
 
-  local cmds = {"dolphin", "tilix"}
-
-  if Utils.table_contains(cmds, c.instance) then
-    Utils.focus(c)
-    Utils.show_commands()
-    return
-  end
-
   if c.xclient then
-    if c.xtiled then
+    if c.xcommands then
+      Utils.focus(c)
+      Utils.show_commands()
+    elseif c.xtiled then
       Utils.reset_rules(c)
     else
       Utils.minimize(c)
