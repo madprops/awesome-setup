@@ -320,7 +320,7 @@ function Utils.singlespawn(cmd)
 end
 
 function Utils.run_script(cmd)
-  Utils.spawn("ruby " .. Globals.conf_dir .. "/scripts/" .. cmd .. ".rb")
+  Utils.spawn(Globals.conf_dir .. "/scripts/" .. cmd)
 end
 
 function Utils.run_script_2(cmd)
@@ -620,7 +620,7 @@ function Utils.smart_button(c)
   if c.xclient then
     if c.xcommands then
       Utils.focus(c)
-      Utils.run_script("commands")
+      Utils.run_script("commands.rb")
     elseif c.xtiled then
       Utils.reset_rules(c)
     else
