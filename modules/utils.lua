@@ -128,11 +128,11 @@ function Utils.screenshot_screen()
 end
 
 function Utils.randstring()
-  Utils.home_run("randword.sh")
+  Utils.run_script_2("randword.sh")
 end
 
 function Utils.randword()
-  Utils.home_run("randword.sh word")
+  Utils.run_script_2("randword.sh word")
 end
 
 function Utils.to_clipboard(text)
@@ -319,12 +319,12 @@ function Utils.singlespawn(cmd)
   awful.spawn.single_instance(cmd)
 end
 
-function Utils.home_run(cmd)
-  Utils.spawn(os.getenv("HOME") .. "/scripts/" .. cmd)
+function Utils.run_script(cmd)
+  Utils.spawn("ruby " .. Globals.conf_dir .. "/scripts/" .. cmd .. ".rb")
 end
 
-function Utils.home_bin(cmd)
-  Utils.spawn(os.getenv("HOME") .. "/bin/" .. cmd)
+function Utils.run_script_2(cmd)
+  Utils.spawn(os.getenv("HOME") .. "/scripts/" .. cmd)
 end
 
 function Utils.width_factor(n)
@@ -620,15 +620,11 @@ function Utils.smart_button(c)
   if c.xclient then
     if c.xcommands then
       Utils.focus(c)
-      Utils.show_commands()
+      Utils.run_script("commands")
     elseif c.xtiled then
       Utils.reset_rules(c)
     else
       Utils.minimize(c)
     end
   end
-end
-
-function Utils.show_commands()
-  Utils.home_bin("commands")
 end

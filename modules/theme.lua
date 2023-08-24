@@ -36,4 +36,4 @@ beautiful.bg_urgent = green
 beautiful.fg_urgent = white
 
 -- Wallpaper
-beautiful.wallpaper = gears.filesystem.get_configuration_dir().."wallpaper.jpg"
+beautiful.wallpaper = Globals.conf_dir .. "wallpaper.jpg"
