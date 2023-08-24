@@ -10,7 +10,11 @@ def get_input(prompt, data)
 end
 
 path = File.join(__dir__, "data/timer.data")
-data = File.read(path).strip
+data = ""
+
+File.open(path, "a+") do |file|
+  data = file.read.strip
+end
 
 if ARGV.length >= 2
   title = ARGV[0]
