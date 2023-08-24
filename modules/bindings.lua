@@ -124,7 +124,7 @@ Bindings.globalkeys = gears.table.join(
   end),
 
   awful.key({modkey, "Control"}, "space", function()
-    Utils.smart_minimize()
+    Utils.smart_button()
   end),
 
   awful.key({modkey, "Shift", "Control"}, "space", function()
@@ -149,16 +149,7 @@ Bindings.globalkeys = gears.table.join(
 
   awful.key({modkey, "Shift"}, "Right", function()
     Utils.next_tag_all()
-  end),
-
-  awful.key({modkey, "Control"}, "Left", function()
-    Utils.music_prev()
-  end),
-
-  awful.key({modkey, "Control"}, "Right", function()
-    Utils.music_next()
-  end)
-)
+  end))
 
 Bindings.clientkeys = gears.table.join(
   awful.key({altkey}, "F4", function(c)

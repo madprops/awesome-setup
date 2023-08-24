@@ -128,11 +128,11 @@ function Utils.screenshot_screen()
 end
 
 function Utils.randstring()
-  Utils.spawn(os.getenv("HOME") .. "/scripts/randword.sh")
+  Utils.home_run("randword.sh")
 end
 
 function Utils.randword()
-  Utils.spawn(os.getenv("HOME") .. "/scripts/randword.sh word")
+  Utils.home_run("randword.sh word")
 end
 
 function Utils.to_clipboard(text)
@@ -307,16 +307,24 @@ function Utils.refresh_volume()
   Globals.volumecontrol.refresh()
 end
 
-function Utils.spawn(program)
-  awful.spawn(program, false)
+function Utils.spawn(cmd)
+  awful.spawn(cmd, false)
 end
 
-function Utils.shellspawn(program)
-  awful.spawn.with_shell(program, false)
+function Utils.shellspawn(cmd)
+  awful.spawn.with_shell(cmd, false)
 end
 
-function Utils.singlespawn(program)
-  awful.spawn.single_instance(program)
+function Utils.singlespawn(cmd)
+  awful.spawn.single_instance(cmd)
+end
+
+function Utils.home_run(cmd)
+  Utils.spawn(os.getenv("HOME") .. "/scripts/" .. cmd)
+end
+
+function Utils.home_bin(cmd)
+  Utils.spawn(os.getenv("HOME") .. "/bin/" .. cmd)
 end
 
 function Utils.width_factor(n)
@@ -602,10 +610,22 @@ function Utils.reset_rules(c)
   Rules.check_title_rules(c, true)
 end
 
-function Utils.smart_minimize(c)
+function Utils.smart_button(c)
   local c = mouse.object_under_pointer()
 
   if not c then
+    return
+  end
+
+  if c.instance == "dolphin" then
+    Utils.focus(c)
+    Utils.show_commands()
+    return
+  end
+
+  if c.instance == "tilix" then
+    Utils.focus(c)
+    Utils.show_commands()
     return
   end
 
@@ -616,4 +636,8 @@ function Utils.smart_minimize(c)
       Utils.minimize(c)
     end
   end
+end
+
+function Utils.show_commands()
+  Utils.home_bin("commands")
 end
