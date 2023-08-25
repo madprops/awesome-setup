@@ -17,5 +17,8 @@ if cmd.empty?
   return
 end
 
+sleep(0.2)
 system("xdotool type '#{cmd}'")
+
+sleep(0.2)
 system("xdotool key Return")
