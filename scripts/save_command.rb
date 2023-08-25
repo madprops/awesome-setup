@@ -20,7 +20,7 @@ if cmd.empty?
   return
 end
 
-xcmds_equals = ["cd", "ls", "lq", "z", "br", "o", "clear"]
+xcmds_equals = ["cd", "ls", "lq", "z", "br", "o", "clear", "checkcode"]
 xcmds_starts = ["cd", "z"]
 
 if xcmds_equals.any? { |x| cmd == x }
