@@ -21,7 +21,7 @@ awful.rules.rules = {
       xrules_applied = false,
       xtiled = false,
       xclient = true,
-      xcommands = false
+      xcommands = false,
     },
     callback=function(c)
       if c.fullscreen then
@@ -35,7 +35,7 @@ awful.rules.rules = {
     properties = {
       maximized = true,
       xindex = 1,
-      xhotcorner = "1_top_left"
+      xhotcorner = "1_top_left",
     }
   },
   {
@@ -49,21 +49,21 @@ awful.rules.rules = {
     rule = {instance = "Steam"},
     properties = {
       xindex = 4.1,
-      maximized = false
+      maximized = false,
     }
   },
   {
     rule = {instance = "lutris"},
     properties = {
       xindex = 4.2,
-      maximized = false
+      maximized = false,
     }
   },
   {
     rule = {instance = "fl64.exe"},
     properties = {
       xindex = 5,
-      maximized = true
+      maximized = true,
     }
   },
   {
@@ -71,7 +71,7 @@ awful.rules.rules = {
     properties = {
       xindex = 8,
       maximized = false,
-      xkeys = false
+      xkeys = false,
     }
   },
   -- Screen Right
@@ -86,7 +86,7 @@ awful.rules.rules = {
       maximized = false,
       xindex = 3,
       screen = screen_right,
-      xtiled = true
+      xtiled = true,
     }
   },
   {
@@ -100,7 +100,7 @@ awful.rules.rules = {
       maximized = false,
       xindex = 4,
       screen = screen_right,
-      xtiled = true
+      xtiled = true,
     }
   },
   {
@@ -114,7 +114,7 @@ awful.rules.rules = {
       maximized = false,
       xindex = 4,
       screen = screen_right,
-      xtiled = true
+      xtiled = true,
     }
   },
   -- Util screen
@@ -129,7 +129,7 @@ awful.rules.rules = {
       maximized = false,
       skip_taskbar = true,
       xutil = true,
-      xcommands = true
+      xcommands = true,
     }
   },
   {
@@ -142,7 +142,7 @@ awful.rules.rules = {
       height = Utils.height_factor(0.5),
       maximized = false,
       skip_taskbar = true,
-      xutil = true
+      xutil = true,
     }
   },
   {
@@ -168,6 +168,7 @@ awful.rules.rules = {
       width = Utils.width_factor(0.7),
       height = Utils.height_factor(0.7),
       maximized = false,
+      xcommands = true,
     }
   },
 }

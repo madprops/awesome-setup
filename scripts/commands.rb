@@ -11,7 +11,7 @@ end
 
 client = ARGV[0]
 path = File.join(__dir__, "data/commands.data")
-lines = File.readlines(path)
+lines = File.readlines(path).reject{ |x| x.strip.empty? }
 commands = []
 
 for line in lines
