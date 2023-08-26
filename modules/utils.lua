@@ -620,7 +620,7 @@ function Utils.smart_button(c)
   if c.xclient then
     if c.xcommands then
       Utils.focus(c)
-      Utils.run_script("commands.rb")
+      Utils.run_script("commands.rb " .. c.instance)
     elseif c.xtiled then
       Utils.reset_rules(c)
     else

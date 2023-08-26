@@ -4,14 +4,31 @@ require "open3"
 def pick_cmd(prompt, data)
   cmd = "rofi -dmenu -p '#{prompt}' -me-select-entry '' -me-accept-entry 'MousePrimary' -i"
   stdin, stdout, stderr, wait_thr = Open3.popen3(cmd)
-  stdin.puts(data.split("\n"))
+  stdin.puts(data)
   stdin.close
   return stdout.read.strip
 end
 
+client = ARGV[0]
 path = File.join(__dir__, "data/commands.data")
-data = File.read(path).strip
-cmd = pick_cmd("Select Command", data)
+lines = File.readlines(path)
+commands = []
+
+for line in lines
+  split = line.split(";")
+  client_2 = split[0].strip
+  command = split[1].strip
+
+  if client == client_2
+    commands.push(command)
+  end
+end
+
+if commands.empty?
+  return
+end
+
+cmd = pick_cmd("Select Command", commands)
 
 if cmd.empty?
   return
