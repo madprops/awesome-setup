@@ -43,6 +43,7 @@ awful.rules.rules = {
     properties = {
       maximized = true,
       xindex = 2,
+      xcommands = true,
     }
   },
   {
@@ -156,6 +157,7 @@ awful.rules.rules = {
       maximized = false,
       skip_taskbar = true,
       xutil = true,
+      xcommands = true,
     }
   },
   -- Other Rules
