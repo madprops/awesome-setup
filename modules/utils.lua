@@ -623,8 +623,10 @@ function Utils.smart_button(c)
       Utils.run_script("commands.rb " .. c.instance)
     elseif c.xtiled then
       Utils.reset_rules(c)
-    elseif not c.maximized then
-      Utils.minimize(c)
+    else
+      if not c.maximized and not c.xutil then
+        Utils.minimize(c)
+      end
     end
   end
 end
