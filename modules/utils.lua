@@ -364,7 +364,18 @@ function Utils.mytag()
 end
 
 function Utils.clients()
-  return Utils.mytag():clients()
+  local filtered = {}
+  local clients = Utils.mytag():clients()
+
+  for i = 1, #clients do
+    local c = clients[i]
+
+    if not c.xutil then
+      table.insert(filtered, c)
+    end
+  end
+
+  return filtered
 end
 
 function Utils.open_terminal(cmd)
@@ -625,7 +636,9 @@ function Utils.smart_button(c)
       Utils.reset_rules(c)
     else
       if not c.xutil then
-        Utils.minimize(c)
+        if #Utils.clients() > 1 then
+          Utils.minimize(c)
+        end
       end
     end
   end
