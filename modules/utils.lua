@@ -624,7 +624,7 @@ function Utils.smart_button(c)
     elseif c.xtiled then
       Utils.reset_rules(c)
     else
-      if not c.maximized and not c.xutil then
+      if not c.xutil then
         Utils.minimize(c)
       end
     end
