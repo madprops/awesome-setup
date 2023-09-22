@@ -41,23 +41,27 @@ Menupanels.applications = menupanel.create({
   parent = Menupanels.main,
   items = {
     {
-      name = "Firefox Tile 1",
+      name = "FF Tile 1",
       action = function() Utils.spawn("firefox-developer-edition -P tile1") end,
     },
     {
-      name = "Firefox Tile 2",
+      name = "FF Tile 2",
       action = function() Utils.spawn("firefox-developer-edition -P tile2") end,
     },
     {
-      name = "Firefox Dev 1",
+      name = "FF Tile 3",
+      action = function() Utils.spawn("firefox-developer-edition -P tile3") end,
+    },
+    {
+      name = "FF Dev 1",
       action = function() Utils.spawn("firefox-developer-edition -P dev1") end,
     },
     {
-      name = "Firefox Dev 2",
+      name = "FF Dev 2",
       action = function() Utils.spawn("firefox-developer-edition -P dev2") end,
     },
     {
-      name = "Firefox Dev 3",
+      name = "FF Dev 3",
       action = function() Utils.spawn("firefox-developer-edition -P dev3") end,
     },
     {
