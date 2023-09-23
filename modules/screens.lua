@@ -165,7 +165,8 @@ awful.screen.connect_for_each_screen(function(s)
         right = " "..Globals.star.." ",
         left_color = Globals.nicedark,
         right_color = Globals.nicedark,
-        fontcolor = Globals.nicegreen,
+        mutecolor = Globals.nicedark,
+        maxcolor = Globals.nicegreen,
         on_click = function() Utils.show_audio_controls() end
       }),
       multibutton.create({

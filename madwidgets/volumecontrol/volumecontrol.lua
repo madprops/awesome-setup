@@ -1,6 +1,7 @@
 local awful = require("awful")
 local wibox = require("wibox")
 local gears = require("gears")
+local beautiful = require("beautiful")
 local utils = require("madwidgets/utils")
 local multibutton = require("madwidgets/multibutton/multibutton")
 
@@ -17,6 +18,15 @@ function volumecontrol.update_volume(vol)
       local s = volumecontrol.volstring(utils.numpad(vol, 3))
       instance.text_widget.text = s
       instance.shown_volume = vol
+
+      if vol == 0 then
+        instance.widget.fg = instance.args.mutecolor
+      elseif vol == volumecontrol.max_volume then
+        instance.widget.fg = instance
+        .args.maxcolor
+      else
+        instance.widget.fg = instance.args.fontcolor
+      end
     end
   end
 end
@@ -128,6 +138,9 @@ function volumecontrol.create(args)
   local instance = {}
   instance.args = args
   args.on_click = args.on_click or function() end
+  args.fontcolor = args.fontcolor or beautiful.fg_normal
+  args.mutecolor = args.mutecolor or beautiful.fg_normal
+  args.maxcolor = args.maxcolor or beautiful.fg_normal
 
   instance.text_widget = wibox.widget {
     markup = volumecontrol.volstring("---"),
