@@ -6,14 +6,14 @@ local autotimer = require("madwidgets/autotimer/autotimer")
 local tagview = require("madwidgets/tagview/tagview")
 
 autotimer.create({
-  left = " ", 
+  left = " ",
   fontcolor = Globals.niceblue,
   separator = "|", separator_color = Globals.nicedark
 })
 
 local function sysmonitor_widget(mode)
   local args = {}
-  args.mode = mode  
+  args.mode = mode
 
   args.on_wheel_down = function()
     Utils.decrease_volume()
@@ -41,7 +41,7 @@ local function sysmonitor_widget(mode)
   elseif mode == "tmp" then
     args.on_click = function()
       Utils.system_monitor_temp()
-    end    
+    end
   elseif mode == "net_download" then
     args.left = " "..Globals.star.." "
     args.right = " | "
@@ -60,7 +60,7 @@ end
 
 awful.screen.connect_for_each_screen(function(s)
   awful.tag({ "1", "2", "3", "4", "5"}, s, awful.layout.suit.floating)
-  
+
   s.mytaglist = awful.widget.taglist {
     screen  = s,
     filter  = awful.widget.taglist.filter.all,
@@ -68,16 +68,16 @@ awful.screen.connect_for_each_screen(function(s)
       awful.button({ }, 1, function(t) t:view_only() end),
       awful.button({ }, 3, function(t) Utils.move_to_tag(t) end)
     }
-  }  
+  }
 
   s.mytasklist = awful.widget.tasklist {
     screen = s,
     buttons = Bindings.tasklist_buttons,
-    filter = function() return true end, 
+    filter = function() return true end,
     source = function()
       local result = {}
       local unindexed = {}
-      
+
       for _, c in pairs(client.get()) do
         if c.screen == s then
           if c.first_tag.index == s.selected_tag.index then
@@ -130,7 +130,7 @@ awful.screen.connect_for_each_screen(function(s)
 
   local left
   local right
-  
+
   local systray = wibox.widget.systray()
   systray:set_screen(screen[Globals.primary_screen])
 
@@ -138,7 +138,7 @@ awful.screen.connect_for_each_screen(function(s)
     layout = wibox.layout.fixed.horizontal,
     multibutton.create({
       text = " "..Globals.flower.." ",
-      on_click = function() 
+      on_click = function()
         Utils.show_menupanel("mouse")
       end,
       on_middle_click = function()
@@ -150,7 +150,7 @@ awful.screen.connect_for_each_screen(function(s)
     Utils.space()
   }
 
-  if s.index == Globals.primary_screen then    
+  if s.index == Globals.primary_screen then
     right = {
       layout = wibox.layout.fixed.horizontal(),
       Utils.space(),
@@ -165,6 +165,7 @@ awful.screen.connect_for_each_screen(function(s)
         right = " "..Globals.star.." ",
         left_color = Globals.nicedark,
         right_color = Globals.nicedark,
+        fontcolor = Globals.nicegreen,
         on_click = function() Utils.show_audio_controls() end
       }),
       multibutton.create({
