@@ -44,6 +44,7 @@ local function sysmonitor_widget(mode)
     end
   elseif mode == "net_download" then
     args.left = " "..Globals.star.." "
+    args.left_color = Globals.niceblue
     args.right = " | "
     args.right_color = Globals.nicedark
     args.on_click = function()
@@ -163,8 +164,8 @@ awful.screen.connect_for_each_screen(function(s)
       Globals.volumecontrol.create({
         left = " "..Globals.star.." ",
         right = " "..Globals.star.." ",
-        left_color = Globals.nicedark,
-        right_color = Globals.nicedark,
+        left_color = Globals.niceblue,
+        right_color = Globals.niceblue,
         mutecolor = Globals.nicedark,
         maxcolor = Globals.nicegreen,
         on_click = function() Utils.show_audio_controls() end
