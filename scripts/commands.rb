@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require "open3"
+require "clipboard"
 
 def pick_cmd(prompt, data)
   cmd = "rofi -dmenu -p '#{prompt}' -me-select-entry '' -me-accept-entry 'MousePrimary' -i"
@@ -33,6 +34,9 @@ cmd = pick_cmd("Select Command", commands)
 if cmd.empty?
   return
 end
+
+clip = Clipboard.paste
+cmd = cmd.gsub("$clipboard", clip)
 
 sleep(0.1)
 system("xdotool type '#{cmd}'")
