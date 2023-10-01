@@ -29,6 +29,10 @@ Menupanels.main = menupanel.create({
       action = function() Utils.show_notifications() end,
     },
     {
+      name = "Bluetooth",
+      action = function(trigger) Menupanels.bluetooth.show(trigger) end,
+    },
+    {
       name = "Leave",
       action = function(trigger) Menupanels.leave.show(trigger) end,
     },
@@ -190,6 +194,22 @@ Menupanels.context = menupanel.create({
       name = "Close",
       action = function() Utils.close(Utils.get_context_client()) end,
       needs_confirm = true,
+    },
+  }
+})
+
+Menupanels.bluetooth = menupanel.create({
+  placement = placement,
+  height = height,
+  parent = Menupanels.main,
+  items = {
+    {
+      name = "Connect",
+      action = function() Utils.bluetooth(true) end,
+    },
+    {
+      name = "Disconnect",
+      action = function() Utils.bluetooth(false) end,
     },
   }
 })

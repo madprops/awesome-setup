@@ -643,3 +643,16 @@ function Utils.smart_button(c)
     end
   end
 end
+
+function Utils.bluetooth(on)
+  local cmd
+  local mac = "1C:6E:4C:8B:90:53"
+
+  if on then
+     cmd = "bluetoothctl connect " .. mac
+  else
+    cmd = "bluetoothctl disconnect " .. mac
+  end
+
+  Utils.spawn(cmd)
+end
