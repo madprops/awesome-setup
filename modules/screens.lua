@@ -134,7 +134,7 @@ awful.screen.connect_for_each_screen(function(s)
 
   local systray = wibox.widget.systray()
   systray:set_screen(screen[Globals.primary_screen])
-  local systray_container = wibox.layout.margin(systray, 3, 3, 3, 3)
+  local systray_container = wibox.layout.margin(systray, 0, 0, 3, 3)
 
   left = {
     layout = wibox.layout.fixed.horizontal,

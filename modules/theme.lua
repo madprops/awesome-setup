@@ -9,6 +9,7 @@ beautiful.wibar_height = 25
 beautiful.tasklist_shape_border_width = 1
 beautiful.notification_font = "monospace 18px"
 beautiful.notification_icon_size = 30
+beautiful.systray_icon_spacing = 5
 awful.mouse.snap.default_distance = 25
 
 -- Colors
