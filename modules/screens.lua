@@ -104,8 +104,8 @@ awful.screen.connect_for_each_screen(function(s)
                       widget = wibox.widget.imagebox,
                   },
                   right = 10,
-                  top = 2,
-                  bottom = 2,
+                  top = 3,
+                  bottom = 3,
                   widget  = wibox.container.margin,
               },
               {
@@ -134,6 +134,7 @@ awful.screen.connect_for_each_screen(function(s)
 
   local systray = wibox.widget.systray()
   systray:set_screen(screen[Globals.primary_screen])
+  local systray_container = wibox.layout.margin(systray, 3, 3, 3, 3)
 
   left = {
     layout = wibox.layout.fixed.horizontal,
@@ -163,7 +164,7 @@ awful.screen.connect_for_each_screen(function(s)
     right = {
       layout = wibox.layout.fixed.horizontal(),
       Utils.space(),
-      systray,
+      systray_container,
       sysmonitor_widget("cpu"),
       sysmonitor_widget("ram"),
       sysmonitor_widget("tmp"),
