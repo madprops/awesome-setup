@@ -153,13 +153,13 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   if s.index == Globals.primary_screen then
-    hotcorner.create({
-      screen = s,
-      placement = "top_left",
-      on_click = function()
-        Utils.corner_click()
-      end
-    })
+    -- hotcorner.create({
+    --   screen = s,
+    --   placement = "top_left",
+    --   on_click = function()
+    --     Utils.corner_click()
+    --   end
+    -- })
 
     right = {
       layout = wibox.layout.fixed.horizontal(),
