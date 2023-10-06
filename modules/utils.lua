@@ -564,54 +564,6 @@ function Utils.fake_input_do(ctrl, shift, key)
   timer:start()
 end
 
-function Utils.browser_hotcorner()
-  for _, c in ipairs(client.get()) do
-    if c.xhotcorner == "1_top_left" and c.screen.index == 1 then
-      Utils.focus(c)
-
-      if c.first_tag ~= Utils.mytag() then
-        c.first_tag:view_only()
-        return
-      end
-
-      Utils.fake_input_do(true, false, "space")
-      return
-    end
-  end
-end
-
-function Utils.browser_hotcorner_next()
-  for _, c in ipairs(client.get()) do
-    if c.xhotcorner == "1_top_left" and c.screen.index == 1 then
-      Utils.focus(c)
-
-      if c.first_tag ~= Utils.mytag() then
-        c.first_tag:view_only()
-        return
-      end
-
-      Utils.fake_input_do(true, false, "Tab")
-      return
-    end
-  end
-end
-
-function Utils.browser_hotcorner_prev()
-  for _, c in ipairs(client.get()) do
-    if c.xhotcorner == "1_top_left" and c.screen.index == 1 then
-      Utils.focus(c)
-
-      if c.first_tag ~= Utils.mytag() then
-        c.first_tag:view_only()
-        return
-      end
-
-      Utils.fake_input_do(true, true, "Tab")
-      return
-    end
-  end
-end
-
 function Utils.minimize(c)
   c:activate {context = "tasklist", action = "toggle_minimization"}
 end
@@ -655,4 +607,20 @@ function Utils.bluetooth(on)
   end
 
   Utils.spawn(cmd)
+end
+
+function Utils.corner_click()
+  for _, c in ipairs(client.get()) do
+    if c.xhotcorner == "1_top_left" and c.screen.index == 1 then
+      Utils.focus(c)
+
+      if c.first_tag ~= Utils.mytag() then
+        c.first_tag:view_only()
+        return
+      end
+
+      Utils.fake_input_do(true, false, "space")
+      return
+    end
+  end
 end

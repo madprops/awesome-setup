@@ -4,6 +4,7 @@ local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local autotimer = require("madwidgets/autotimer/autotimer")
 local tagview = require("madwidgets/tagview/tagview")
+local hotcorner = require("madwidgets/hotcorner/hotcorner")
 
 autotimer.create({
   left = " ",
@@ -152,6 +153,14 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   if s.index == Globals.primary_screen then
+    hotcorner.create({
+      screen = s,
+      placement = "top_left",
+      on_click = function()
+        Utils.corner_click()
+      end
+    })
+
     right = {
       layout = wibox.layout.fixed.horizontal(),
       Utils.space(),
