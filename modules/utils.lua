@@ -611,7 +611,7 @@ end
 
 function Utils.corner_click()
   for _, c in ipairs(client.get()) do
-    if c.xhotcorner == "1_top_left" and c.screen.index == 1 then
+    if c.active and c.xhotcorner == "1_top_left" and c.screen.index == 1 then
       Utils.focus(c)
 
       if c.first_tag ~= Utils.mytag() then
