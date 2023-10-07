@@ -569,6 +569,7 @@ function Utils.minimize(c)
 end
 
 function Utils.reset_rules(c)
+  c.maximized = false
   Rules.reset_rules(c)
   Rules.check_title_rules(c, true)
 end
