@@ -576,26 +576,22 @@ end
 
 function Utils.smart_button(c)
   local c = mouse.object_under_pointer()
+  if not c then return end
+  if not c.xclient then return end
 
-  if not c then
-    return
-  end
-
-  if c.xclient then
-    if c.xcommands then
-      Utils.focus(c)
-      Utils.run_script("commands.rb " .. c.instance)
-    elseif c.xtiled then
-      if c.maximized then
-        Utils.reset_rules(c)
-      else
-        Utils.maximize(c)
-      end
+  if c.xcommands then
+    Utils.focus(c)
+    Utils.run_script("commands.rb " .. c.instance)
+  elseif c.xtiled then
+    if c.maximized then
+      Utils.reset_rules(c)
     else
-      if not c.xutil then
-        if #Utils.clients() > 1 then
-          Utils.minimize(c)
-        end
+      Utils.maximize(c)
+    end
+  else
+    if not c.xutil then
+      if #Utils.clients() > 1 then
+        Utils.minimize(c)
       end
     end
   end
