@@ -588,11 +588,9 @@ function Utils.smart_button(c)
     else
       Utils.maximize(c)
     end
-  else
-    if not c.xutil then
-      if #Utils.clients() > 1 then
-        Utils.minimize(c)
-      end
+  elseif not c.xutil then
+    if #Utils.clients() > 1 then
+      Utils.minimize(c)
     end
   end
 end
