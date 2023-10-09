@@ -45,6 +45,10 @@ Menupanels.applications = menupanel.create({
   parent = Menupanels.main,
   items = {
     {
+      name = "Rofi",
+      action = function() Utils.launcher() end,
+    },
+    {
       name = "FF Tile 1",
       action = function() Utils.spawn("firefox-developer-edition -P tile1") end,
     },
