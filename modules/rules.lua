@@ -102,6 +102,7 @@ awful.rules.rules = {
       xindex = 4,
       screen = screen_right,
       xtiled = true,
+      alt_q = true,
     }
   },
   {

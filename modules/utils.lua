@@ -525,7 +525,7 @@ function Utils.table_contains(tab, val)
   return false
 end
 
-function Utils.fake_input_do(ctrl, shift, key)
+function Utils.fake_input_do(ctrl, shift, alt, key)
   local timer = gears.timer {
     timeout = 0.11
   }
@@ -547,6 +547,10 @@ function Utils.fake_input_do(ctrl, shift, key)
       root.fake_input('key_press', "Shift_L")
     end
 
+    if alt then
+      root.fake_input('key_press', "Alt_L")
+    end
+
     root.fake_input('key_press', key)
     root.fake_input('key_release', key)
 
@@ -556,6 +560,10 @@ function Utils.fake_input_do(ctrl, shift, key)
 
     if shift then
       root.fake_input('key_release', "Shift_L")
+    end
+
+    if alt then
+      root.fake_input('key_release', "Alt_L")
     end
 
     timer:stop()
@@ -618,8 +626,14 @@ function Utils.corner_click()
         return
       end
 
-      Utils.fake_input_do(true, false, "space")
+      Utils.fake_input_do(true, false, false, "space")
       return
     end
+  end
+end
+
+function Utils.middle_click(c)
+  if c.alt_q then
+    Utils.fake_input_do(false, false, true, "q")
   end
 end

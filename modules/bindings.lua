@@ -3,7 +3,6 @@ Bindings = {}
 local gears = require("gears")
 local awful = require("awful")
 local doubletap = require("madwidgets/doubletap/doubletap")
-
 local altkey = "Mod1"
 local modkey = "Mod4"
 
@@ -19,7 +18,7 @@ local closetap = doubletap.create({
     if c.kill then
       if c.instance == "Navigator" or c.instance == "code" then
         Utils.focus(c)
-        Utils.fake_input_do(true, false, "w")
+        Utils.fake_input_do(true, false, false, "w")
       else
         c:kill()
       end
@@ -244,6 +243,10 @@ Bindings.clientkeys = gears.table.join(
 Bindings.clientbuttons = gears.table.join(
   awful.button({}, 1, function(c)
     Utils.focus(c)
+  end),
+
+  awful.button({}, 2, function(c)
+    Utils.middle_click(c)
   end),
 
   awful.button({modkey}, 1, function(c)
