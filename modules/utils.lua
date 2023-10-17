@@ -633,7 +633,7 @@ function Utils.corner_click()
 end
 
 function Utils.middle_click(c)
-  if c.alt_q then
+  if c.xalt_q then
     Utils.fake_input_do(false, false, true, "q")
   end
 end
