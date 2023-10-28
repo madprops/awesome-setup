@@ -37,12 +37,13 @@ end
 
 clip = Clipboard.paste
 cmd = cmd.gsub("$clipboard", clip)
+delay = 0.125
 
-sleep(0.2)
+sleep(delay)
 system("xdotool key Ctrl+u")
 
-sleep(0.2)
+sleep(delay)
 system("xdotool type '#{cmd}'")
 
-sleep(0.2)
+sleep(delay)
 system("xdotool key Return")
