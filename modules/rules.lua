@@ -91,6 +91,20 @@ awful.rules.rules = {
     }
   },
   {
+    rule = {instance = "chromium"},
+    properties = {
+      placement = function(c)
+        awful.placement.top_right(c, {honor_workarea = true})
+      end,
+      width = Utils.width_factor(0.5),
+      height = Utils.height_factor(0.64),
+      maximized = false,
+      xindex = 3,
+      screen = screen_right,
+      xtiled = true,
+    }
+  },
+  {
     rule = {instance = "audacious"},
     properties = {
       placement = function(c)
