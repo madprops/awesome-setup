@@ -195,14 +195,26 @@ end
 
 function Utils.do_show_util_screen()
   local t = Utils.mytag()
+  local max
 
   for _, c in ipairs(client.get()) do
     if c.xutil then
       c:move_to_tag(t)
       c.hidden = false
       c:raise()
-      Rules.reset_rules(c)
+
+      if not Utils.util_screen_on then
+        Rules.reset_rules(c)
+      else
+        if c.maximized then
+          max = c
+        end
+      end
     end
+  end
+
+  if max ~= nil then
+    Utils.focus(max)
   end
 
   Utils.util_screen_on = true
