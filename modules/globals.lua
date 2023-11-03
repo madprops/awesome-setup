@@ -10,5 +10,5 @@ Globals.flower = "❇"
 Globals.star = "⍟"
 Globals.primary_screen = 1
 Globals.volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
-Globals.volumecontrol.max_volume = 80
+Globals.volumecontrol.max_volume = 75
 Globals.conf_dir = gears.filesystem.get_configuration_dir()
