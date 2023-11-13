@@ -603,11 +603,7 @@ function Utils.smart_button(c)
     Utils.focus(c)
     Utils.run_script("commands.rb " .. c.instance)
   elseif c.xtiled then
-    if c.maximized then
-      Utils.reset_rules(c)
-    else
-      Utils.maximize(c)
-    end
+    Utils.reset_rules(c)
   elseif not c.xutil then
     if #Utils.clients() > 1 then
       Utils.minimize(c)
