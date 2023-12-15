@@ -196,7 +196,13 @@ awful.screen.connect_for_each_screen(function(s)
   else
     right = {
       layout = wibox.layout.fixed.horizontal(),
-      autotimer
+      autotimer,
+      multibutton.create({
+        text = " GPT ",
+        on_click = function()
+          Utils.toggle_dropdown("chat_gpt")
+        end,
+      }),
     }
   end
 

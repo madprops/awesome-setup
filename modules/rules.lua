@@ -17,7 +17,7 @@ awful.rules.rules = {
       placement = awful.placement.centered,
       xindex = 0,
       xkeys = true,
-      xutil = false,
+      xutil_screen = false,
       xrules_applied = false,
       xtiled = false,
       xclient = true,
@@ -144,7 +144,7 @@ awful.rules.rules = {
       height = Utils.height_factor(0.5),
       maximized = false,
       skip_taskbar = true,
-      xutil = true,
+      xutil_screen = true,
       xcommands = true,
     }
   },
@@ -158,7 +158,7 @@ awful.rules.rules = {
       height = Utils.height_factor(0.5),
       maximized = false,
       skip_taskbar = true,
-      xutil = true,
+      xutil_screen = true,
     }
   },
   {
@@ -171,7 +171,7 @@ awful.rules.rules = {
       height = Utils.height_factor(0.5),
       maximized = false,
       skip_taskbar = true,
-      xutil = true,
+      xutil_screen = true,
       xcommands = true,
     }
   },
