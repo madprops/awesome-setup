@@ -199,6 +199,10 @@ function Utils.show_util_screen()
 end
 
 function Utils.do_show_util_screen()
+  if Utils.chat_gpt_on then
+    Utils.hide_chat_gpt()
+  end
+
   local t = Utils.mytag()
   local max
 
@@ -671,6 +675,10 @@ function Utils.show_chat_gpt()
 end
 
 function Utils.do_show_chat_gpt()
+  if Utils.util_screen_on then
+    Utils.hide_util_screen()
+  end
+
   local t = Utils.mytag()
   local max
 
