@@ -1,6 +1,4 @@
 Utils = {}
-Utils.util_screen_on = false
-Utils.chat_gpt_on = false
 
 local awful = require("awful")
 local naughty = require("naughty")
@@ -15,22 +13,14 @@ local media_lock = lockdelay.create({action=function(cmd)
 end, delay=250})
 
 local tag_next_lock = lockdelay.create({action=function(sticky)
-  Utils.check_dropdowns()
+  Dropdowns.check()
   Utils.switch_tag("next", sticky)
 end, delay=100})
 
 local tag_prev_lock = lockdelay.create({action=function(sticky)
-  Utils.check_dropdowns()
+  Dropdowns.check()
   Utils.switch_tag("prev", sticky)
 end, delay=100})
-
-local util_screen_lock = lockdelay.create({action=function()
-  Utils.show_dropdown("util_screen")
-end, delay=250})
-
-local chat_gpt_lock = lockdelay.create({action=function()
-  Utils.show_dropdown("chat_gpt")
-end, delay=250})
 
 function Utils.msg(txt, info)
   local run = function() end
@@ -161,12 +151,6 @@ end
 
 function Utils.show_client_title(c)
   Menupanels.utils.showinfo(c.name)
-end
-
-function Utils.start_util_screen()
-  Utils.spawn("dolphin")
-  Utils.spawn("speedcrunch")
-  Utils.spawn("tilix --session ~/other/tilix.json")
 end
 
 function Utils.stop_all_players()
@@ -580,85 +564,5 @@ end
 function Utils.middle_click(c)
   if c.xalt_q then
     Utils.fake_input_do(false, false, true, "q")
-  end
-end
-
-function Utils.toggle_dropdown(what)
-  if Utils[what .. "_on"] then
-    local tag = Utils[what .. "_tag"]
-    local highest = Utils.highest_in_tag(tag)
-    local same_tag = tag == Utils.mytag()
-
-    if not same_tag or not tag.selected or (highest ~= nil and not highest["x" .. what]) then
-      Utils.show_dropdown(what)
-    else
-      Utils.hide_dropdown(what)
-    end
-  else
-    Utils.show_dropdown(what)
-  end
-end
-
-function Utils.show_dropdown(what)
-  Utils.hide_other_dropdowns(what)
-  local t = Utils.mytag()
-  local max
-
-  for _, c in ipairs(client.get()) do
-    if c["x" .. what] then
-      c:move_to_tag(t)
-      c.hidden = false
-      c:raise()
-
-      if not Utils[what .. "_on"] then
-        Rules.reset_rules(c)
-      else
-        if c.maximized then
-          max = c
-        end
-      end
-    end
-  end
-
-  if max ~= nil then
-    Utils.focus(max)
-  end
-
-  Utils[what .. "_on"] = true
-  Utils[what .. "_screen"] = Utils.myscreen()
-  Utils[what .. "_tag"] = Utils.mytag()
-end
-
-function Utils.hide_dropdown(what)
-  for _, c in ipairs(client.get()) do
-    if c["x" .. what] then
-      c.hidden = true
-    end
-  end
-
-  Utils[what .. "_on"] = false
-end
-
-function Utils.hide_other_dropdowns(what)
-  local dropdowns = {"util_screen", "chat_gpt"}
-
-  for index, dropdown in ipairs(dropdowns) do
-    if dropdown ~= what then
-      if Utils[dropdown .. "_on"] then
-        Utils.hide_dropdown(dropdown)
-      end
-    end
-  end
-end
-
-function Utils.check_dropdowns()
-  local dropdowns = {"util_screen", "chat_gpt"}
-
-  for index, dropdown in ipairs(dropdowns) do
-    if Utils[dropdown .. "_on"] then
-      if Utils[dropdown .. "_screen"] == Utils.myscreen() then
-        Utils.hide_dropdown(dropdown)
-      end
-    end
   end
 end
