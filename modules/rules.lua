@@ -230,6 +230,17 @@ function Rules.check_title_rules(c, force)
       c.xtiled = true
     end
   end
+
+  if Utils.startswith(c.name, "[chatgpt]") then
+    if not c.xrules_applied or force then
+      c.width = Utils.width_factor(1)
+      c.height = Utils.height_factor(1)
+      c.maximized = true
+      c.xrules_applied = true
+      c.xchat_gpt = true
+      c.skip_taskbar = true
+    end
+  end
 end
 
 function Rules.reset_rules(c)

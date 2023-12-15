@@ -1,5 +1,6 @@
 Utils = {}
 Utils.util_screen_on = false
+Utils.chat_gpt_on = false
 
 local awful = require("awful")
 local naughty = require("naughty")
@@ -35,6 +36,10 @@ end, delay=100})
 
 local util_screen_lock = lockdelay.create({action=function()
   Utils.do_show_util_screen()
+end, delay=250})
+
+local chat_gpt_lock = lockdelay.create({action=function()
+  Utils.do_show_chat_gpt()
 end, delay=250})
 
 function Utils.msg(txt, info)
@@ -644,4 +649,62 @@ function Utils.middle_click(c)
   if c.xalt_q then
     Utils.fake_input_do(false, false, true, "q")
   end
+end
+
+function Utils.toggle_chat_gpt()
+  if Utils.chat_gpt_on then
+    local highest = Utils.highest_in_tag(Utils.chat_gpt_tag)
+    local same_tag = Utils.chat_gpt_tag == Utils.mytag()
+
+    if not same_tag or not Utils.chat_gpt_tag.selected or (highest ~= nil and not highest.xchat_gpt) then
+      Utils.show_chat_gpt()
+    else
+      Utils.hide_chat_gpt()
+    end
+  else
+    Utils.show_chat_gpt()
+  end
+end
+
+function Utils.show_chat_gpt()
+  chat_gpt_lock.trigger()
+end
+
+function Utils.do_show_chat_gpt()
+  local t = Utils.mytag()
+  local max
+
+  for _, c in ipairs(client.get()) do
+    if c.xchat_gpt then
+      c:move_to_tag(t)
+      c.hidden = false
+      c:raise()
+
+      if not Utils.chat_gpt_on then
+        Rules.reset_rules(c)
+      else
+        if c.maximized then
+          max = c
+        end
+      end
+    end
+  end
+
+  if max ~= nil then
+    Utils.focus(max)
+  end
+
+  Utils.chat_gpt_on = true
+  Utils.chat_gpt_screen = Utils.myscreen()
+  Utils.chat_gpt_tag = Utils.mytag()
+end
+
+function Utils.hide_chat_gpt()
+  for _, c in ipairs(client.get()) do
+    if c.xchat_gpt then
+      c.hidden = true
+    end
+  end
+
+  Utils.chat_gpt_on = false
 end

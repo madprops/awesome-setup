@@ -122,6 +122,12 @@ Bindings.globalkeys = gears.table.join(
     closetap.trigger()
   end),
 
+  awful.key({modkey, "Shift", "Control"}, "Delete", function()
+    if mouse.coords().y <= 25 then
+      Utils.toggle_chat_gpt()
+    end
+  end),
+
   awful.key({modkey, "Control"}, "space", function()
     Utils.smart_button()
   end),
