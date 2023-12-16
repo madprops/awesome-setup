@@ -1,6 +1,7 @@
 Dropdowns = {}
 Dropdowns.util_screen_on = false
 Dropdowns.chat_gpt_on = false
+Dropdowns.dropdowns = {"util_screen", "chat_gpt"}
 
 function Dropdowns.start_util_screen()
     Utils.spawn("dolphin")
@@ -59,9 +60,7 @@ function Dropdowns.hide(what)
 end
 
 function Dropdowns.hide_others(what)
-    local dropdowns = {"util_screen", "chat_gpt"}
-
-    for index, dropdown in ipairs(dropdowns) do
+    for index, dropdown in ipairs(Dropdowns.dropdowns) do
         if dropdown ~= what then
             if Dropdowns[dropdown .. "_on"] then
                 Dropdowns.hide(dropdown)
@@ -71,9 +70,7 @@ function Dropdowns.hide_others(what)
 end
 
 function Dropdowns.check()
-    local dropdowns = {"util_screen", "chat_gpt"}
-
-    for index, dropdown in ipairs(dropdowns) do
+    for index, dropdown in ipairs(Dropdowns.dropdowns) do
         if Dropdowns[dropdown .. "_on"] then
             if Dropdowns[dropdown .. "_screen"] == Utils.myscreen() then
                 Dropdowns.hide(dropdown)
