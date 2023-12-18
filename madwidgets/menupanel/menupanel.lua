@@ -8,8 +8,8 @@ local modkey = "Shift"
 
 function menupanel.get_button_under_cursor(instance)
   local w = mouse.current_widget
-  if w ~= nil and w.xindex ~= nil then
-    return w.xindex
+  if w ~= nil and w.x_index ~= nil then
+    return w.x_index
   end
 end
 
@@ -30,7 +30,7 @@ function menupanel.focus_button(instance, btn)
   btn.fg = instance.args.fontcolor
   btn.border_color = instance.args.bordercolor2
   if instance.args.speak then menupanel.speak(btn.textbox.text) end
-  instance.focused = btn.xindex
+  instance.focused = btn.x_index
   menupanel.reset_confirm_charges(instance)
   menupanel.unfocus_button(instance, instance.hide_button)
 end
@@ -79,12 +79,12 @@ end
 
 function menupanel.action(instance, item, mode)
   if mode == 1 or mode == 2 then
-    if item.action ~= nil then 
+    if item.action ~= nil then
       if item.needs_confirm then
         if item.confirm_charge < 1 then
-          menupanel.reset_confirm_charges_except(instance, item.xindex)
+          menupanel.reset_confirm_charges_except(instance, item.x_index)
           item.confirm_charge = item.confirm_charge + 1
-          local btn = instance.buttons[item.xindex]
+          local btn = instance.buttons[item.x_index]
           menupanel.confirm_charge_border(btn)
           if instance.args.speak then
             menupanel.speak("Confirm "..btn.textbox.xoriginaltext)
@@ -144,7 +144,7 @@ end
 function menupanel.prepare_button(instance, textbox, index)
   local button = menupanel.basic_button(instance, textbox)
 
-  button.xindex = index
+  button.x_index = index
   button.textbox = textbox
   button.textbox.xoriginaltext = textbox.text
 
@@ -174,7 +174,7 @@ end
 
 function menupanel.create(args)
   args = args or {}
-  
+
   if args.speak == nil then
     args.speak = false
   end
@@ -249,11 +249,11 @@ function menupanel.create(args)
           menupanel.hide2(instance)
         end
       end},
-      {{}, "Escape", function() 
+      {{}, "Escape", function()
         instance.trigger = "keyboard"
         menupanel.hide2(instance)
       end},
-      {{modkey}, "Escape", function() 
+      {{modkey}, "Escape", function()
         instance.trigger = "keyboard"
         menupanel.hide_all(instance)
       end}
@@ -285,7 +285,7 @@ function menupanel.create(args)
     else
       menupanel.unfocus_except(instance, instance.focused)
     end
-    
+
     instance.keygrabber:start()
   end
 
@@ -306,7 +306,7 @@ function menupanel.create(args)
       instance.buttons[index].textbox.text = name
       instance.buttons[index].textbox.xoriginaltext = name
     end
-    
+
     if action then
       instance.args.items[index].action = action
     end
@@ -317,7 +317,7 @@ function menupanel.create(args)
   end
 
   -- Items
-  
+
   instance.buttons = {}
 
   for i, item in ipairs(args.items) do
@@ -325,7 +325,7 @@ function menupanel.create(args)
       item.needs_confirm = false
     end
 
-    item.xindex = i
+    item.x_index = i
     item.confirm_charge = 0
 
     local textbox = menupanel.create_textbox(item.name)
@@ -335,7 +335,7 @@ function menupanel.create(args)
       menupanel.action(instance, item, mode)
     end)
 
-    textbox.xindex = i
+    textbox.x_index = i
     table.insert(instance.buttons, menupanel.prepare_button(instance, textbox, i))
   end
 
@@ -361,8 +361,8 @@ function menupanel.create(args)
       instance.trigger = "mouse"
       menupanel.hide2(instance)
     end)
-  
-    textbox.xindex = 0
+
+    textbox.x_index = 0
     instance.hide_button = menupanel.prepare_hide_button(instance, textbox)
 
     if args.hide_button_placement == "left" then
@@ -386,11 +386,11 @@ function menupanel.create(args)
   end
 
   button.connect_signal("press", menupanel.on_unfocus)
-  
+
   instance.widget:connect_signal("mouse::leave", function()
     button.connect_signal("press", menupanel.on_unfocus)
   end)
-  
+
   instance.widget:connect_signal("mouse::enter", function()
     button.disconnect_signal("press", menupanel.on_unfocus)
   end)

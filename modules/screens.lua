@@ -67,7 +67,7 @@ awful.screen.connect_for_each_screen(function(s)
     filter  = awful.widget.taglist.filter.all,
     buttons = {
       awful.button({ }, 1, function(t) t:view_only() end),
-      awful.button({ }, 3, function(t) Utils.move_to_tag(t) end)
+      awful.button({ }, 3, function(t) Utils.move_to_tag(t) end),
     }
   }
 
@@ -82,7 +82,7 @@ awful.screen.connect_for_each_screen(function(s)
       for _, c in pairs(client.get()) do
         if c.screen == s then
           if c.first_tag.index == s.selected_tag.index then
-            if c.xindex > 0 then
+            if c.x_index > 0 then
               table.insert(result, c)
             else
               table.insert(unindexed, c)
@@ -91,7 +91,7 @@ awful.screen.connect_for_each_screen(function(s)
         end
       end
 
-      table.sort(result, function(a, b) return a.xindex < b.xindex end)
+      table.sort(result, function(a, b) return a.x_index < b.x_index end)
       for _, c in pairs(unindexed) do table.insert(result, c) end
       return result
     end,
@@ -149,7 +149,7 @@ awful.screen.connect_for_each_screen(function(s)
       end
     }),
     s.mytaglist,
-    Utils.space()
+    Utils.space(),
   }
 
   if s.index == Globals.primary_screen then
@@ -177,7 +177,7 @@ awful.screen.connect_for_each_screen(function(s)
         right_color = Globals.niceblue,
         mutecolor = Globals.nicedark,
         maxcolor = Globals.nicegreen,
-        on_click = function() Utils.show_audio_controls() end
+        on_click = function() Utils.show_audio_controls() end,
       }),
       multibutton.create({
         widget = wibox.widget.textclock("%a-%d-%b %I:%M:%S %P", 1),
@@ -190,7 +190,7 @@ awful.screen.connect_for_each_screen(function(s)
         on_wheel_up = function()
           Utils.increase_volume()
         end,
-        right = " "
+        right = " ",
       })
     }
   else
@@ -202,6 +202,9 @@ awful.screen.connect_for_each_screen(function(s)
         on_click = function()
           Dropdowns.toggle("chat_gpt")
         end,
+        on_middle_click = function()
+          Dropdowns.start_chat_gpt()
+        end,
       }),
     }
   end
@@ -210,11 +213,11 @@ awful.screen.connect_for_each_screen(function(s)
     layout = wibox.layout.align.horizontal,
     left,
     s.mytasklist,
-    right
+    right,
   }
 
   tagview.create({
-    screen = s
+    screen = s,
   })
 end)
 

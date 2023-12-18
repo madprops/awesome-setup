@@ -15,13 +15,13 @@ awful.rules.rules = {
       buttons = Bindings.clientbuttons,
       screen = awful.screen.preferred,
       placement = awful.placement.centered,
-      xindex = 0,
-      xkeys = true,
-      xutil_screen = false,
-      xrules_applied = false,
-      xtiled = false,
-      xclient = true,
-      xcommands = false,
+      x_dropdown_util_screen = false,
+      x_keys = true,
+      x_rules_applied = false,
+      x_tiled = false,
+      x_client = true,
+      x_commands = false,
+      x_index = 0,
     },
     callback=function(c)
       if c.fullscreen then
@@ -34,45 +34,45 @@ awful.rules.rules = {
     rule = {class = "firefoxdeveloperedition"},
     properties = {
       maximized = true,
-      xindex = 1,
-      xhotcorner = "1_top_left",
+      x_hotcorner = "1_top_left",
+      x_index = 1,
     }
   },
   {
     rule = {instance = "code"},
     properties = {
       maximized = true,
-      xindex = 2,
-      xcommands = true,
+      x_commands = true,
+      x_index = 2,
     }
   },
   {
     rule = {instance = "Steam"},
     properties = {
-      xindex = 4.1,
       maximized = false,
+      x_index = 4.1,
     }
   },
   {
     rule = {instance = "lutris"},
     properties = {
-      xindex = 4.2,
       maximized = false,
+      x_index = 4.2,
     }
   },
   {
     rule = {instance = "fl64.exe"},
     properties = {
-      xindex = 5,
       maximized = true,
+      x_index = 5,
     }
   },
   {
     rule = {instance = "VirtualBox Machine"},
     properties = {
-      xindex = 8,
       maximized = false,
-      xkeys = false,
+      x_keys = false,
+      x_index = 8,
     }
   },
   -- Screen Right
@@ -85,9 +85,9 @@ awful.rules.rules = {
       width = Utils.width_factor(0.5),
       height = Utils.height_factor(0.64),
       maximized = false,
-      xindex = 3,
       screen = screen_right,
-      xtiled = true,
+      x_tiled = true,
+      x_index = 3,
     }
   },
   {
@@ -99,9 +99,9 @@ awful.rules.rules = {
       width = Utils.width_factor(0.5),
       height = Utils.height_factor(0.64),
       maximized = false,
-      xindex = 3,
       screen = screen_right,
-      xtiled = true,
+      x_tiled = true,
+      x_index = 3,
     }
   },
   {
@@ -113,10 +113,10 @@ awful.rules.rules = {
       width = Utils.width_factor(0.5),
       height = Utils.height_factor(0.36),
       maximized = false,
-      xindex = 4,
       screen = screen_right,
-      xtiled = true,
-      xalt_q = true,
+      x_alt_q = true,
+      x_tiled = true,
+      x_index = 4,
     }
   },
   {
@@ -128,9 +128,9 @@ awful.rules.rules = {
       width = Utils.width_factor(0.5),
       height = Utils.height_factor(0.36),
       maximized = false,
-      xindex = 4,
       screen = screen_right,
-      xtiled = true,
+      x_tiled = true,
+      x_index = 4,
     }
   },
   -- Util screen
@@ -144,8 +144,8 @@ awful.rules.rules = {
       height = Utils.height_factor(0.5),
       maximized = false,
       skip_taskbar = true,
-      xutil_screen = true,
-      xcommands = true,
+      x_dropdown_util_screen = true,
+      x_commands = true,
     }
   },
   {
@@ -158,7 +158,7 @@ awful.rules.rules = {
       height = Utils.height_factor(0.5),
       maximized = false,
       skip_taskbar = true,
-      xutil_screen = true,
+      x_dropdown_util_screen = true,
     }
   },
   {
@@ -171,8 +171,8 @@ awful.rules.rules = {
       height = Utils.height_factor(0.5),
       maximized = false,
       skip_taskbar = true,
-      xutil_screen = true,
-      xcommands = true,
+      x_dropdown_util_screen = true,
+      x_commands = true,
     }
   },
   -- Other Rules
@@ -185,7 +185,7 @@ awful.rules.rules = {
       width = Utils.width_factor(0.7),
       height = Utils.height_factor(0.7),
       maximized = false,
-      xcommands = true,
+      x_commands = true,
     }
   },
 }
@@ -196,49 +196,49 @@ function Rules.check_title_rules(c, force)
   end
 
   if Utils.startswith(c.name, "[ff_tile1]") then
-    if not c.xrules_applied or force then
+    if not c.x_rules_applied or force then
+      awful.placement.top_left(c, {honor_workarea = true})
       c.width = Utils.width_factor(0.5)
       c.height = Utils.height_factor(0.64)
-      c.xindex = 1
       c.maximized = false
-      awful.placement.top_left(c, {honor_workarea = true})
-      c.xrules_applied = true
-      c.xtiled = true
+      c.x_rules_applied = true
+      c.x_tiled = true
+      c.x_index = 1
     end
   end
 
   if Utils.startswith(c.name, "[ff_tile2]") then
-    if not c.xrules_applied or force then
+    if not c.x_rules_applied or force then
+      awful.placement.bottom_left(c, {honor_workarea = true})
       c.width = Utils.width_factor(0.5)
       c.height = Utils.height_factor(0.36)
-      c.xindex = 2
       c.maximized = false
-      awful.placement.bottom_left(c, {honor_workarea = true})
-      c.xrules_applied = true
-      c.xtiled = true
+      c.x_rules_applied = true
+      c.x_tiled = true
+      c.x_index = 2
     end
   end
 
   if Utils.startswith(c.name, "[ff_tile3]") then
-    if not c.xrules_applied or force then
+    if not c.x_rules_applied or force then
+      awful.placement.top_right(c, {honor_workarea = true})
       c.width = Utils.width_factor(0.5)
       c.height = Utils.height_factor(0.64)
-      c.xindex = 3
       c.maximized = false
-      awful.placement.top_right(c, {honor_workarea = true})
-      c.xrules_applied = true
-      c.xtiled = true
+      c.x_rules_applied = true
+      c.x_tiled = true
+      c.x_index = 3
     end
   end
 
   if Utils.startswith(c.name, "[chatgpt]") then
-    if not c.xrules_applied or force then
+    if not c.x_rules_applied or force then
       c.width = Utils.width_factor(1)
       c.height = Utils.height_factor(1)
       c.maximized = true
-      c.xrules_applied = true
-      c.xchat_gpt = true
       c.skip_taskbar = true
+      c.x_rules_applied = true
+      c.x_dropdown_chat_gpt = true
     end
   end
 end

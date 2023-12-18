@@ -9,6 +9,16 @@ function Dropdowns.start_util_screen()
     Utils.spawn("tilix --session ~/other/tilix.json")
 end
 
+function Dropdowns.start_util_screen()
+    Utils.spawn("dolphin")
+    Utils.spawn("speedcrunch")
+    Utils.spawn("tilix --session ~/other/tilix.json")
+end
+
+function Dropdowns.start_chat_gpt()
+    Utils.spawn("firefox-developer-edition -P chatgpt")
+end
+
 function Dropdowns.toggle(what)
     if Dropdowns[what .. "_on"] then
         local tag = Dropdowns[what .. "_tag"]
@@ -16,7 +26,7 @@ function Dropdowns.toggle(what)
         local same_tag = tag == Utils.mytag()
 
         if not same_tag or not tag.selected or
-            (highest ~= nil and not highest["x" .. what]) then
+            (highest ~= nil and not highest["x_dropdown_" .. what]) then
             Dropdowns.show(what)
         else
             Dropdowns.hide(what)
@@ -32,7 +42,7 @@ function Dropdowns.show(what)
     local max
 
     for _, c in ipairs(client.get()) do
-        if c["x" .. what] then
+        if c["x_dropdown_" .. what] then
             c:move_to_tag(t)
             c.hidden = false
             c:raise()
@@ -53,7 +63,7 @@ end
 
 function Dropdowns.hide(what)
     for _, c in ipairs(client.get()) do
-        if c["x" .. what] then c.hidden = true end
+        if c["x_dropdown_" .. what] then c.hidden = true end
     end
 
     Dropdowns[what .. "_on"] = false

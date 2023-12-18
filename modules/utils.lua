@@ -303,7 +303,7 @@ function Utils.clients()
   for i = 1, #clients do
     local c = clients[i]
 
-    if not c.xutil then
+    if not c.x_util then
       table.insert(filtered, c)
     end
   end
@@ -518,14 +518,14 @@ end
 function Utils.smart_button(c)
   local c = mouse.object_under_pointer()
   if not c then return end
-  if not c.xclient then return end
+  if not c.x_client then return end
 
-  if c.xcommands then
+  if c.x_commands then
     Utils.focus(c)
     Utils.run_script("commands.rb " .. c.instance)
-  elseif c.xtiled then
+  elseif c.x_tiled then
     Utils.reset_rules(c)
-  elseif not c.xutil then
+  elseif not c.x_util then
     if #Utils.clients() > 1 then
       Utils.minimize(c)
     end
@@ -547,7 +547,7 @@ end
 
 function Utils.corner_click()
   for _, c in ipairs(client.get()) do
-    if c.active and c.xhotcorner == "1_top_left" and c.screen.index == 1 then
+    if c.active and c.x_hotcorner == "1_top_left" and c.screen.index == 1 then
       Utils.focus(c)
 
       if c.first_tag ~= Utils.mytag() then
@@ -562,7 +562,7 @@ function Utils.corner_click()
 end
 
 function Utils.middle_click(c)
-  if c.xalt_q then
+  if c.x_alt_q then
     Utils.fake_input_do(false, false, true, "q")
   end
 end

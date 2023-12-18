@@ -49,10 +49,6 @@ Menupanels.applications = menupanel.create({
       action = function() Utils.launcher() end,
     },
     {
-      name = "FF GPT",
-      action = function() Utils.spawn("firefox-developer-edition -P chatgpt") end,
-    },
-    {
       name = "FF Tile 1",
       action = function() Utils.spawn("firefox-developer-edition -P tile1") end,
     },
