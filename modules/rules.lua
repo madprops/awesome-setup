@@ -43,28 +43,18 @@ awful.rules.rules = {
     properties = {
       maximized = true,
       x_commands = true,
-      x_index = 2,
     }
   },
   {
     rule = {instance = "Steam"},
     properties = {
       maximized = false,
-      x_index = 4.1,
-    }
-  },
-  {
-    rule = {instance = "lutris"},
-    properties = {
-      maximized = false,
-      x_index = 4.2,
     }
   },
   {
     rule = {instance = "fl64.exe"},
     properties = {
       maximized = true,
-      x_index = 5,
     }
   },
   {
@@ -72,26 +62,11 @@ awful.rules.rules = {
     properties = {
       maximized = false,
       x_keys = false,
-      x_index = 8,
     }
   },
   -- Screen Right
   {
     rule = {instance = "hexchat"},
-    properties = {
-      placement = function(c)
-        awful.placement.top_right(c, {honor_workarea = true})
-      end,
-      width = Utils.width_factor(0.5),
-      height = Utils.height_factor(0.64),
-      maximized = false,
-      screen = screen_right,
-      x_tiled = true,
-      x_index = 3,
-    }
-  },
-  {
-    rule = {instance = "chromium"},
     properties = {
       placement = function(c)
         awful.placement.top_right(c, {honor_workarea = true})
@@ -115,20 +90,6 @@ awful.rules.rules = {
       maximized = false,
       screen = screen_right,
       x_alt_q = true,
-      x_tiled = true,
-      x_index = 4,
-    }
-  },
-  {
-    rule = {instance = "com.github.taiko2k.tauonmb"},
-    properties = {
-      placement = function(c)
-        awful.placement.bottom_right(c, {honor_workarea = true})
-      end,
-      width = Utils.width_factor(0.5),
-      height = Utils.height_factor(0.36),
-      maximized = false,
-      screen = screen_right,
       x_tiled = true,
       x_index = 4,
     }
