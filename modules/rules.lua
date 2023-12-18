@@ -94,7 +94,7 @@ awful.rules.rules = {
       x_index = 4,
     }
   },
-  -- Util screen
+  -- Util Screen
   {
     rule = {instance = "dolphin"},
     properties = {
