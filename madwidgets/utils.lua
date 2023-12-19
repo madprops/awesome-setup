@@ -1,16 +1,17 @@
+local awful = require("awful")
 local naughty = require("naughty")
 local utils = {}
 
 function utils.numpad(s, n)
   s = utils.round(tonumber(s))
   local ss = s
-  
+
   if n == 3 then
     if s < 100 then
       ss = "0"..s
     end
   end
-    
+
   if s < 10 then
     ss = "0"..ss
   end
@@ -53,6 +54,14 @@ end
 
 function utils.trim(text)
   return string.gsub(text, "^%s*(.-)%s*$", "%1")
+end
+
+function utils.my_screen()
+  return awful.screen.focused()
+end
+
+function utils.my_tag()
+  return utils.my_screen().selected_tag
 end
 
 return utils

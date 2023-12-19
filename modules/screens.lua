@@ -4,6 +4,7 @@ local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local autotimer = require("madwidgets/autotimer/autotimer")
 local tagview = require("madwidgets/tagview/tagview")
+local tagbar = require("madwidgets/tagbar/tagbar")
 
 autotimer.create({
   left = " ",
@@ -216,9 +217,14 @@ awful.screen.connect_for_each_screen(function(s)
     right,
   }
 
-  tagview.create({
+  -- tagview.create({
+  --   screen = s,
+  -- })
+
+  tagbar.create({
     screen = s,
   })
 end)
 
-tagview.setup()
+-- tagview.setup()
+tagbar.setup()

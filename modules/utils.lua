@@ -64,7 +64,7 @@ function Utils.on_top(c)
 end
 
 function Utils.check_fullscreen(c)
-  Utils.myscreen().mywibar.ontop = not c.fullscreen
+  Utils.my_screen().mywibar.ontop = not c.fullscreen
 end
 
 function Utils.focus(c)
@@ -261,11 +261,11 @@ function Utils.run_script_2(cmd)
 end
 
 function Utils.width_factor(n)
-  return Utils.myscreen().workarea.width * n
+  return Utils.my_screen().workarea.width * n
 end
 
 function Utils.height_factor(n)
-  return Utils.myscreen().workarea.height * n
+  return Utils.my_screen().workarea.height * n
 end
 
 function Utils.ratio(c)
@@ -288,17 +288,17 @@ function Utils.shrink_in_place(c)
   Utils.center(c)
 end
 
-function Utils.myscreen()
+function Utils.my_screen()
   return awful.screen.focused()
 end
 
-function Utils.mytag()
-  return Utils.myscreen().selected_tag
+function Utils.my_tag()
+  return Utils.my_screen().selected_tag
 end
 
 function Utils.clients()
   local filtered = {}
-  local clients = Utils.mytag():clients()
+  local clients = Utils.my_tag():clients()
 
   for i = 1, #clients do
     local c = clients[i]
@@ -338,8 +338,8 @@ function Utils.show_clipboard()
 end
 
 function Utils.switch_tag(direction, sticky)
-  local index = Utils.mytag().index
-  local num_tags = #Utils.myscreen().tags
+  local index = Utils.my_tag().index
+  local num_tags = #Utils.my_screen().tags
   local ok = (direction == "next" and index < num_tags)
   or (direction == "prev" and index > 1)
   local new_index
@@ -353,10 +353,10 @@ function Utils.switch_tag(direction, sticky)
 
     s_index = new_index
 
-    local new_tag = Utils.myscreen().tags[new_index]
+    local new_tag = Utils.my_screen().tags[new_index]
 
     if sticky then
-      if client.focus and client.focus.screen == Utils.myscreen() then
+      if client.focus and client.focus.screen == Utils.my_screen() then
         client.focus:move_to_tag(new_tag)
       end
     end
@@ -374,10 +374,10 @@ function Utils.prev_tag(sticky)
 end
 
 function Utils.next_tag_all()
-  i = Utils.mytag().index + 1
+  i = Utils.my_tag().index + 1
 
-  if i > #Utils.myscreen().tags then
-    i = #Utils.myscreen().tags
+  if i > #Utils.my_screen().tags then
+    i = #Utils.my_screen().tags
   end
 
   for s in screen do
@@ -386,7 +386,7 @@ function Utils.next_tag_all()
 end
 
 function Utils.prev_tag_all()
-  i = Utils.mytag().index - 1
+  i = Utils.my_tag().index - 1
 
   if i < 1 then
     i = 1
@@ -550,7 +550,7 @@ function Utils.corner_click()
     if c.active and c.x_hotcorner == "1_top_left" and c.screen.index == 1 then
       Utils.focus(c)
 
-      if c.first_tag ~= Utils.mytag() then
+      if c.first_tag ~= Utils.my_tag() then
         c.first_tag:view_only()
         return
       end

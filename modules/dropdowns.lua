@@ -55,7 +55,7 @@ function Dropdowns.toggle(what)
     if Dropdowns.get_on(what) then
         local tag = Dropdowns.get_tag(what)
         local highest = Utils.highest_in_tag(tag)
-        local same_tag = tag == Utils.mytag()
+        local same_tag = tag == Utils.my_tag()
 
         if not same_tag or not tag.selected or
             (highest ~= nil and not highest[Dropdowns.get_x(what)]) then
@@ -70,7 +70,7 @@ end
 
 function Dropdowns.show(what)
     Dropdowns.hide_others(what)
-    local t = Utils.mytag()
+    local t = Utils.my_tag()
     local max
 
     for _, c in ipairs(client.get()) do
@@ -89,8 +89,8 @@ function Dropdowns.show(what)
 
     if max ~= nil then Utils.focus(max) end
     Dropdowns.set_on(what, true)
-    Dropdowns.set_screen(what, Utils.myscreen())
-    Dropdowns.set_tag(what, Utils.mytag())
+    Dropdowns.set_screen(what, Utils.my_screen())
+    Dropdowns.set_tag(what, Utils.my_tag())
 end
 
 function Dropdowns.hide(what)
@@ -114,7 +114,7 @@ end
 function Dropdowns.check()
     for index, dropdown in ipairs(Dropdowns.dropdowns) do
         if Dropdowns.get_on(dropdown) then
-            if Dropdowns.get_screen(dropdown) == Utils.myscreen() then
+            if Dropdowns.get_screen(dropdown) == Utils.my_screen() then
                 Dropdowns.hide(dropdown)
             end
         end

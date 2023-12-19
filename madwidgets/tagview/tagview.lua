@@ -1,5 +1,6 @@
 local awful = require("awful")
 local wibox = require("wibox")
+local utils = require("madwidgets/utils")
 local overlay = require("madwidgets/overlay/overlay")
 
 local tagview = {}
@@ -13,7 +14,7 @@ function tagview.setup()
 
     for _, instance in ipairs(instances) do
       if instance.args.screen == t.screen then
-        local index = instance.args.screen.selected_tag.index
+        local index = utils.my_tag().index
         instance.widget.show("Desktop: " .. index)
       end
     end
