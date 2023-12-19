@@ -566,3 +566,7 @@ function Utils.middle_click(c)
     Utils.fake_input_do(false, false, true, "q")
   end
 end
+
+function Utils.first_tag()
+  Utils.my_screen().tags[1]:view_only()
+end

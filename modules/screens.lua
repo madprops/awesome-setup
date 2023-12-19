@@ -223,6 +223,15 @@ awful.screen.connect_for_each_screen(function(s)
 
   tagbar.create({
     screen = s,
+    on_click = function(t)
+      Dropdowns.toggle("utils")
+    end,
+    on_middle_click = function(t)
+      Utils.first_tag()
+    end,
+    on_right_click = function(t)
+      Utils.altab()
+    end,
   })
 end)
 

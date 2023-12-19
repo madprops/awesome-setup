@@ -113,21 +113,6 @@ Bindings.globalkeys = gears.table.join(
     Utils.decrease_volume(true)
   end),
 
-  awful.key({modkey, "Shift"}, "Delete", function()
-    if mouse.coords().y <= 25 then
-      Dropdowns.toggle("utils")
-      return
-    end
-
-    closetap.trigger()
-  end),
-
-  awful.key({modkey, "Shift", "Control"}, "Delete", function()
-    if mouse.coords().y <= 25 then
-      Dropdowns.toggle("gpt")
-    end
-  end),
-
   awful.key({modkey, "Control"}, "space", function()
     Utils.smart_button()
   end),

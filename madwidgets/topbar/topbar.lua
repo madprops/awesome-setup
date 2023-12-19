@@ -14,6 +14,9 @@ function topbar.create(args)
   args.borderwidth = args.borderwidth or 1
   args.widget = args.widget or wibox.widget{}
   args.screen = args.screen or 1
+  args.on_click = args.on_click or function() end
+  args.on_right_click = args.on_right_click or function() end
+  args.on_middle_click = args.on_middle_click or function() end
   args.on_wheel_up = args.on_wheel_up or function() end
   args.on_wheel_down = args.on_wheel_down or function() end
 
@@ -40,7 +43,13 @@ function topbar.create(args)
   end
 
   instance.widget:connect_signal("button::press", function(a, b, c, button, mods)
-    if button == 4 then
+    if button == 1 then
+      args.on_click(instance)
+    elseif button == 2 then
+      args.on_middle_click(instance)
+    elseif button == 3 then
+      args.on_right_click(instance)
+    elseif button == 4 then
       args.on_wheel_up(instance)
     elseif button == 5 then
       args.on_wheel_down(instance)

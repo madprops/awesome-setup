@@ -41,6 +41,9 @@ function tagbar.create(args)
   instance.widget = topbar.create({
     screen = args.screen,
     bgcolor = args.topbar_color,
+    on_click = args.on_click,
+    on_right_click = args.on_right_click,
+    on_middle_click = args.on_middle_click,
     on_wheel_down = function()
       utils.switch_tag("next")
     end,
