@@ -9,16 +9,18 @@ function topbar.create(args)
   args.bgcolor = args.bgcolor or "#445666"
   args.fontcolor = args.fontcolor or "#d5dAf0"
   args.bordercolor = args.bordercolor or "#d5dAf0"
-  args.font = args.font or "monospace 16"
-  args.height = args.height or 55
+  args.font = args.font or "monospace 11"
+  args.height = args.height or 22
   args.borderwidth = args.borderwidth or 1
   args.widget = args.widget or wibox.widget{}
   args.screen = args.screen or 1
+  args.on_wheel_up = args.on_wheel_up or function() end
+  args.on_wheel_down = args.on_wheel_down or function() end
 
   instance.widget = awful.wibar({
     position = "top",
     screen = args.screen,
-    height = 30,
+    height = args.height,
     bg = "#2E3440",
   })
 
@@ -30,12 +32,20 @@ function topbar.create(args)
   }
 
   function instance.update(text)
-    instance.textbox.markup = "<span font='Sans 12' color='#FFFFFF'>" .. text .. "</span>"
+    instance.textbox.markup = "<span font='" .. args.font .. "' color='#FFFFFF'>" .. text .. "</span>"
   end
 
   function instance.color(color)
     instance.widget.bg = color
   end
+
+  instance.widget:connect_signal("button::press", function(a, b, c, button, mods)
+    if button == 4 then
+      args.on_wheel_up(instance)
+    elseif button == 5 then
+      args.on_wheel_down(instance)
+    end
+  end)
 
   instance.widget:setup {
     layout = wibox.layout.align.horizontal,

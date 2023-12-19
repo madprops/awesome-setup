@@ -41,6 +41,12 @@ function tagbar.create(args)
   instance.widget = topbar.create({
     screen = args.screen,
     bgcolor = args.topbar_color,
+    on_wheel_down = function()
+      utils.switch_tag("next")
+    end,
+    on_wheel_up = function()
+      utils.switch_tag("prev")
+    end,
   })
 
   table.insert(instances, instance)

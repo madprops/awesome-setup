@@ -64,4 +64,32 @@ function utils.my_tag()
   return utils.my_screen().selected_tag
 end
 
+function utils.switch_tag(direction, sticky)
+  local index = utils.my_tag().index
+  local num_tags = #utils.my_screen().tags
+  local ok = (direction == "next" and index < num_tags)
+  or (direction == "prev" and index > 1)
+  local new_index
+
+  if ok then
+    if direction == "next" then
+      new_index = index + 1
+    elseif direction == "prev" then
+      new_index = index - 1
+    end
+
+    s_index = new_index
+
+    local new_tag = utils.my_screen().tags[new_index]
+
+    if sticky then
+      if client.focus and client.focus.screen == utils.my_screen() then
+        client.focus:move_to_tag(new_tag)
+      end
+    end
+
+    new_tag:view_only()
+  end
+end
+
 return utils
