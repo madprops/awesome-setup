@@ -200,10 +200,10 @@ awful.screen.connect_for_each_screen(function(s)
       multibutton.create({
         text = " GPT ",
         on_click = function()
-          Dropdowns.toggle("chat_gpt")
+          Dropdowns.toggle("gpt")
         end,
         on_middle_click = function()
-          Dropdowns.start_chat_gpt()
+          Dropdowns.start_gpt()
         end,
       }),
     }

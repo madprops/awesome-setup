@@ -74,11 +74,11 @@ Bindings.globalkeys = gears.table.join(
   end),
 
   awful.key({"Shift"}, "Scroll_Lock", function()
-    Dropdowns.start_util_screen()
+    Dropdowns.start_utils()
   end),
 
   awful.key({}, "Scroll_Lock", function()
-    Dropdowns.toggle("util_screen")
+    Dropdowns.toggle("utils")
   end),
 
   awful.key({modkey}, "l", function()
@@ -115,7 +115,7 @@ Bindings.globalkeys = gears.table.join(
 
   awful.key({modkey, "Shift"}, "Delete", function()
     if mouse.coords().y <= 25 then
-      Dropdowns.toggle("util_screen")
+      Dropdowns.toggle("utils")
       return
     end
 
@@ -124,7 +124,7 @@ Bindings.globalkeys = gears.table.join(
 
   awful.key({modkey, "Shift", "Control"}, "Delete", function()
     if mouse.coords().y <= 25 then
-      Dropdowns.toggle("chat_gpt")
+      Dropdowns.toggle("gpt")
     end
   end),
 

@@ -15,7 +15,7 @@ awful.rules.rules = {
       buttons = Bindings.clientbuttons,
       screen = awful.screen.preferred,
       placement = awful.placement.centered,
-      x_dropdown_util_screen = false,
+      x_dropdown_utils = false,
       x_keys = true,
       x_rules_applied = false,
       x_tiled = false,
@@ -105,7 +105,7 @@ awful.rules.rules = {
       height = Utils.height_factor(0.5),
       maximized = false,
       skip_taskbar = true,
-      x_dropdown_util_screen = true,
+      x_dropdown_utils = true,
       x_commands = true,
     }
   },
@@ -119,7 +119,7 @@ awful.rules.rules = {
       height = Utils.height_factor(0.5),
       maximized = false,
       skip_taskbar = true,
-      x_dropdown_util_screen = true,
+      x_dropdown_utils = true,
     }
   },
   {
@@ -132,7 +132,7 @@ awful.rules.rules = {
       height = Utils.height_factor(0.5),
       maximized = false,
       skip_taskbar = true,
-      x_dropdown_util_screen = true,
+      x_dropdown_utils = true,
       x_commands = true,
     }
   },
@@ -199,7 +199,7 @@ function Rules.check_title_rules(c, force)
       c.maximized = true
       c.skip_taskbar = true
       c.x_rules_applied = true
-      c.x_dropdown_chat_gpt = true
+      c.x_dropdown_gpt = true
     end
   end
 end
