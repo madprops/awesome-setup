@@ -232,6 +232,12 @@ awful.screen.connect_for_each_screen(function(s)
     on_right_click = function(t)
       Utils.altab()
     end,
+    on_wheel_down = function()
+      Utils.switch_tag("next")
+    end,
+    on_wheel_up = function()
+      Utils.switch_tag("prev")
+    end,
   })
 end)
 
