@@ -3,6 +3,14 @@ Dropdowns.dd_gpt_on = false
 Dropdowns.dd_utils_on = false
 Dropdowns.dropdowns = {"gpt", "utils"}
 
+function Dropdowns.setup()
+    tag.connect_signal("property::selected", function(t)
+        Dropdowns.hide_screen(t.screen)
+    end)
+end
+
+--
+
 function Dropdowns.start_gpt()
     Utils.spawn("firefox-developer-edition -P chatgpt")
 end
@@ -111,6 +119,16 @@ function Dropdowns.hide_others(what)
     end
 end
 
+function Dropdowns.hide_screen(screen)
+    for index, dropdown in ipairs(Dropdowns.dropdowns) do
+        if Dropdowns.get_on(dropdown) then
+            if Dropdowns.get_screen(dropdown) == screen then
+                Dropdowns.hide(dropdown)
+            end
+        end
+    end
+end
+
 function Dropdowns.check()
     for index, dropdown in ipairs(Dropdowns.dropdowns) do
         if Dropdowns.get_on(dropdown) then
@@ -120,3 +138,5 @@ function Dropdowns.check()
         end
     end
 end
+
+Dropdowns.setup()
