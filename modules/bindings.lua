@@ -113,6 +113,10 @@ Bindings.globalkeys = gears.table.join(
     Utils.decrease_volume(true)
   end),
 
+  awful.key({modkey, "Shift"}, "Delete", function()
+    closetap.trigger()
+  end),
+
   awful.key({modkey, "Control"}, "space", function()
     Utils.smart_button()
   end),
