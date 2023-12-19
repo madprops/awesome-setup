@@ -46,6 +46,14 @@ function tagbar.create(args)
     on_middle_click = args.on_middle_click,
     on_wheel_down = args.on_wheel_down,
     on_wheel_up = args.on_wheel_up,
+    left = " < ",
+    right = " > ",
+    on_left_text_click = function()
+      utils.switch_tag("prev")
+    end,
+    on_right_text_click = function()
+      utils.switch_tag("next")
+    end,
   })
 
   table.insert(instances, instance)

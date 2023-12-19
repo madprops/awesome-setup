@@ -27,7 +27,7 @@ function topbar.create(args)
   instance.multibutton = multibutton.create(args)
 
   function instance.update(text)
-    instance.multibutton.textbox.markup = "<span font='" .. args.font .. "' color='#FFFFFF'>" .. text .. "</span>"
+    instance.multibutton.subwidget.markup = "<span font='" .. args.font .. "' color='#FFFFFF'>" .. text .. "</span>"
   end
 
   function instance.color(color)
