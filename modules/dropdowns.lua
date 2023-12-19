@@ -1,7 +1,11 @@
 Dropdowns = {}
 Dropdowns.dd_gpt_on = false
 Dropdowns.dd_utils_on = false
-Dropdowns.dropdowns = {"utils", "gpt"}
+Dropdowns.dropdowns = {"gpt", "utils"}
+
+function Dropdowns.start_gpt()
+    Utils.spawn("firefox-developer-edition -P chatgpt")
+end
 
 function Dropdowns.start_utils()
     Utils.spawn("dolphin")
@@ -9,13 +13,13 @@ function Dropdowns.start_utils()
     Utils.spawn("tilix --session ~/other/tilix.json")
 end
 
-function Dropdowns.start_gpt()
-    Utils.spawn("firefox-developer-edition -P chatgpt")
-end
+--
 
 function Dropdowns.get_x(what)
     return "x_dropdown_" .. what
 end
+
+--
 
 function Dropdowns.get_on(what)
     return Dropdowns["dd_" .. what .. "_on"]
@@ -25,6 +29,8 @@ function Dropdowns.set_on(what, value)
     Dropdowns["dd_" .. what .. "_on"] = value
 end
 
+--
+
 function Dropdowns.get_tag(what)
     return Dropdowns["dd_" .. what .. "_tag"]
 end
@@ -33,6 +39,8 @@ function Dropdowns.set_tag(what, value)
     Dropdowns["dd_" .. what .. "_tag"] = value
 end
 
+--
+
 function Dropdowns.get_screen(what)
     return Dropdowns["dd_" .. what .. "_screen"]
 end
@@ -40,6 +48,8 @@ end
 function Dropdowns.set_screen(what, value)
     Dropdowns["dd_" .. what .. "_screen"] = value
 end
+
+--
 
 function Dropdowns.toggle(what)
     if Dropdowns.get_on(what) then
