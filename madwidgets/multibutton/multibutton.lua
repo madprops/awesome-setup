@@ -27,21 +27,21 @@ function multibutton.create(args)
   instance.args = args
 
   local left = {
-    layout = wibox.layout.fixed.horizontal,    
+    layout = wibox.layout.fixed.horizontal,
     wibox.widget {
       align  = "center",
       valign = "center",
-      markup = "<span foreground='"..args.left_color.."'>"..gears.string.xml_escape(args.left).."</span>",
+      markup = "<span foreground='" .. args.left_color .. "'>" .. gears.string.xml_escape(args.left) .. "</span>",
       widget = wibox.widget.textbox
     }
   }
 
   local right = {
-    layout = wibox.layout.fixed.horizontal,    
+    layout = wibox.layout.fixed.horizontal,
     wibox.widget {
       align  = "center",
       valign = "center",
-      markup = "<span foreground='"..args.right_color.."'>"..gears.string.xml_escape(args.right).."</span>",
+      markup = "<span foreground='" .. args.right_color .. "'>" .. gears.string.xml_escape(args.right) .. "</span>",
       widget = wibox.widget.textbox
     }
   }
@@ -50,18 +50,32 @@ function multibutton.create(args)
 
   if args.widget then
     center = {
-      layout = wibox.layout.fixed.horizontal,
-      args.widget
+      layout = wibox.layout.align.horizontal,
+      {
+        widget = wibox.widget.textbox,
+      },
+      args.widget,
+      {
+        widget = wibox.widget.textbox,
+      },
     }
   elseif args.text then
+    instance.textbox = wibox.widget {
+      align  = "center",
+      valign = "center",
+      text = args.text,
+      widget = wibox.widget.textbox,
+    }
+
     center = {
-      layout = wibox.layout.fixed.horizontal,
-      wibox.widget {
-        align  = "center",
-        valign = "center",
-        text = args.text,
-        widget = wibox.widget.textbox
-      }      
+      layout = wibox.layout.align.horizontal,
+      {
+        widget = wibox.widget.textbox,
+      },
+      instance.textbox,
+      {
+        widget = wibox.widget.textbox,
+      },
     }
   else
     return {}
@@ -71,26 +85,26 @@ function multibutton.create(args)
     widget = wibox.container.background,
     bg = args.bgcolor,
     fg = args.fontcolor,
-    opacity = args.opacity
-  }    
+    opacity = args.opacity,
+  }
 
   instance.widget:setup {
     layout = wibox.layout.align.horizontal,
     left,
     center,
-    right
-  }  
-  
+    right,
+  }
+
   instance.widget:connect_signal("button::press", function(a, b, c, button, mods)
     if button == 1 then
       args.on_click(instance)
-    elseif button == 2 then 
+    elseif button == 2 then
       args.on_middle_click(instance)
-    elseif button == 3 then 
+    elseif button == 3 then
       args.on_right_click(instance)
-    elseif button == 4 then 
+    elseif button == 4 then
       args.on_wheel_up(instance)
-    elseif button == 5 then 
+    elseif button == 5 then
       args.on_wheel_down(instance)
     end
   end)
@@ -100,13 +114,13 @@ function multibutton.create(args)
       args.on_click_2(instance)
     end
   end)
-  
+
   instance.widget:connect_signal("mouse::enter", function()
     args.on_mouse_enter(instance)
   end)
 
   instance.widget:connect_signal("mouse::leave", function()
-    args.on_mouse_leave(instance)  
+    args.on_mouse_leave(instance)
   end)
 
   return instance

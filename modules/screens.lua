@@ -217,9 +217,9 @@ awful.screen.connect_for_each_screen(function(s)
     right,
   }
 
-  -- tagview.create({
-  --   screen = s,
-  -- })
+  tagview.create({
+    screen = s,
+  })
 
   tagbar.create({
     screen = s,
@@ -241,5 +241,5 @@ awful.screen.connect_for_each_screen(function(s)
   })
 end)
 
--- tagview.setup()
+tagview.setup()
 tagbar.setup()
