@@ -166,11 +166,7 @@ function Rules.check_title(c, force)
       c.x_tiled = true
       c.x_index = 1
     end
-
-    return true
-  end
-
-  if Utils.startswith(c.name, "[ff_tile2]") then
+  elseif Utils.startswith(c.name, "[ff_tile2]") then
     if not c.x_rules_applied or force then
       c.maximized = false
       awful.placement.bottom_left(c, {honor_workarea = true})
@@ -180,11 +176,7 @@ function Rules.check_title(c, force)
       c.x_tiled = true
       c.x_index = 2
     end
-
-    return true
-  end
-
-  if Utils.startswith(c.name, "[ff_tile3]") then
+  elseif Utils.startswith(c.name, "[ff_tile3]") then
     if not c.x_rules_applied or force then
       c.maximized = false
       awful.placement.top_right(c, {honor_workarea = true})
@@ -194,11 +186,7 @@ function Rules.check_title(c, force)
       c.x_tiled = true
       c.x_index = 3
     end
-
-    return true
-  end
-
-  if Utils.startswith(c.name, "[chatgpt]") then
+  elseif Utils.startswith(c.name, "[chatgpt]") then
     if not c.x_rules_applied or force then
       c.maximized = true
       c.width = Utils.width_factor(1)
@@ -207,18 +195,12 @@ function Rules.check_title(c, force)
       c.x_rules_applied = true
       c.x_dropdown_gpt = true
     end
-
-    return true
   end
-
-  return false
 end
 
 function Rules.reset(c)
-  if not Rules.check_title(c, true) then
-    Utils.msg(c.name)
-    awful.rules.apply(c)
-  end
+  awful.rules.apply(c)
+  Rules.check_title(c, true)
 end
 
 function Rules.apply(c)
