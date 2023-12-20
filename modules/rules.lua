@@ -156,6 +156,8 @@ function Rules.check_title(c, force)
     force = false
   end
 
+  -- c.maximized should be before awful.placement calls
+
   if Utils.startswith(c.name, "[ff_tile1]") then
     if not c.x_rules_applied or force then
       c.maximized = false
