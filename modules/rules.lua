@@ -151,7 +151,7 @@ awful.rules.rules = {
   },
 }
 
-function Rules.check_title_rules(c, force)
+function Rules.check_title(c, force)
   if force == nil then
     force = false
   end
@@ -204,7 +204,11 @@ function Rules.check_title_rules(c, force)
   end
 end
 
-function Rules.reset_rules(c)
+function Rules.reset(c)
+  Rules.apply(c)
+  Rules.check_title(c)
+end
+
+function Rules.apply(c)
   awful.rules.apply(c)
-  Rules.check_title_rules(c)
 end

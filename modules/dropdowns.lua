@@ -88,7 +88,7 @@ function Dropdowns.show(what)
             c:raise()
 
             if not Dropdowns.get_on(what) then
-                Rules.reset_rules(c)
+                Rules.reset(c)
             else
                 if c.maximized then max = c end
             end

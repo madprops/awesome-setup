@@ -1,9 +1,9 @@
 client.connect_signal("manage", function(c)
-  Rules.check_title_rules(c)
+  Rules.check_title(c)
 end)
 
 client.connect_signal("property::name", function(c)
-  Rules.check_title_rules(c)
+  Rules.check_title(c)
 end)
 
 client.connect_signal("property::fullscreen", function(c)

@@ -179,7 +179,7 @@ Bindings.clientkeys = gears.table.join(
 
   awful.key({"Shift"}, "BackSpace", function(c)
     if not c.x_keys then return end
-    Rules.reset_rules(c)
+    Rules.reset(c)
   end),
 
   awful.key({modkey}, "KP_Add", function(c)
