@@ -68,12 +68,12 @@ awful.rules.rules = {
   {
     rule = {instance = "hexchat"},
     properties = {
+      maximized = false,
       placement = function(c)
         awful.placement.top_right(c, {honor_workarea = true})
       end,
       width = Utils.width_factor(0.5),
       height = Utils.height_factor(0.64),
-      maximized = false,
       screen = screen_right,
       x_tiled = true,
       x_index = 3,
@@ -82,12 +82,12 @@ awful.rules.rules = {
   {
     rule = {instance = "audacious"},
     properties = {
+      maximized = false,
       placement = function(c)
         awful.placement.bottom_right(c, {honor_workarea = true})
       end,
       width = Utils.width_factor(0.5),
       height = Utils.height_factor(0.36),
-      maximized = false,
       screen = screen_right,
       x_alt_q = true,
       x_tiled = true,
@@ -98,12 +98,12 @@ awful.rules.rules = {
   {
     rule = {instance = "dolphin"},
     properties = {
+      maximized = false,
       placement = function(c)
         awful.placement.top_left(c, {honor_workarea = true})
       end,
       width = Utils.width_factor(0.75),
       height = Utils.height_factor(0.5),
-      maximized = false,
       skip_taskbar = true,
       x_dropdown_utils = true,
       x_commands = true,
@@ -112,12 +112,12 @@ awful.rules.rules = {
   {
     rule = {instance = "speedcrunch"},
     properties = {
+      maximized = false,
       placement = function(c)
         awful.placement.top_right(c, {honor_workarea = true})
       end,
       width = Utils.width_factor(0.25),
       height = Utils.height_factor(0.5),
-      maximized = false,
       skip_taskbar = true,
       x_dropdown_utils = true,
     }
@@ -125,12 +125,12 @@ awful.rules.rules = {
   {
     rule = {instance = "tilix"},
     properties = {
+      maximized = false,
       placement = function(c)
         awful.placement.bottom(c, {honor_workarea = true})
       end,
       width = Utils.width_factor(1),
       height = Utils.height_factor(0.5),
-      maximized = false,
       skip_taskbar = true,
       x_dropdown_utils = true,
       x_commands = true,
@@ -140,12 +140,12 @@ awful.rules.rules = {
   {
     rule = {instance = "Alacritty"},
     properties = {
+      maximized = false,
       placement = function(c)
         awful.placement.centered(c, {honor_workarea = true})
       end,
       width = Utils.width_factor(0.7),
       height = Utils.height_factor(0.7),
-      maximized = false,
       x_commands = true,
     }
   },
@@ -158,55 +158,67 @@ function Rules.check_title(c, force)
 
   if Utils.startswith(c.name, "[ff_tile1]") then
     if not c.x_rules_applied or force then
+      c.maximized = false
       awful.placement.top_left(c, {honor_workarea = true})
       c.width = Utils.width_factor(0.5)
       c.height = Utils.height_factor(0.64)
-      c.maximized = false
       c.x_rules_applied = true
       c.x_tiled = true
       c.x_index = 1
     end
+
+    return true
   end
 
   if Utils.startswith(c.name, "[ff_tile2]") then
     if not c.x_rules_applied or force then
+      c.maximized = false
       awful.placement.bottom_left(c, {honor_workarea = true})
       c.width = Utils.width_factor(0.5)
       c.height = Utils.height_factor(0.36)
-      c.maximized = false
       c.x_rules_applied = true
       c.x_tiled = true
       c.x_index = 2
     end
+
+    return true
   end
 
   if Utils.startswith(c.name, "[ff_tile3]") then
     if not c.x_rules_applied or force then
+      c.maximized = false
       awful.placement.top_right(c, {honor_workarea = true})
       c.width = Utils.width_factor(0.5)
       c.height = Utils.height_factor(0.64)
-      c.maximized = false
       c.x_rules_applied = true
       c.x_tiled = true
       c.x_index = 3
     end
+
+    return true
   end
 
   if Utils.startswith(c.name, "[chatgpt]") then
     if not c.x_rules_applied or force then
+      c.maximized = true
       c.width = Utils.width_factor(1)
       c.height = Utils.height_factor(1)
-      c.maximized = true
       c.skip_taskbar = true
       c.x_rules_applied = true
       c.x_dropdown_gpt = true
     end
+
+    return true
   end
+
+  return false
 end
 
 function Rules.reset(c)
-  Rules.apply(c)
-  Rules.check_title(c)
+  if not Rules.check_title(c, true) then
+    Utils.msg(c.name)
+    awful.rules.apply(c)
+  end
 end
 
 function Rules.apply(c)

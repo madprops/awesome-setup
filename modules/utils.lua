@@ -509,12 +509,6 @@ function Utils.minimize(c)
   c:activate {context = "tasklist", action = "toggle_minimization"}
 end
 
-function Utils.reset_rules(c)
-  c.maximized = false
-  Rules.reset(c)
-  Rules.check_title(c, true)
-end
-
 function Utils.smart_button(c)
   local c = mouse.object_under_pointer()
   if not c then return end
@@ -524,7 +518,7 @@ function Utils.smart_button(c)
     Utils.focus(c)
     Utils.run_script("commands.rb " .. c.instance)
   elseif c.x_tiled then
-    Utils.reset_rules(c)
+    Rules.reset(c)
   elseif not c.x_util then
     if #Utils.clients() > 1 then
       Utils.minimize(c)

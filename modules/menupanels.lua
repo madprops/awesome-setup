@@ -192,7 +192,7 @@ Menupanels.context = menupanel.create({
     },
     {
       name = "Reset",
-      action = function() Utils.reset_rules(Utils.get_context_client()) end,
+      action = function() Rules.reset(Utils.get_context_client()) end,
     },
     {
       name = "Close",
