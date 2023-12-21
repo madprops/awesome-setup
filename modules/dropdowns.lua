@@ -8,13 +8,6 @@ function Dropdowns.setup()
     tag.connect_signal("property::selected", function(t)
         Dropdowns.hide_screen(t.screen)
     end)
-
-    -- When focusing a client, hide the active dropdown, on the specific screen
-    client.connect_signal("raised", function(c)
-        if not Dropdowns.included(c) then
-            Dropdowns.hide_screen(c.screen)
-        end
-    end)
 end
 
 --
