@@ -9,7 +9,7 @@ function Dropdowns.setup()
     end)
 
     client.connect_signal("raised", function(c)
-        if not c.x_dropdown then
+        if not Dropdowns.included(c) then
             Dropdowns.hide_screen(c.screen)
         end
     end)
@@ -28,6 +28,14 @@ function Dropdowns.start_utils()
 end
 
 --
+
+function Dropdowns.included(c)
+    for index, dropdown in ipairs(Dropdowns.dropdowns) do
+        if c[Dropdowns.get_x(dropdown)] then return true end
+    end
+
+    return false
+end
 
 function Dropdowns.get_x(what)
     return "x_dropdown_" .. what

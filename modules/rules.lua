@@ -20,7 +20,6 @@ awful.rules.rules = {
       x_tiled = false,
       x_client = true,
       x_commands = false,
-      x_dropdown = false,
       x_dropdown_gpt = false,
       x_dropdown_utils = false,
       x_index = 0,
@@ -115,7 +114,6 @@ awful.rules.rules = {
       width = Utils.width_factor(0.75),
       height = Utils.height_factor(0.5),
       skip_taskbar = true,
-      x_dropdown = true,
       x_dropdown_utils = true,
       x_commands = true,
     }
@@ -130,7 +128,6 @@ awful.rules.rules = {
       width = Utils.width_factor(0.25),
       height = Utils.height_factor(0.5),
       skip_taskbar = true,
-      x_dropdown = true,
       x_dropdown_utils = true,
     }
   },
@@ -144,7 +141,6 @@ awful.rules.rules = {
       width = Utils.width_factor(1),
       height = Utils.height_factor(0.5),
       skip_taskbar = true,
-      x_dropdown = true,
       x_dropdown_utils = true,
       x_commands = true,
     }
@@ -208,7 +204,6 @@ function Rules.check_title(c, force)
       c.height = Utils.height_factor(1)
       c.skip_taskbar = true
       c.x_rules_applied = true
-      c.x_dropdown = true
       c.x_dropdown_gpt = true
     end
   end
