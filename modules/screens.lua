@@ -200,7 +200,6 @@ awful.screen.connect_for_each_screen(function(s)
       autotimer,
       multibutton.create({
         text = " GPT ",
-        fontcolor = Globals.nicegreen,
         on_click = function()
           Dropdowns.toggle("gpt")
         end,
