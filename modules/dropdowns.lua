@@ -7,6 +7,12 @@ function Dropdowns.setup()
     tag.connect_signal("property::selected", function(t)
         Dropdowns.hide_screen(t.screen)
     end)
+
+    client.connect_signal("focus", function(c)
+        if not c.x_dropdown then
+            Dropdowns.hide_screen(c.screen)
+        end
+    end)
 end
 
 --

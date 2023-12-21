@@ -15,12 +15,14 @@ awful.rules.rules = {
       buttons = Bindings.clientbuttons,
       screen = awful.screen.preferred,
       placement = awful.placement.centered,
+      x_dropdown = true,
       x_dropdown_utils = false,
       x_keys = true,
       x_rules_applied = false,
       x_tiled = false,
       x_client = true,
       x_commands = false,
+      x_dropdown = false,
       x_index = 0,
     },
     callback=function(c)
@@ -113,6 +115,7 @@ awful.rules.rules = {
       width = Utils.width_factor(0.75),
       height = Utils.height_factor(0.5),
       skip_taskbar = true,
+      x_dropdown = true,
       x_dropdown_utils = true,
       x_commands = true,
     }
@@ -127,6 +130,7 @@ awful.rules.rules = {
       width = Utils.width_factor(0.25),
       height = Utils.height_factor(0.5),
       skip_taskbar = true,
+      x_dropdown = true,
       x_dropdown_utils = true,
     }
   },
@@ -140,6 +144,7 @@ awful.rules.rules = {
       width = Utils.width_factor(1),
       height = Utils.height_factor(0.5),
       skip_taskbar = true,
+      x_dropdown = true,
       x_dropdown_utils = true,
       x_commands = true,
     }
@@ -203,6 +208,7 @@ function Rules.check_title(c, force)
       c.height = Utils.height_factor(1)
       c.skip_taskbar = true
       c.x_rules_applied = true
+      c.x_dropdown = true
       c.x_dropdown_gpt = true
     end
   end
