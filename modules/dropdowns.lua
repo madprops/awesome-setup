@@ -8,7 +8,7 @@ function Dropdowns.setup()
         Dropdowns.hide_screen(t.screen)
     end)
 
-    client.connect_signal("focus", function(c)
+    client.connect_signal("raised", function(c)
         if not c.x_dropdown then
             Dropdowns.hide_screen(c.screen)
         end
