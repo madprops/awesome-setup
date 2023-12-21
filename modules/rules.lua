@@ -94,6 +94,14 @@ awful.rules.rules = {
       x_index = 4,
     }
   },
+  {
+    rule = {instance = "Devtools"},
+    properties = {
+      maximized = true,
+      screen = screen_right,
+      x_index = 1,
+    }
+  },
   -- Util Screen
   {
     rule = {instance = "dolphin"},
@@ -166,7 +174,7 @@ function Rules.check_title(c, force)
       c.height = Utils.height_factor(0.64)
       c.x_rules_applied = true
       c.x_tiled = true
-      c.x_index = 1
+      c.x_index = 1.8
     end
   elseif Utils.startswith(c.name, "[ff_tile2]") then
     if not c.x_rules_applied or force then
