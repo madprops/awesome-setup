@@ -1,6 +1,10 @@
 Frames = {}
 
 function Frames.cycle(c1, reverse, alt)
+	if c1.x_frame == "none" then
+		return false
+	end
+
 	if reverse == nil then
 		reverse = false
 	end
@@ -15,7 +19,7 @@ function Frames.cycle(c1, reverse, alt)
 	local focused
 
 	for _, c2 in ipairs(clients) do
-		if c2.x_index ~= 0 then
+		if c2.x_frame == c1.x_frame then
 			if c1.width == c2.width and c1.height == c2.height then
 				if c1.x == c2.x and c1.y == c2.y then
 					table.insert(frames, c2)
@@ -32,7 +36,7 @@ function Frames.cycle(c1, reverse, alt)
 	end
 
 	if #frames == 0 then
-		return
+		return false
 	end
 
 	if reverse then
@@ -41,18 +45,25 @@ function Frames.cycle(c1, reverse, alt)
 		table.sort(frames, function(a, b) return a.x_index < b.x_index end)
 	end
 
+	local selected
+
 	for _, c2 in ipairs(frames) do
+		c2.skip_taskbar = true
+
 		if focused == c2 then
 			match = true
 		elseif match then
-			Utils.focus(c2)
-			return
+			selected = c2
 		end
 	end
 
 	if frames[1] == focused then
-		Utils.focus(frames[#frames])
+		selected = frames[#frames]
 	else
-		Utils.focus(frames[1])
+		selected = frames[1]
 	end
+
+	Utils.focus(selected)
+	selected.skip_taskbar = false
+	return true
 end

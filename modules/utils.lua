@@ -508,8 +508,9 @@ end
 
 function Utils.minimize(c)
   if client.focus == c then
-    Frames.cycle(c)
-    return
+    if Frames.cycle(c) then
+      return
+    end
   end
 
   c:activate {context = "tasklist", action = "toggle_minimization"}

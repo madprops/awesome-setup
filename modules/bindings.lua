@@ -295,8 +295,7 @@ Bindings.tasklist_buttons = gears.table.join(
   end),
 
   awful.button({}, 4, function(c)
-    if c.x_index ~= 0 then
-      Frames.cycle(c, true, true)
+    if Frames.cycle(c, true, true) then
       Dropdowns.check_hide(c)
     end
   end),
@@ -306,8 +305,7 @@ Bindings.tasklist_buttons = gears.table.join(
   end),
 
   awful.button({}, 5, function(c)
-    if c.x_index ~= 0 then
-      Frames.cycle(c, false, true)
+    if Frames.cycle(c, false, true) then
       Dropdowns.check_hide(c)
     end
   end),

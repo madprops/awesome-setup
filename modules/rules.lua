@@ -24,6 +24,7 @@ awful.rules.rules = {
       x_dropdown_utils = false,
       x_index = 0,
       x_focus_date = 0,
+      x_frame = "none",
     },
     callback=function(c)
       if c.fullscreen then
@@ -78,6 +79,7 @@ awful.rules.rules = {
       height = Utils.height_factor(0.64),
       screen = screen_right,
       x_tiled = true,
+      x_frame = "top_right",
       x_index = 10,
     }
   },
@@ -174,7 +176,6 @@ function Rules.check_title(c, force)
       awful.placement.top_left(c, {honor_workarea = true})
       c.width = Utils.width_factor(0.5)
       c.height = Utils.height_factor(0.64)
-      c.skip_taskbar = true
       c.x_rules_applied = true
       c.x_tiled = true
       c.x_index = 1.8
@@ -185,7 +186,6 @@ function Rules.check_title(c, force)
       awful.placement.bottom_left(c, {honor_workarea = true})
       c.width = Utils.width_factor(0.5)
       c.height = Utils.height_factor(0.36)
-      c.skip_taskbar = true
       c.x_rules_applied = true
       c.x_tiled = true
       c.x_index = 2
@@ -196,9 +196,9 @@ function Rules.check_title(c, force)
       awful.placement.top_right(c, {honor_workarea = true})
       c.width = Utils.width_factor(0.5)
       c.height = Utils.height_factor(0.64)
-      c.skip_taskbar = true
       c.x_rules_applied = true
       c.x_tiled = true
+      c.x_frame = "top_right"
       c.x_index = 3
     end
   elseif Utils.startswith(c.name, "[chatgpt]") then
