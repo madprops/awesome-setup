@@ -524,7 +524,7 @@ function Utils.smart_button(c)
   if c.x_commands then
     Utils.focus(c)
     Utils.run_script("commands.rb " .. c.instance)
-  elseif c.x_tiled then
+  elseif c.x_frame ~= "none" then
     Rules.reset(c)
   elseif not c.x_util then
     if #Utils.clients() > 1 then

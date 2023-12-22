@@ -3,11 +3,31 @@ local awful = require("awful")
 Frames = {}
 Frames.rules = {}
 
-Frames.rules.top_right = {
+Frames.rules.top_left = {
 	screen = 2,
 	width = Utils.width_factor(0.5),
 	height = Utils.height_factor(0.64),
 	x_index = 10,
+	placement = function(c)
+		awful.placement.top_left(c)
+	end,
+}
+
+Frames.rules.bottom_left = {
+	screen = 2,
+	width = Utils.width_factor(0.5),
+	height = Utils.height_factor(0.36),
+	x_index = 20,
+	placement = function(c)
+		awful.placement.bottom_left(c)
+	end,
+}
+
+Frames.rules.top_right = {
+	screen = 2,
+	width = Utils.width_factor(0.5),
+	height = Utils.height_factor(0.64),
+	x_index = 30,
 	placement = function(c)
 		awful.placement.top_right(c)
 	end,
@@ -17,7 +37,7 @@ Frames.rules.bottom_right = {
 	screen = 2,
 	width = Utils.width_factor(0.5),
 	height = Utils.height_factor(0.36),
-	x_index = 20,
+	x_index = 40,
 	placement = function(c)
 		awful.placement.bottom_right(c)
 	end,

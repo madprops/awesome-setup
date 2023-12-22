@@ -17,7 +17,6 @@ awful.rules.rules = {
       placement = awful.placement.centered,
       x_keys = true,
       x_rules_applied = false,
-      x_tiled = false,
       x_client = true,
       x_commands = false,
       x_dropdown_gpt = false,
@@ -71,8 +70,7 @@ awful.rules.rules = {
   {
     rule = {instance = "hexchat"},
     properties = {
-      x_tiled = true,
-      x_frame = "top_right",
+      x_frame = "bottom_left",
       x_index = 10,
     }
   },
@@ -81,7 +79,6 @@ awful.rules.rules = {
     properties = {
       x_frame = "bottom_right",
       x_alt_q = true,
-      x_tiled = true,
     }
   },
   {
@@ -158,33 +155,26 @@ function Rules.check_title(c, force)
 
   if Utils.startswith(c.name, "[ff_tile1]") then
     if not c.x_rules_applied or force then
-      c.maximized = false
-      awful.placement.top_left(c, {honor_workarea = true})
-      c.width = Utils.width_factor(0.5)
-      c.height = Utils.height_factor(1)
       c.x_rules_applied = true
-      c.x_tiled = true
-      c.x_index = 1.8
+      c.x_frame = "top_left"
     end
   elseif Utils.startswith(c.name, "[ff_tile2]") then
     if not c.x_rules_applied or force then
       c.x_rules_applied = true
       c.x_frame = "bottom_right"
-      c.x_tiled = true
     end
   elseif Utils.startswith(c.name, "[ff_tile3]") then
     if not c.x_rules_applied or force then
       c.x_rules_applied = true
-      c.x_tiled = true
       c.x_frame = "top_right"
     end
   elseif Utils.startswith(c.name, "[chatgpt]") then
     if not c.x_rules_applied or force then
+      c.x_rules_applied = true
       c.maximized = true
       c.width = Utils.width_factor(1)
       c.height = Utils.height_factor(1)
       c.skip_taskbar = true
-      c.x_rules_applied = true
       c.x_dropdown_gpt = true
     end
   end
