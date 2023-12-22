@@ -123,6 +123,12 @@ function Dropdowns.hide_others(what)
     end
 end
 
+function Dropdowns.hide_all()
+    for index, dropdown in ipairs(Dropdowns.dropdowns) do
+        Dropdowns.hide(dropdown)
+    end
+end
+
 function Dropdowns.hide_screen(screen)
     for index, dropdown in ipairs(Dropdowns.dropdowns) do
         if Dropdowns.get_on(dropdown) then

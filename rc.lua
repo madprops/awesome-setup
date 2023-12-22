@@ -1,4 +1,5 @@
 local awful = require("awful")
+local gears = require("gears")
 awful.util.shell = "dash"
 
 require("awful.autofocus")
@@ -14,3 +15,16 @@ require("modules/clients")
 require("modules/rules")
 require("modules/menupanels")
 require("modules/autostart")
+
+local timer = gears.timer {
+	timeout = 2,
+	call_now = false,
+	autostart = true,
+	single_shot = true,
+	callback = function()
+		Utils.msg("Setup")
+		Frames.start()
+		Dropdowns.hide_all()
+		Utils.msg("Done")
+	end,
+}

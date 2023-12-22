@@ -1,12 +1,12 @@
 local awful = require("awful")
 
 Frames = {}
-Frames.rules = {}
+Frames.frames = {}
 local height_top = 0.64
 local height_bottom = 0.36
 local half_width = 0.5
 
-Frames.rules.top_left = {
+Frames.frames.top_left = {
 	screen = 2,
 	width = half_width,
 	height = height_top,
@@ -16,7 +16,7 @@ Frames.rules.top_left = {
 	end,
 }
 
-Frames.rules.bottom_left = {
+Frames.frames.bottom_left = {
 	screen = 2,
 	width = half_width,
 	height = height_bottom,
@@ -26,7 +26,7 @@ Frames.rules.bottom_left = {
 	end,
 }
 
-Frames.rules.top_right = {
+Frames.frames.top_right = {
 	screen = 2,
 	width = half_width,
 	height = height_top,
@@ -36,7 +36,7 @@ Frames.rules.top_right = {
 	end,
 }
 
-Frames.rules.bottom_right = {
+Frames.frames.bottom_right = {
 	screen = 2,
 	width = half_width,
 	height = height_bottom,
@@ -47,7 +47,7 @@ Frames.rules.bottom_right = {
 }
 
 function Frames.apply_rules(c, i)
-	local rules = Frames.rules[c.x_frame]
+	local rules = Frames.frames[c.x_frame]
 
 	if rules == nil then
 		return
@@ -59,6 +59,33 @@ function Frames.apply_rules(c, i)
 	c.height = Utils.height_factor(rules.height)
 	c.x_index = rules.x_index + i
 	rules.placement(c)
+end
+
+function Frames.start()
+	for frame, _ in pairs(Frames.frames) do
+		Frames.start_frame(frame)
+	end
+end
+
+function Frames.start_frame(frame)
+	local frames = {}
+
+	for _, c in ipairs(client.get()) do
+		if c.x_frame == frame then
+			table.insert(frames, c)
+		end
+	end
+
+	if #frames == 0 then
+		return
+	end
+
+	for _, c in ipairs(frames) do
+		c.skip_taskbar = true
+	end
+
+	table.sort(frames, function(a, b) return a.x_focus_date > b.x_focus_date end)
+	frames[1].skip_taskbar = false
 end
 
 function Frames.cycle(c1, reverse, alt)

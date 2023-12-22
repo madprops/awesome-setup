@@ -15,6 +15,7 @@ awful.rules.rules = {
       buttons = Bindings.clientbuttons,
       screen = awful.screen.preferred,
       placement = awful.placement.centered,
+      skip_taskbar = false,
       x_keys = true,
       x_rules_applied = false,
       x_client = true,

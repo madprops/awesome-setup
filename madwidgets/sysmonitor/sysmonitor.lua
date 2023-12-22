@@ -27,7 +27,7 @@ function sysmonitor.update_string(instance, s, u)
     return
   end
 
-  u = u or "?" 
+  u = u or "?"
 
   local new_text = t..":"..s..u
 
@@ -79,23 +79,23 @@ function sysmonitor.calc_net(instance)
         sysmonitor.on_null(instance)
         return
       end
-  
+
       awful.spawn.easy_async_with_shell(cmd2, function(o2)
         if not utils.isnumber(o2) then
           sysmonitor.on_null(instance)
           return
         end
-        
+
         local diff = tonumber(o2) - tonumber(o)
         local mb = diff / 125000
         local v = mb
         local u = "M"
-      
+
         if mb < 1 then
           v = diff / 125
           u = "K"
         end
-      
+
         sysmonitor.check_alert(instance, mb)
         sysmonitor.update_string(instance, utils.numpad(v, 3), u)
         instance.timer:again()
@@ -161,7 +161,7 @@ function sysmonitor.create(args)
   instance.timer = gears.timer {
     timeout = args.timeout,
     call_now = false,
-    autostart = true,
+    autostart = false,
     single_shot = true,
     callback = function() sysmonitor.update(instance) end
   }
