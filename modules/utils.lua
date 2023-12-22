@@ -93,6 +93,10 @@ function Utils.snap(c, axis, position)
   })
 end
 
+function Utils.placement(c, what)
+  awful.placement[what](c, {honor_workarea = true})
+end
+
 function Utils.launcher()
   Utils.spawn("rofi -modi drun -show drun -show-icons -no-click-to-exit")
 end

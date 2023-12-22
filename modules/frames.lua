@@ -11,9 +11,7 @@ Frames.frames.top_left = {
 	width = half_width,
 	height = height_top,
 	x_index = 10,
-	placement = function(c)
-		awful.placement.top_left(c, {honor_workarea = true})
-	end,
+	placement = "top_left",
 }
 
 Frames.frames.bottom_left = {
@@ -21,9 +19,7 @@ Frames.frames.bottom_left = {
 	width = half_width,
 	height = height_bottom,
 	x_index = 20,
-	placement = function(c)
-		awful.placement.bottom_left(c, {honor_workarea = true})
-	end,
+	placement = "bottom_left",
 }
 
 Frames.frames.top_right = {
@@ -31,9 +27,7 @@ Frames.frames.top_right = {
 	width = half_width,
 	height = height_top,
 	x_index = 30,
-	placement = function(c)
-		awful.placement.top_right(c, {honor_workarea = true})
-	end,
+	placement = "top_right",
 }
 
 Frames.frames.bottom_right = {
@@ -41,9 +35,7 @@ Frames.frames.bottom_right = {
 	width = half_width,
 	height = height_bottom,
 	x_index = 40,
-	placement = function(c)
-		awful.placement.bottom_right(c, {honor_workarea = true})
-	end,
+	placement = "bottom_right",
 }
 
 function Frames.apply_rules(c, i)
@@ -63,7 +55,7 @@ function Frames.apply_rules(c, i)
 	c.width = Utils.width_factor(rules.width)
 	c.height = Utils.height_factor(rules.height)
 	c.x_index = rules.x_index + i
-	rules.placement(c)
+	Utils.placement(c, rules.placement)
 end
 
 function Frames.start()

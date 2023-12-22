@@ -97,7 +97,7 @@ awful.rules.rules = {
     properties = {
       maximized = false,
       placement = function(c)
-        awful.placement.top_left(c, {honor_workarea = true})
+        Utils.placement(c, "top_left")
       end,
       width = Utils.width_factor(0.75),
       height = Utils.height_factor(0.5),
@@ -111,7 +111,7 @@ awful.rules.rules = {
     properties = {
       maximized = false,
       placement = function(c)
-        awful.placement.top_right(c, {honor_workarea = true})
+        Utils.placement(c, "top_right")
       end,
       width = Utils.width_factor(0.25),
       height = Utils.height_factor(0.5),
@@ -124,7 +124,7 @@ awful.rules.rules = {
     properties = {
       maximized = false,
       placement = function(c)
-        awful.placement.bottom(c, {honor_workarea = true})
+        Utils.placement(c, "bottom")
       end,
       width = Utils.width_factor(1),
       height = Utils.height_factor(0.5),
@@ -139,7 +139,7 @@ awful.rules.rules = {
     properties = {
       maximized = false,
       placement = function(c)
-        awful.placement.centered(c, {honor_workarea = true})
+        Utils.placement(c, "centered")
       end,
       width = Utils.width_factor(0.7),
       height = Utils.height_factor(0.7),
