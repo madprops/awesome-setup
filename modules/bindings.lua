@@ -296,7 +296,7 @@ Bindings.tasklist_buttons = gears.table.join(
 
   awful.button({}, 4, function(c)
     if c.x_index ~= 0 then
-      Utils.frame_cycle(client.focus)
+      Utils.frame_cycle(c, false, true)
     end
   end),
 
@@ -306,7 +306,7 @@ Bindings.tasklist_buttons = gears.table.join(
 
   awful.button({}, 5, function(c)
     if c.x_index ~= 0 then
-      Utils.frame_cycle(client.focus, true)
+      Utils.frame_cycle(c, true, true)
     end
   end),
 

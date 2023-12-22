@@ -514,20 +514,31 @@ function Utils.minimize(c)
   c:activate {context = "tasklist", action = "toggle_minimization"}
 end
 
-function Utils.frame_cycle(c1, reverse)
+function Utils.frame_cycle(c1, reverse, alt)
   if reverse == nil then
     reverse = false
+  end
+
+  if alt == nil then
+    alt = false
   end
 
   local frames = {}
   local match = false
   local clients = Utils.clients()
+  local focused = c1
 
   for _, c2 in ipairs(clients) do
     if c2.x_index ~= 0 then
       if c1.width == c2.width and c1.height == c2.height then
         if c1.x == c2.x and c1.y == c2.y then
           table.insert(frames, c2)
+
+          if alt then
+            if client.focus == c2 then
+              focused = c2
+            end
+          end
         end
       end
     end
@@ -544,7 +555,7 @@ function Utils.frame_cycle(c1, reverse)
   end
 
   for _, c2 in ipairs(frames) do
-    if c1 == c2 then
+    if focused == c2 then
       match = true
     elseif match then
       Utils.focus(c2)
