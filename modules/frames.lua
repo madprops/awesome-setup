@@ -5,22 +5,22 @@ Frames.rules = {}
 
 Frames.rules.top_right = {
 	screen = 2,
-	placement = function(c)
-		awful.placement.top_right(c, {honor_workarea = true})
-	end,
 	width = Utils.width_factor(0.5),
 	height = Utils.height_factor(0.64),
 	x_index = 10,
+	placement = function(c)
+		awful.placement.top_right(c)
+	end,
 }
 
 Frames.rules.bottom_right = {
 	screen = 2,
-	placement = function(c)
-		awful.placement.bottom_right(c, {honor_workarea = true})
-	end,
 	width = Utils.width_factor(0.5),
 	height = Utils.height_factor(0.36),
 	x_index = 20,
+	placement = function(c)
+		awful.placement.bottom_right(c)
+	end,
 }
 
 function Frames.apply_rules(c, i)

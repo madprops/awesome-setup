@@ -161,7 +161,7 @@ function Rules.check_title(c, force)
       c.maximized = false
       awful.placement.top_left(c, {honor_workarea = true})
       c.width = Utils.width_factor(0.5)
-      c.height = Utils.height_factor(0.64)
+      c.height = Utils.height_factor(1)
       c.x_rules_applied = true
       c.x_tiled = true
       c.x_index = 1.8
