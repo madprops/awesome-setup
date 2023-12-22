@@ -4,44 +4,45 @@ Frames = {}
 Frames.rules = {}
 local height_top = 0.64
 local height_bottom = 0.36
+local half_width = 0.5
 
 Frames.rules.top_left = {
 	screen = 2,
-	width = Utils.width_factor(0.5),
-	height = Utils.height_factor(height_top),
+	width = half_width,
+	height = height_top,
 	x_index = 10,
 	placement = function(c)
-		awful.placement.top_left(c)
+		awful.placement.top_left(c, {honor_workarea = true})
 	end,
 }
 
 Frames.rules.bottom_left = {
 	screen = 2,
-	width = Utils.width_factor(0.5),
-	height = Utils.height_factor(height_bottom),
+	width = half_width,
+	height = height_bottom,
 	x_index = 20,
 	placement = function(c)
-		awful.placement.bottom_left(c)
+		awful.placement.bottom_left(c, {honor_workarea = true})
 	end,
 }
 
 Frames.rules.top_right = {
 	screen = 2,
-	width = Utils.width_factor(0.5),
-	height = Utils.height_factor(height_top),
+	width = half_width,
+	height = height_top,
 	x_index = 30,
 	placement = function(c)
-		awful.placement.top_right(c)
+		awful.placement.top_right(c, {honor_workarea = true})
 	end,
 }
 
 Frames.rules.bottom_right = {
 	screen = 2,
-	width = Utils.width_factor(0.5),
-	height = Utils.height_factor(height_bottom),
+	width = half_width,
+	height = height_bottom,
 	x_index = 40,
 	placement = function(c)
-		awful.placement.bottom_right(c)
+		awful.placement.bottom_right(c, {honor_workarea = true})
 	end,
 }
 
@@ -54,8 +55,8 @@ function Frames.apply_rules(c, i)
 
 	c.maximized = false
 	c.screen = rules.screen
-	c.width = rules.width
-	c.height = rules.height
+	c.width = Utils.width_factor(rules.width)
+	c.height = Utils.height_factor(rules.height)
 	c.x_index = rules.x_index + i
 	rules.placement(c)
 end
