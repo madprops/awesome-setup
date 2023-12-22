@@ -10,8 +10,6 @@ function Dropdowns.setup()
     end)
 end
 
---
-
 function Dropdowns.start_gpt()
     Utils.spawn("firefox-developer-edition -P chatgpt")
 end
@@ -21,8 +19,6 @@ function Dropdowns.start_utils()
     Utils.spawn("speedcrunch")
     Utils.spawn("tilix --session ~/other/tilix.json")
 end
-
---
 
 -- When raising a client from the tasklist
 function Dropdowns.check_hide(c)
