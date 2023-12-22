@@ -18,7 +18,7 @@ function Frames.cycle(c1, reverse, alt)
 		if c2.x_index ~= 0 then
 			if c1.width == c2.width and c1.height == c2.height then
 				if c1.x == c2.x and c1.y == c2.y then
-				table.insert(frames, c2)
+					table.insert(frames, c2)
 				end
 			end
 		end
@@ -50,5 +50,9 @@ function Frames.cycle(c1, reverse, alt)
 		end
 	end
 
-	Utils.focus(frames[1])
+	if frames[1] == focused then
+		Utils.focus(frames[#frames])
+	else
+		Utils.focus(frames[1])
+	end
 end

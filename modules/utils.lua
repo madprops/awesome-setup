@@ -4,6 +4,7 @@ local awful = require("awful")
 local naughty = require("naughty")
 local wibox = require("wibox")
 local gears = require("gears")
+local socket = require("socket")
 local lockdelay = require("madwidgets/lockdelay/lockdelay")
 local autotimer = require("madwidgets/autotimer/autotimer")
 local context_client
@@ -572,4 +573,8 @@ end
 
 function Utils.seconds()
   return os.time()
+end
+
+function Utils.nano()
+  return socket.gettime()
 end
