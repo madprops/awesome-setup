@@ -283,6 +283,7 @@ Bindings.clientbuttons = gears.table.join(
 Bindings.tasklist_buttons = gears.table.join(
   awful.button({}, 1, function(c)
     Utils.minimize(c)
+    Dropdowns.check_hide(c)
   end),
 
   awful.button({}, 2, function(c)

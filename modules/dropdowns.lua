@@ -24,6 +24,13 @@ end
 
 --
 
+-- When raising a client from the tasklist
+function Dropdowns.check_hide(c)
+    if not Dropdowns.included(c) then
+        Dropdowns.hide_screen(c.screen)
+    end
+end
+
 function Dropdowns.included(c)
     for index, dropdown in ipairs(Dropdowns.dropdowns) do
         if c[Dropdowns.get_x(dropdown)] then return true end
