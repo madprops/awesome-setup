@@ -548,6 +548,8 @@ function Utils.frame_cycle(c1, reverse, alt)
     if focused == nil then
       focused = frames[1]
     end
+  else
+    focused = c1
   end
 
   if #frames == 0 then
@@ -555,9 +557,9 @@ function Utils.frame_cycle(c1, reverse, alt)
   end
 
   if reverse then
-    table.sort(frames, function(a, b) return a.x_index < b.x_index end)
-  else
     table.sort(frames, function(a, b) return a.x_index > b.x_index end)
+  else
+    table.sort(frames, function(a, b) return a.x_index < b.x_index end)
   end
 
   for _, c2 in ipairs(frames) do
