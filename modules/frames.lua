@@ -47,12 +47,17 @@ Frames.frames.bottom_right = {
 }
 
 function Frames.apply_rules(c, i)
+	if c.x_frame_ready then
+		return
+	end
+
 	local rules = Frames.frames[c.x_frame]
 
 	if rules == nil then
 		return
 	end
 
+	c.x_frame_ready = true
 	c.maximized = false
 	c.screen = rules.screen
 	c.width = Utils.width_factor(rules.width)
@@ -63,11 +68,15 @@ end
 
 function Frames.start()
 	for frame, _ in pairs(Frames.frames) do
-		Frames.start_frame(frame)
+		Frames.refresh(frame)
 	end
 end
 
-function Frames.start_frame(frame)
+function Frames.refresh(frame)
+	if frame == "none" then
+		return
+	end
+
 	local frames = {}
 
 	for _, c in ipairs(client.get()) do

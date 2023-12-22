@@ -25,8 +25,9 @@ awful.rules.rules = {
       x_index = 0,
       x_focus_date = 0,
       x_frame = "none",
+      x_frame_ready = false,
     },
-    callback=function(c)
+    callback = function(c)
       if c.fullscreen then
         c.fullscreen = false
         c.fullscreen = true
@@ -179,8 +180,6 @@ function Rules.check_title(c, force)
       c.x_dropdown_gpt = true
     end
   end
-
-  Frames.apply_rules(c, 1)
 end
 
 function Rules.reset(c)
