@@ -2,11 +2,13 @@ local awful = require("awful")
 
 Frames = {}
 Frames.rules = {}
+local height_top = 0.64
+local height_bottom = 0.36
 
 Frames.rules.top_left = {
 	screen = 2,
 	width = Utils.width_factor(0.5),
-	height = Utils.height_factor(0.64),
+	height = Utils.height_factor(height_top),
 	x_index = 10,
 	placement = function(c)
 		awful.placement.top_left(c)
@@ -16,7 +18,7 @@ Frames.rules.top_left = {
 Frames.rules.bottom_left = {
 	screen = 2,
 	width = Utils.width_factor(0.5),
-	height = Utils.height_factor(0.36),
+	height = Utils.height_factor(height_bottom),
 	x_index = 20,
 	placement = function(c)
 		awful.placement.bottom_left(c)
@@ -26,7 +28,7 @@ Frames.rules.bottom_left = {
 Frames.rules.top_right = {
 	screen = 2,
 	width = Utils.width_factor(0.5),
-	height = Utils.height_factor(0.64),
+	height = Utils.height_factor(height_top),
 	x_index = 30,
 	placement = function(c)
 		awful.placement.top_right(c)
@@ -36,7 +38,7 @@ Frames.rules.top_right = {
 Frames.rules.bottom_right = {
 	screen = 2,
 	width = Utils.width_factor(0.5),
-	height = Utils.height_factor(0.36),
+	height = Utils.height_factor(height_bottom),
 	x_index = 40,
 	placement = function(c)
 		awful.placement.bottom_right(c)
