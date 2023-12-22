@@ -23,6 +23,7 @@ awful.rules.rules = {
       x_dropdown_gpt = false,
       x_dropdown_utils = false,
       x_index = 0,
+      x_focus_date = 0,
     },
     callback=function(c)
       if c.fullscreen then

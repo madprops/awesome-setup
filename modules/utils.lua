@@ -533,21 +533,14 @@ function Utils.frame_cycle(c1, reverse, alt)
       if c1.width == c2.width and c1.height == c2.height then
         if c1.x == c2.x and c1.y == c2.y then
           table.insert(frames, c2)
-
-          if alt then
-            if client.focus == c2 then
-              focused = c2
-            end
-          end
         end
       end
     end
   end
 
   if alt then
-    if focused == nil then
-      focused = frames[1]
-    end
+    table.sort(frames, function(a, b) return a.x_focus_date > b.x_focus_date end)
+    focused = frames[1]
   else
     focused = c1
   end
@@ -628,4 +621,8 @@ end
 
 function Utils.first_tag()
   Utils.my_screen().tags[1]:view_only()
+end
+
+function Utils.seconds()
+  return os.time()
 end
