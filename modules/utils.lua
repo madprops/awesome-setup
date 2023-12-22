@@ -526,7 +526,7 @@ function Utils.frame_cycle(c1, reverse, alt)
   local frames = {}
   local match = false
   local clients = Utils.clients()
-  local focused = c1
+  local focused
 
   for _, c2 in ipairs(clients) do
     if c2.x_index ~= 0 then
@@ -541,6 +541,12 @@ function Utils.frame_cycle(c1, reverse, alt)
           end
         end
       end
+    end
+  end
+
+  if alt then
+    if focused == nil then
+      focused = frames[1]
     end
   end
 
