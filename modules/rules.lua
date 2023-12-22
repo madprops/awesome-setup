@@ -77,7 +77,7 @@ awful.rules.rules = {
       height = Utils.height_factor(0.64),
       screen = screen_right,
       x_tiled = true,
-      x_index = 3,
+      x_index = 10,
     }
   },
   {
@@ -92,7 +92,7 @@ awful.rules.rules = {
       screen = screen_right,
       x_alt_q = true,
       x_tiled = true,
-      x_index = 4,
+      x_index = 11,
     }
   },
   {
