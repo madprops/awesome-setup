@@ -174,6 +174,7 @@ function Rules.check_title(c, force)
       awful.placement.top_left(c, {honor_workarea = true})
       c.width = Utils.width_factor(0.5)
       c.height = Utils.height_factor(0.64)
+      c.skip_taskbar = true
       c.x_rules_applied = true
       c.x_tiled = true
       c.x_index = 1.8
@@ -184,6 +185,7 @@ function Rules.check_title(c, force)
       awful.placement.bottom_left(c, {honor_workarea = true})
       c.width = Utils.width_factor(0.5)
       c.height = Utils.height_factor(0.36)
+      c.skip_taskbar = true
       c.x_rules_applied = true
       c.x_tiled = true
       c.x_index = 2
@@ -194,6 +196,7 @@ function Rules.check_title(c, force)
       awful.placement.top_right(c, {honor_workarea = true})
       c.width = Utils.width_factor(0.5)
       c.height = Utils.height_factor(0.64)
+      c.skip_taskbar = true
       c.x_rules_applied = true
       c.x_tiled = true
       c.x_index = 3
