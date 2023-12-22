@@ -39,8 +39,6 @@ function Dropdowns.get_x(what)
     return "x_dropdown_" .. what
 end
 
---
-
 function Dropdowns.get_on(what)
     return Dropdowns["dd_" .. what .. "_on"]
 end
@@ -48,8 +46,6 @@ end
 function Dropdowns.set_on(what, value)
     Dropdowns["dd_" .. what .. "_on"] = value
 end
-
---
 
 function Dropdowns.get_tag(what)
     return Dropdowns["dd_" .. what .. "_tag"]
@@ -59,8 +55,6 @@ function Dropdowns.set_tag(what, value)
     Dropdowns["dd_" .. what .. "_tag"] = value
 end
 
---
-
 function Dropdowns.get_screen(what)
     return Dropdowns["dd_" .. what .. "_screen"]
 end
@@ -68,8 +62,6 @@ end
 function Dropdowns.set_screen(what, value)
     Dropdowns["dd_" .. what .. "_screen"] = value
 end
-
---
 
 function Dropdowns.toggle(what)
     if Dropdowns.get_on(what) then
@@ -89,7 +81,7 @@ function Dropdowns.toggle(what)
 end
 
 function Dropdowns.show(what)
-    Dropdowns.hide_others(what)
+    Dropdowns.hide_screen(Utils.my_screen())
     local t = Utils.my_tag()
     local max
 
