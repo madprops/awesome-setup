@@ -1,3 +1,10 @@
+-- Frames are groups of clients that can be cycled through
+-- They are placed in the same place on the screen
+-- For instance you can have 3 clients in the top right
+-- Clicking the tasklist button cycles between them
+-- You can also use the mousewheel
+-- Only one tasklist item is shown at a time
+
 local awful = require("awful")
 
 Frames = {}
