@@ -294,8 +294,20 @@ Bindings.tasklist_buttons = gears.table.join(
     Utils.show_task_context(c)
   end),
 
+  awful.button({}, 4, function(c)
+    if c.x_index ~= 0 then
+      Utils.frame_cycle(client.focus)
+    end
+  end),
+
   awful.button({modkey}, 4, function(c)
     awful.client.swap.byidx(-1, c)
+  end),
+
+  awful.button({}, 5, function(c)
+    if c.x_index ~= 0 then
+      Utils.frame_cycle(client.focus, true)
+    end
   end),
 
   awful.button({modkey}, 5, function(c)

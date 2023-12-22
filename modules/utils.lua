@@ -507,20 +507,21 @@ end
 
 function Utils.minimize(c)
   if client.focus == c then
-    if c.x_index then
-      Utils.frame_cycle(c)
-      return
-    end
+    Utils.frame_cycle(c)
+    return
   end
 
   c:activate {context = "tasklist", action = "toggle_minimization"}
 end
 
-function Utils.frame_cycle(c1)
+function Utils.frame_cycle(c1, reverse)
+  if reverse == nil then
+    reverse = false
+  end
+
   local frames = {}
   local match = false
   local clients = Utils.clients()
-  table.sort(clients, function(a, b) return a.x_index < b.x_index end)
 
   for _, c2 in ipairs(clients) do
     if c2.x_index ~= 0 then
@@ -534,6 +535,12 @@ function Utils.frame_cycle(c1)
 
   if #frames == 0 then
     return
+  end
+
+  if reverse then
+    table.sort(frames, function(a, b) return a.x_index < b.x_index end)
+  else
+    table.sort(frames, function(a, b) return a.x_index > b.x_index end)
   end
 
   for _, c2 in ipairs(frames) do
