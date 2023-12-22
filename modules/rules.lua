@@ -185,6 +185,7 @@ end
 function Rules.reset(c)
   awful.rules.apply(c)
   Rules.check_title(c, true)
+  Frames.apply_rules(c, 1)
 end
 
 function Rules.apply(c)
