@@ -1,4 +1,42 @@
+local awful = require("awful")
+
 Frames = {}
+Frames.rules = {}
+
+Frames.rules.top_right = {
+	screen = 2,
+	placement = function(c)
+		awful.placement.top_right(c, {honor_workarea = true})
+	end,
+	width = Utils.width_factor(0.5),
+	height = Utils.height_factor(0.64),
+	x_index = 10,
+}
+
+Frames.rules.bottom_right = {
+	screen = 2,
+	placement = function(c)
+		awful.placement.bottom_right(c, {honor_workarea = true})
+	end,
+	width = Utils.width_factor(0.5),
+	height = Utils.height_factor(0.36),
+	x_index = 20,
+}
+
+function Frames.apply_rules(c, i)
+	local rules = Frames.rules[c.x_frame]
+
+	if rules == nil then
+		return
+	end
+
+	c.maximized = false
+	c.screen = rules.screen
+	c.width = rules.width
+	c.height = rules.height
+	c.x_index = rules.x_index + i
+	rules.placement(c)
+end
 
 function Frames.cycle(c1, reverse, alt)
 	if c1.x_frame == "none" then
@@ -15,16 +53,11 @@ function Frames.cycle(c1, reverse, alt)
 
 	local frames = {}
 	local match = false
-	local clients = Utils.clients()
 	local focused
 
-	for _, c2 in ipairs(clients) do
+	for _, c2 in ipairs(Utils.clients()) do
 		if c2.x_frame == c1.x_frame then
-			if c1.width == c2.width and c1.height == c2.height then
-				if c1.x == c2.x and c1.y == c2.y then
-					table.insert(frames, c2)
-				end
-			end
+			table.insert(frames, c2)
 		end
 	end
 
@@ -47,8 +80,9 @@ function Frames.cycle(c1, reverse, alt)
 
 	local selected
 
-	for _, c2 in ipairs(frames) do
+	for i, c2 in ipairs(frames) do
 		c2.skip_taskbar = true
+		Frames.apply_rules(c2, i)
 
 		if focused == c2 then
 			match = true

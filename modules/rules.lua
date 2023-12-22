@@ -1,8 +1,8 @@
-Rules = {}
-
 local awful = require("awful")
 local screen_left = 1
 local screen_right = 2
+
+Rules = {}
 
 awful.rules.rules = {
   {
@@ -71,13 +71,6 @@ awful.rules.rules = {
   {
     rule = {instance = "hexchat"},
     properties = {
-      maximized = false,
-      placement = function(c)
-        awful.placement.top_right(c, {honor_workarea = true})
-      end,
-      width = Utils.width_factor(0.5),
-      height = Utils.height_factor(0.64),
-      screen = screen_right,
       x_tiled = true,
       x_frame = "top_right",
       x_index = 10,
@@ -86,16 +79,9 @@ awful.rules.rules = {
   {
     rule = {instance = "audacious"},
     properties = {
-      maximized = false,
-      placement = function(c)
-        awful.placement.bottom_right(c, {honor_workarea = true})
-      end,
-      width = Utils.width_factor(0.5),
-      height = Utils.height_factor(0.36),
-      screen = screen_right,
+      x_frame = "bottom_right",
       x_alt_q = true,
       x_tiled = true,
-      x_index = 11,
     }
   },
   {
@@ -182,24 +168,15 @@ function Rules.check_title(c, force)
     end
   elseif Utils.startswith(c.name, "[ff_tile2]") then
     if not c.x_rules_applied or force then
-      c.maximized = false
-      awful.placement.bottom_left(c, {honor_workarea = true})
-      c.width = Utils.width_factor(0.5)
-      c.height = Utils.height_factor(0.36)
       c.x_rules_applied = true
+      c.x_frame = "bottom_right"
       c.x_tiled = true
-      c.x_index = 2
     end
   elseif Utils.startswith(c.name, "[ff_tile3]") then
     if not c.x_rules_applied or force then
-      c.maximized = false
-      awful.placement.top_right(c, {honor_workarea = true})
-      c.width = Utils.width_factor(0.5)
-      c.height = Utils.height_factor(0.64)
       c.x_rules_applied = true
       c.x_tiled = true
       c.x_frame = "top_right"
-      c.x_index = 3
     end
   elseif Utils.startswith(c.name, "[chatgpt]") then
     if not c.x_rules_applied or force then
@@ -211,6 +188,8 @@ function Rules.check_title(c, force)
       c.x_dropdown_gpt = true
     end
   end
+
+  Frames.apply_rules(c, 1)
 end
 
 function Rules.reset(c)
