@@ -161,7 +161,7 @@ function sysmonitor.create(args)
   instance.timer = gears.timer {
     timeout = args.timeout,
     call_now = false,
-    autostart = false,
+    autostart = true,
     single_shot = true,
     callback = function() sysmonitor.update(instance) end
   }
