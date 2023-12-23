@@ -69,6 +69,8 @@ awful.screen.connect_for_each_screen(function(s)
     buttons = {
       awful.button({ }, 1, function(t) t:view_only() end),
       awful.button({ }, 3, function(t) Utils.move_to_tag(t) end),
+      awful.button({ }, 4, function(t) Utils.switch_tag("prev") end),
+      awful.button({ }, 5, function(t) Utils.switch_tag("next") end),
     }
   }
 
