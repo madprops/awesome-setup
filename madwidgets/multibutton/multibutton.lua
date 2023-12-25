@@ -23,6 +23,7 @@ function multibutton.create(args)
   args.right = args.right or ""
   args.left_color = args.left_color or beautiful.fg_normal
   args.right_color = args.right_color or beautiful.fg_normal
+  args.side_actions = args.side_actions or true
   args.opacity = args.opacity or 1
 
   local instance = {}
@@ -90,7 +91,7 @@ function multibutton.create(args)
     right,
   }
 
-  instance.subwidget:connect_signal("button::press", function(a, b, c, button, mods)
+  function instance.action(button)
     if button == 1 then
       args.on_click(instance)
     elseif button == 2 then
@@ -102,7 +103,21 @@ function multibutton.create(args)
     elseif button == 5 then
       args.on_wheel_down(instance)
     end
+  end
+
+  instance.subwidget:connect_signal("button::press", function(a, b, c, button, mods)
+    instance.action(button)
   end)
+
+  if args.side_actions then
+    instance.left_text:connect_signal("button::press", function(a, b, c, button, mods)
+      instance.action(button)
+    end)
+
+    instance.right_text:connect_signal("button::press", function(a, b, c, button, mods)
+      instance.action(button)
+    end)
+  end
 
   instance.subwidget:connect_signal("button::release", function(a, b, c, button, mods)
     if button == 1 then
