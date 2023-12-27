@@ -272,20 +272,29 @@ Bindings.clientbuttons = gears.table.join(
   awful.button({modkey}, 4, function(c)
     if not c.x_keys then return end
 
-    if c.x_frame == "none" then
-      Utils.grow_in_place(c)
-    else
-      Frames.cycle(c, true, true)
-    end
+    mousegrabber.run(function (_mouse)
+      if c.x_frame == "none" then
+        Utils.grow_in_place(c)
+      else
+        Frames.cycle(c, true, true)
+      end
+
+      return false
+    end, "mouse")
   end),
 
   awful.button({modkey}, 5, function(c)
     if not c.x_keys then return end
-    if c.x_frame == "none" then
-      Utils.shrink_in_place(c)
-    else
-      Frames.cycle(c, false, true)
-    end
+
+    mousegrabber.run(function (_mouse)
+      if c.x_frame == "none" then
+        Utils.shrink_in_place(c)
+      else
+        Frames.cycle(c, false, true)
+      end
+
+      return false
+    end, "mouse")
   end)
 )
 
