@@ -4,7 +4,7 @@ local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local autotimer = require("madwidgets/autotimer/autotimer")
 local tagview = require("madwidgets/tagview/tagview")
-local tagbar = require("madwidgets/tagbar/tagbar")
+-- local tagbar = require("madwidgets/tagbar/tagbar")
 
 autotimer.create({
   left = " ",
