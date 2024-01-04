@@ -7,7 +7,7 @@ local multibutton = require("madwidgets/multibutton/multibutton")
 
 local volumecontrol = {}
 volumecontrol.max_volume = 100
-volumecontrol.steps = 5
+volumecontrol.steps = 3
 
 local instances = {}
 local last_volume = 100
