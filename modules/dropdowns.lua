@@ -1,4 +1,4 @@
--- Dropdowns are one or more clients that can be spawn on any tag
+-- Dropdowns are one or more clients that can be spawned on any tag
 -- They get shown and dismissed on demand
 -- They don't take space in the tasklist
 
