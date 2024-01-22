@@ -308,7 +308,7 @@ function Utils.clients()
   for i = 1, #clients do
     local c = clients[i]
 
-    if not c.x_util then
+    if not Dropdowns.included(c) then
       table.insert(filtered, c)
     end
   end
@@ -530,7 +530,7 @@ function Utils.smart_button(c)
     Utils.run_script("commands.rb " .. c.instance)
   elseif c.x_frame ~= "none" then
     Rules.reset(c)
-  elseif not c.x_util then
+  elseif not Dropdowns.included(c) then
     if #Utils.clients() > 1 then
       Utils.minimize(c)
     end
