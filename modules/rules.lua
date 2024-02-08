@@ -26,6 +26,8 @@ awful.rules.rules = {
       x_focus_date = 0,
       x_frame = "none",
       x_frame_ready = false,
+      x_alt_q = false,
+      x_ctrl_d = false,
     },
     callback = function(c)
       if c.fullscreen then
@@ -81,6 +83,13 @@ awful.rules.rules = {
     properties = {
       x_frame = "bottom_right",
       x_alt_q = true,
+    }
+  },
+  {
+    rule = {instance = "strawberry"},
+    properties = {
+      x_frame = "bottom_right",
+      x_ctrl_d = true,
     }
   },
   {

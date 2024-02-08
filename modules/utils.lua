@@ -569,6 +569,8 @@ end
 function Utils.middle_click(c)
   if c.x_alt_q then
     Utils.fake_input_do(false, false, true, "q")
+  elseif c.x_ctrl_d then
+    Utils.fake_input_do(true, false, false, "d")
   end
 end
 
