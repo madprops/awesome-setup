@@ -134,13 +134,18 @@ function Dropdowns.hide_all()
 end
 
 function Dropdowns.hide_screen(screen)
+    local hid_some = false
+
     for index, dropdown in ipairs(Dropdowns.dropdowns) do
         if Dropdowns.get_on(dropdown) then
             if Dropdowns.get_screen(dropdown) == screen then
                 Dropdowns.hide(dropdown)
+                hid_some = true
             end
         end
     end
+
+    return hid_some
 end
 
 function Dropdowns.check()

@@ -371,10 +371,18 @@ function Utils.switch_tag(direction, sticky)
 end
 
 function Utils.next_tag(sticky)
+  if Dropdowns.hide_screen(Utils.my_screen()) then
+    return
+  end
+
   tag_next_lock.trigger(sticky)
 end
 
 function Utils.prev_tag(sticky)
+  if Dropdowns.hide_screen(Utils.my_screen()) then
+    return
+  end
+
   tag_prev_lock.trigger(sticky)
 end
 
