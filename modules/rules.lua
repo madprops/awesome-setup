@@ -172,12 +172,12 @@ function Rules.check_title(c, force)
   elseif Utils.startswith(c.name, "[ff_tile2]") then
     if not c.x_rules_applied or force then
       c.x_rules_applied = true
-      c.x_frame = "bottom_right"
+      c.x_frame = "top_right"
     end
   elseif Utils.startswith(c.name, "[ff_tile3]") then
     if not c.x_rules_applied or force then
       c.x_rules_applied = true
-      c.x_frame = "top_right"
+      c.x_frame = "bottom_right"
     end
   elseif Utils.startswith(c.name, "[chatgpt]") then
     if not c.x_rules_applied or force then

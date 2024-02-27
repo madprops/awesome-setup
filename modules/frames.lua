@@ -12,10 +12,12 @@ Frames.frames = {}
 local height_top = 0.64
 local height_bottom = 0.36
 local half_width = 0.5
+local one_third = 0.3333
+local two_thirds = 0.6666
 
 Frames.frames.top_left = {
 	screen = 2,
-	width = half_width,
+	width = two_thirds,
 	height = height_top,
 	x_index = 10,
 	placement = "top_left",
@@ -31,7 +33,7 @@ Frames.frames.bottom_left = {
 
 Frames.frames.top_right = {
 	screen = 2,
-	width = half_width,
+	width = one_third,
 	height = height_top,
 	x_index = 30,
 	placement = "top_right",
