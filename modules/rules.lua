@@ -195,6 +195,7 @@ function Rules.reset(c)
   awful.rules.apply(c)
   Rules.check_title(c, true)
   Frames.apply_rules(c, 1)
+  c.x_focus_date = Utils.nano()
 end
 
 function Rules.apply(c)

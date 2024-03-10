@@ -530,7 +530,6 @@ function Utils.smart_button(c)
     Utils.run_script("commands.rb " .. c.instance)
   elseif c.x_frame ~= "none" then
     Rules.reset(c)
-    Utils.update_focus(c)
   elseif not Dropdowns.included(c) then
     if #Utils.clients() > 1 then
       Utils.minimize(c)
@@ -585,8 +584,4 @@ end
 
 function Utils.nano()
   return socket.gettime()
-end
-
-function Utils.update_focus(c)
-  c.x_focus_date = Utils.nano()
 end
