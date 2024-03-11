@@ -155,6 +155,12 @@ awful.rules.rules = {
       x_commands = true,
     }
   },
+  {
+    rule = {instance = "meltdown"},
+    properties = {
+      screen = screen_left,
+    }
+  },
 }
 
 function Rules.check_title(c, force)
