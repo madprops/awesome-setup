@@ -16,6 +16,7 @@ awful.rules.rules = {
       screen = awful.screen.preferred,
       placement = awful.placement.centered,
       skip_taskbar = false,
+      titlebars_enabled = false,
       x_keys = true,
       x_rules_applied = false,
       x_client = true,
@@ -159,7 +160,8 @@ awful.rules.rules = {
     rule = {instance = "meltdown"},
     properties = {
       screen = screen_left,
-    }
+      titlebars_enabled = true,
+    },
   },
 }
 
