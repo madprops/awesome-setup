@@ -1,5 +1,6 @@
 local awful = require("awful")
 local wibox = require("wibox")
+local gears = require("gears")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local autotimer = require("madwidgets/autotimer/autotimer")
@@ -243,36 +244,56 @@ awful.screen.connect_for_each_screen(function(s)
   -- })
 end)
 
+-- Double click titlebar
+function double_click_event_handler(double_click_event)
+  if double_click_timer then
+      double_click_timer:stop()
+      double_click_timer = nil
+      return true
+  end
+
+  double_click_timer = gears.timer.start_new(0.20, function()
+      double_click_timer = nil
+      return false
+  end)
+end
+
 client.connect_signal("request::titlebars", function(c)
   -- buttons for the titlebar
   local buttons = {
       awful.button({ }, 1, function()
+        -- WILL EXECUTE THIS ON DOUBLE CLICK
+        if double_click_event_handler() then
+          c.maximized = not c.maximized
+          c:raise()
+        else
           c:activate { context = "titlebar", action = "mouse_move"  }
+        end
       end),
       awful.button({ }, 3, function()
-          c:activate { context = "titlebar", action = "mouse_resize"}
+        c:activate { context = "titlebar", action = "mouse_resize"}
       end),
   }
 
   awful.titlebar(c).widget = {
       { -- Left
-          awful.titlebar.widget.iconwidget(c),
-          buttons = buttons,
-          layout  = wibox.layout.fixed.horizontal
+        awful.titlebar.widget.iconwidget(c),
+        buttons = buttons,
+        layout  = wibox.layout.fixed.horizontal
       },
       { -- Middle
-          { -- Title
-              halign = "center",
-              widget = awful.titlebar.widget.titlewidget(c)
-          },
-          buttons = buttons,
-          layout  = wibox.layout.flex.horizontal
+        { -- Title
+          halign = "center",
+          widget = awful.titlebar.widget.titlewidget(c)
+        },
+        buttons = buttons,
+        layout  = wibox.layout.flex.horizontal
       },
       { -- Right
-          awful.titlebar.widget.maximizedbutton(c),
-          awful.titlebar.widget.ontopbutton    (c),
-          awful.titlebar.widget.closebutton    (c),
-          layout = wibox.layout.fixed.horizontal()
+        awful.titlebar.widget.maximizedbutton(c),
+        awful.titlebar.widget.ontopbutton    (c),
+        awful.titlebar.widget.closebutton    (c),
+        layout = wibox.layout.fixed.horizontal()
       },
       layout = wibox.layout.align.horizontal
   }
