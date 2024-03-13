@@ -191,6 +191,10 @@ Menupanels.context = menupanel.create({
       action = function() Utils.center(Utils.get_context_client()) end,
     },
     {
+      name = "Decorate",
+      action = function() Utils.decorate(Utils.get_context_client()) end,
+    },
+    {
       name = "Reset",
       action = function() Rules.reset(Utils.get_context_client()) end,
     },

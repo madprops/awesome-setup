@@ -585,3 +585,13 @@ end
 function Utils.nano()
   return socket.gettime()
 end
+
+function Utils.decorate(c)
+  c.titlebars_enabled = not c.titlebars_enabled
+
+  if c.titlebars_enabled then
+    awful.titlebar.show(c)
+  else
+    awful.titlebar.hide(c)
+  end
+end
