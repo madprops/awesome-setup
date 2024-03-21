@@ -212,7 +212,7 @@ function Rules.check_title(c, force)
       c.maximized = false
       c.x_dropdown_utils = false
       c.height = Utils.height_factor(0.333)
-      c.width = Utils.height_factor(1)
+      c.width = Utils.width_factor(1)
       Utils.placement(c, "bottom")
     end
   end
