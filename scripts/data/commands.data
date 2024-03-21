@@ -1,9 +1,9 @@
 dolphin ; ./utils/bundle.rb && ./utils/check.rb && ./utils/zip.rb
 dolphin ; ./utils/tag.rb
 
-code ; ../run.sh
-code ; mypy --strict main.py
-code ; scripts/format.sh
+tilix ; ../run.sh
+tilix ; mypy --strict main.py
+tilix ; scripts/format.sh
 
 Alacritty ; cd "/media/storage1/FL Studio 20" && winedbg --command cont "FL64 (scaled).exe"
 Alacritty ; llama.cpp -m /media/storage3/models/pirouette-7b.Q5_K_M.gguf -i -ins --keep -1 -n 400 -c 4096 --repeat_penalty 1.0 --top-k 0 --top-p 1.0 --color -r "### HUMAN: " --in-prefix " " --in-suffix "### RESPONSE: "

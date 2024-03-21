@@ -40,6 +40,9 @@ cmd = cmd.gsub("$clipboard", clip)
 delay = 0.125
 
 sleep(delay)
+system("xdotool key Ctrl+c")
+
+sleep(delay)
 system("xdotool key Ctrl+u")
 
 sleep(delay)
