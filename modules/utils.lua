@@ -595,3 +595,8 @@ function Utils.decorate(c)
     awful.titlebar.hide(c)
   end
 end
+
+function Utils.launch_dev()
+  Utils.spawn("code")
+  Utils.spawn("tilix --session ~/sessions/meltdown.json")
+end

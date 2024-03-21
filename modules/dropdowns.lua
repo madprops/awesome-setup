@@ -21,7 +21,7 @@ end
 function Dropdowns.start_utils()
     Utils.spawn("dolphin")
     Utils.spawn("speedcrunch")
-    Utils.spawn("tilix --session ~/other/tilix.json")
+    Utils.spawn("tilix --session ~/sessions/main.json")
 end
 
 -- When raising a client from the tasklist

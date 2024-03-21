@@ -48,8 +48,14 @@ awful.rules.rules = {
   {
     rule = {instance = "code"},
     properties = {
-      maximized = true,
+      tag = "2",
+      screen = screen_left,
+      maximized = false,
       x_commands = true,
+      height = Utils.height_factor(0.6666),
+      placement = function(c)
+        Utils.placement(c, "top")
+      end,
     }
   },
   {
@@ -195,6 +201,17 @@ function Rules.check_title(c, force)
       c.height = Utils.height_factor(1)
       c.skip_taskbar = true
       c.x_dropdown_gpt = true
+    end
+  elseif Utils.startswith(c.name, "tilix-meltdown") then
+    if not c.x_rules_applied or force then
+      c.tag = "2"
+      c.screen = screen_left
+      c.x_rules_applied = true
+      c.skip_taskbar = false
+      c.maximized = false
+      c.x_dropdown_utils = false
+      c.height = Utils.height_factor(0.333)
+      Utils.placement(c, "bottom")
     end
   end
 end
