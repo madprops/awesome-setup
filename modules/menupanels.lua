@@ -49,10 +49,6 @@ Menupanels.applications = menupanel.create({
       action = function() Utils.launcher() end,
     },
     {
-      name = "Dev",
-      action = function() Utils.launch_dev() end,
-    },
-    {
       name = "FF Tile 1",
       action = function() Utils.spawn("firefox-developer-edition -P tile1") end,
     },
