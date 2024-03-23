@@ -22,7 +22,7 @@ function topbar.create(args)
     height = args.height,
   })
 
-  args.text = "Tagbar"
+  args.text = "Topbar"
   args.bgcolor = "#2E3440"
   instance.multibutton = multibutton.create(args)
 

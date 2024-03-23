@@ -4,8 +4,8 @@ local gears = require("gears")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local autotimer = require("madwidgets/autotimer/autotimer")
-local tagview = require("madwidgets/tagview/tagview")
--- local tagbar = require("madwidgets/tagbar/tagbar")
+-- local tagview = require("madwidgets/tagview/tagview")
+local tagbar = require("madwidgets/tagbar/tagbar")
 
 autotimer.create({
   left = " ",
@@ -220,28 +220,28 @@ awful.screen.connect_for_each_screen(function(s)
     right,
   }
 
-  tagview.create({
-    screen = s,
-  })
-
-  -- tagbar.create({
+  -- tagview.create({
   --   screen = s,
-  --   on_click = function(t)
-  --     Dropdowns.toggle("utils")
-  --   end,
-  --   on_middle_click = function(t)
-  --     Utils.first_tag()
-  --   end,
-  --   on_right_click = function(t)
-  --     Utils.altab()
-  --   end,
-  --   on_wheel_down = function()
-  --     Utils.switch_tag("next")
-  --   end,
-  --   on_wheel_up = function()
-  --     Utils.switch_tag("prev")
-  --   end,
   -- })
+
+  tagbar.create({
+    screen = s,
+    on_click = function(t)
+      Dropdowns.toggle("utils")
+    end,
+    on_middle_click = function(t)
+      Utils.first_tag()
+    end,
+    on_right_click = function(t)
+      Utils.altab()
+    end,
+    on_wheel_down = function()
+      Utils.switch_tag("next")
+    end,
+    on_wheel_up = function()
+      Utils.switch_tag("prev")
+    end,
+  })
 end)
 
 -- Double click titlebar
@@ -299,5 +299,5 @@ client.connect_signal("request::titlebars", function(c)
   }
 end)
 
-tagview.setup()
--- tagbar.setup()
+-- tagview.setup()
+tagbar.setup()

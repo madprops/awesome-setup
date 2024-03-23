@@ -48,6 +48,8 @@ function tagbar.create(args)
     on_wheel_up = args.on_wheel_up,
     left = " < ",
     right = " > ",
+    left_color = "#FFFFFF",
+    right_color = "#FFFFFF",
     on_left_text_click = function()
       utils.switch_tag("prev")
     end,
