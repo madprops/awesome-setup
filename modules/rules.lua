@@ -78,7 +78,6 @@ awful.rules.rules = {
     rule = {instance = "hexchat"},
     properties = {
       x_frame = "bottom_left",
-      x_index = 10,
     }
   },
   {
@@ -101,6 +100,12 @@ awful.rules.rules = {
       maximized = true,
       screen = screen_right,
       x_index = 1,
+    }
+  },
+  {
+    rule = {instance = "Nicotine"},
+    properties = {
+      x_frame = "top_left",
     }
   },
   -- Util Screen
