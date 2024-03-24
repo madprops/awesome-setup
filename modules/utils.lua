@@ -425,6 +425,14 @@ function Utils.move_to_tag(t)
   end
 end
 
+function Utils.to_screen_tag(c, screen_index, tag_index)
+  if c then
+    tag = screen[screen_index].tags[tag_index]
+    c:move_to_tag(tag)
+    tag:view_only()
+  end
+end
+
 function Utils.auto_suspend(minutes)
   autotimer.start_timer("Suspend", minutes, function()
     Utils.suspend()

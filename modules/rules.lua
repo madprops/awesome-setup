@@ -198,6 +198,17 @@ function Rules.check_title(c, force)
       c.skip_taskbar = true
       c.x_dropdown_gpt = true
     end
+  elseif Utils.startswith(c.name, "tilix-meltdown") then
+    if not c.x_rules_applied or force then
+      c.x_rules_applied = true
+      c.maximized = false
+      c.width = Utils.width_factor(1)
+      c.height = Utils.height_factor(1)
+      c.skip_taskbar = false
+      c.x_dropdown_utils = false
+      Utils.to_screen_tag(c, 2, 2)
+      Utils.placement(c, "top")
+    end
   end
 end
 
