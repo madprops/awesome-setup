@@ -108,6 +108,14 @@ awful.rules.rules = {
       x_frame = "top_left",
     }
   },
+  {
+    rule = {instance = "terminator"},
+    properties = {
+      screen = screen_right,
+      tag = "2",
+      maximized = true,
+    }
+  },
   -- Util Screen
   {
     rule = {instance = "dolphin"},
