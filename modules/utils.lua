@@ -533,9 +533,9 @@ function Utils.smart_button(c)
   if not c then return end
   if not c.x_client then return end
 
-  if c.x_commands then
+  if c.x_terminal then
     Utils.focus(c)
-    Utils.run_script("commands.rb " .. c.instance)
+    Utils.run_script("restart.rb " .. c.instance)
   elseif c.x_frame ~= "none" then
     Rules.reset(c)
   elseif not Dropdowns.included(c) then

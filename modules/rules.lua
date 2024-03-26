@@ -20,7 +20,7 @@ awful.rules.rules = {
       x_keys = true,
       x_rules_applied = false,
       x_client = true,
-      x_commands = false,
+      x_terminal = false,
       x_dropdown_gpt = false,
       x_dropdown_utils = false,
       x_index = 0,
@@ -51,7 +51,7 @@ awful.rules.rules = {
       tag = "2",
       screen = screen_left,
       maximized = true,
-      x_commands = true,
+      x_terminal = true,
     }
   },
   {
@@ -114,6 +114,7 @@ awful.rules.rules = {
       screen = screen_right,
       tag = "2",
       maximized = true,
+      x_terminal = true,
     }
   },
   -- Util Screen
@@ -128,7 +129,7 @@ awful.rules.rules = {
       height = Utils.height_factor(0.5),
       skip_taskbar = true,
       x_dropdown_utils = true,
-      x_commands = true,
+      x_terminal = true,
     }
   },
   {
@@ -155,7 +156,7 @@ awful.rules.rules = {
       height = Utils.height_factor(0.5),
       skip_taskbar = true,
       x_dropdown_utils = true,
-      x_commands = true,
+      x_terminal = true,
     }
   },
   -- Other Rules
@@ -168,7 +169,7 @@ awful.rules.rules = {
       end,
       width = Utils.width_factor(0.7),
       height = Utils.height_factor(0.7),
-      x_commands = true,
+      x_terminal = true,
     }
   },
   {
