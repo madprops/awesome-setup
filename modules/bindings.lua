@@ -13,6 +13,7 @@ local closetap = doubletap.create({
     local c = mouse.object_under_pointer()
     if not c then return end
     if not c.x_keys then return end
+    if c.x_no_close then return end
     if Dropdowns.included(c) then return end
 
     if c.kill then

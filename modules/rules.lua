@@ -115,6 +115,7 @@ awful.rules.rules = {
       tag = "2",
       maximized = true,
       x_terminal = true,
+      x_no_close = true,
     }
   },
   -- Util Screen
