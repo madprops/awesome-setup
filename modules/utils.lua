@@ -110,11 +110,11 @@ function Utils.screenshot()
 end
 
 function Utils.screenshot_window()
-  Utils.spawn("spectacle -a")
+  Utils.spawn("flameshot screen --delay 2000")
 end
 
 function Utils.screenshot_screen()
-  Utils.spawn("spectacle -m")
+  Utils.spawn("flameshot full")
 end
 
 function Utils.randstring()
