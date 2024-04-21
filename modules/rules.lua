@@ -88,6 +88,12 @@ awful.rules.rules = {
     }
   },
   {
+    rule = {instance = "tauonmb"},
+    properties = {
+      x_frame = "bottom_right",
+    }
+  },
+  {
     rule = {instance = "strawberry"},
     properties = {
       x_frame = "bottom_right",
