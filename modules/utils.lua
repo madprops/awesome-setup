@@ -670,6 +670,10 @@ function Utils.main_menu_click()
   Utils.show_menupanel("mouse")
 end
 
+function Utils.main_menu_right_click()
+  Dropdowns.toggle("utils")
+end
+
 function Utils.main_menu_middle_click()
   Utils.stop_all_players()
   Utils.lockscreen()

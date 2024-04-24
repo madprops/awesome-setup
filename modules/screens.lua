@@ -148,6 +148,9 @@ awful.screen.connect_for_each_screen(function(s)
       on_click = function()
         Utils.main_menu_click()
       end,
+      on_right_click = function()
+        Utils.main_menu_right_click()
+      end,
       on_middle_click = function()
         Utils.main_menu_middle_click()
       end,
