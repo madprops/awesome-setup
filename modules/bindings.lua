@@ -101,14 +101,14 @@ Bindings.globalkeys = gears.table.join(
     Utils.decrease_volume(true)
   end),
 
-  awful.key({"Control"}, "Escape", function()
+  awful.key({"Control", "Shift"}, "Escape", function()
     if mouse.coords().y <= 20 then
       Dropdowns.toggle("utils")
       return
     end
   end),
 
-  awful.key({"Control"}, "Escape", function()
+  awful.key({"Control", "Shift"}, "Escape", function()
     Utils.smart_close_cursor()
   end),
 
