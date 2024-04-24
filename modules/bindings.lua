@@ -10,8 +10,7 @@ local closetap = doubletap.create({
   delay = 300,
   lockdelay = 500,
   action = function()
-    local c = mouse.object_under_pointer()
-    Utils.smart_close(c)
+    Utils.smart_close_cursor()
   end
 })
 
@@ -107,12 +106,10 @@ Bindings.globalkeys = gears.table.join(
       Dropdowns.toggle("utils")
       return
     end
-
-    closetap.trigger()
   end),
 
   awful.key({"Control"}, "Escape", function()
-    closetap.trigger()
+    Utils.smart_close_cursor()
   end),
 
   awful.key({modkey, "Control"}, "space", function()

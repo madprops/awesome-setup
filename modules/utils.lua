@@ -544,6 +544,14 @@ function Utils.smart_close_current()
   end
 end
 
+function Utils.smart_close_cursor(c)
+  local c = mouse.object_under_pointer()
+
+  if c then
+    Utils.smart_close(c)
+  end
+end
+
 function Utils.smart_close(c)
   if not c then return end
   if not c.x_keys then return end
