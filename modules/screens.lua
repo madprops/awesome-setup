@@ -259,21 +259,21 @@ awful.screen.connect_for_each_screen(function(s)
 
   tagbar.create({
     screen = s,
-    on_click = function(t)
-      Dropdowns.toggle("utils")
+    on_click = function()
+      Utils.tagbar_click()
     end,
-    on_middle_click = function(t)
-      Utils.close_current()
+    on_right_click = function()
+      Utils.tagbar_right_click()
     end,
-    on_right_click = function(t)
-      Utils.altab()
-    end,
-    on_wheel_down = function()
-      Utils.switch_tag("next")
+    on_middle_click = function()
+      Utils.tagbar_middle_click()
     end,
     on_wheel_up = function()
-      Utils.switch_tag("prev")
+      Utils.tagbar_wheel_up()
     end,
+    on_wheel_down = function()
+      Utils.tagbar_wheel_down()
+    end
   })
 end)
 

@@ -11,19 +11,7 @@ local closetap = doubletap.create({
   lockdelay = 500,
   action = function()
     local c = mouse.object_under_pointer()
-    if not c then return end
-    if not c.x_keys then return end
-    if c.x_no_close then return end
-    if Dropdowns.included(c) then return end
-
-    if c.kill then
-      if c.instance == "Navigator" or c.instance == "code" then
-        Utils.focus(c)
-        Utils.fake_input_do(true, false, false, "w")
-      else
-        c:kill()
-      end
-    end
+    Utils.smart_close(c)
   end
 })
 

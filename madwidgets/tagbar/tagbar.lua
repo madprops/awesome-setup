@@ -33,7 +33,13 @@ function tagbar.create(args)
   instance.args = args
 
   function instance.update()
-    local index = utils.my_tag().index
+    local tag = utils.my_tag()
+    local index = 1
+
+    if tag then
+      index = utils.my_tag().index
+    end
+
     instance.widget.update("Desktop: " .. index)
     instance.widget.color(tagbar.colors[index])
   end

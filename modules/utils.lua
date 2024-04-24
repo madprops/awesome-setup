@@ -536,6 +536,30 @@ function Utils.minimize(c)
   c:activate {context = "tasklist", action = "toggle_minimization"}
 end
 
+function Utils.smart_close_current()
+  local c = client.focus
+
+  if c then
+    smart_close(c)
+  end
+end
+
+function smart_close(c)
+  if not c then return end
+  if not c.x_keys then return end
+  if c.x_no_close then return end
+  if Dropdowns.included(c) then return end
+
+  if c.kill then
+    if c.instance == "Navigator" or c.instance == "code" then
+      Utils.focus(c)
+      Utils.fake_input_do(true, false, false, "w")
+    else
+      c:kill()
+    end
+  end
+end
+
 function Utils.smart_button(c)
   local c = mouse.object_under_pointer()
   if not c then return end
@@ -612,4 +636,24 @@ end
 function Utils.launch_dev()
   Utils.spawn("code")
   Utils.spawn("tilix --session ~/sessions/meltdown.json")
+end
+
+function Utils.tagbar_click()
+  Dropdowns.toggle("utils")
+end
+
+function Utils.tagbar_right_click()
+  Utils.altab()
+end
+
+function Utils.tagbar_middle_click()
+  Utils.smart_close_current()
+end
+
+function Utils.tagbar_wheel_up()
+  Utils.switch_tag("prev")
+end
+
+function Utils.tagbar_wheel_down()
+  Utils.switch_tag("next")
 end
