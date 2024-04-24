@@ -657,3 +657,20 @@ end
 function Utils.tagbar_wheel_down()
   Utils.switch_tag("next")
 end
+
+function Utils.main_menu_click()
+  Utils.show_menupanel("mouse")
+end
+
+function Utils.main_menu_middle_click()
+  Utils.stop_all_players()
+  Utils.lockscreen()
+end
+
+function Utils.main_menu_wheel_up()
+  Utils.switch_tag("prev")
+end
+
+function Utils.main_menu_wheel_down()
+  Utils.switch_tag("next")
+end

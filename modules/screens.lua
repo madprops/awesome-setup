@@ -6,7 +6,7 @@ local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local autotimer = require("madwidgets/autotimer/autotimer")
 -- local hotcorner = require("madwidgets/hotcorner/hotcorner")
 -- local tagview = require("madwidgets/tagview/tagview")
-local tagbar = require("madwidgets/tagbar/tagbar")
+-- local tagbar = require("madwidgets/tagbar/tagbar")
 
 autotimer.create({
   left = " ",
@@ -146,12 +146,17 @@ awful.screen.connect_for_each_screen(function(s)
     multibutton.create({
       text = " "..Globals.flower.." ",
       on_click = function()
-        Utils.show_menupanel("mouse")
+        Utils.main_menu_click()
       end,
       on_middle_click = function()
-        Utils.stop_all_players()
-        Utils.lockscreen()
-      end
+        Utils.main_menu_middle_click()
+      end,
+      on_wheel_up = function()
+        Utils.main_menu_wheel_up()
+      end,
+      on_wheel_down = function()
+        Utils.main_menu_wheel_down()
+      end,
     }),
     s.mytaglist,
     Utils.space(),
@@ -170,11 +175,11 @@ awful.screen.connect_for_each_screen(function(s)
     --   on_right_click = function()
     --     Utils.corner_right_click()
     --   end,
-    --   on_wheel_down = function()
-    --     Utils.corner_wheel_down()
-    --   end,
     --   on_wheel_up = function()
     --     Utils.corner_wheel_up()
+    --   end,
+    --   on_wheel_down = function()
+    --     Utils.corner_wheel_down()
     --   end,
     -- })
 
@@ -201,11 +206,11 @@ awful.screen.connect_for_each_screen(function(s)
         on_click = function()
           Utils.calendar()
         end,
-        on_wheel_down = function()
-          Utils.decrease_volume()
-        end,
         on_wheel_up = function()
           Utils.increase_volume()
+        end,
+        on_wheel_down = function()
+          Utils.decrease_volume()
         end,
         right = " ",
       })
@@ -223,11 +228,11 @@ awful.screen.connect_for_each_screen(function(s)
     --   on_right_click = function()
     --     Utils.corner_right_click()
     --   end,
-    --   on_wheel_down = function()
-    --     Utils.corner_wheel_down()
-    --   end,
     --   on_wheel_up = function()
     --     Utils.corner_wheel_up()
+    --   end,
+    --   on_wheel_down = function()
+    --     Utils.corner_wheel_down()
     --   end,
     -- })
 
@@ -241,6 +246,12 @@ awful.screen.connect_for_each_screen(function(s)
         end,
         on_middle_click = function()
           Dropdowns.start_gpt()
+        end,
+        on_wheel_up = function()
+          Utils.main_menu_wheel_up()
+        end,
+        on_wheel_down = function()
+          Utils.main_menu_wheel_down()
         end,
       }),
     }
@@ -257,24 +268,24 @@ awful.screen.connect_for_each_screen(function(s)
   --   screen = s,
   -- })
 
-  tagbar.create({
-    screen = s,
-    on_click = function()
-      Utils.tagbar_click()
-    end,
-    on_right_click = function()
-      Utils.tagbar_right_click()
-    end,
-    on_middle_click = function()
-      Utils.tagbar_middle_click()
-    end,
-    on_wheel_up = function()
-      Utils.tagbar_wheel_up()
-    end,
-    on_wheel_down = function()
-      Utils.tagbar_wheel_down()
-    end
-  })
+  -- tagbar.create({
+  --   screen = s,
+  --   on_click = function()
+  --     Utils.tagbar_click()
+  --   end,
+  --   on_right_click = function()
+  --     Utils.tagbar_right_click()
+  --   end,
+  --   on_middle_click = function()
+  --     Utils.tagbar_middle_click()
+  --   end,
+  --   on_wheel_up = function()
+  --     Utils.tagbar_wheel_up()
+  --   end,
+  --   on_wheel_down = function()
+  --     Utils.tagbar_wheel_down()
+  --   end
+  -- })
 end)
 
 -- Double click titlebar
@@ -333,4 +344,4 @@ client.connect_signal("request::titlebars", function(c)
 end)
 
 -- tagview.setup()
-tagbar.setup()
+-- tagbar.setup()
