@@ -9,6 +9,7 @@ Utils.spawn("xset s off")
 Utils.spawn("xset -dpms")
 Utils.spawn("xset s noblank")
 Utils.spawn("setxkbmap -option caps:none")
+Utils.spawn("xinput set-button-map 13 3 2 1 4 5 6 7 8 9")
 
 -- Clipboard Manager
 Utils.spawn("systemctl --user start clipton")

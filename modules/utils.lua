@@ -72,6 +72,14 @@ function Utils.focus(c)
   c:emit_signal("request::activate", "tasklist", {raise = true})
 end
 
+function Utils.close_current()
+  local c = client.focus
+
+  if c then
+    c:kill()
+  end
+end
+
 function Utils.close(c)
   c:kill()
 end
@@ -559,19 +567,16 @@ function Utils.bluetooth(on)
 end
 
 function Utils.corner_click()
-  for _, c in ipairs(client.get()) do
-    if c.active and c.x_hotcorner == "1_top_left" and c.screen.index == 1 then
-      Utils.focus(c)
+  Dropdowns.toggle("utils")
+end
 
-      if c.first_tag ~= Utils.my_tag() then
-        c.first_tag:view_only()
-        return
-      end
+function Utils.corner_middle_click()
+end
 
-      Utils.fake_input_do(true, false, false, "space")
-      return
-    end
-  end
+function Utils.corner_wheel_up()
+end
+
+function Utils.corner_wheel_down()
 end
 
 function Utils.middle_click(c)

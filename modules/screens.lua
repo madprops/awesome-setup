@@ -4,8 +4,9 @@ local gears = require("gears")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local autotimer = require("madwidgets/autotimer/autotimer")
+-- local hotcorner = require("madwidgets/hotcorner/hotcorner")
 -- local tagview = require("madwidgets/tagview/tagview")
--- local tagbar = require("madwidgets/tagbar/tagbar")
+local tagbar = require("madwidgets/tagbar/tagbar")
 
 autotimer.create({
   left = " ",
@@ -162,7 +163,19 @@ awful.screen.connect_for_each_screen(function(s)
     --   placement = "top_left",
     --   on_click = function()
     --     Utils.corner_click()
-    --   end
+    --   end,
+    --   on_middle_click = function()
+    --     Utils.corner_middle_click()
+    --   end,
+    --   on_right_click = function()
+    --     Utils.corner_right_click()
+    --   end,
+    --   on_wheel_down = function()
+    --     Utils.corner_wheel_down()
+    --   end,
+    --   on_wheel_up = function()
+    --     Utils.corner_wheel_up()
+    --   end,
     -- })
 
     right = {
@@ -198,6 +211,26 @@ awful.screen.connect_for_each_screen(function(s)
       })
     }
   else
+    -- hotcorner.create({
+    --   screen = s,
+    --   placement = "top_right",
+    --   on_click = function()
+    --     Utils.corner_click()
+    --   end,
+    --   on_middle_click = function()
+    --     Utils.corner_middle_click()
+    --   end,
+    --   on_right_click = function()
+    --     Utils.corner_right_click()
+    --   end,
+    --   on_wheel_down = function()
+    --     Utils.corner_wheel_down()
+    --   end,
+    --   on_wheel_up = function()
+    --     Utils.corner_wheel_up()
+    --   end,
+    -- })
+
     right = {
       layout = wibox.layout.fixed.horizontal(),
       autotimer,
@@ -224,24 +257,24 @@ awful.screen.connect_for_each_screen(function(s)
   --   screen = s,
   -- })
 
-  -- tagbar.create({
-  --   screen = s,
-  --   on_click = function(t)
-  --     Dropdowns.toggle("utils")
-  --   end,
-  --   on_middle_click = function(t)
-  --     Utils.first_tag()
-  --   end,
-  --   on_right_click = function(t)
-  --     Utils.altab()
-  --   end,
-  --   on_wheel_down = function()
-  --     Utils.switch_tag("next")
-  --   end,
-  --   on_wheel_up = function()
-  --     Utils.switch_tag("prev")
-  --   end,
-  -- })
+  tagbar.create({
+    screen = s,
+    on_click = function(t)
+      Dropdowns.toggle("utils")
+    end,
+    on_middle_click = function(t)
+      Utils.close_current()
+    end,
+    on_right_click = function(t)
+      Utils.altab()
+    end,
+    on_wheel_down = function()
+      Utils.switch_tag("next")
+    end,
+    on_wheel_up = function()
+      Utils.switch_tag("prev")
+    end,
+  })
 end)
 
 -- Double click titlebar
@@ -300,4 +333,4 @@ client.connect_signal("request::titlebars", function(c)
 end)
 
 -- tagview.setup()
--- tagbar.setup()
+tagbar.setup()
