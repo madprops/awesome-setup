@@ -540,7 +540,7 @@ function Utils.smart_close_current()
   local c = client.focus
 
   if c then
-    smart_close(c)
+    Utils.smart_close(c)
   end
 end
 
