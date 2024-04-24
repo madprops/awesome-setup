@@ -544,7 +544,7 @@ function Utils.smart_close_current()
   end
 end
 
-function smart_close(c)
+function Utils.smart_close(c)
   if not c then return end
   if not c.x_keys then return end
   if c.x_no_close then return end
