@@ -103,7 +103,7 @@ Bindings.globalkeys = gears.table.join(
   end),
 
   awful.key({}, "Escape", function()
-    if mouse.coords().y <= 25 then
+    if mouse.coords().y <= 20 then
       Dropdowns.toggle("utils")
       return
     end
@@ -112,9 +112,7 @@ Bindings.globalkeys = gears.table.join(
   end),
 
   awful.key({"Control"}, "Escape", function()
-    if mouse.coords().y <= 25 then
-      Dropdowns.toggle("gpt")
-    end
+    closetap.trigger()
   end),
 
   awful.key({modkey, "Control"}, "space", function()
