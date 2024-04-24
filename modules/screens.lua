@@ -6,7 +6,7 @@ local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local autotimer = require("madwidgets/autotimer/autotimer")
 -- local hotcorner = require("madwidgets/hotcorner/hotcorner")
 -- local tagview = require("madwidgets/tagview/tagview")
--- local tagbar = require("madwidgets/tagbar/tagbar")
+local tagbar = require("madwidgets/tagbar/tagbar")
 
 autotimer.create({
   left = " ",
@@ -271,24 +271,26 @@ awful.screen.connect_for_each_screen(function(s)
   --   screen = s,
   -- })
 
-  -- tagbar.create({
-  --   screen = s,
-  --   on_click = function()
-  --     Utils.tagbar_click()
-  --   end,
-  --   on_right_click = function()
-  --     Utils.tagbar_right_click()
-  --   end,
-  --   on_middle_click = function()
-  --     Utils.tagbar_middle_click()
-  --   end,
-  --   on_wheel_up = function()
-  --     Utils.tagbar_wheel_up()
-  --   end,
-  --   on_wheel_down = function()
-  --     Utils.tagbar_wheel_down()
-  --   end
-  -- })
+  tagbar.create({
+    screen = s,
+    change_colors = false,
+    show_arrows = false,
+    on_click = function()
+      Utils.tagbar_click()
+    end,
+    on_right_click = function()
+      Utils.tagbar_right_click()
+    end,
+    on_middle_click = function()
+      Utils.tagbar_middle_click()
+    end,
+    on_wheel_up = function()
+      Utils.tagbar_wheel_up()
+    end,
+    on_wheel_down = function()
+      Utils.tagbar_wheel_down()
+    end
+  })
 end)
 
 -- Double click titlebar
@@ -347,4 +349,4 @@ client.connect_signal("request::titlebars", function(c)
 end)
 
 -- tagview.setup()
--- tagbar.setup()
+tagbar.setup()

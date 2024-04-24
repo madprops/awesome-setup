@@ -41,7 +41,21 @@ function tagbar.create(args)
     end
 
     instance.widget.update("Desktop: " .. index)
-    instance.widget.color(tagbar.colors[index])
+    local color = tagbar.colors[1]
+
+    if args.change_colors then
+      color = tagbar.colors[index]
+    end
+
+    instance.widget.color(color)
+  end
+
+  local left = ""
+  local right = ""
+
+  if args.show_arrows then
+    left = " < "
+    right = " > "
   end
 
   instance.widget = topbar.create({
@@ -52,8 +66,9 @@ function tagbar.create(args)
     on_middle_click = args.on_middle_click,
     on_wheel_down = args.on_wheel_down,
     on_wheel_up = args.on_wheel_up,
-    left = " < ",
-    right = " > ",
+    show_arrows = args.show_arrows,
+    left = left,
+    right = right,
     left_color = "#FFFFFF",
     right_color = "#FFFFFF",
     on_left_text_click = function()
