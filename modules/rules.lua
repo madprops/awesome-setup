@@ -48,7 +48,6 @@ awful.rules.rules = {
   {
     rule = {instance = "code"},
     properties = {
-      tag = "2",
       screen = screen_left,
       maximized = true,
       x_terminal = true,
@@ -182,7 +181,6 @@ awful.rules.rules = {
   {
     rule = {instance = "meltdown"},
     properties = {
-      screen = screen_left,
       titlebars_enabled = true,
     },
   },
