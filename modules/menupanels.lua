@@ -225,7 +225,7 @@ Menupanels.bluetooth = menupanel.create({
 })
 
 Menupanels.info = menupanel.create({
-  placement = placement,
+  placement = "bottom",
   height = height,
   items = {
     {
