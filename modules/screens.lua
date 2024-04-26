@@ -116,6 +116,23 @@ awful.screen.connect_for_each_screen(function(s)
 
   local right = {
     layout = wibox.layout.fixed.horizontal(),
+    multibutton.create({
+      text = "Utils",
+      right = " | ",
+      right_color = Globals.nicedark,
+      on_click = function()
+        Dropdowns.toggle("utils")
+      end,
+    }),
+    Utils.space(),
+    multibutton.create({
+      text = "GPT",
+      right = " | ",
+      right_color = Globals.nicedark,
+      on_click = function()
+        Dropdowns.toggle("gpt")
+      end,
+    }),
     Utils.space(),
     systray_container,
     sysmonitor_widget("cpu"),
