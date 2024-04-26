@@ -4,9 +4,6 @@ local gears = require("gears")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local autotimer = require("madwidgets/autotimer/autotimer")
--- local hotcorner = require("madwidgets/hotcorner/hotcorner")
--- local tagview = require("madwidgets/tagview/tagview")
--- local tagbar = require("madwidgets/tagbar/tagbar")
 
 autotimer.create({
   left = " ",
