@@ -2,8 +2,8 @@ Menupanels = {}
 
 local menupanel = require("madwidgets/menupanel/menupanel")
 
-local placement = "bottom"
-local height = 25
+local placement = "top"
+local height = 30
 
 Menupanels.utils = {}
 

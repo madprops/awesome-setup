@@ -6,7 +6,7 @@ local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local autotimer = require("madwidgets/autotimer/autotimer")
 -- local hotcorner = require("madwidgets/hotcorner/hotcorner")
 -- local tagview = require("madwidgets/tagview/tagview")
-local tagbar = require("madwidgets/tagbar/tagbar")
+-- local tagbar = require("madwidgets/tagbar/tagbar")
 
 autotimer.create({
   left = " ",
@@ -65,6 +65,8 @@ end
 awful.screen.connect_for_each_screen(function(s)
   awful.tag({ "1", "2", "3", "4", "5"}, s, awful.layout.suit.floating)
 
+  -- Top Panel
+
   s.mytaglist = awful.widget.taglist {
     screen  = s,
     filter  = awful.widget.taglist.filter.all,
@@ -75,6 +77,87 @@ awful.screen.connect_for_each_screen(function(s)
       awful.button({ }, 5, function(t) Utils.switch_tag("next") end),
     }
   }
+
+  s.mywibar1 = awful.wibar({
+    ontop = true,
+    position = "top",
+    screen = s
+  })
+
+  local left = {
+    layout = wibox.layout.fixed.horizontal,
+    multibutton.create({
+      text = " "..Globals.flower.." ",
+      on_click = function()
+        Utils.main_menu_click()
+      end,
+      on_right_click = function()
+        Utils.main_menu_right_click()
+      end,
+      on_middle_click = function()
+        Utils.main_menu_middle_click()
+      end,
+      on_wheel_up = function()
+        Utils.main_menu_wheel_up()
+      end,
+      on_wheel_down = function()
+        Utils.main_menu_wheel_down()
+      end,
+    }),
+    s.mytaglist,
+    Utils.space(),
+  }
+
+  local center = {
+    layout = wibox.layout.fixed.horizontal,
+    Utils.space(),
+  }
+
+  local systray = wibox.widget.systray()
+  systray:set_screen(screen[Globals.primary_screen])
+  local systray_container = wibox.layout.margin(systray, 0, 0, 3, 3)
+
+  local right = {
+    layout = wibox.layout.fixed.horizontal(),
+    Utils.space(),
+    systray_container,
+    sysmonitor_widget("cpu"),
+    sysmonitor_widget("ram"),
+    sysmonitor_widget("tmp"),
+    sysmonitor_widget("net_download"),
+    sysmonitor_widget("net_upload"),
+    Globals.volumecontrol.create({
+      left = " "..Globals.star.." ",
+      right = " "..Globals.star.." ",
+      left_color = Globals.niceblue,
+      right_color = Globals.niceblue,
+      mutecolor = Globals.nicedark,
+      maxcolor = Globals.nicegreen,
+      on_click = function() Utils.show_audio_controls() end,
+    }),
+    multibutton.create({
+      widget = wibox.widget.textclock("%a-%d-%b %I:%M:%S %P", 1),
+      on_click = function()
+        Utils.calendar()
+      end,
+      on_wheel_up = function()
+        Utils.increase_volume()
+      end,
+      on_wheel_down = function()
+        Utils.decrease_volume()
+      end,
+      right = " ",
+    })
+  }
+
+  s.mywibar1:setup {
+    layout = wibox.layout.align.horizontal,
+    left,
+    center,
+    right,
+  }
+
+  -- Bottom Panel
 
   s.mytasklist = awful.widget.tasklist {
     screen = s,
@@ -128,169 +211,18 @@ awful.screen.connect_for_each_screen(function(s)
     }
   }
 
-  s.mywibar = awful.wibar({
+  s.mywibar2 = awful.wibar({
     ontop = true,
     position = "bottom",
     screen = s
   })
 
-  local left
-  local right
-
-  local systray = wibox.widget.systray()
-  systray:set_screen(screen[Globals.primary_screen])
-  local systray_container = wibox.layout.margin(systray, 0, 0, 3, 3)
-
-  left = {
-    layout = wibox.layout.fixed.horizontal,
-    multibutton.create({
-      text = " "..Globals.flower.." ",
-      on_click = function()
-        Utils.main_menu_click()
-      end,
-      on_right_click = function()
-        Utils.main_menu_right_click()
-      end,
-      on_middle_click = function()
-        Utils.main_menu_middle_click()
-      end,
-      on_wheel_up = function()
-        Utils.main_menu_wheel_up()
-      end,
-      on_wheel_down = function()
-        Utils.main_menu_wheel_down()
-      end,
-    }),
-    s.mytaglist,
-    Utils.space(),
-  }
-
-  if s.index == Globals.primary_screen then
-    -- hotcorner.create({
-    --   screen = s,
-    --   placement = "top_left",
-    --   on_click = function()
-    --     Utils.corner_click()
-    --   end,
-    --   on_middle_click = function()
-    --     Utils.corner_middle_click()
-    --   end,
-    --   on_right_click = function()
-    --     Utils.corner_right_click()
-    --   end,
-    --   on_wheel_up = function()
-    --     Utils.corner_wheel_up()
-    --   end,
-    --   on_wheel_down = function()
-    --     Utils.corner_wheel_down()
-    --   end,
-    -- })
-
-    right = {
-      layout = wibox.layout.fixed.horizontal(),
-      Utils.space(),
-      systray_container,
-      sysmonitor_widget("cpu"),
-      sysmonitor_widget("ram"),
-      sysmonitor_widget("tmp"),
-      sysmonitor_widget("net_download"),
-      sysmonitor_widget("net_upload"),
-      Globals.volumecontrol.create({
-        left = " "..Globals.star.." ",
-        right = " "..Globals.star.." ",
-        left_color = Globals.niceblue,
-        right_color = Globals.niceblue,
-        mutecolor = Globals.nicedark,
-        maxcolor = Globals.nicegreen,
-        on_click = function() Utils.show_audio_controls() end,
-      }),
-      multibutton.create({
-        widget = wibox.widget.textclock("%a-%d-%b %I:%M:%S %P", 1),
-        on_click = function()
-          Utils.calendar()
-        end,
-        on_wheel_up = function()
-          Utils.increase_volume()
-        end,
-        on_wheel_down = function()
-          Utils.decrease_volume()
-        end,
-        right = " ",
-      })
-    }
-  else
-    -- hotcorner.create({
-    --   screen = s,
-    --   placement = "top_right",
-    --   on_click = function()
-    --     Utils.corner_click()
-    --   end,
-    --   on_middle_click = function()
-    --     Utils.corner_middle_click()
-    --   end,
-    --   on_right_click = function()
-    --     Utils.corner_right_click()
-    --   end,
-    --   on_wheel_up = function()
-    --     Utils.corner_wheel_up()
-    --   end,
-    --   on_wheel_down = function()
-    --     Utils.corner_wheel_down()
-    --   end,
-    -- })
-
-    right = {
-      layout = wibox.layout.fixed.horizontal(),
-      autotimer,
-      multibutton.create({
-        text = " GPT ",
-        on_click = function()
-          Dropdowns.toggle("gpt")
-        end,
-        on_middle_click = function()
-          Dropdowns.start_gpt()
-        end,
-        on_wheel_up = function()
-          Utils.main_menu_wheel_up()
-        end,
-        on_wheel_down = function()
-          Utils.main_menu_wheel_down()
-        end,
-      }),
-    }
-  end
-
-  s.mywibar:setup {
+  s.mywibar2:setup {
     layout = wibox.layout.align.horizontal,
-    left,
+    nil,
     s.mytasklist,
-    right,
+    nil,
   }
-
-  -- tagview.create({
-  --   screen = s,
-  -- })
-
-  tagbar.create({
-    screen = s,
-    change_colors = false,
-    show_arrows = false,
-    on_click = function()
-      Utils.tagbar_click()
-    end,
-    on_right_click = function()
-      Utils.tagbar_right_click()
-    end,
-    on_middle_click = function()
-      Utils.tagbar_middle_click()
-    end,
-    on_wheel_up = function()
-      Utils.tagbar_wheel_up()
-    end,
-    on_wheel_down = function()
-      Utils.tagbar_wheel_down()
-    end
-  })
 end)
 
 -- Double click titlebar
@@ -347,6 +279,3 @@ client.connect_signal("request::titlebars", function(c)
       layout = wibox.layout.align.horizontal
   }
 end)
-
--- tagview.setup()
-tagbar.setup()

@@ -183,7 +183,7 @@ function menupanel.create(args)
     args.hide_button = true
   end
 
-  args.height = args.height or 25
+  args.height = args.height or 30
   args.hide_button_placement = args.hide_button_placement or "left"
   args.placement = args.placement or "bottom"
   args.bgcolor = args.bgcolor or "#21252B"

@@ -65,7 +65,7 @@ function Utils.on_top(c)
 end
 
 function Utils.check_fullscreen(c)
-  Utils.my_screen().mywibar.ontop = not c.fullscreen
+  Utils.my_screen().mywibar1.ontop = not c.fullscreen
 end
 
 function Utils.focus(c)
