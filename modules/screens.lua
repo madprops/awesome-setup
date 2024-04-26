@@ -112,8 +112,19 @@ awful.screen.connect_for_each_screen(function(s)
   }
 
   local center = {
-    layout = wibox.layout.fixed.horizontal,
-    Utils.space(),
+    layout = wibox.layout.align.horizontal,
+    nil,
+    multibutton.create({
+      text = "",
+      right_color = Globals.nicedark,
+      on_wheel_up = function()
+        Utils.switch_tag("prev")
+      end,
+      on_wheel_down = function()
+        Utils.switch_tag("next")
+      end,
+    }),
+    nil
   }
 
   local systray = wibox.widget.systray()
