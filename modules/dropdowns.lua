@@ -6,6 +6,7 @@ Dropdowns = {}
 Dropdowns.dd_gpt_on = false
 Dropdowns.dd_utils_on = false
 Dropdowns.dropdowns = {"gpt", "utils"}
+Dropdowns.buttons = {}
 
 function Dropdowns.setup()
     -- When changing tag, hide the active dropdown, on the specific screen
@@ -107,6 +108,10 @@ function Dropdowns.show(what)
     Dropdowns.set_on(what, true)
     Dropdowns.set_screen(what, Utils.my_screen())
     Dropdowns.set_tag(what, Utils.my_tag())
+
+    for _, button in ipairs(Dropdowns.buttons[what]) do
+        button.underline()
+    end
 end
 
 function Dropdowns.hide(what)
@@ -115,6 +120,10 @@ function Dropdowns.hide(what)
     end
 
     Dropdowns.set_on(what, false)
+
+    for _, button in ipairs(Dropdowns.buttons[what]) do
+        button.normal()
+    end
 end
 
 function Dropdowns.hide_others(what)
@@ -156,6 +165,14 @@ function Dropdowns.check()
             end
         end
     end
+end
+
+function Dropdowns.register_button(what, button)
+    if Dropdowns.buttons[what] == nil then
+        Dropdowns.buttons[what] = {}
+    end
+
+    table.insert(Dropdowns.buttons[what], button)
 end
 
 Dropdowns.setup()

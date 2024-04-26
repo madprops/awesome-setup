@@ -105,6 +105,14 @@ function multibutton.create(args)
     end
   end
 
+  function instance.underline(button)
+    instance.subwidget:set_markup("<span underline='single'>" .. instance.subwidget.text .. "</span>")
+  end
+
+  function instance.normal(button)
+    instance.subwidget:set_markup(instance.subwidget.text)
+  end
+
   instance.subwidget:connect_signal("button::press", function(a, b, c, button, mods)
     instance.action(button)
   end)

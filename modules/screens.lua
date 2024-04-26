@@ -131,6 +131,28 @@ awful.screen.connect_for_each_screen(function(s)
   systray:set_screen(screen[Globals.primary_screen])
   local systray_container = wibox.layout.margin(systray, 0, 0, 3, 3)
 
+  local utils_button = multibutton.create({
+    text = "Utils",
+    right = " |",
+    right_color = Globals.nicedark,
+    on_click = function()
+      Dropdowns.toggle("utils")
+    end
+  })
+
+  Dropdowns.register_button("utils", utils_button)
+
+  local gpt_button = multibutton.create({
+    text = "GPT",
+    right = " | ",
+    right_color = Globals.nicedark,
+    on_click = function()
+      Dropdowns.toggle("gpt")
+    end
+  })
+
+  Dropdowns.register_button("gpt", gpt_button)
+
   local right = {
     layout = wibox.layout.fixed.horizontal(),
     autotimer.widget,
@@ -139,23 +161,9 @@ awful.screen.connect_for_each_screen(function(s)
     systray_container,
     Utils.space(),
     Utils.space(),
-    multibutton.create({
-      text = "Utils",
-      right = " |",
-      right_color = Globals.nicedark,
-      on_click = function()
-        Dropdowns.toggle("utils")
-      end,
-    }),
+    utils_button,
     Utils.space(),
-    multibutton.create({
-      text = "GPT",
-      right = " | ",
-      right_color = Globals.nicedark,
-      on_click = function()
-        Dropdowns.toggle("gpt")
-      end,
-    }),
+    gpt_button,
     sysmonitor_widget("cpu"),
     sysmonitor_widget("ram"),
     sysmonitor_widget("tmp"),
