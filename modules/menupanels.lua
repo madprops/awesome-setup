@@ -2,7 +2,6 @@ Menupanels = {}
 
 local menupanel = require("madwidgets/menupanel/menupanel")
 
-local placement = "top"
 local height = 30
 
 Menupanels.utils = {}
@@ -13,7 +12,7 @@ function Menupanels.utils.showinfo(text)
 end
 
 Menupanels.main = menupanel.create({
-  placement = placement,
+  placement = "top",
   height = height,
   items = {
     {
@@ -40,7 +39,7 @@ Menupanels.main = menupanel.create({
 })
 
 Menupanels.applications = menupanel.create({
-  placement = placement,
+  placement = "top",
   height = height,
   parent = Menupanels.main,
   items = {
@@ -80,7 +79,7 @@ Menupanels.applications = menupanel.create({
 })
 
 Menupanels.log = menupanel.create({
-  placement = placement,
+  placement = "top",
   height = height,
   parent = Menupanels.main,
   items = {
@@ -107,7 +106,7 @@ Menupanels.log = menupanel.create({
 })
 
 Menupanels.leave = menupanel.create({
-  placement = placement,
+  placement = "top",
   height = height,
   parent = Menupanels.main,
   items = {
@@ -139,7 +138,7 @@ Menupanels.leave = menupanel.create({
 })
 
 Menupanels.suspend = menupanel.create({
-  placement = placement,
+  placement = "top",
   height = height,
   items = {
     {
@@ -170,8 +169,26 @@ Menupanels.suspend = menupanel.create({
   }
 })
 
+Menupanels.bluetooth = menupanel.create({
+  placement = "top",
+  height = height,
+  parent = Menupanels.main,
+  items = {
+    {
+      name = "Connect",
+      action = function() Utils.bluetooth(true) end,
+      needs_confirm = true,
+    },
+    {
+      name = "Disconnect",
+      action = function() Utils.bluetooth(false) end,
+      needs_confirm = true,
+    },
+  }
+})
+
 Menupanels.context = menupanel.create({
-  placement = placement,
+  placement = "bottom",
   height = height,
   items = {
     {
@@ -201,24 +218,6 @@ Menupanels.context = menupanel.create({
     {
       name = "Close",
       action = function() Utils.close(Utils.get_context_client()) end,
-      needs_confirm = true,
-    },
-  }
-})
-
-Menupanels.bluetooth = menupanel.create({
-  placement = placement,
-  height = height,
-  parent = Menupanels.main,
-  items = {
-    {
-      name = "Connect",
-      action = function() Utils.bluetooth(true) end,
-      needs_confirm = true,
-    },
-    {
-      name = "Disconnect",
-      action = function() Utils.bluetooth(false) end,
       needs_confirm = true,
     },
   }
