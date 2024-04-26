@@ -26,7 +26,7 @@ local function sysmonitor_widget(mode)
   args.left_color = Globals.nicedark
 
   if mode == "cpu" then
-    args.left = " "
+    args.left = ""
     args.right = " | "
     args.right_color = Globals.nicedark
     args.on_click = function()
@@ -122,9 +122,12 @@ awful.screen.connect_for_each_screen(function(s)
 
   local right = {
     layout = wibox.layout.fixed.horizontal(),
+    systray_container,
+    Utils.space(),
+    Utils.space(),
     multibutton.create({
       text = "Utils",
-      right = " | ",
+      right = " |",
       right_color = Globals.nicedark,
       on_click = function()
         Dropdowns.toggle("utils")
@@ -139,8 +142,6 @@ awful.screen.connect_for_each_screen(function(s)
         Dropdowns.toggle("gpt")
       end,
     }),
-    Utils.space(),
-    systray_container,
     sysmonitor_widget("cpu"),
     sysmonitor_widget("ram"),
     sysmonitor_widget("tmp"),
