@@ -206,26 +206,26 @@ awful.screen.connect_for_each_screen(function(s)
     end,
     widget_template = {
       {
+        {
           {
-              {
-                  {
-                      id     = 'icon_role',
-                      widget = wibox.widget.imagebox,
-                  },
-                  right = 10,
-                  top = 3,
-                  bottom = 3,
-                  widget  = wibox.container.margin,
-              },
-              {
-                  id     = 'text_role',
-                  widget = wibox.widget.textbox,
-              },
-              layout = wibox.layout.fixed.horizontal,
+            {
+              id     = 'icon_role',
+              widget = wibox.widget.imagebox,
+            },
+            right = 10,
+            top = 3,
+            bottom = 3,
+            widget  = wibox.container.margin,
           },
-          left  = 10,
-          right = 10,
-          widget = wibox.container.margin
+          {
+            id     = 'text_role',
+            widget = wibox.widget.textbox,
+          },
+          layout = wibox.layout.fixed.horizontal,
+        },
+        left  = 10,
+        right = 10,
+        widget = wibox.container.margin
       },
       id     = 'background_role',
       widget = wibox.container.background,
