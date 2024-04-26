@@ -56,7 +56,7 @@ function autotimer.start_timer(name, minutes, action)
 
   autotimer.start(name)
   autotimer.actions[name].mode = "timer"
-  
+
   local a = action or function () end
   autotimer.actions[name].action = a
 
@@ -96,7 +96,7 @@ function autotimer.start(name)
   args.on_wheel_down = function ()
     autotimer.add_minutes(name, -5)
   end
-  
+
   args.on_wheel_up = function ()
     autotimer.add_minutes(name, 5)
   end
@@ -112,7 +112,7 @@ function autotimer.start(name)
   autotimer.container:add(autotimer.actions[name].widget)
   autotimer.actions[name].date_started = os.time()
   autotimer.widget.visible = true
-  utils.msg("Started "..name)
+  utils.msg("Started " .. name)
 end
 
 function autotimer.add_minutes(name, minutes)
@@ -152,7 +152,7 @@ function autotimer.stop(name)
     utils.msg(name.." is not active")
     return
   end
-  
+
   autotimer.do_stop(name)
   utils.msg(name.." stopped")
 end
@@ -162,7 +162,7 @@ function autotimer.update()
     if not autotimer.active(action.name) then
       return
     end
-    
+
     local r
     local d = os.time() - action.date_started
 
@@ -188,7 +188,7 @@ function autotimer.update()
     if t >= 60 then
       u = utils.round_decimal(r / 60 / 60, 1)
       s = "hrs"
-    elseif t >= 1 then 
+    elseif t >= 1 then
       u = utils.numpad(utils.round(r / 60))
       s = "mins"
     else
