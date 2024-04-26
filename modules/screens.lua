@@ -137,6 +137,9 @@ awful.screen.connect_for_each_screen(function(s)
     right_color = Globals.nicedark,
     on_click = function()
       Dropdowns.toggle("utils")
+    end,
+    on_middle_click = function()
+      Dropdowns.start_utils()
     end
   })
 
@@ -148,6 +151,9 @@ awful.screen.connect_for_each_screen(function(s)
     right_color = Globals.nicedark,
     on_click = function()
       Dropdowns.toggle("gpt")
+    end,
+    on_middle_click = function()
+      Dropdowns.start_gpt()
     end
   })
 
