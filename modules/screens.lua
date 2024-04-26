@@ -59,8 +59,14 @@ local function sysmonitor_widget(mode)
   return sysmonitor.create(args)
 end
 
+local tags = {}
+
+for i = 1, 9 do
+  table.insert(tags, tostring(i))
+end
+
 awful.screen.connect_for_each_screen(function(s)
-  awful.tag({ "1", "2", "3", "4", "5"}, s, awful.layout.suit.floating)
+  awful.tag(tags, s, awful.layout.suit.floating)
 
   -- Top Panel
 
