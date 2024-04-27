@@ -147,8 +147,8 @@ awful.screen.connect_for_each_screen(function(s)
 
   local gpt_button = multibutton.create({
     text = "GPT",
-    right = " | ",
-    right_color = Globals.nicedark,
+    right = " "..Globals.star.." ",
+    right_color = Globals.niceblue,
     on_click = function()
       Dropdowns.toggle("gpt")
     end,
