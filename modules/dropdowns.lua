@@ -28,14 +28,20 @@ function Dropdowns.start_gpt()
 end
 
 Dropdowns.underline_text = function(what)
-    for _, button in ipairs(Dropdowns.buttons[what]) do
-        button.underline()
+    active_screen = Dropdowns.get_screen(what)
+
+    for _, item in ipairs(Dropdowns.buttons[what]) do
+        if item.screen == active_screen then
+            item.button.underline()
+        else
+            item.button.normal()
+        end
     end
 end
 
 Dropdowns.normal_text = function(what)
-    for _, button in ipairs(Dropdowns.buttons[what]) do
-        button.normal()
+    for _, item in ipairs(Dropdowns.buttons[what]) do
+        item.button.normal()
     end
 end
 
@@ -175,12 +181,16 @@ function Dropdowns.check()
     end
 end
 
-function Dropdowns.register_button(what, button)
+function Dropdowns.register_button(what, button, screen)
     if Dropdowns.buttons[what] == nil then
         Dropdowns.buttons[what] = {}
     end
 
-    table.insert(Dropdowns.buttons[what], button)
+    item = {}
+    item.button = button
+    item.screen = screen
+
+    table.insert(Dropdowns.buttons[what], item)
 end
 
 Dropdowns.setup()

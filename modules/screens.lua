@@ -143,7 +143,7 @@ awful.screen.connect_for_each_screen(function(s)
     end
   })
 
-  Dropdowns.register_button("utils", utils_button)
+  Dropdowns.register_button("utils", utils_button, s)
 
   local gpt_button = multibutton.create({
     text = "GPT",
@@ -157,7 +157,7 @@ awful.screen.connect_for_each_screen(function(s)
     end
   })
 
-  Dropdowns.register_button("gpt", gpt_button)
+  Dropdowns.register_button("gpt", gpt_button, s)
 
   local right = {
     layout = wibox.layout.fixed.horizontal(),
