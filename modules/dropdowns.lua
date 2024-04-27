@@ -4,9 +4,7 @@
 
 Dropdowns = {}
 Dropdowns.dd_utils_on = false
-Dropdowns.dd_utils_started = false
 Dropdowns.dd_gpt_on = false
-Dropdowns.dd_gpt_started = false
 Dropdowns.dropdowns = {"utils", "gpt"}
 Dropdowns.buttons = {}
 
@@ -22,26 +20,16 @@ function Dropdowns.start_utils()
     Utils.spawn("speedcrunch")
     Utils.spawn("tilix --session ~/sessions/main.json")
     Dropdowns.underline_text("utils")
-    Dropdowns.dd_utils_started = true
 end
 
 function Dropdowns.start_gpt()
     Utils.spawn("firefox-developer-edition -P chatgpt")
     Dropdowns.underline_text("gpt")
-    Dropdowns.dd_gpt_started = true
 end
 
 Dropdowns.underline_text = function(what)
-    for index, dropdown in ipairs(Dropdowns.dropdowns) do
-        if dropdown ~= what then
-            for _, button in ipairs(Dropdowns.buttons[dropdown]) do
-                button.normal()
-            end
-        else
-            for _, button in ipairs(Dropdowns.buttons[dropdown]) do
-                button.underline()
-            end
-        end
+    for _, button in ipairs(Dropdowns.buttons[what]) do
+        button.underline()
     end
 end
 
@@ -74,10 +62,6 @@ function Dropdowns.get_on(what)
     return Dropdowns["dd_" .. what .. "_on"]
 end
 
-function Dropdowns.get_started(what)
-    return Dropdowns["dd_" .. what .. "_started"]
-end
-
 function Dropdowns.set_on(what, value)
     Dropdowns["dd_" .. what .. "_on"] = value
 end
@@ -99,11 +83,6 @@ function Dropdowns.set_screen(what, value)
 end
 
 function Dropdowns.toggle(what)
-    if not Dropdowns.get_started(what) then
-        Dropdowns["start_" .. what]()
-        return
-    end
-
     if Dropdowns.get_on(what) then
         local tag = Dropdowns.get_tag(what)
         local highest = Utils.highest_in_tag(tag)
