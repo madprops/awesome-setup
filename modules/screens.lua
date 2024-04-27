@@ -140,6 +140,12 @@ awful.screen.connect_for_each_screen(function(s)
     end,
     on_middle_click = function()
       Dropdowns.start_utils()
+    end,
+    on_wheel_up = function()
+      Utils.switch_tag("prev")
+    end,
+    on_wheel_down = function()
+      Utils.switch_tag("next")
     end
   })
 
@@ -154,6 +160,12 @@ awful.screen.connect_for_each_screen(function(s)
     end,
     on_middle_click = function()
       Dropdowns.start_gpt()
+    end,
+    on_wheel_up = function()
+      Utils.switch_tag("prev")
+    end,
+    on_wheel_down = function()
+      Utils.switch_tag("next")
     end
   })
 
