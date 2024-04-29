@@ -15,12 +15,21 @@ local function sysmonitor_widget(mode)
   local args = {}
   args.mode = mode
 
-  args.on_wheel_down = function()
-    Utils.decrease_volume()
-  end
+  if mode == "cpu" or mode == "ram" then
+    args.on_wheel_up = function()
+      Utils.switch_tag("prev")
+    end
+    args.on_wheel_down = function()
+      Utils.switch_tag("next")
+    end
+  else
+    args.on_wheel_down = function()
+      Utils.decrease_volume()
+    end
 
-  args.on_wheel_up = function()
-    Utils.increase_volume()
+    args.on_wheel_up = function()
+      Utils.increase_volume()
+    end
   end
 
   args.left_color = Globals.nicedark
