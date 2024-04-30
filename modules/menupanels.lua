@@ -44,35 +44,39 @@ Menupanels.applications = menupanel.create({
   parent = Menupanels.main,
   items = {
     {
-      name = "FF Chan",
+      name = "Chan",
       action = function() Utils.spawn("firefox-developer-edition -P 4chanposter") end,
     },
     {
-      name = "FF Tile 1",
+      name = "Cytube",
+      action = function() Utils.spawn("firefox-developer-edition -P 4chanposter") end,
+    },
+    {
+      name = "Tile 1",
       action = function() Utils.spawn("firefox-developer-edition -P tile1") end,
     },
     {
-      name = "FF Tile 2",
+      name = "Tile 2",
       action = function() Utils.spawn("firefox-developer-edition -P tile2") end,
     },
     {
-      name = "FF Tile 3",
+      name = "Tile 3",
       action = function() Utils.spawn("firefox-developer-edition -P tile3") end,
     },
     {
-      name = "FF Dev 1",
+      name = "Dev 1",
       action = function() Utils.spawn("firefox-developer-edition -P dev1") end,
     },
     {
-      name = "FF Dev 2",
+      name = "Dev 2",
       action = function() Utils.spawn("firefox-developer-edition -P dev2") end,
     },
     {
-      name = "FF Dev 3",
+      name = "Dev 3",
       action = function() Utils.spawn("firefox-developer-edition -P dev3") end,
     },
     {
-      name = "Keyboard",
+      name = "KB",
       action = function() Utils.spawn("onboard") end,
     }
   }
