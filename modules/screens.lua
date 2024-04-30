@@ -142,6 +142,7 @@ awful.screen.connect_for_each_screen(function(s)
 
   local utils_button = multibutton.create({
     text = "Utils",
+    left = " ",
     right = " |",
     right_color = Globals.nicedark,
     on_click = function()
@@ -162,6 +163,7 @@ awful.screen.connect_for_each_screen(function(s)
 
   local gpt_button = multibutton.create({
     text = "GPT",
+    left = " ",
     right = " "..Globals.star.." ",
     right_color = Globals.niceblue,
     on_click = function()
@@ -187,9 +189,7 @@ awful.screen.connect_for_each_screen(function(s)
     Utils.space(),
     systray_container,
     Utils.space(),
-    Utils.space(),
     utils_button,
-    Utils.space(),
     gpt_button,
     sysmonitor_widget("cpu"),
     sysmonitor_widget("ram"),
