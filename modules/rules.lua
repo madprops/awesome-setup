@@ -220,6 +220,13 @@ function Rules.check_title(c, force)
       c.skip_taskbar = true
       c.x_dropdown_gpt = true
     end
+  elseif Utils.startswith(c.name, "[cytube]") then
+    if not c.x_rules_applied or force then
+      c.x_rules_applied = true
+      c.width = Utils.width_factor(1)
+      c.height = Utils.height_factor(0.64)
+      c.screen = 2
+    end
   end
 end
 
