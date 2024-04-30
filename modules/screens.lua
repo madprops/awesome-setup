@@ -117,7 +117,6 @@ awful.screen.connect_for_each_screen(function(s)
       end,
     }),
     s.mytaglist,
-    Utils.space(),
   }
 
   local center = {
