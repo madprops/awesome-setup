@@ -493,6 +493,7 @@ function Utils.fake_input_do(ctrl, shift, alt, key)
     root.fake_input('key_release', "Shift_L")
     root.fake_input('key_release', "Shift_R")
     root.fake_input('key_release', "Delete")
+    root.fake_input('key_release', "Escape")
 
     if ctrl then
       root.fake_input('key_press', "Control_L")
