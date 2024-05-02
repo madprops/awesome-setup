@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
 stylua .
-
-cd modules/
-stylua .
-
-cd ../madwidgets
-stylua .
-stylua --glob ./*
+stylua --glob modules/*
+stylua --glob madwidgets/*
