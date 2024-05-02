@@ -552,40 +552,40 @@ function Utils.fake_input_do(
     root.fake_input('key_press', key)
     root.fake_input('key_release', key)
 
-    if not keep_ctrl_left then
-      root.fake_input('key_release', "Control_L")
-    else
+    if keep_ctrl_left then
       root.fake_input('key_press', "Control_L")
+    else
+      root.fake_input('key_release', "Control_L")
     end
 
-    if not keep_shift_left then
-      root.fake_input('key_release', "Shift_L")
-    else
+    if keep_shift_left then
       root.fake_input('key_press', "Shift_L")
+    else
+      root.fake_input('key_release', "Shift_L")
     end
 
-    if not keep_alt_right then
-      root.fake_input('key_release', "Alt_L")
-    else
+    if keep_alt_right then
       root.fake_input('key_press', "Alt_L")
+    else
+      root.fake_input('key_release', "Alt_L")
     end
 
-    if not keep_ctrl_right then
-      root.fake_input('key_release', "Control_R")
-    else
+    if keep_ctrl_right then
       root.fake_input('key_press', "Control_R")
+    else
+      root.fake_input('key_release', "Control_R")
     end
 
-    if not keep_shift_right then
-      root.fake_input('key_release', "Shift_R")
-    else
+    if keep_shift_right then
       root.fake_input('key_press', "Shift_R")
+    else
+      root.fake_input('key_release', "Shift_R")
     end
 
-    if not keep_alt_right then
-      root.fake_input('key_release', "Alt_R")
-    else
+    if keep_alt_right then
       root.fake_input('key_press', "Alt_R")
+    else
+      root.fake_input('key_release', "Alt_R")
     end
 
     timer:stop()
