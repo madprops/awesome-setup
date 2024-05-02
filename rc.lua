@@ -16,7 +16,7 @@ require("modules/rules")
 require("modules/menupanels")
 require("modules/autostart")
 
-local timer = gears.timer {
+local timer = gears.timer({
 	timeout = 2,
 	call_now = false,
 	autostart = true,
@@ -27,4 +27,4 @@ local timer = gears.timer {
 		Dropdowns.hide_all()
 		Utils.msg("Done")
 	end,
-}
+})

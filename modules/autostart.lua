@@ -15,4 +15,4 @@ Utils.spawn("xinput set-button-map 11 3 2 1 4 5 6 7 8 9")
 Utils.spawn("systemctl --user start clipton")
 
 -- Wallpaper
-Utils.spawn("feh --bg-fill "..beautiful.wallpaper)
+Utils.spawn("feh --bg-fill " .. beautiful.wallpaper)

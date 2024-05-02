@@ -94,7 +94,9 @@ function Frames.refresh(frame)
 		c.skip_taskbar = true
 	end
 
-	table.sort(frames, function(a, b) return a.x_focus_date > b.x_focus_date end)
+	table.sort(frames, function(a, b)
+		return a.x_focus_date > b.x_focus_date
+	end)
 	frames[1].skip_taskbar = false
 end
 
@@ -122,7 +124,9 @@ function Frames.cycle(c1, reverse, alt)
 	end
 
 	if alt then
-		table.sort(frames, function(a, b) return a.x_focus_date > b.x_focus_date end)
+		table.sort(frames, function(a, b)
+			return a.x_focus_date > b.x_focus_date
+		end)
 		focused = frames[1]
 	else
 		focused = c1
@@ -133,9 +137,13 @@ function Frames.cycle(c1, reverse, alt)
 	end
 
 	if reverse then
-		table.sort(frames, function(a, b) return a.x_index > b.x_index end)
+		table.sort(frames, function(a, b)
+			return a.x_index > b.x_index
+		end)
 	else
-		table.sort(frames, function(a, b) return a.x_index < b.x_index end)
+		table.sort(frames, function(a, b)
+			return a.x_index < b.x_index
+		end)
 	end
 
 	local selected
