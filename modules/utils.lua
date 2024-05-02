@@ -480,10 +480,50 @@ function Utils.table_contains(tab, val)
   return false
 end
 
-function Utils.fake_input_do(ctrl, shift, alt, key)
+function Utils.fake_input_do(
+  ctrl, shift, alt, key,
+  keep_ctrl_left, keep_shift_left, keep_alt_left,
+  keep_ctrl_right, keep_shift_right, keep_alt_right)
+
   local timer = gears.timer {
     timeout = 0.11
   }
+
+  if ctrl == nil then
+    ctrl = false
+  end
+
+  if shift == nil then
+    shift = false
+  end
+
+  if alt == nil then
+    alt = false
+  end
+
+  if keep_ctrl_left == nil then
+    keep_ctrl_left = false
+  end
+
+  if keep_shift_left == nil then
+    keep_shift_left = false
+  end
+
+  if keep_alt_left == nil then
+    keep_alt_left = false
+  end
+
+  if keep_ctrl_right == nil then
+    keep_ctrl_right = false
+  end
+
+  if keep_shift_right == nil then
+    keep_shift_right = false
+  end
+
+  if keep_alt_right == nil then
+    keep_alt_right = false
+  end
 
   timer:connect_signal("timeout", function()
     root.fake_input('key_release', "Super_L")
@@ -492,6 +532,8 @@ function Utils.fake_input_do(ctrl, shift, alt, key)
     root.fake_input('key_release', "Control_R")
     root.fake_input('key_release', "Shift_L")
     root.fake_input('key_release', "Shift_R")
+    root.fake_input('key_release', "Alt_L")
+    root.fake_input('key_release', "Alt_R")
     root.fake_input('key_release', "Delete")
     root.fake_input('key_release', "Escape")
 
@@ -510,16 +552,40 @@ function Utils.fake_input_do(ctrl, shift, alt, key)
     root.fake_input('key_press', key)
     root.fake_input('key_release', key)
 
-    if ctrl then
+    if not keep_ctrl_left then
       root.fake_input('key_release', "Control_L")
+    else
+      root.fake_input('key_press', "Control_L")
     end
 
-    if shift then
+    if not keep_shift_left then
       root.fake_input('key_release', "Shift_L")
+    else
+      root.fake_input('key_press', "Shift_L")
     end
 
-    if alt then
+    if not keep_alt_right then
       root.fake_input('key_release', "Alt_L")
+    else
+      root.fake_input('key_press', "Alt_L")
+    end
+
+    if not keep_ctrl_right then
+      root.fake_input('key_release', "Control_R")
+    else
+      root.fake_input('key_press', "Control_R")
+    end
+
+    if not keep_shift_right then
+      root.fake_input('key_release', "Shift_R")
+    else
+      root.fake_input('key_press', "Shift_R")
+    end
+
+    if not keep_alt_right then
+      root.fake_input('key_release', "Alt_R")
+    else
+      root.fake_input('key_press', "Alt_R")
     end
 
     timer:stop()
@@ -563,7 +629,9 @@ function Utils.smart_close(c)
   if c.kill then
     if c.instance == "Navigator" or c.instance == "code" then
       Utils.focus(c)
-      Utils.fake_input_do(true, false, false, "w")
+
+      Utils.fake_input_do(true, false, false,
+      "w", false, false, false, true, true, false)
     else
       c:kill()
     end
