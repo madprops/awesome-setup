@@ -62,7 +62,7 @@ Menupanels.applications = menupanel.create({
 		{
 			name = "Cytube",
 			action = function()
-				Utils.spawn("firefox-developer-edition -P 4chanposter")
+				Utils.spawn("firefox-developer-edition -P cytube")
 			end,
 		},
 		{
