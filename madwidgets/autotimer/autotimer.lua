@@ -89,18 +89,22 @@ function autotimer.start(name)
 
 	args.on_click = function()
 		if autotimer.actions[name].mode == "timer" then
-			utils.msg("Middle click to stop. Wheel to increase or decrease")
+			utils.msg("Middle click to stop. Shift + Wheel to increase or decrease")
 		elseif autotimer.actions[name].mode == "counter" then
 			utils.msg("Middle click to stop")
 		end
 	end
 
-	args.on_wheel_down = function()
-		autotimer.add_minutes(name, -5)
+	args.on_wheel_down = function(instance, mods)
+		if utils.shift_pressed(mods) then
+			autotimer.add_minutes(name, -5)
+		end
 	end
 
-	args.on_wheel_up = function()
-		autotimer.add_minutes(name, 5)
+	args.on_wheel_up = function(instance, mods)
+		if utils.shift_pressed(mods) then
+			autotimer.add_minutes(name, 5)
+		end
 	end
 
 	args.on_middle_click = function()

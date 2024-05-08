@@ -91,4 +91,27 @@ function utils.switch_tag(direction, sticky)
 	end
 end
 
+function utils.shift_pressed(mods)
+	for _, mod in ipairs(mods) do
+		if mod == "Shift" then
+			return true
+		end
+	end
+
+	return false
+end
+
+function utils.print_table(t, indent)
+    indent = indent or ""
+
+    for key, value in pairs(t) do
+        if type(value) == "table" then
+            utils.msg(indent .. key .. " : ")
+            utils.print_table(value, indent .. "  ")
+        else
+            utils.msg(indent .. key .. " : " .. tostring(value))
+        end
+    end
+end
+
 return utils

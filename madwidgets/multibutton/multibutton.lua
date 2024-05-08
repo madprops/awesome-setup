@@ -91,17 +91,17 @@ function multibutton.create(args)
 		right,
 	})
 
-	function instance.action(button)
+	function instance.action(button, mods)
 		if button == 1 then
-			args.on_click(instance)
+			args.on_click(instance, mods)
 		elseif button == 2 then
-			args.on_middle_click(instance)
+			args.on_middle_click(instance, mods)
 		elseif button == 3 then
-			args.on_right_click(instance)
+			args.on_right_click(instance, mods)
 		elseif button == 4 then
-			args.on_wheel_up(instance)
+			args.on_wheel_up(instance, mods)
 		elseif button == 5 then
-			args.on_wheel_down(instance)
+			args.on_wheel_down(instance, mods)
 		end
 	end
 
@@ -114,16 +114,16 @@ function multibutton.create(args)
 	end
 
 	instance.subwidget:connect_signal("button::press", function(a, b, c, button, mods)
-		instance.action(button)
+		instance.action(button, mods)
 	end)
 
 	if args.side_actions then
 		instance.left_text:connect_signal("button::press", function(a, b, c, button, mods)
-			instance.action(button)
+			instance.action(button, mods)
 		end)
 
 		instance.right_text:connect_signal("button::press", function(a, b, c, button, mods)
-			instance.action(button)
+			instance.action(button, mods)
 		end)
 	end
 
