@@ -95,15 +95,19 @@ function autotimer.start(name)
 		end
 	end
 
-	args.on_wheel_down = function(instance, mods)
-		if utils.shift_pressed(mods) then
-			autotimer.add_minutes(name, -5)
-		end
-	end
-
 	args.on_wheel_up = function(instance, mods)
 		if utils.shift_pressed(mods) then
 			autotimer.add_minutes(name, 5)
+		else
+			utils.switch_tag("prev")
+		end
+	end
+
+	args.on_wheel_down = function(instance, mods)
+		if utils.shift_pressed(mods) then
+			autotimer.add_minutes(name, -5)
+		else
+			utils.switch_tag("next")
 		end
 	end
 
