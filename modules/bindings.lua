@@ -280,6 +280,7 @@ Bindings.clientbuttons = gears.table.join(
 		if not c.x_keys then
 			return
 		end
+
 		Utils.focus(c)
 		c.maximized = false
 		awful.mouse.client.move(c)
@@ -289,6 +290,7 @@ Bindings.clientbuttons = gears.table.join(
 		if not c.x_keys then
 			return
 		end
+
 		Utils.focus(c)
 		c.maximized = false
 		awful.mouse.client.resize(c)
