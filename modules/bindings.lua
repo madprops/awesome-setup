@@ -272,6 +272,10 @@ Bindings.clientbuttons = gears.table.join(
 		Utils.middle_click(c)
 	end),
 
+	awful.button({}, 3, function(c)
+		Utils.focus(c)
+	end),
+
 	awful.button({ modkey }, 1, function(c)
 		if not c.x_keys then
 			return

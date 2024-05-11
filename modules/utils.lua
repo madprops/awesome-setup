@@ -713,6 +713,8 @@ function Utils.middle_click(c)
 		Utils.fake_input_do(false, false, true, "q")
 	elseif c.x_ctrl_d then
 		Utils.fake_input_do(true, false, false, "d")
+	else
+		Utils.focus(c)
 	end
 end
 
