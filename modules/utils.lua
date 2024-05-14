@@ -654,6 +654,7 @@ function Utils.smart_close(c)
 		return
 	end
 	if Dropdowns.included(c) then
+		Dropdowns.hide_all()
 		return
 	end
 
