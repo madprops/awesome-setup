@@ -233,8 +233,9 @@ function Rules.check_title(c, force)
 	elseif Utils.startswith(c.name, "Meltdown (dev)") then
 		if not c.x_rules_applied or force then
 			c.screen = screen_left
-			c.titlebars_enabled = true
 			c.x_index = 3
+			c.border_width = 4
+			c.border_color = "#72dcff"
 		end
 	end
 end
