@@ -271,6 +271,10 @@ function Utils.spawn(cmd)
 	awful.spawn(cmd, false)
 end
 
+function Utils.spawn_2(cmd)
+	awful.spawn(cmd)
+end
+
 function Utils.shellspawn(cmd)
 	awful.spawn.with_shell(cmd, false)
 end

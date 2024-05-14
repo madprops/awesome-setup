@@ -5,7 +5,7 @@
 Dropdowns = {}
 Dropdowns.dd_utils_on = false
 Dropdowns.dd_gpt_on = false
-Dropdowns.dropdowns = { "utils", "gpt" }
+Dropdowns.dropdowns = { "utils", "gpt", "melt" }
 Dropdowns.buttons = {}
 
 function Dropdowns.setup()
@@ -25,11 +25,6 @@ end
 function Dropdowns.start_gpt()
 	Utils.spawn("firefox-developer-edition -P chatgpt")
 	Dropdowns.underline_text("gpt")
-end
-
-function Dropdowns.start_melt()
-	Utils.spawn("meltdown --profile dropdown")
-	Dropdowns.underline_text("melt")
 end
 
 Dropdowns.underline_text = function(what)

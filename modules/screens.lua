@@ -198,9 +198,6 @@ awful.screen.connect_for_each_screen(function(s)
 		on_click = function()
 			Dropdowns.toggle("melt")
 		end,
-		on_middle_click = function()
-			Dropdowns.start_melt()
-		end,
 		on_wheel_up = function()
 			Utils.switch_tag("prev")
 		end,
