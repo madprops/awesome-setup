@@ -223,7 +223,7 @@ function Rules.check_title(c, force)
 	elseif Utils.startswith(c.name, "Meltdown (dropdown)") then
 		if not c.x_rules_applied or force then
 			c.x_rules_applied = true
-			c.width = Utils.width_factor(0.5)
+			c.width = Utils.width_factor(0.44)
 			c.height = Utils.height_factor(0.8)
 			c.skip_taskbar = true
 			c.x_dropdown_melt = true
