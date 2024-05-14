@@ -172,8 +172,8 @@ awful.screen.connect_for_each_screen(function(s)
 	local gpt_button = multibutton.create({
 		text = "GPT",
 		left = " ",
-		right = " " .. Globals.star .. " ",
-		right_color = Globals.niceblue,
+		right = " |",
+		right_color = Globals.nicedark,
 		on_click = function()
 			Dropdowns.toggle("gpt")
 		end,
@@ -190,6 +190,27 @@ awful.screen.connect_for_each_screen(function(s)
 
 	Dropdowns.register_button("gpt", gpt_button, s)
 
+	local melt_button = multibutton.create({
+		text = "Melt",
+		left = " ",
+		right = " " .. Globals.star .. " ",
+		right_color = Globals.niceblue,
+		on_click = function()
+			Dropdowns.toggle("melt")
+		end,
+		on_middle_click = function()
+			Dropdowns.start_melt()
+		end,
+		on_wheel_up = function()
+			Utils.switch_tag("prev")
+		end,
+		on_wheel_down = function()
+			Utils.switch_tag("next")
+		end,
+	})
+
+	Dropdowns.register_button("melt", melt_button, s)
+
 	local right = {
 		layout = wibox.layout.fixed.horizontal(),
 		autotimer.widget,
@@ -199,6 +220,7 @@ awful.screen.connect_for_each_screen(function(s)
 		Utils.space(),
 		utils_button,
 		gpt_button,
+		melt_button,
 		sysmonitor_widget("cpu"),
 		sysmonitor_widget("ram"),
 		sysmonitor_widget("tmp"),

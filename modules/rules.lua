@@ -23,6 +23,7 @@ awful.rules.rules = {
 			x_terminal = false,
 			x_dropdown_gpt = false,
 			x_dropdown_utils = false,
+			x_dropdown_melt = false,
 			x_index = 0,
 			x_focus_date = 0,
 			x_frame = "none",
@@ -179,14 +180,6 @@ awful.rules.rules = {
 			x_terminal = true,
 		},
 	},
-	{
-		rule = { instance = "meltdown" },
-		properties = {
-			screen = screen_left,
-			titlebars_enabled = true,
-			x_index = 3,
-		},
-	},
 }
 
 function Rules.check_title(c, force)
@@ -226,6 +219,20 @@ function Rules.check_title(c, force)
 			c.width = Utils.width_factor(1)
 			c.height = Utils.height_factor(0.64)
 			c.screen = 2
+		end
+	elseif Utils.startswith(c.name, "Meltdown (dropdown)") then
+		if not c.x_rules_applied or force then
+			c.x_rules_applied = true
+			c.width = Utils.width_factor(0.5)
+			c.height = Utils.height_factor(0.8)
+			c.skip_taskbar = true
+			c.x_dropdown_melt = true
+		end
+	elseif Utils.startswith(c.name, "Meltdown (dev)") then
+		if not c.x_rules_applied or force then
+			c.screen = screen_left
+			c.titlebars_enabled = true
+			c.x_index = 3
 		end
 	end
 end

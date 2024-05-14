@@ -27,6 +27,11 @@ function Dropdowns.start_gpt()
 	Dropdowns.underline_text("gpt")
 end
 
+function Dropdowns.start_melt()
+	Utils.spawn("meltdown --profile dropdown")
+	Dropdowns.underline_text("melt")
+end
+
 Dropdowns.underline_text = function(what)
 	active_screen = Dropdowns.get_screen(what)
 
