@@ -150,7 +150,7 @@ awful.screen.connect_for_each_screen(function(s)
 
 	local utils_button = multibutton.create({
 		text = "Utils",
-		left = " ",
+		left = "  ",
 		right = " |",
 		right_color = Globals.nicedark,
 		on_click = function()
@@ -217,7 +217,6 @@ awful.screen.connect_for_each_screen(function(s)
 		Utils.space(),
 		Utils.space(),
 		systray_container,
-		Utils.space(),
 		utils_button,
 		gpt_button,
 		melt_button,
