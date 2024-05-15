@@ -28,7 +28,7 @@ function Dropdowns.start_gpt()
 end
 
 function Dropdowns.start_melt()
-	Utils.spawn("meltdown --profile dropdown --no-system")
+	Utils.spawn("meltdown --profile dropdown --compact --compact-system")
 	Dropdowns.underline_text("melt")
 end
 
