@@ -118,8 +118,6 @@ awful.rules.rules = {
 	{
 		rule = { instance = "terminator" },
 		properties = {
-			screen = screen_right,
-			tag = "2",
 			maximized = true,
 			x_terminal = true,
 			x_no_close = true,
@@ -236,6 +234,13 @@ function Rules.check_title(c, force)
 			c.x_index = 3
 			c.border_width = 4
 			c.border_color = "#72dcff"
+		end
+	elseif Utils.startswith(c.name, "Meltdown (info)") then
+		if not c.x_rules_applied or force then
+			c.screen = screen_left
+			c.x_index = 3
+			c.height = Utils.height_factor(0.333)
+			Utils.placement(c, "bottom_right")
 		end
 	end
 end
