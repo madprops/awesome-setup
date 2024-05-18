@@ -23,7 +23,7 @@ function Dropdowns.start_utils()
 end
 
 function Dropdowns.start_gpt()
-	Utils.spawn("firefox-developer-edition -P chatgpt")
+	Utils.spawn("firefox-developer-edition -P chatgpt2")
 	Dropdowns.underline_text("gpt")
 end
 
