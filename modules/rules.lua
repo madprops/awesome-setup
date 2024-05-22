@@ -234,6 +234,7 @@ function Rules.check_title(c, force)
 			c.x_index = 3
 			c.border_width = 4
 			c.border_color = "#72dcff"
+			Utils.placement(c, "bottom_right")
 		end
 	elseif Utils.startswith(c.name, "Meltdown (info)") then
 		if not c.x_rules_applied or force then
