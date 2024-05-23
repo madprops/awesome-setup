@@ -56,12 +56,6 @@ awful.rules.rules = {
 		},
 	},
 	{
-		rule = { instance = "Steam" },
-		properties = {
-			maximized = false,
-		},
-	},
-	{
 		rule = { instance = "fl64.exe" },
 		properties = {
 			maximized = true,
