@@ -6,7 +6,7 @@ local sysmonitor = require("madwidgets/sysmonitor/sysmonitor")
 local autotimer = require("madwidgets/autotimer/autotimer")
 
 autotimer.create({
-	left = " ",
+	left = "",
 	fontcolor = Globals.niceblue,
 	separator = "|",
 	separator_color = Globals.nicedark,
