@@ -193,7 +193,7 @@ awful.screen.connect_for_each_screen(function(s)
 	local melt_button = multibutton.create({
 		text = "Melt",
 		left = " ",
-		right = " " .. Globals.star .. " ",
+		right = " " .. Globals.melt .. " ",
 		right_color = Globals.niceblue,
 		on_click = function()
 			Dropdowns.toggle("melt")
