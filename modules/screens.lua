@@ -148,10 +148,11 @@ awful.screen.connect_for_each_screen(function(s)
 	systray:set_screen(screen[Globals.primary_screen])
 	local systray_container = wibox.layout.margin(systray, 0, 0, 3, 3)
 
+	-- Utils
 	local utils_button = multibutton.create({
 		text = "Utils",
-		left = "  ",
-		right = " " .. Globals.utils .. " | ",
+		left = Globals.utils .. " ",
+		right = " | ",
 		right_color = Globals.nicedark,
 		on_click = function()
 			Dropdowns.toggle("utils")
@@ -169,10 +170,11 @@ awful.screen.connect_for_each_screen(function(s)
 
 	Dropdowns.register_button("utils", utils_button, s)
 
+	-- GPT
 	local gpt_button = multibutton.create({
 		text = "GPT",
-		left = "",
-		right = " " .. Globals.gpt .. " | ",
+		left = Globals.gpt .. " ",
+		right = " | ",
 		right_color = Globals.nicedark,
 		on_click = function()
 			Dropdowns.toggle("gpt")
@@ -190,10 +192,11 @@ awful.screen.connect_for_each_screen(function(s)
 
 	Dropdowns.register_button("gpt", gpt_button, s)
 
+	-- Melt
 	local melt_button = multibutton.create({
 		text = "Melt",
-		left = "",
-		right = " " .. Globals.melt .. " | ",
+		left = Globals.melt .. " ",
+		right = " | ",
 		right_color = Globals.nicedark,
 		on_click = function()
 			Dropdowns.toggle("melt")
