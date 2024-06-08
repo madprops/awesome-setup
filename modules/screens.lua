@@ -151,7 +151,7 @@ awful.screen.connect_for_each_screen(function(s)
 	local utils_button = multibutton.create({
 		text = "Utils",
 		left = "  ",
-		right = " |",
+		right = " " .. Globals.utils .. " | ",
 		right_color = Globals.nicedark,
 		on_click = function()
 			Dropdowns.toggle("utils")
@@ -171,8 +171,8 @@ awful.screen.connect_for_each_screen(function(s)
 
 	local gpt_button = multibutton.create({
 		text = "GPT",
-		left = " ",
-		right = " |",
+		left = "",
+		right = " " .. Globals.gpt .. " | ",
 		right_color = Globals.nicedark,
 		on_click = function()
 			Dropdowns.toggle("gpt")
@@ -192,9 +192,9 @@ awful.screen.connect_for_each_screen(function(s)
 
 	local melt_button = multibutton.create({
 		text = "Melt",
-		left = " ",
-		right = " " .. Globals.melt .. " ",
-		right_color = Globals.niceblue,
+		left = "",
+		right = " " .. Globals.melt .. " | ",
+		right_color = Globals.nicedark,
 		on_click = function()
 			Dropdowns.toggle("melt")
 		end,
