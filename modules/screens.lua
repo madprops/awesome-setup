@@ -151,7 +151,7 @@ awful.screen.connect_for_each_screen(function(s)
 	-- Utils
 	local utils_button = multibutton.create({
 		text = "Utils",
-		left = Globals.utils .. " ",
+		left = " " .. Globals.utils .. " ",
 		right = " | ",
 		right_color = Globals.nicedark,
 		on_click = function()
