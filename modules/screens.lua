@@ -218,7 +218,6 @@ awful.screen.connect_for_each_screen(function(s)
 		layout = wibox.layout.fixed.horizontal(),
 		autotimer.widget,
 		Utils.space(),
-		Utils.space(),
 		systray_container,
 		utils_button,
 		gpt_button,
