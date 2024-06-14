@@ -22,6 +22,12 @@ Menupanels.main = menupanel.create({
 			end,
 		},
 		{
+			name = "Terminals",
+			action = function(trigger)
+				Menupanels.terminals.show(trigger)
+			end,
+		},
+		{
 			name = "Log",
 			action = function(trigger)
 				Menupanels.log.show(trigger)
@@ -105,6 +111,32 @@ Menupanels.applications = menupanel.create({
 			name = "KB",
 			action = function()
 				Utils.spawn("onboard")
+			end,
+		},
+	},
+})
+
+Menupanels.terminals = menupanel.create({
+	placement = "top",
+	height = height,
+	parent = Menupanels.main,
+	items = {
+		{
+			name = "Default",
+			action = function()
+				Utils.spawn("terminator")
+			end,
+		},
+		{
+			name = "Meltdown",
+			action = function()
+				Utils.spawn("terminator -p meltdown")
+			end,
+		},
+		{
+			name = "Grasshopper",
+			action = function()
+				Utils.spawn("terminator -p grasshopper")
 			end,
 		},
 	},
