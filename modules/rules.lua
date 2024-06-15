@@ -41,7 +41,6 @@ awful.rules.rules = {
 	{
 		rule = { class = "firefoxdeveloperedition" },
 		properties = {
-			maximized = true,
 			x_hotcorner = "1_top_left",
 			x_index = 1,
 		},
@@ -211,6 +210,14 @@ function Rules.check_title(c, force)
 			c.width = Utils.width_factor(1)
 			c.height = Utils.height_factor(0.64)
 			c.screen = 2
+		end
+	elseif Utils.startswith(c.name, "[chan]") then
+		if not c.x_rules_applied or force then
+			c.x_rules_applied = true
+			c.width = Utils.width_factor(0.49)
+			c.border_width = 4
+			c.border_color = "#00dbd7"
+			Utils.placement(c, "top_left")
 		end
 	elseif Utils.startswith(c.name, "Meltdown (dropdown)") then
 		if not c.x_rules_applied or force then
