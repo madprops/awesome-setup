@@ -291,8 +291,15 @@ function Utils.run_script_2(cmd)
 	Utils.spawn(os.getenv("HOME") .. "/scripts/" .. cmd)
 end
 
-function Utils.width_factor(n)
-	return Utils.my_screen().workarea.width * n
+function Utils.width_factor(n, c)
+	local w = Utils.my_screen().workarea.width * n
+
+	if c then
+		local border_width = c and c.border_width or 0
+		w = w - (border_width * 2)
+	end
+
+	return w
 end
 
 function Utils.height_factor(n)
