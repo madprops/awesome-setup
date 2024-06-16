@@ -805,9 +805,24 @@ function Utils.main_menu_wheel_down()
 	Utils.switch_tag("next")
 end
 
+function Utils.clean_clients(clients)
+	local filtered = {}
+
+	for i = 1, #clients do
+		local c = clients[i]
+
+		if not Dropdowns.included(c) then
+			table.insert(filtered, c)
+		end
+	end
+
+	return filtered
+end
+
 function Utils.paper_layout()
 	tag = Utils.my_tag()
 	clients = tag:clients()
+	clients = Utils.clean_clients(clients)
 
 	if #clients < 2 then
 		return
@@ -821,7 +836,10 @@ function Utils.paper_layout()
 	c2 = clients[2]
 
 	c1.width = Utils.width_factor(0.7, c1)
+	c1.height = Utils.height_factor(1, c1)
+
 	c2.width = Utils.width_factor(0.7, c2)
+	c2.height = Utils.height_factor(1, c2)
 
 	Utils.placement(c1, "left")
 	Utils.placement(c2, "right")
