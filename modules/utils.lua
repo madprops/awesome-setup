@@ -821,7 +821,7 @@ end
 
 function Utils.paper_layout()
 	tag = Utils.my_tag()
-	clients = tag:clients()
+	clients = Utils.sort_index(tag.screen)
 	clients = Utils.clean_clients(clients)
 
 	if #clients < 2 then
@@ -843,4 +843,31 @@ function Utils.paper_layout()
 
 	Utils.placement(c1, "left")
 	Utils.placement(c2, "right")
+end
+
+function Utils.sort_index(s)
+	local result = {}
+	local unindexed = {}
+
+	for _, c in pairs(client.get()) do
+		if c.screen == s then
+			if c.first_tag.index == s.selected_tag.index then
+				if c.x_index > 0 then
+					table.insert(result, c)
+				else
+					table.insert(unindexed, c)
+				end
+			end
+		end
+	end
+
+	table.sort(result, function(a, b)
+		return a.x_index < b.x_index
+	end)
+
+	for _, c in pairs(unindexed) do
+		table.insert(result, c)
+	end
+
+	return result
 end
