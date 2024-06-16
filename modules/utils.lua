@@ -819,7 +819,7 @@ function Utils.clean_clients(clients)
 	return filtered
 end
 
-function Utils.paper_layout()
+function Utils.two_clients()
 	tag = Utils.my_tag()
 	clients = Utils.sort_index(tag.screen)
 	clients = Utils.clean_clients(clients)
@@ -832,8 +832,11 @@ function Utils.paper_layout()
 		return a.first_tag.index > b.first_tag.index
 	end)
 
-	c1 = clients[1]
-	c2 = clients[2]
+	return clients[1], clients[2]
+end
+
+function Utils.paper_horizontal_layout()
+	local c1, c2 = Utils.two_clients()
 
 	c1.width = Utils.width_factor(0.7, c1)
 	c1.height = Utils.height_factor(1, c1)
@@ -843,6 +846,45 @@ function Utils.paper_layout()
 
 	Utils.placement(c1, "left")
 	Utils.placement(c2, "right")
+end
+
+function Utils.paper_vertical_layout()
+	local c1, c2 = Utils.two_clients()
+
+	c1.width = Utils.width_factor(1, c1)
+	c1.height = Utils.height_factor(0.7, c1)
+
+	c2.width = Utils.width_factor(1, c2)
+	c2.height = Utils.height_factor(0.7, c2)
+
+	Utils.placement(c1, "top")
+	Utils.placement(c2, "bottom")
+end
+
+function Utils.horizontal_layout()
+	local c1, c2 = Utils.two_clients()
+
+	c1.width = Utils.width_factor(0.5, c1)
+	c1.height = Utils.height_factor(1, c1)
+
+	c2.width = Utils.width_factor(0.5, c2)
+	c2.height = Utils.height_factor(1, c2)
+
+	Utils.placement(c1, "left")
+	Utils.placement(c2, "right")
+end
+
+function Utils.vertical_layout()
+	local c1, c2 = Utils.two_clients()
+
+	c1.width = Utils.width_factor(1, c1)
+	c1.height = Utils.height_factor(0.5, c1)
+
+	c2.width = Utils.width_factor(1, c2)
+	c2.height = Utils.height_factor(0.5, c2)
+
+	Utils.placement(c1, "top")
+	Utils.placement(c2, "bottom")
 end
 
 function Utils.sort_index(s)

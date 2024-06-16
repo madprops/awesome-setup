@@ -231,9 +231,27 @@ Menupanels.layouts = menupanel.create({
 	parent = Menupanels.main,
 	items = {
 		{
-			name = "Paper",
+			name = "Horizontal",
 			action = function()
-				Utils.paper_layout()
+				Utils.horizontal_layout()
+			end,
+		},
+		{
+			name = "Vertical",
+			action = function()
+				Utils.vertical_layout()
+			end,
+		},
+		{
+			name = "Paper Horizontal",
+			action = function()
+				Utils.paper_horizontal_layout()
+			end,
+		},
+		{
+			name = "Paper Vertical",
+			action = function()
+				Utils.paper_vertical_layout()
 			end,
 		},
 	},
