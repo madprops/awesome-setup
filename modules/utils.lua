@@ -292,18 +292,25 @@ function Utils.run_script_2(cmd)
 end
 
 function Utils.width_factor(n, c)
-	local w = Utils.my_screen().workarea.width * n
+	local width = Utils.my_screen().workarea.width * n
 
 	if c then
-		local border_width = c and c.border_width or 0
-		w = w - (border_width * 2)
+		local border = c.border_width or 0
+		width = width - (border * 2)
 	end
 
-	return w
+	return width
 end
 
-function Utils.height_factor(n)
-	return Utils.my_screen().workarea.height * n
+function Utils.height_factor(n, c)
+	local height = Utils.my_screen().workarea.height * n
+
+	if c then
+		local border = c.border_width or 0
+		height = height - (border * 2)
+	end
+
+	return height
 end
 
 function Utils.ratio(c)
