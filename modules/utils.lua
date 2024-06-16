@@ -829,7 +829,7 @@ function Utils.paper_layout()
 	end
 
 	table.sort(clients, function(a, b)
-		return a.x_index > b.x_index
+		return a.first_tag.index > b.first_tag.index
 	end)
 
 	c1 = clients[1]
