@@ -46,6 +46,12 @@ Menupanels.main = menupanel.create({
 			end,
 		},
 		{
+			name = "Layouts",
+			action = function(trigger)
+				Menupanels.layouts.show(trigger)
+			end,
+		},
+		{
 			name = "Leave",
 			action = function(trigger)
 				Menupanels.leave.show(trigger)
@@ -215,6 +221,20 @@ Menupanels.leave = menupanel.create({
 				Utils.shellspawn("shutdown now")
 			end,
 			needs_confirm = true,
+		},
+	},
+})
+
+Menupanels.layouts = menupanel.create({
+	placement = "top",
+	height = height,
+	parent = Menupanels.main,
+	items = {
+		{
+			name = "Paper",
+			action = function()
+				Utils.paper_layout()
+			end,
 		},
 	},
 })

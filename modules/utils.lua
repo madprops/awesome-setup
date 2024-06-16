@@ -804,3 +804,25 @@ end
 function Utils.main_menu_wheel_down()
 	Utils.switch_tag("next")
 end
+
+function Utils.paper_layout()
+	tag = Utils.my_tag()
+	clients = tag:clients()
+
+	if #clients < 2 then
+		return
+	end
+
+	table.sort(clients, function(a, b)
+		return a.x_index > b.x_index
+	end)
+
+	c1 = clients[1]
+	c2 = clients[2]
+
+	c1.width = Utils.width_factor(0.7, c1)
+	c2.width = Utils.width_factor(0.7, c2)
+
+	Utils.placement(c1, "left")
+	Utils.placement(c2, "right")
+end
