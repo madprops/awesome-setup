@@ -820,8 +820,8 @@ function Utils.clean_clients(clients)
 end
 
 function Utils.two_clients()
-	tag = Utils.my_tag()
-	clients = Utils.sort_index(tag.screen)
+	local tag = Utils.my_tag()
+	local clients = Utils.sort_index(tag.screen)
 	clients = Utils.clean_clients(clients)
 
 	if #clients < 2 then
@@ -833,6 +833,12 @@ function Utils.two_clients()
 	end)
 
 	return clients[1], clients[2]
+end
+
+function Utils.max_layout()
+	for _, c in ipairs(Utils.clients()) do
+		Utils.maximize(c)
+	end
 end
 
 function Utils.paper_horizontal_layout()

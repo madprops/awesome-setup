@@ -231,6 +231,12 @@ Menupanels.layouts = menupanel.create({
 	parent = Menupanels.main,
 	items = {
 		{
+			name = "Maximized",
+			action = function()
+				Utils.max_layout()
+			end,
+		},
+		{
 			name = "Horizontal",
 			action = function()
 				Utils.horizontal_layout()
