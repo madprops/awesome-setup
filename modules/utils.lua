@@ -837,6 +837,7 @@ end
 
 function Utils.max_layout()
 	for _, c in ipairs(Utils.clients()) do
+		c.maximized = false
 		c.width = Utils.width_factor(1, c)
 		c.height = Utils.height_factor(1, c)
 		Utils.placement(c, "top_left")
@@ -845,6 +846,9 @@ end
 
 function Utils.paper_horizontal_layout()
 	local c1, c2 = Utils.two_clients()
+
+	c1.maximized = false
+	c2.maximized = false
 
 	c1.width = Utils.width_factor(0.7, c1)
 	c1.height = Utils.height_factor(1, c1)
@@ -859,6 +863,9 @@ end
 function Utils.paper_vertical_layout()
 	local c1, c2 = Utils.two_clients()
 
+	c1.maximized = false
+	c2.maximized = false
+
 	c1.width = Utils.width_factor(1, c1)
 	c1.height = Utils.height_factor(0.7, c1)
 
@@ -872,6 +879,9 @@ end
 function Utils.horizontal_layout()
 	local c1, c2 = Utils.two_clients()
 
+	c1.maximized = false
+	c2.maximized = false
+
 	c1.width = Utils.width_factor(0.5, c1)
 	c1.height = Utils.height_factor(1, c1)
 
@@ -884,6 +894,9 @@ end
 
 function Utils.vertical_layout()
 	local c1, c2 = Utils.two_clients()
+
+	c1.maximized = false
+	c2.maximized = false
 
 	c1.width = Utils.width_factor(1, c1)
 	c1.height = Utils.height_factor(0.5, c1)
