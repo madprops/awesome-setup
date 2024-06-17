@@ -837,7 +837,9 @@ end
 
 function Utils.max_layout()
 	for _, c in ipairs(Utils.clients()) do
-		Utils.maximize(c)
+		c.width = Utils.width_factor(1, c)
+		c.height = Utils.height_factor(1, c)
+		Utils.placement(c, "top_left")
 	end
 end
 
