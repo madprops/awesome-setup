@@ -30,6 +30,7 @@ awful.rules.rules = {
 			x_frame_ready = false,
 			x_alt_q = false,
 			x_ctrl_d = false,
+			border_color = "#00dbd7"
 		},
 		callback = function(c)
 			if c.fullscreen then
@@ -214,8 +215,6 @@ function Rules.check_title(c, force)
 	elseif Utils.startswith(c.name, "[chan]") then
 		if not c.x_rules_applied or force then
 			c.x_rules_applied = true
-			c.border_width = 4
-			c.border_color = "#00dbd7"
 			c.width = Utils.width_factor(0.50, c)
 			Utils.placement(c, "top_left")
 		end
