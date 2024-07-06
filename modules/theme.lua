@@ -22,6 +22,9 @@ local white = "#ffffff"
 
 beautiful.fg_normal = grey
 beautiful.bg_normal = bg0
+beautiful.bg_systray = bg0
+beautiful.bg_urgent = green
+beautiful.fg_urgent = white
 beautiful.tasklist_shape_border_color = bg1
 beautiful.tasklist_shape_border_color_focus = border
 beautiful.tasklist_fg_normal = grey
@@ -30,12 +33,9 @@ beautiful.tasklist_fg_focus = white
 beautiful.tasklist_bg_focus = bg1
 beautiful.tasklist_fg_minimize = grey
 beautiful.tasklist_bg_minimize = bg0
+beautiful.tasklist_plain_task_name = true
 beautiful.taglist_fg_focus = white
 beautiful.taglist_bg_focus = bg1
-beautiful.bg_systray = bg0
-beautiful.bg_urgent = green
-beautiful.fg_urgent = white
-beautiful.tasklist_plain_task_name = true
 
 -- Wallpaper
 beautiful.wallpaper = Globals.conf_dir .. "wallpaper.jpg"
