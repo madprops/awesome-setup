@@ -35,6 +35,7 @@ beautiful.taglist_bg_focus = bg1
 beautiful.bg_systray = bg0
 beautiful.bg_urgent = green
 beautiful.fg_urgent = white
+beautiful.tasklist_plain_task_name = true
 
 -- Wallpaper
 beautiful.wallpaper = Globals.conf_dir .. "wallpaper.jpg"
