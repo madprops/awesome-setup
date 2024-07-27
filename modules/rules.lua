@@ -123,6 +123,32 @@ awful.rules.rules = {
 			x_frame = "top_right",
 		},
 	},
+	{
+		rule = { class = "cool-retro-term" },
+		properties = {
+			x_index = 1,
+			width = Utils.width_factor(0.6),
+			height = Utils.height_factor(1),
+			placement = function(c)
+				Utils.placement(c, "left")
+			end,
+			tag = "9",
+			screen = screen_left,
+		},
+	},
+	{
+		rule = { class = "crom_stream" },
+		properties = {
+			x_index = 2,
+			width = Utils.width_factor(0.4),
+			height = Utils.height_factor(1),
+			placement = function(c)
+				Utils.placement(c, "right")
+			end,
+			tag = "9",
+			screen = screen_left,
+		},
+	},
 	-- Util Screen
 	{
 		rule = { instance = "dolphin" },
