@@ -149,6 +149,15 @@ awful.rules.rules = {
 			screen = screen_left,
 		},
 	},
+	{
+		rule = { class = "crom_vid" },
+		properties = {
+			x_index = 2,
+			height = Utils.height_factor(1),
+			tag = "9",
+			screen = screen_left,
+		},
+	},
 	-- Util Screen
 	{
 		rule = { instance = "dolphin" },
