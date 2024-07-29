@@ -83,6 +83,13 @@ awful.rules.rules = {
 		},
 	},
 	{
+		rule = { instance = "com.github.taiko2k.tauonmb" },
+		properties = {
+			x_frame = "bottom_right",
+			x_alt_q = true,
+		},
+	},
+	{
 		rule = { instance = "tauonmb" },
 		properties = {
 			x_frame = "bottom_right",
