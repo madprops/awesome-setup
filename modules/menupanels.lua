@@ -68,7 +68,7 @@ Menupanels.applications = menupanel.create({
 		{
 			name = "Chan",
 			action = function()
-				Utils.spawn("firefox-developer-edition -P 4chanposter")
+				Utils.spawn("librewolf -P 4chanposter")
 			end,
 		},
 		{
