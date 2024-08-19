@@ -40,7 +40,7 @@ awful.rules.rules = {
 		end,
 	},
 	{
-		rule = { class = "firefoxdeveloperedition" },
+		rule = { class = "firefox-developer-edition" },
 		properties = {
 			x_hotcorner = "1_top_left",
 			x_index = 1,
