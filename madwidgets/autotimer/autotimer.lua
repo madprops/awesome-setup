@@ -154,6 +154,17 @@ function autotimer.add_minutes(name, minutes)
 		action.date_started = os.time()
 		init_timer(name, new_m)
 		autotimer.update()
+	elseif action.mode == "counter" then
+		local d = os.time() - action.date_started
+		local s = d + minutes
+		local m = utils.round_mult(s, 5)
+
+		if m <= 0 then
+			m = 1
+		end
+
+		action.date_started = os.time() - m
+		autotimer.update()
 	end
 end
 
