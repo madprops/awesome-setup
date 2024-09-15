@@ -84,7 +84,7 @@ function volumecontrol.increase(osd)
 		vol = utils.round_mult(vol, volumecontrol.steps)
 		volumecontrol.change_volume(vol)
 
-		if osd ~= nil then
+		if osd then
 			volumecontrol.osd(vol)
 		end
 	end)
@@ -106,7 +106,7 @@ function volumecontrol.decrease(osd)
 		vol = utils.round_mult(tonumber(vol), volumecontrol.steps)
 		volumecontrol.change_volume(vol)
 
-		if osd ~= nil then
+		if osd then
 			volumecontrol.osd(vol)
 		end
 	end)
