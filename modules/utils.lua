@@ -263,6 +263,15 @@ function Utils.set_volume(v)
 	Globals.volumecontrol.set_round(v)
 end
 
+function Utils.max_volume()
+	local v = Globals.volumecontrol.max_volume
+	Globals.volumecontrol.set_round(v)
+end
+
+function Utils.min_volume()
+	Globals.volumecontrol.set_round(30)
+end
+
 function Utils.refresh_volume()
 	Globals.volumecontrol.refresh()
 end

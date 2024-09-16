@@ -47,7 +47,7 @@ end
 function volumecontrol.set(vol)
 	vol = tonumber(vol)
 
-	if vol > volumecontrol.max_volume or vol < 0 then
+	if (vol > volumecontrol.max_volume) or (vol < 0) then
 		return
 	end
 
