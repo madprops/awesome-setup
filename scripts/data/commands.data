@@ -1,2 +1,2 @@
-./utils/bundle.rb && ./utils/zip.rb && ./utils/tag.rb
-./utils/check.sh && ./utils/dups.rb
+./utils/bundle.rb && ./utils/check.sh && ./utils/zip.rb && ./utils/tag.rb
+./utils/bundle.rb && ./utils/check.sh && ./utils/dups.rb

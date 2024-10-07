@@ -18,7 +18,6 @@ local media_lock = lockdelay.create({
 
 local tag_next_lock = lockdelay.create({
 	action = function(sticky)
-		Dropdowns.check()
 		Utils.switch_tag("next", sticky)
 	end,
 	delay = 100,
@@ -26,7 +25,6 @@ local tag_next_lock = lockdelay.create({
 
 local tag_prev_lock = lockdelay.create({
 	action = function(sticky)
-		Dropdowns.check()
 		Utils.switch_tag("prev", sticky)
 	end,
 	delay = 100,
@@ -392,6 +390,7 @@ function Utils.show_clipboard()
 end
 
 function Utils.switch_tag(direction, sticky)
+	Dropdowns.check()
 	local index = Utils.my_tag().index
 	local num_tags = #Utils.my_screen().tags
 	local ok = (direction == "next" and index < num_tags) or (direction == "prev" and index > 1)
@@ -670,12 +669,15 @@ function Utils.smart_close(c)
 	if not c then
 		return
 	end
+
 	if not c.x_keys then
 		return
 	end
+
 	if c.x_no_close then
 		return
 	end
+
 	if Dropdowns.included(c) then
 		Dropdowns.hide_all()
 		return
