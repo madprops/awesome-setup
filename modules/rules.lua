@@ -176,7 +176,19 @@ awful.rules.rules = {
 			height = Utils.height_factor(0.5),
 			skip_taskbar = true,
 			x_dropdown_utils = true,
-			x_terminal = true,
+		},
+	},
+	{
+		rule = { instance = "pcmanfm" },
+		properties = {
+			maximized = false,
+			placement = function(c)
+				Utils.placement(c, "top_left")
+			end,
+			width = Utils.width_factor(0.75),
+			height = Utils.height_factor(0.5),
+			skip_taskbar = true,
+			x_dropdown_utils = true,
 		},
 	},
 	{
