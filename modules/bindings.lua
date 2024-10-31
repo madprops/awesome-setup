@@ -25,6 +25,7 @@ Bindings.globalkeys = gears.table.join(
 		on_press = function(index)
 			local screen = awful.screen.focused()
 			local tag = screen.tags[index]
+
 			if tag then
 				tag:view_only()
 			end
@@ -38,6 +39,7 @@ Bindings.globalkeys = gears.table.join(
 		on_press = function(index)
 			if client.focus then
 				local tag = client.focus.screen.tags[index]
+
 				if tag then
 					client.focus:move_to_tag(tag)
 				end
