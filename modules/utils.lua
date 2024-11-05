@@ -943,3 +943,11 @@ function Utils.sort_index(s)
 
 	return result
 end
+
+function Utils.cursor_on_prev_screen()
+	awful.screen.focus_relative(-1)
+end
+
+function Utils.cursor_on_next_screen()
+	awful.screen.focus_relative(1)
+end

@@ -96,11 +96,11 @@ Bindings.globalkeys = gears.table.join(
 	end),
 
 	awful.key({}, "XF86AudioRaiseVolume", function()
-		Utils.increase_volume(true)
+		Utils.increase_volume(false)
 	end),
 
 	awful.key({}, "XF86AudioLowerVolume", function()
-		Utils.decrease_volume(true)
+		Utils.decrease_volume(false)
 	end),
 
 	awful.key({ "Control", "Shift" }, "Escape", function()
@@ -140,6 +140,14 @@ Bindings.globalkeys = gears.table.join(
 
 	awful.key({ modkey, "Shift" }, "Right", function()
 		Utils.next_tag_all()
+	end),
+
+	awful.key({ modkey }, "bracketleft", function()
+		Utils.cursor_on_prev_screen()
+	end),
+
+	awful.key({ modkey }, "bracketright", function()
+		Utils.cursor_on_next_screen()
 	end)
 )
 
