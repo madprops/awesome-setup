@@ -64,6 +64,14 @@ function Utils.maximize(c)
 	Utils.focus(c)
 end
 
+function Utils.maximize_on_cursor(c)
+	local c = mouse.object_under_pointer()
+
+	if c then
+		Utils.maximize(c)
+	end
+end
+
 function Utils.fullscreen(c)
 	c.fullscreen = not c.fullscreen
 	Utils.focus(c)

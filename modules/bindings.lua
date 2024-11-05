@@ -160,6 +160,7 @@ Bindings.clientkeys = gears.table.join(
 		if not c.x_keys then
 			return
 		end
+
 		Utils.close(c)
 	end),
 
@@ -167,6 +168,7 @@ Bindings.clientkeys = gears.table.join(
 		if not c.x_keys then
 			return
 		end
+
 		c:move_to_screen()
 	end),
 
@@ -174,13 +176,23 @@ Bindings.clientkeys = gears.table.join(
 		if not c.x_keys then
 			return
 		end
+
 		Utils.maximize(c)
+	end),
+
+	awful.key({ modkey, "Shift"}, "m", function(c)
+		if not c.x_keys then
+			return
+		end
+
+		Utils.maximize_on_cursor(c)
 	end),
 
 	awful.key({ modkey, "Shift" }, "BackSpace", function(c)
 		if not c.x_keys then
 			return
 		end
+
 		Utils.fullscreen(c)
 	end),
 
@@ -188,6 +200,7 @@ Bindings.clientkeys = gears.table.join(
 		if not c.x_keys then
 			return
 		end
+
 		Rules.reset(c)
 	end),
 
@@ -195,6 +208,7 @@ Bindings.clientkeys = gears.table.join(
 		if not c.x_keys then
 			return
 		end
+
 		Utils.grow_in_place(c)
 	end),
 
@@ -202,6 +216,7 @@ Bindings.clientkeys = gears.table.join(
 		if not c.x_keys then
 			return
 		end
+
 		Utils.shrink_in_place(c)
 	end),
 
@@ -209,6 +224,7 @@ Bindings.clientkeys = gears.table.join(
 		if not c.x_keys then
 			return
 		end
+
 		Utils.snap(c, "corner", awful.placement.top_left)
 	end),
 
@@ -216,6 +232,7 @@ Bindings.clientkeys = gears.table.join(
 		if not c.x_keys then
 			return
 		end
+
 		Utils.snap(c, "horizontally", awful.placement.top)
 	end),
 
@@ -223,6 +240,7 @@ Bindings.clientkeys = gears.table.join(
 		if not c.x_keys then
 			return
 		end
+
 		Utils.snap(c, "corner", awful.placement.top_right)
 	end),
 
@@ -230,6 +248,7 @@ Bindings.clientkeys = gears.table.join(
 		if not c.x_keys then
 			return
 		end
+
 		Utils.snap(c, "vertically", awful.placement.left)
 	end),
 
@@ -237,6 +256,7 @@ Bindings.clientkeys = gears.table.join(
 		if not c.x_keys then
 			return
 		end
+
 		Utils.maximize(c)
 	end),
 
@@ -244,6 +264,7 @@ Bindings.clientkeys = gears.table.join(
 		if not c.x_keys then
 			return
 		end
+
 		Utils.snap(c, "vertically", awful.placement.right)
 	end),
 
@@ -251,6 +272,7 @@ Bindings.clientkeys = gears.table.join(
 		if not c.x_keys then
 			return
 		end
+
 		Utils.snap(c, "corner", awful.placement.bottom_left)
 	end),
 
@@ -258,6 +280,7 @@ Bindings.clientkeys = gears.table.join(
 		if not c.x_keys then
 			return
 		end
+
 		Utils.snap(c, "horizontally", awful.placement.bottom)
 	end),
 
@@ -265,6 +288,7 @@ Bindings.clientkeys = gears.table.join(
 		if not c.x_keys then
 			return
 		end
+
 		Utils.snap(c, "corner", awful.placement.bottom_right)
 	end),
 
