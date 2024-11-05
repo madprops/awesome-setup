@@ -75,6 +75,10 @@ Bindings.globalkeys = gears.table.join(
 		Utils.lockscreen()
 	end),
 
+	awful.key({ modkey, "Shift" }, "l", function()
+		Utils.alt_lockscreen()
+	end),
+
 	awful.key({ "Shift" }, "Pause", function()
 		Utils.randstring()
 	end),
