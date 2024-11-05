@@ -142,11 +142,11 @@ Bindings.globalkeys = gears.table.join(
 		Utils.next_tag_all()
 	end),
 
-	awful.key({ modkey }, "bracketleft", function()
+	awful.key({ modkey, "Shift" }, "bracketleft", function()
 		Utils.cursor_on_prev_screen()
 	end),
 
-	awful.key({ modkey }, "bracketright", function()
+	awful.key({ modkey, "Shift" }, "bracketright", function()
 		Utils.cursor_on_next_screen()
 	end)
 )
