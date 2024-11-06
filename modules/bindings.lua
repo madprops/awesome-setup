@@ -152,6 +152,18 @@ Bindings.globalkeys = gears.table.join(
 
 	awful.key({ modkey, "Shift" }, "bracketright", function()
 		Utils.cursor_on_next_screen()
+	end),
+
+	awful.key({ modkey, "Shift" }, "F5", function()
+		Utils.refresh_on_cursor()
+	end),
+
+	awful.key({ modkey, "Shift" }, "Home", function()
+		Utils.home_on_cursor()
+	end),
+
+	awful.key({ modkey, "Shift" }, "End", function()
+		Utils.end_on_cursor()
 	end)
 )
 

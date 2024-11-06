@@ -589,6 +589,9 @@ function Utils.fake_input_do(
 		root.fake_input("key_release", "Alt_R")
 		root.fake_input("key_release", "Delete")
 		root.fake_input("key_release", "Escape")
+		root.fake_input("key_release", "Home")
+		root.fake_input("key_release", "End")
+		root.fake_input("key_release", "F5")
 
 		if ctrl then
 			root.fake_input("key_press", "Control_L")
@@ -970,4 +973,31 @@ end
 function Utils.cursor_on_next_screen()
 	awful.screen.focus_relative(1)
 	Utils.center_cursor()
+end
+
+function Utils.refresh_on_cursor()
+	local c = mouse.object_under_pointer()
+
+	if c then
+		Utils.focus(c)
+		Utils.fake_input_do(false, false, false, "F5")
+	end
+end
+
+function Utils.home_on_cursor()
+	local c = mouse.object_under_pointer()
+
+	if c then
+		Utils.focus(c)
+		Utils.fake_input_do(true, false, false, "Home")
+	end
+end
+
+function Utils.end_on_cursor()
+	local c = mouse.object_under_pointer()
+
+	if c then
+		Utils.focus(c)
+		Utils.fake_input_do(true, false, false, "End")
+	end
 end
