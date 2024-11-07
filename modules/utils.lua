@@ -530,13 +530,7 @@ function Utils.fake_input_do(
 	ctrl,
 	shift,
 	alt,
-	key,
-	keep_ctrl_left,
-	keep_shift_left,
-	keep_alt_left,
-	keep_ctrl_right,
-	keep_shift_right,
-	keep_alt_right
+	key
 )
 	local timer = gears.timer({
 		timeout = 0.11,
@@ -554,30 +548,6 @@ function Utils.fake_input_do(
 		alt = false
 	end
 
-	if keep_ctrl_left == nil then
-		keep_ctrl_left = false
-	end
-
-	if keep_shift_left == nil then
-		keep_shift_left = false
-	end
-
-	if keep_alt_left == nil then
-		keep_alt_left = false
-	end
-
-	if keep_ctrl_right == nil then
-		keep_ctrl_right = false
-	end
-
-	if keep_shift_right == nil then
-		keep_shift_right = false
-	end
-
-	if keep_alt_right == nil then
-		keep_alt_right = false
-	end
-
 	timer:connect_signal("timeout", function()
 		root.fake_input("key_release", "Super_L")
 		root.fake_input("key_release", "Super_R")
@@ -592,6 +562,7 @@ function Utils.fake_input_do(
 		root.fake_input("key_release", "Home")
 		root.fake_input("key_release", "End")
 		root.fake_input("key_release", "F5")
+		root.fake_input("key_release", "w")
 
 		if ctrl then
 			root.fake_input("key_press", "Control_L")
@@ -607,43 +578,6 @@ function Utils.fake_input_do(
 
 		root.fake_input("key_press", key)
 		root.fake_input("key_release", key)
-
-		if keep_ctrl_left then
-			root.fake_input("key_press", "Control_L")
-		else
-			root.fake_input("key_release", "Control_L")
-		end
-
-		if keep_shift_left then
-			root.fake_input("key_press", "Shift_L")
-		else
-			root.fake_input("key_release", "Shift_L")
-		end
-
-		if keep_alt_right then
-			root.fake_input("key_press", "Alt_L")
-		else
-			root.fake_input("key_release", "Alt_L")
-		end
-
-		if keep_ctrl_right then
-			root.fake_input("key_press", "Control_R")
-		else
-			root.fake_input("key_release", "Control_R")
-		end
-
-		if keep_shift_right then
-			root.fake_input("key_press", "Shift_R")
-		else
-			root.fake_input("key_release", "Shift_R")
-		end
-
-		if keep_alt_right then
-			root.fake_input("key_press", "Alt_R")
-		else
-			root.fake_input("key_release", "Alt_R")
-		end
-
 		timer:stop()
 	end)
 
@@ -695,10 +629,10 @@ function Utils.smart_close(c)
 	end
 
 	if c.kill then
-		if c.instance == "Navigator" or c.instance == "code" then
+		if (c.instance == "Navigator") or (c.instance == "code") then
 			Utils.focus(c)
 
-			Utils.fake_input_do(true, false, false, "w", false, false, false, true, true, false)
+			Utils.fake_input_do(true, false, false, "w")
 		else
 			c:kill()
 		end
