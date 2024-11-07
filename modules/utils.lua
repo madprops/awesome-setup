@@ -7,6 +7,7 @@ local gears = require("gears")
 local socket = require("socket")
 local lockdelay = require("madwidgets/lockdelay/lockdelay")
 local autotimer = require("madwidgets/autotimer/autotimer")
+local debounce_timers = {}
 local context_client
 
 local media_lock = lockdelay.create({
@@ -534,6 +535,7 @@ function Utils.fake_input_do(
 )
 	local timer = gears.timer({
 		timeout = 0.11,
+		single_shot = true,
 	})
 
 	if ctrl == nil then
@@ -549,20 +551,7 @@ function Utils.fake_input_do(
 	end
 
 	timer:connect_signal("timeout", function()
-		root.fake_input("key_release", "Super_L")
-		root.fake_input("key_release", "Super_R")
-		root.fake_input("key_release", "Control_L")
-		root.fake_input("key_release", "Control_R")
-		root.fake_input("key_release", "Shift_L")
-		root.fake_input("key_release", "Shift_R")
-		root.fake_input("key_release", "Alt_L")
-		root.fake_input("key_release", "Alt_R")
-		root.fake_input("key_release", "Delete")
-		root.fake_input("key_release", "Escape")
-		root.fake_input("key_release", "Home")
-		root.fake_input("key_release", "End")
-		root.fake_input("key_release", "F5")
-		root.fake_input("key_release", "w")
+		Utils.release_keys()
 
 		if ctrl then
 			root.fake_input("key_press", "Control_L")
@@ -578,7 +567,7 @@ function Utils.fake_input_do(
 
 		root.fake_input("key_press", key)
 		root.fake_input("key_release", key)
-		timer:stop()
+		Utils.debounce_keys()
 	end)
 
 	timer:start()
@@ -934,3 +923,43 @@ function Utils.end_on_cursor()
 		Utils.fake_input_do(true, false, false, "End")
 	end
 end
+
+function Utils.release_keys()
+	root.fake_input("key_release", "Super_L")
+	root.fake_input("key_release", "Super_R")
+	root.fake_input("key_release", "Control_L")
+	root.fake_input("key_release", "Control_R")
+	root.fake_input("key_release", "Shift_L")
+	root.fake_input("key_release", "Shift_R")
+	root.fake_input("key_release", "Alt_L")
+	root.fake_input("key_release", "Alt_R")
+end
+
+function Utils.debounce(func, delay)
+    return function(...)
+        local args = {...}
+        local timer = debounce_timers[func]
+
+        -- Cancel the existing timer if it exists
+        if timer then
+            timer:stop()
+        end
+
+        -- Create a new timer
+        timer = gears.timer({
+            timeout = delay,
+            autostart = true,
+            single_shot = true,
+            callback = function()
+                func(table.unpack(args))
+            end
+        })
+
+        -- Store the timer
+        debounce_timers[func] = timer
+    end
+end
+
+Utils.debounce_keys = Utils.debounce(function()
+	Utils.release_keys()
+end, 0.25)
