@@ -631,7 +631,6 @@ function Utils.smart_close(c)
 	if c.kill then
 		if (c.instance == "Navigator") or (c.instance == "code") then
 			Utils.focus(c)
-
 			Utils.fake_input_do(true, false, false, "w")
 		else
 			c:kill()
