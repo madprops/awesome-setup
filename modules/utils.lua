@@ -8,6 +8,7 @@ local socket = require("socket")
 local lockdelay = require("madwidgets/lockdelay/lockdelay")
 local autotimer = require("madwidgets/autotimer/autotimer")
 local debounce_timers = {}
+local keys_used = {}
 local context_client
 
 local media_lock = lockdelay.create({
@@ -538,20 +539,9 @@ function Utils.fake_input_do(
 		single_shot = true,
 	})
 
-	if ctrl == nil then
-		ctrl = false
-	end
-
-	if shift == nil then
-		shift = false
-	end
-
-	if alt == nil then
-		alt = false
-	end
-
 	timer:connect_signal("timeout", function()
 		Utils.release_keys()
+		root.fake_input("key_release", key)
 
 		if ctrl then
 			root.fake_input("key_press", "Control_L")
@@ -567,6 +557,7 @@ function Utils.fake_input_do(
 
 		root.fake_input("key_press", key)
 		root.fake_input("key_release", key)
+		keys_used[key] = true
 		Utils.debounce_keys()
 	end)
 
@@ -933,6 +924,10 @@ function Utils.release_keys()
 	root.fake_input("key_release", "Shift_R")
 	root.fake_input("key_release", "Alt_L")
 	root.fake_input("key_release", "Alt_R")
+
+	for key, _ in pairs(keys_used) do
+		root.fake_input("key_release", key)
+	end
 end
 
 function Utils.debounce(func, delay)
