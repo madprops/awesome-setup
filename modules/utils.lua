@@ -528,7 +528,7 @@ function Utils.table_contains(tab, val)
 	return false
 end
 
-function Utils.fake_input(
+function Utils.keyboard(
 	ctrl,
 	shift,
 	alt,
@@ -611,7 +611,7 @@ function Utils.smart_close(c)
 	if c.kill then
 		if (c.instance == "Navigator") or (c.instance == "code") then
 			Utils.focus(c)
-			Utils.fake_input(true, false, false, "w")
+			Utils.keyboard(true, false, false, "w")
 		else
 			c:kill()
 		end
@@ -664,9 +664,9 @@ function Utils.corner_wheel_down() end
 
 function Utils.middle_click(c)
 	if c.x_alt_q then
-		Utils.fake_input(false, false, true, "q")
+		Utils.keyboard(false, false, true, "q")
 	elseif c.x_ctrl_d then
-		Utils.fake_input(true, false, false, "d")
+		Utils.keyboard(true, false, false, "d")
 	else
 		Utils.focus(c)
 	end
@@ -893,7 +893,7 @@ function Utils.refresh_on_cursor()
 
 	if c then
 		Utils.focus(c)
-		Utils.fake_input(false, false, false, "F5")
+		Utils.keyboard(false, false, false, "F5")
 	end
 end
 
@@ -902,7 +902,7 @@ function Utils.home_on_cursor()
 
 	if c then
 		Utils.focus(c)
-		Utils.fake_input(true, false, false, "Home")
+		Utils.keyboard(true, false, false, "Home")
 	end
 end
 
@@ -911,7 +911,7 @@ function Utils.end_on_cursor()
 
 	if c then
 		Utils.focus(c)
-		Utils.fake_input(true, false, false, "End")
+		Utils.keyboard(true, false, false, "End")
 	end
 end
 
