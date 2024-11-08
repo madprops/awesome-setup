@@ -528,6 +528,14 @@ function Utils.table_contains(tab, val)
 	return false
 end
 
+function Utils.key_press(key)
+	root.fake_input("key_press", key)
+end
+
+function Utils.key_release(key)
+	root.fake_input("key_release", key)
+end
+
 function Utils.keyboard(
 	ctrl,
 	shift,
@@ -541,22 +549,22 @@ function Utils.keyboard(
 
 	timer:connect_signal("timeout", function()
 		Utils.release_keys()
-		root.fake_input("key_release", key)
+		Utils.key_release(key)
 
 		if ctrl then
-			root.fake_input("key_press", "Control_L")
+			Utils.key_press("Control_L")
 		end
 
 		if shift then
-			root.fake_input("key_press", "Shift_L")
+			Utils.key_press("Shift_L")
 		end
 
 		if alt then
-			root.fake_input("key_press", "Alt_L")
+			Utils.key_press("Alt_L")
 		end
 
-		root.fake_input("key_press", key)
-		root.fake_input("key_release", key)
+		Utils.key_press(key)
+		Utils.key_release(key)
 		keys_used[key] = true
 		Utils.debounce_keys()
 	end)
@@ -916,17 +924,17 @@ function Utils.end_on_cursor()
 end
 
 function Utils.release_keys()
-	root.fake_input("key_release", "Super_L")
-	root.fake_input("key_release", "Super_R")
-	root.fake_input("key_release", "Control_L")
-	root.fake_input("key_release", "Control_R")
-	root.fake_input("key_release", "Shift_L")
-	root.fake_input("key_release", "Shift_R")
-	root.fake_input("key_release", "Alt_L")
-	root.fake_input("key_release", "Alt_R")
+	Utils.key_release("Super_L")
+	Utils.key_release("Super_R")
+	Utils.key_release("Control_L")
+	Utils.key_release("Control_R")
+	Utils.key_release("Shift_L")
+	Utils.key_release("Shift_R")
+	Utils.key_release("Alt_L")
+	Utils.key_release("Alt_R")
 
 	for key, _ in pairs(keys_used) do
-		root.fake_input("key_release", key)
+		Utils.key_release(key)
 	end
 end
 
