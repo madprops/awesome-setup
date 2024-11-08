@@ -557,19 +557,6 @@ function Utils.fake_input(
 
 		root.fake_input("key_press", key)
 		root.fake_input("key_release", key)
-
-		if ctrl then
-			root.fake_input("key_release", "Control_L")
-		end
-
-		if shift then
-			root.fake_input("key_release", "Shift_L")
-		end
-
-		if alt then
-			root.fake_input("key_release", "Alt_L")
-		end
-
 		keys_used[key] = true
 		Utils.debounce_keys()
 	end)
