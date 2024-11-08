@@ -965,4 +965,4 @@ end
 
 Utils.debounce_keys = Utils.debounce(function()
 	Utils.release_keys()
-end, 0.25)
+end, 0.15)
