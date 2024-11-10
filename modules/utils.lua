@@ -334,20 +334,28 @@ function Utils.ratio(c)
 	return c.width / c.height
 end
 
-function Utils.grow_in_place(c)
+function shrink_or_grow(c, what)
 	Utils.focus(c)
 	c.maximized = false
-	c.height = c.height + 20
-	c.width = c.width + (20 * Utils.ratio(c))
+	local w = 20 * Utils.ratio(c)
+
+	if what == "grow" then
+		c.height = c.height + 20
+		c.width = c.width + w
+	else
+		c.height = c.height - 20
+		c.width = c.width - w
+	end
+
 	Utils.center(c)
 end
 
+function Utils.grow_in_place(c)
+	shrink_or_grow(c, "grow")
+end
+
 function Utils.shrink_in_place(c)
-	Utils.focus(c)
-	c.maximized = false
-	c.height = c.height - 20
-	c.width = c.width - (20 * Utils.ratio(c))
-	Utils.center(c)
+	shrink_or_grow(c, "shrink")
 end
 
 function Utils.my_screen()
