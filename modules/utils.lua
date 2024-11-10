@@ -342,7 +342,7 @@ function shrink_or_grow(c, what)
 	if what == "grow" then
 		c.height = c.height + 20
 		c.width = c.width + w
-	else
+	elseif what == "shrink" then
 		c.height = c.height - 20
 		c.width = c.width - w
 	end
