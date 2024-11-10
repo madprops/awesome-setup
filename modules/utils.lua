@@ -338,12 +338,13 @@ function Utils.shrink_or_grow(c, what)
 	Utils.focus(c)
 	c.maximized = false
 	local w = 20 * Utils.ratio(c)
+	local h = 20
 
 	if what == "grow" then
-		c.height = c.height + 20
+		c.height = c.height + h
 		c.width = c.width + w
 	elseif what == "shrink" then
-		c.height = c.height - 20
+		c.height = c.height - h
 		c.width = c.width - w
 	end
 
