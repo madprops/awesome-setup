@@ -62,7 +62,7 @@ function sysmonitor.on_null(instance)
 end
 
 function sysmonitor.calc_net(instance)
-	local cmd = "ip route show default | awk '/default/ {print $5}'"
+	local cmd = "ip route show default | awk '/default/ {print $5; exit}'"
 
 	awful.spawn.easy_async_with_shell(cmd, function(dev)
 		dev = utils.trim(dev)
