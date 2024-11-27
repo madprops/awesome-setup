@@ -20,7 +20,6 @@ if ARGV.length >= 2
   title = ARGV[0]
   time = ARGV[1..-1].join(" ")
 else
-
   title = get_input("Enter Title", data)
 
   if title == ""
