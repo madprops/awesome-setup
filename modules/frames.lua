@@ -12,8 +12,8 @@ Frames.frames = {}
 local height_top = 0.64
 local height_bottom = 0.36
 local half_width = 0.5
-local one_third = 0.3333
-local two_thirds = 0.6666
+local one_third = 0.34
+local two_thirds = 0.66
 
 Frames.frames.top_left = {
 	screen = 2,

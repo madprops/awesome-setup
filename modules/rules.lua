@@ -164,6 +164,12 @@ awful.rules.rules = {
 			screen = screen_left,
 		},
 	},
+	{
+		rule = { class = "haruna" },
+		properties = {
+			x_frame = "top_right",
+		},
+	},
 	-- Util Screen
 	{
 		rule = { instance = "dolphin" },
