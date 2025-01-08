@@ -953,8 +953,8 @@ function Utils.release_keys()
 end
 
 function Utils.expand(c)
+	Utils.maximize(c)
 	c.width = Utils.width_factor(2, c)
-	c.height = Utils.height_factor(2, c)
 end
 
 function Utils.debounce(func, delay)
