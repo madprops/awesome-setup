@@ -527,7 +527,9 @@ end
 function Utils.highest_in_tag(tag)
 	for _, c in ipairs(client.get(tag.screen, true)) do
 		if Utils.table_contains(c:tags(), tag) then
-			return c
+			if not Dropdowns.included(c) then
+				return c
+			end
 		end
 	end
 end
