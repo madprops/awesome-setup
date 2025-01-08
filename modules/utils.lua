@@ -433,6 +433,11 @@ function Utils.switch_tag(direction, sticky)
 		end
 
 		new_tag:view_only()
+		new_c = Utils.highest_in_tag(new_tag)
+
+		if new_c then
+			Utils.focus(new_c)
+		end
 	end
 end
 
@@ -945,6 +950,11 @@ function Utils.release_keys()
 	for key, _ in pairs(keys_used) do
 		Utils.key_release(key)
 	end
+end
+
+function Utils.expand(c)
+	c.width = Utils.width_factor(2, c)
+	c.height = Utils.height_factor(2, c)
 end
 
 function Utils.debounce(func, delay)

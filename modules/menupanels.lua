@@ -356,6 +356,12 @@ Menupanels.context = menupanel.create({
 			end,
 		},
 		{
+			name = "Expand",
+			action = function()
+				Utils.expand(Utils.get_context_client())
+			end,
+		},
+		{
 			name = "Decorate",
 			action = function()
 				Utils.decorate(Utils.get_context_client())

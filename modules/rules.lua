@@ -50,9 +50,9 @@ awful.rules.rules = {
 		rule = { instance = "code" },
 		properties = {
 			screen = screen_left,
-			maximized = true,
 			x_terminal = true,
 			x_index = 2,
+			tag = "4",
 		},
 	},
 	{
