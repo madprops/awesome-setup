@@ -287,7 +287,7 @@ function Rules.check_title(c, force)
 			c.border_width = 4
 			c.border_color = "#ffa472"
 		end
-	elseif Utils.startswith(c.name, "Meltdown (dev)") then
+	elseif Utils.startswith(c.name, "Meltdown (dev") then
 		if not c.x_rules_applied or force then
 			c.skip_taskbar = true
 			c.x_dropdown_melt = true
