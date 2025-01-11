@@ -98,10 +98,9 @@ end
 function Dropdowns.toggle(what)
 	if Dropdowns.get_on(what) then
 		local tag = Dropdowns.get_tag(what)
-		local highest = Utils.highest_in_tag(tag)
 		local same_tag = tag == Utils.my_tag()
 
-		if not same_tag or not tag.selected or (highest ~= nil and not highest[Dropdowns.get_x(what)]) then
+		if not same_tag or not tag.selected then
 			Dropdowns.show(what)
 		else
 			Dropdowns.hide(what)

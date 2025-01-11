@@ -51,8 +51,8 @@ awful.rules.rules = {
 		properties = {
 			screen = screen_left,
 			x_terminal = true,
-			x_index = 2,
-			tag = "4",
+			x_index = 1,
+			tag = "2",
 		},
 	},
 	{
