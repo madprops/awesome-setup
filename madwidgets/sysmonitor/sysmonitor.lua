@@ -19,6 +19,12 @@ function sysmonitor.update_string(instance, s, u)
 	elseif mode == "tmp" then
 		t = "TMP"
 		u = "°"
+	elseif mode == "gpu" then
+		t = "GPU"
+		u = "%"
+	elseif mode == "gpu_ram" then
+		t = "GPU RAM"
+		u = "%"
 	elseif mode == "net_download" then
 		t = "DW"
 	elseif mode == "net_upload" then
@@ -104,11 +110,37 @@ function sysmonitor.calc_net(instance)
 	end)
 end
 
+function sysmonitor.calc_gpu(instance)
+	local cmd = "/opt/rocm/bin/rocm-smi --showtemp --showuse --showmemuse --json | jq '.card0' |"
+	local gpu = " jq '.\"GPU use (%)\"'"
+	local ram = " jq '.\"GPU Memory Allocated (VRAM%)\"'"
+
+	if instance.args.mode == "gpu_ram" then
+		cmd = cmd .. ram
+	else
+		cmd = cmd .. gpu
+	end
+
+	awful.spawn.easy_async_with_shell(cmd, function(o)
+		o = utils.trim(o)
+		o = utils.remove_quotes(o)
+
+		if not utils.isnumber(o) then
+			sysmonitor.on_null(instance)
+			return
+		end
+
+		sysmonitor.check_alert(instance, tonumber(o))
+		sysmonitor.update_string(instance, utils.numpad(o, 3), "%")
+		instance.timer:again()
+	end)
+end
+
 function sysmonitor.update(instance)
 	if instance.args.mode == "cpu" or instance.args.mode == "ram" or instance.args.mode == "tmp" then
 		awful.spawn.easy_async_with_shell(instance.args.command, function(o)
 			if not utils.isnumber(o) then
-				sysmonitor.on_null(instnace)
+				sysmonitor.on_null(instance)
 				return
 			end
 
@@ -118,6 +150,8 @@ function sysmonitor.update(instance)
 		end)
 	elseif instance.args.mode == "net_download" or instance.args.mode == "net_upload" then
 		sysmonitor.calc_net(instance)
+	elseif instance.args.mode == "gpu" or instance.args.mode == "gpu_ram" then
+		sysmonitor.calc_gpu(instance)
 	end
 end
 
@@ -129,15 +163,27 @@ function sysmonitor.create(args)
 	if args.mode == "cpu" then
 		args.alert_max = args.alert_max or 70
 		args.command = args.command or "mpstat 1 2 | awk 'END{print 100-$NF}'"
+
 	elseif args.mode == "ram" then
 		args.alert_max = args.alert_max or 70
 		args.command = args.command or "free | grep Mem | awk '{print $3/$2 * 100.0}'"
+
+	elseif args.mode == "gpu" then
+		args.alert_max = args.alert_max or 70
+		args.command = args.command or ""
+
+	elseif args.mode == "gpu_ram" then
+		args.alert_max = args.alert_max or 70
+		args.command = args.command or ""
+
 	elseif args.mode == "tmp" then
 		args.alert_max = args.alert_max or 70
 		args.command = args.command or "sensors | grep Tctl: | awk '{print $2}' | sed 's/[^0-9.]*//g'"
+
 	elseif args.mode == "net_download" then
 		args.alert_max = args.alert_max or 10
 		args.command = args.command or "cat /sys/class/net/%s/statistics/rx_bytes"
+
 	elseif args.mode == "net_upload" then
 		args.alert_max = args.alert_max or 10
 		args.command = args.command or "cat /sys/class/net/%s/statistics/tx_bytes"

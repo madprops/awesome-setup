@@ -114,4 +114,8 @@ function utils.print_table(t, indent)
     end
 end
 
+function utils.remove_quotes(s)
+	return string.gsub(s, "\"", "")
+end
+
 return utils

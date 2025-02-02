@@ -16,7 +16,10 @@ local function sysmonitor_widget(mode)
 	local args = {}
 	args.mode = mode
 
-	if mode == "cpu" or mode == "ram" or mode == "tmp" then
+	if mode == "cpu" or mode == "ram" or
+		mode == "tmp" or mode == "gpu"
+		or mode == "gpu_ram" then
+
 		args.on_wheel_up = function()
 			Utils.switch_tag("prev")
 		end
@@ -49,8 +52,18 @@ local function sysmonitor_widget(mode)
 			Utils.system_monitor()
 		end
 	elseif mode == "tmp" then
+		args.right = " | "
 		args.on_click = function()
 			Utils.system_monitor_temp()
+		end
+	elseif mode == "gpu" then
+		args.right = " | "
+		args.on_click = function()
+			Utils.system_monitor()
+		end
+	elseif mode == "gpu_ram" then
+		args.on_click = function()
+			Utils.system_monitor()
 		end
 	elseif mode == "net_download" then
 		args.left = " " .. Globals.star .. " "
@@ -170,28 +183,6 @@ awful.screen.connect_for_each_screen(function(s)
 
 	Dropdowns.register_button("utils", utils_button, s)
 
-	-- GPT
-	local gpt_button = multibutton.create({
-		text = "GPT",
-		left = Globals.gpt .. " ",
-		right = " | ",
-		right_color = Globals.nicedark,
-		on_click = function()
-			Dropdowns.toggle("gpt")
-		end,
-		on_middle_click = function()
-			Dropdowns.start_gpt()
-		end,
-		on_wheel_up = function()
-			Utils.switch_tag("prev")
-		end,
-		on_wheel_down = function()
-			Utils.switch_tag("next")
-		end,
-	})
-
-	Dropdowns.register_button("gpt", gpt_button, s)
-
 	-- Melt
 	local melt_button = multibutton.create({
 		text = "Melt",
@@ -225,6 +216,8 @@ awful.screen.connect_for_each_screen(function(s)
 		sysmonitor_widget("cpu"),
 		sysmonitor_widget("ram"),
 		sysmonitor_widget("tmp"),
+		sysmonitor_widget("gpu"),
+		sysmonitor_widget("gpu_ram"),
 		sysmonitor_widget("net_download"),
 		sysmonitor_widget("net_upload"),
 		Globals.volumecontrol.create({
