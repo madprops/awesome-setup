@@ -211,7 +211,6 @@ awful.screen.connect_for_each_screen(function(s)
 		Utils.space(),
 		systray_container,
 		utils_button,
-		gpt_button,
 		melt_button,
 		sysmonitor_widget("cpu"),
 		sysmonitor_widget("ram"),

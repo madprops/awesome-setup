@@ -4,8 +4,7 @@
 
 Dropdowns = {}
 Dropdowns.dd_utils_on = false
-Dropdowns.dd_gpt_on = false
-Dropdowns.dropdowns = { "utils", "gpt", "melt" }
+Dropdowns.dropdowns = { "utils", "melt" }
 Dropdowns.buttons = {}
 
 function Dropdowns.setup()
@@ -20,11 +19,6 @@ function Dropdowns.start_utils()
 	Utils.spawn("speedcrunch")
 	Utils.spawn("tilix --session ~/sessions/main.json")
 	Dropdowns.underline_text("utils")
-end
-
-function Dropdowns.start_gpt()
-	Utils.spawn("firefox-developer-edition -P chatgpt2")
-	Dropdowns.underline_text("gpt")
 end
 
 function Dropdowns.start_melt()

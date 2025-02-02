@@ -21,7 +21,6 @@ awful.rules.rules = {
 			x_rules_applied = false,
 			x_client = true,
 			x_terminal = false,
-			x_dropdown_gpt = false,
 			x_dropdown_utils = false,
 			x_dropdown_melt = false,
 			x_index = 0,
@@ -260,15 +259,6 @@ function Rules.check_title(c, force)
 		if not c.x_rules_applied or force then
 			c.x_rules_applied = true
 			c.x_frame = "bottom_right"
-		end
-	elseif Utils.startswith(c.name, "[chatgpt]") then
-		if not c.x_rules_applied or force then
-			c.x_rules_applied = true
-			c.maximized = true
-			c.width = Utils.width_factor(1)
-			c.height = Utils.height_factor(1)
-			c.skip_taskbar = true
-			c.x_dropdown_gpt = true
 		end
 	elseif Utils.startswith(c.name, "[cytube]") then
 		if not c.x_rules_applied or force then
