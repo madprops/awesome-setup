@@ -17,7 +17,7 @@ end
 function Dropdowns.start_utils()
 	Utils.spawn("dolphin")
 	Utils.spawn("speedcrunch")
-	Utils.spawn("tilix --session ~/sessions/main.json")
+	Utils.spawn("terminator")
 	Dropdowns.underline_text("utils")
 end
 

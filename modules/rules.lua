@@ -115,14 +115,6 @@ awful.rules.rules = {
 		},
 	},
 	{
-		rule = { instance = "terminator" },
-		properties = {
-			maximized = true,
-			x_terminal = true,
-			x_no_close = true,
-		},
-	},
-	{
 		rule = { class = "cromulant" },
 		properties = {
 			x_frame = "top_right",
@@ -207,6 +199,20 @@ awful.rules.rules = {
 			height = Utils.height_factor(0.5),
 			skip_taskbar = true,
 			x_dropdown_utils = true,
+		},
+	},
+	{
+		rule = { instance = "terminator" },
+		properties = {
+			maximized = false,
+			placement = function(c)
+				Utils.placement(c, "bottom")
+			end,
+			width = Utils.width_factor(1),
+			height = Utils.height_factor(0.5),
+			skip_taskbar = true,
+			x_dropdown_utils = true,
+			x_terminal = true,
 		},
 	},
 	{
