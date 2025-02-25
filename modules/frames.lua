@@ -9,6 +9,7 @@ local awful = require("awful")
 
 Frames = {}
 Frames.frames = {}
+local hide_tasklist = false
 local height_top = 0.64
 local height_bottom = 0.36
 local half_width = 0.5
@@ -90,14 +91,19 @@ function Frames.refresh(frame)
 		return
 	end
 
-	for _, c in ipairs(frames) do
-		c.skip_taskbar = true
+	if hide_tasklist then
+		for _, c in ipairs(frames) do
+			c.skip_taskbar = true
+		end
 	end
 
 	table.sort(frames, function(a, b)
 		return a.x_focus_date > b.x_focus_date
 	end)
-	frames[1].skip_taskbar = false
+
+	if hide_tasklist then
+		frames[1].skip_taskbar = false
+	end
 end
 
 function Frames.cycle(c1, reverse, alt)
@@ -149,7 +155,10 @@ function Frames.cycle(c1, reverse, alt)
 	local selected
 
 	for i, c2 in ipairs(frames) do
-		c2.skip_taskbar = true
+		if hide_tasklist then
+			c2.skip_taskbar = true
+		end
+
 		Frames.apply_rules(c2, i)
 
 		if focused == c2 then
@@ -166,6 +175,10 @@ function Frames.cycle(c1, reverse, alt)
 	end
 
 	Utils.focus(selected)
-	selected.skip_taskbar = false
+
+	if hide_tasklist then
+		selected.skip_taskbar = false
+	end
+
 	return true
 end
