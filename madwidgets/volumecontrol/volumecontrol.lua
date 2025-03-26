@@ -7,7 +7,7 @@ local multibutton = require("madwidgets/multibutton/multibutton")
 
 local volumecontrol = {}
 volumecontrol.max_volume = 100
-volumecontrol.steps = 3
+volumecontrol.steps = 2
 
 local instances = {}
 local last_volume = 100
@@ -21,7 +21,7 @@ function volumecontrol.update_volume(vol)
 
 			if vol == 0 then
 				instance.widget.fg = instance.args.mutecolor
-			elseif vol == volumecontrol.max_volume then
+			elseif vol >= volumecontrol.max_volume then
 				instance.widget.fg = instance.args.maxcolor
 			else
 				instance.widget.fg = instance.args.fontcolor
@@ -70,18 +70,12 @@ end
 
 function volumecontrol.increase(osd)
 	volumecontrol.get_volume(function(vol)
-		if vol >= volumecontrol.max_volume then
-			volumecontrol.update_volume(vol)
-			return
-		end
-
 		vol = vol + volumecontrol.steps
 
 		if vol > volumecontrol.max_volume then
 			vol = volumecontrol.max_volume
 		end
 
-		vol = utils.round_mult(vol, volumecontrol.steps)
 		volumecontrol.change_volume(vol)
 
 		if osd then
@@ -92,18 +86,12 @@ end
 
 function volumecontrol.decrease(osd)
 	volumecontrol.get_volume(function(vol)
-		if vol == 0 then
-			volumecontrol.update_volume(vol)
-			return
-		end
-
 		vol = vol - volumecontrol.steps
 
 		if vol < 0 then
 			vol = 0
 		end
 
-		vol = utils.round_mult(tonumber(vol), volumecontrol.steps)
 		volumecontrol.change_volume(vol)
 
 		if osd then
