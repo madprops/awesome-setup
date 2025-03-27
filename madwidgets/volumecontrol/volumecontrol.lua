@@ -111,6 +111,10 @@ function volumecontrol.mute()
 	end)
 end
 
+function volumecontrol.set_max_volume()
+	volumecontrol.set(volumecontrol.max_volume)
+end
+
 function volumecontrol.refresh()
 	volumecontrol.get_volume(function(vol)
 		volumecontrol.update_volume(vol)
@@ -142,6 +146,10 @@ function volumecontrol.create(args)
 
 	args.on_middle_click = function()
 		volumecontrol.mute()
+	end
+
+	args.on_right_click = function()
+		volumecontrol.set_max_volume()
 	end
 
 	args.on_wheel_down = function()
