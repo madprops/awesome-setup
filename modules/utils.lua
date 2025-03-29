@@ -387,7 +387,7 @@ function Utils.open_terminal(cmd)
 end
 
 function Utils.system_monitor()
-	Utils.open_terminal("btop")
+	Utils.open_terminal("htop")
 end
 
 function Utils.system_monitor_temp()
