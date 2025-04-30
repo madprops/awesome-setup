@@ -52,7 +52,8 @@ local function sysmonitor_widget(mode)
 			Utils.system_monitor()
 		end
 	elseif mode == "tmp" then
-		args.right = " | "
+		args.right = " |"
+		args.right_color = Globals.nicedark
 		args.on_click = function()
 			Utils.system_monitor_temp()
 		end
@@ -215,8 +216,8 @@ awful.screen.connect_for_each_screen(function(s)
 		sysmonitor_widget("cpu"),
 		sysmonitor_widget("ram"),
 		sysmonitor_widget("tmp"),
-		sysmonitor_widget("gpu"),
-		sysmonitor_widget("gpu_ram"),
+		-- sysmonitor_widget("gpu"),
+		-- sysmonitor_widget("gpu_ram"),
 		sysmonitor_widget("net_download"),
 		sysmonitor_widget("net_upload"),
 		Globals.volumecontrol.create({
@@ -230,19 +231,19 @@ awful.screen.connect_for_each_screen(function(s)
 				Utils.show_audio_controls()
 			end,
 		}),
-		multibutton.create({
-			widget = wibox.widget.textclock("%a-%d-%b %I:%M:%S %P", 1),
-			on_click = function()
-				Utils.calendar()
-			end,
-			on_wheel_up = function()
-				Utils.increase_volume()
-			end,
-			on_wheel_down = function()
-				Utils.decrease_volume()
-			end,
-			right = " ",
-		}),
+		-- multibutton.create({
+		-- 	widget = wibox.widget.textclock("%a-%d-%b %I:%M:%S %P", 1),
+		-- 	on_click = function()
+		-- 		Utils.calendar()
+		-- 	end,
+		-- 	on_wheel_up = function()
+		-- 		Utils.increase_volume()
+		-- 	end,
+		-- 	on_wheel_down = function()
+		-- 		Utils.decrease_volume()
+		-- 	end,
+		-- 	right = " ",
+		-- }),
 	}
 
 	s.mywibar1:setup({
