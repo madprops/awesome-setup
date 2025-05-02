@@ -52,6 +52,8 @@ awful.rules.rules = {
 			x_terminal = true,
 			x_index = 1,
 			tag = "2",
+			fullscreen = false,
+			maximized = true,
 		},
 	},
 	{
