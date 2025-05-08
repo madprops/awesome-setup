@@ -383,7 +383,7 @@ function Utils.clients()
 end
 
 function Utils.open_terminal(cmd)
-	Utils.spawn("alacritty -o font.size=12 -e " .. cmd)
+	Utils.spawn("konsole -e " .. cmd)
 end
 
 function Utils.system_monitor()

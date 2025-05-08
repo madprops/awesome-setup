@@ -123,6 +123,12 @@ awful.rules.rules = {
 		},
 	},
 	{
+		rule = { class = "Milton" },
+		properties = {
+			x_frame = "top_right",
+		},
+	},
+	{
 		rule = { class = "cool-retro-term" },
 		properties = {
 			x_index = 1,
