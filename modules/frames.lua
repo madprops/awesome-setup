@@ -26,7 +26,7 @@ Frames.frames.top_left = {
 
 Frames.frames.bottom_left = {
 	screen = 2,
-	width = half_width,
+	width = two_thirds,
 	height = height_bottom,
 	x_index = 20,
 	placement = "bottom_left",
@@ -42,7 +42,7 @@ Frames.frames.top_right = {
 
 Frames.frames.bottom_right = {
 	screen = 2,
-	width = half_width,
+	width = one_third,
 	height = height_bottom,
 	x_index = 40,
 	placement = "bottom_right",

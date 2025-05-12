@@ -96,6 +96,13 @@ awful.rules.rules = {
 		},
 	},
 	{
+		rule = { instance = "konsole" },
+		properties = {
+			border_width = 3,
+			border_color = "#72dcff",
+		},
+	},
+	{
 		rule = { instance = "strawberry" },
 		properties = {
 			x_frame = "bottom_right",
@@ -119,7 +126,7 @@ awful.rules.rules = {
 	{
 		rule = { class = "cromulant" },
 		properties = {
-			x_frame = "top_right",
+			x_frame = "bottom_right",
 		},
 	},
 	{
