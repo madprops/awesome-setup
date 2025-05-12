@@ -93,6 +93,7 @@ local screen_num = 0
 local max_screens = 1
 
 awful.screen.connect_for_each_screen(function(s)
+	Utils.msg("Total screens detected: " .. screen.count())
 	screen_num = screen_num + 1
 
 	if screen_num > max_screens then
