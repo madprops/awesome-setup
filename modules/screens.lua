@@ -89,7 +89,16 @@ for i = 1, 9 do
 	table.insert(tags, tostring(i))
 end
 
+local screen_num = 0
+local max_screens = 1
+
 awful.screen.connect_for_each_screen(function(s)
+	screen_num = screen_num + 1
+
+	if screen_num > max_screens then
+		return
+	end
+
 	awful.tag(tags, s, awful.layout.suit.floating)
 
 	-- Top Panel

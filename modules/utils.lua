@@ -984,6 +984,14 @@ function Utils.debounce(func, delay)
     end
 end
 
+function Utils.toggle_tasklist()
+    local s = awful.screen.focused()
+
+    if s and s.mytasklist then
+        s.mytasklist.visible = not s.mytasklist.visible
+    end
+end
+
 Utils.debounce_keys = Utils.debounce(function()
 	Utils.release_keys()
 end, 0.15)

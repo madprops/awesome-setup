@@ -122,6 +122,10 @@ Bindings.globalkeys = gears.table.join(
 		Utils.smart_button()
 	end),
 
+	awful.key({ modkey, "Control"}, "t", function()
+		Utils.toggle_tasklist()
+	end),
+
 	awful.key({ modkey, "Shift", "Control" }, "space", function()
 		Utils.show_audio_controls()
 	end),

@@ -73,7 +73,7 @@ awful.rules.rules = {
 	{
 		rule = { instance = "hexchat" },
 		properties = {
-			x_frame = "bottom_left",
+			x_frame = "bottom_right",
 		},
 	},
 	{
@@ -126,13 +126,13 @@ awful.rules.rules = {
 	{
 		rule = { class = "cromulant" },
 		properties = {
-			x_frame = "bottom_right",
+			x_frame = "bottom_left",
 		},
 	},
 	{
 		rule = { class = "Milton" },
 		properties = {
-			x_frame = "top_right",
+			x_frame = "top_left",
 		},
 	},
 	{
@@ -269,7 +269,7 @@ function Rules.check_title(c, force)
 	if Utils.startswith(c.name, "[ff_tile1]") then
 		if not c.x_rules_applied or force then
 			c.x_rules_applied = true
-			c.x_frame = "top_left"
+			c.x_frame = "top_right"
 		end
 	elseif Utils.startswith(c.name, "[ff_tile2]") then
 		if not c.x_rules_applied or force then

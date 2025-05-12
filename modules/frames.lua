@@ -13,36 +13,36 @@ local hide_tasklist = false
 local height_top = 0.64
 local height_bottom = 0.36
 local half_width = 0.5
-local one_third = 0.34
-local two_thirds = 0.66
+local one_third = 0.4
+local two_thirds = 0.6
 
 Frames.frames.top_left = {
-	screen = 2,
-	width = two_thirds,
+	screen = 1,
+	width = half_width,
 	height = height_top,
 	x_index = 10,
 	placement = "top_left",
 }
 
 Frames.frames.bottom_left = {
-	screen = 2,
-	width = two_thirds,
+	screen = 1,
+	width = half_width,
 	height = height_bottom,
 	x_index = 20,
 	placement = "bottom_left",
 }
 
 Frames.frames.top_right = {
-	screen = 2,
-	width = one_third,
+	screen = 1,
+	width = half_width,
 	height = height_top,
 	x_index = 30,
 	placement = "top_right",
 }
 
 Frames.frames.bottom_right = {
-	screen = 2,
-	width = one_third,
+	screen = 1,
+	width = half_width,
 	height = height_bottom,
 	x_index = 40,
 	placement = "bottom_right",
