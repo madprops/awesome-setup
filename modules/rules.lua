@@ -1,6 +1,6 @@
 local awful = require("awful")
 local screen_left = 1
-local screen_right = 2
+local screen_right = 1
 
 Rules = {}
 
@@ -286,7 +286,7 @@ function Rules.check_title(c, force)
 			c.x_rules_applied = true
 			c.width = Utils.width_factor(1)
 			c.height = Utils.height_factor(0.64)
-			c.screen = 2
+			c.screen = 1
 		end
 	elseif Utils.startswith(c.name, "Meltdown (dropdown)") then
 		if not c.x_rules_applied or force then
