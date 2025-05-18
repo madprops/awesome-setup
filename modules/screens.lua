@@ -121,6 +121,19 @@ awful.screen.connect_for_each_screen(function(s)
 				Utils.switch_tag("next")
 			end),
 		},
+        widget_template = {
+            {
+                {
+                    id = "text_role",
+                    widget = wibox.widget.textbox,
+                },
+                id = "background_role",
+                widget = wibox.container.background,
+            },
+            left = 5,
+            right = 5,
+            widget = wibox.container.margin
+        },
 	})
 
 	s.mywibar1 = awful.wibar({

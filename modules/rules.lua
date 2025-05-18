@@ -257,6 +257,17 @@ awful.rules.rules = {
 			x_terminal = true,
 		},
 	},
+	{
+		rule = { instance = "ristretto" },
+		properties = {
+			maximized = false,
+			placement = function(c)
+				Utils.placement(c, "centered")
+			end,
+			tag = "3",
+			x_frame = "top_right",
+		},
+	},
 }
 
 function Rules.check_title(c, force)
