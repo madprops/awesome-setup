@@ -118,4 +118,18 @@ function utils.remove_quotes(s)
 	return string.gsub(s, "\"", "")
 end
 
+function utils.table_clone(t, deep)
+    if type(t) ~= "table" then return t end
+
+    local clone = {}
+    for key, value in pairs(t) do
+        if deep and type(value) == "table" then
+            clone[key] = utils.table_clone(value, deep)
+        else
+            clone[key] = value
+        end
+    end
+    return clone
+end
+
 return utils

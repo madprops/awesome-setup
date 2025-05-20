@@ -185,6 +185,11 @@ awful.screen.connect_for_each_screen(function(s)
 	systray:set_screen(screen[Globals.primary_screen])
 	local systray_container = wibox.layout.margin(systray, 0, 0, 3, 3)
 
+	local audiocontrol = Globals.audiocontrol.create({
+		right = " | ",
+		right_color = Globals.nicedark,
+	})
+
 	-- Utils
 	local utils_button = multibutton.create({
 		text = "Utils",
@@ -233,6 +238,7 @@ awful.screen.connect_for_each_screen(function(s)
 		layout = wibox.layout.fixed.horizontal(),
 		autotimer.widget,
 		Utils.space(),
+		audiocontrol.widget,
 		systray_container,
 		utils_button,
 		melt_button,
