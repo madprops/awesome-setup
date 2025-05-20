@@ -1,3 +1,4 @@
+local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local multibutton = require("madwidgets/multibutton/multibutton")
@@ -29,6 +30,13 @@ function audiocontrol.create(args)
     })
 
 	local prev_widget = multibutton.create(prev_args).widget
+
+    local tooltip_prev = awful.tooltip({
+        objects = { prev_widget },
+        timer_function = audiocontrol.get_song_info,
+        delay_show = 0.5
+    })
+
 	local play_args = utils.table_clone(args)
 
 	play_args.on_click = function()
@@ -47,6 +55,13 @@ function audiocontrol.create(args)
     })
 
 	local play_pause_widget = multibutton.create(play_args).widget
+
+    local tooltip_play = awful.tooltip({
+        objects = { play_pause_widget },
+        timer_function = audiocontrol.get_song_info,
+        delay_show = 0.5
+    })
+
 	local next_args = utils.table_clone(args)
 
 	next_args.on_click = function()
@@ -64,6 +79,13 @@ function audiocontrol.create(args)
     })
 
 	local next_widget = multibutton.create(next_args).widget
+
+    local tooltip_next = awful.tooltip({
+        objects = { next_widget },
+        timer_function = audiocontrol.get_song_info,
+        delay_show = 0.5
+    })
+
 	local separator_width = 5
 
 	local layout = wibox.widget {
@@ -89,6 +111,20 @@ function audiocontrol.create(args)
 end
 
 local player_cmd = "playerctl --player " .. player
+
+audiocontrol.get_song_info = function ()
+    local title = io.popen(player_cmd .. " metadata title 2>/dev/null"):read("*all"):gsub("\n$", "")
+    local artist = io.popen(player_cmd .. " metadata artist 2>/dev/null"):read("*all"):gsub("\n$", "")
+    local album = io.popen(player_cmd .. " metadata album 2>/dev/null"):read("*all"):gsub("\n$", "")
+
+    local info = ""
+    if title ~= "" then info = info .. "Title: " .. title .. "\n" end
+    if artist ~= "" then info = info .. "Artist: " .. artist .. "\n" end
+    if album ~= "" then info = info .. "Album: " .. album end
+
+    info = info or "Not playing"
+	return info
+end
 
 audiocontrol.prev = function()
 	local cmd = player_cmd .. " previous"
