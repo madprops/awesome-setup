@@ -6,7 +6,7 @@ local utils = require("madwidgets/utils")
 
 local audiocontrol = {}
 local instances = {}
-local player = "kew"
+local player = "audacious"
 
 function audiocontrol.create(args)
 	args = args or {}
