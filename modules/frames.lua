@@ -15,6 +15,8 @@ local height_bottom = 0.36
 local half_width = 0.5
 local one_third = 0.4
 local two_thirds = 0.6
+local full_width = 1
+local full_height = 1
 
 Frames.frames.top_left = {
 	screen = 1,
@@ -44,8 +46,32 @@ Frames.frames.bottom_right = {
 	screen = 1,
 	width = half_width,
 	height = height_bottom,
-	x_index = 40,
+	x_index = 39,
 	placement = "bottom_right",
+}
+
+Frames.frames.left = {
+	screen = 1,
+	width = full,
+	height = height_bottom,
+	x_index = 39,
+	placement = "bottom_right",
+}
+
+Frames.frames.left = {
+	screen = 1,
+	width = half_width,
+	height = full_height,
+	x_index = 39,
+	placement = "left",
+}
+
+Frames.frames.right = {
+	screen = 1,
+	width = half_width,
+	height = full_height,
+	x_index = 39,
+	placement = "right",
 }
 
 function Frames.apply_rules(c, i)

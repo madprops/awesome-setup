@@ -1,5 +1,5 @@
 local awful = require("awful")
-local screen_left = 1
+local screen_left = 2
 local screen_right = 1
 
 Rules = {}
@@ -73,14 +73,16 @@ awful.rules.rules = {
 	{
 		rule = { instance = "hexchat" },
 		properties = {
-			x_frame = "bottom_right",
+			x_frame = "right",
 		},
 	},
 	{
 		rule = { instance = "audacious" },
 		properties = {
-			x_frame = "bottom_right",
+			x_frame = "bottom_left",
 			x_alt_q = true,
+			screen = screen_right,
+			tag = "2",
 		},
 	},
 	{
@@ -203,60 +205,7 @@ awful.rules.rules = {
 			x_dropdown_utils = true,
 		},
 	},
-	{
-		rule = { instance = "speedcrunch" },
-		properties = {
-			maximized = false,
-			placement = function(c)
-				Utils.placement(c, "top_right")
-			end,
-			width = Utils.width_factor(0.25),
-			height = Utils.height_factor(0.5),
-			skip_taskbar = true,
-			x_dropdown_utils = true,
-		},
-	},
-	{
-		rule = { instance = "terminator" },
-		properties = {
-			maximized = false,
-			placement = function(c)
-				Utils.placement(c, "bottom")
-			end,
-			width = Utils.width_factor(1),
-			height = Utils.height_factor(0.5),
-			skip_taskbar = true,
-			x_dropdown_utils = true,
-			x_terminal = true,
-		},
-	},
-	{
-		rule = { instance = "tilix" },
-		properties = {
-			maximized = false,
-			placement = function(c)
-				Utils.placement(c, "bottom")
-			end,
-			width = Utils.width_factor(1),
-			height = Utils.height_factor(0.5),
-			skip_taskbar = true,
-			x_dropdown_utils = true,
-			x_terminal = true,
-		},
-	},
 	-- Other Rules
-	{
-		rule = { instance = "Alacritty" },
-		properties = {
-			maximized = false,
-			placement = function(c)
-				Utils.placement(c, "centered")
-			end,
-			width = Utils.width_factor(0.7),
-			height = Utils.height_factor(0.7),
-			x_terminal = true,
-		},
-	},
 	{
 		rule = { instance = "ristretto" },
 		properties = {
@@ -280,7 +229,7 @@ function Rules.check_title(c, force)
 	if Utils.startswith(c.name, "[ff_tile1]") then
 		if not c.x_rules_applied or force then
 			c.x_rules_applied = true
-			c.x_frame = "top_right"
+			c.x_frame = "top_left"
 		end
 	elseif Utils.startswith(c.name, "[ff_tile2]") then
 		if not c.x_rules_applied or force then

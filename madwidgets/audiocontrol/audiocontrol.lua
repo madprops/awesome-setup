@@ -6,7 +6,7 @@ local utils = require("madwidgets/utils")
 
 local audiocontrol = {}
 local instances = {}
-local player = "audacious"
+local player = "kew"
 
 function audiocontrol.create(args)
 	args = args or {}
@@ -112,7 +112,7 @@ end
 
 local player_cmd = "playerctl --player " .. player
 
-audiocontrol.get_song_info = function ()
+audiocontrol.get_song_info = function()
     local title = io.popen(player_cmd .. " metadata title 2>/dev/null"):read("*all"):gsub("\n$", "")
     local artist = io.popen(player_cmd .. " metadata artist 2>/dev/null"):read("*all"):gsub("\n$", "")
     local album = io.popen(player_cmd .. " metadata album 2>/dev/null"):read("*all"):gsub("\n$", "")

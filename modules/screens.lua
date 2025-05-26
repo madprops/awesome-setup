@@ -91,7 +91,7 @@ for i = 1, num_tags do
 end
 
 local screen_num = 0
-local max_screens = 1
+local max_screens = 2
 
 awful.screen.connect_for_each_screen(function(s)
 	screen_num = screen_num + 1
@@ -121,19 +121,19 @@ awful.screen.connect_for_each_screen(function(s)
 				Utils.switch_tag("next")
 			end),
 		},
-        widget_template = {
-            {
-                {
-                    id = "text_role",
-                    widget = wibox.widget.textbox,
-                },
-                id = "background_role",
-                widget = wibox.container.background,
-            },
-            left = 5,
-            right = 5,
-            widget = wibox.container.margin
-        },
+		widget_template = {
+			{
+				{
+					id = "text_role",
+					widget = wibox.widget.textbox,
+				},
+				left = 5,
+				right = 5,
+				widget = wibox.container.margin
+			},
+			id = "background_role",
+			widget = wibox.container.background,
+		}
 	})
 
 	s.mywibar1 = awful.wibar({
