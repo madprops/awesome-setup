@@ -86,6 +86,21 @@ awful.rules.rules = {
 			focusable = true,
 			tag = "3",
 		},
+		callback = function(c)
+			-- Prevent any urgency signals
+			c:connect_signal("property::urgent", function()
+				c.urgent = false
+			end)
+
+			-- Prevent focus stealing
+			c:connect_signal("request::activate", function(c, context, hints)
+				if context == "autofocus.check_focus" or
+				context == "client.focus.byidx" or
+				context == "client.jumpto" then
+					return
+				end
+			end)
+		end,
 	},
 	{
 		rule = { instance = "com.github.taiko2k.tauonmb" },
