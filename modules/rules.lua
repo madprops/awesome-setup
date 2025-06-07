@@ -77,10 +77,13 @@ awful.rules.rules = {
 		},
 	},
 	{
-		rule = { instance = "audacious" },
+		rule = { instance = "timba" },
 		properties = {
 			x_alt_q = true,
 			x_frame = "bottom_left",
+			screen = screen_right,
+			urgent = false,
+			focusable = true,
 			tag = "3",
 		},
 	},
