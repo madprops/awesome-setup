@@ -992,6 +992,10 @@ function Utils.toggle_tasklist()
     end
 end
 
+function Utils.diaysi()
+	Utils.spawn("xterm -fa 'Monospace' -fs 44 -geometry 2x1 -e 'diaysi; exit'")
+end
+
 Utils.debounce_keys = Utils.debounce(function()
 	Utils.release_keys()
 end, 0.15)

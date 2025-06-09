@@ -171,6 +171,9 @@ awful.screen.connect_for_each_screen(function(s)
 		multibutton.create({
 			text = "",
 			right_color = Globals.nicedark,
+			on_middle_click = function()
+				Utils.diaysi()
+			end,
 			on_wheel_up = function()
 				Utils.switch_tag("prev")
 			end,
