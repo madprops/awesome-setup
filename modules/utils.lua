@@ -993,7 +993,7 @@ function Utils.toggle_tasklist()
 end
 
 function Utils.diaysi()
-	Utils.spawn("xterm -fa 'Monospace' -fs 44 -geometry 2x1 -e 'diaysi; exit'")
+	Utils.spawn("urxvt -fn 'xft:Monospace:pixelsize=44' -geometry 2x1 -e 'diaysi'")
 end
 
 Utils.debounce_keys = Utils.debounce(function()
