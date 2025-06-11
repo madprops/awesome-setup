@@ -383,7 +383,11 @@ function Utils.clients()
 end
 
 function Utils.open_terminal(cmd)
-	Utils.spawn("konsole -e " .. cmd)
+	if cmd then
+		Utils.spawn("konsole -e " .. cmd)
+	else
+		Utils.spawn("konsole")
+	end
 end
 
 function Utils.system_monitor()

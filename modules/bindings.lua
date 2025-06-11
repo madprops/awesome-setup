@@ -56,7 +56,7 @@ Bindings.globalkeys = gears.table.join(
 	end),
 
 	awful.key({ modkey }, "Return", function()
-		Utils.prev_client()
+		Utils.open_terminal()
 	end),
 
 	awful.key({ modkey }, "space", function()
