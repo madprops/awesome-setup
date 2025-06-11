@@ -199,6 +199,12 @@ awful.rules.rules = {
 			x_frame = "top_right",
 		},
 	},
+	{
+		rule = { instance = "audacious" },
+		properties = {
+			x_alt_q = true,
+		},
+	},
 	-- Util Screen
 	{
 		rule = { instance = "dolphin" },
