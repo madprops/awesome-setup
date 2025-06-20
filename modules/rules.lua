@@ -119,6 +119,8 @@ awful.rules.rules = {
 		properties = {
 			border_width = 3,
 			border_color = "#72dcff",
+			width = Utils.width_factor(0.55),
+			height = Utils.height_factor(0.5),
 		},
 	},
 	{
