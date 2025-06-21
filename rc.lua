@@ -22,9 +22,7 @@ local timer = gears.timer({
 	autostart = true,
 	single_shot = true,
 	callback = function()
-		Utils.msg("Setup")
 		Frames.start()
 		Dropdowns.hide_all()
-		Utils.msg("Done")
 	end,
 })
