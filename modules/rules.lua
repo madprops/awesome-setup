@@ -217,7 +217,7 @@ awful.rules.rules = {
 			end,
 			width = Utils.width_factor(1),
 			height = Utils.height_factor(1),
-			skip_taskbar = true,
+			-- skip_taskbar = true,
 			x_dropdown_utils = true,
 		},
 	},
