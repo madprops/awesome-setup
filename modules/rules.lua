@@ -73,7 +73,11 @@ awful.rules.rules = {
 	{
 		rule = { instance = "hexchat" },
 		properties = {
-			x_frame = "right",
+			tag = "2",
+			screen = screen_right,
+			placement = awful.placement.right,
+			width = Utils.width_factor(0.42),
+			height = Utils.height_factor(1),
 		},
 	},
 	{
@@ -257,8 +261,12 @@ function Rules.check_title(c, force)
 
 	if Utils.startswith(c.name, "[ff_tile1]") then
 		if not c.x_rules_applied or force then
+			c.tag = "2"
+			c.screen = screen_right
 			c.x_rules_applied = true
-			c.x_frame = "left"
+			c.width = Utils.width_factor(0.58)
+			c.height = Utils.height_factor(1)
+			Utils.placement(c, "left")
 		end
 	elseif Utils.startswith(c.name, "[ff_tile2]") then
 		if not c.x_rules_applied or force then
