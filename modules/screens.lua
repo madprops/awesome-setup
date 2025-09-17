@@ -109,7 +109,26 @@ awful.screen.connect_for_each_screen(function(s)
 		filter = awful.widget.taglist.filter.all,
 		buttons = {
 			awful.button({}, 1, function(t)
-				t:view_only()
+				-- Require double-click to change tag
+				if taglist_double_click_timer and taglist_double_click_last == t then
+					-- second click within interval on same tag -> switch
+					taglist_double_click_timer:stop()
+					taglist_double_click_timer = nil
+					t:view_only()
+				else
+					-- start (or restart) timer waiting for a second click
+					if taglist_double_click_timer then
+						taglist_double_click_timer:stop()
+					end
+
+					taglist_double_click_last = t
+
+					taglist_double_click_timer = gears.timer.start_new(0.20, function()
+						-- timer expired; treat as no action (single click ignored)
+						taglist_double_click_timer = nil
+						return false
+					end)
+				end
 			end),
 			awful.button({}, 3, function(t)
 				Utils.move_to_tag(t)
