@@ -13,5 +13,5 @@ Globals.melt = "🫠"
 Globals.primary_screen = 2
 Globals.volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 Globals.audiocontrol = require("madwidgets/audiocontrol/audiocontrol")
-Globals.volumecontrol.max_volume = 100
+Globals.volumecontrol.max_volume = 99
 Globals.conf_dir = gears.filesystem.get_configuration_dir()
