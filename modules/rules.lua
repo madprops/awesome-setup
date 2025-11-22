@@ -73,10 +73,10 @@ awful.rules.rules = {
 	{
 		rule = { instance = "hexchat" },
 		properties = {
-			tag = "2",
+			tag = "1",
 			screen = screen_right,
 			placement = awful.placement.right,
-			width = Utils.width_factor(0.42),
+			width = Utils.width_factor(0.66),
 			height = Utils.height_factor(1),
 		},
 	},
@@ -202,7 +202,12 @@ awful.rules.rules = {
 	{
 		rule = { class = "haruna" },
 		properties = {
-			x_frame = "top_right",
+			screen = screen_left,
+			height = Utils.height_factor(0.8),
+			width = Utils.width_factor(0.8),
+			placement = function(c)
+				Utils.placement(c, "centered")
+			end,
 		},
 	},
 	{
@@ -264,7 +269,7 @@ function Rules.check_title(c, force)
 			c.tag = "2"
 			c.screen = screen_right
 			c.x_rules_applied = true
-			c.width = Utils.width_factor(0.58)
+			c.width = Utils.width_factor(0.8)
 			c.height = Utils.height_factor(1)
 			Utils.placement(c, "left")
 		end

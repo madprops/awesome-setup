@@ -38,4 +38,4 @@ beautiful.taglist_fg_focus = white
 beautiful.taglist_bg_focus = bg1
 
 -- Wallpaper
-beautiful.wallpaper = Globals.conf_dir .. "wallpaper.jpg"
+beautiful.wallpaper = Globals.conf_dir .. "wallpaper_2.jpg"
