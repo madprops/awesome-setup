@@ -27,12 +27,20 @@ local function sysmonitor_widget(mode)
 			Utils.switch_tag("next")
 		end
 	else
-		args.on_wheel_down = function()
-			Utils.decrease_volume()
+		args.on_wheel_down = function(instance, mods)
+			if Utils.shift_pressed(mods) then
+				Utils.decrease_volume_double()
+			else
+				Utils.decrease_volume()
+			end
 		end
 
-		args.on_wheel_up = function()
-			Utils.increase_volume()
+		args.on_wheel_up = function(instance, mods)
+			if Utils.shift_pressed(mods) then
+				Utils.increase_volume_double()
+			else
+				Utils.increase_volume()
+			end
 		end
 	end
 

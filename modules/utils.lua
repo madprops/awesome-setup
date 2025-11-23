@@ -267,6 +267,14 @@ function Utils.decrease_volume(osd)
 	Globals.volumecontrol.decrease(osd)
 end
 
+function Utils.increase_volume_double(osd)
+	Globals.volumecontrol.increase(osd, 2)
+end
+
+function Utils.decrease_volume_double(osd)
+	Globals.volumecontrol.decrease(osd, 2)
+end
+
 function Utils.set_volume(v)
 	Globals.volumecontrol.set_round(v)
 end
@@ -998,6 +1006,16 @@ end
 
 function Utils.diaysi()
 	Utils.spawn("urxvt -fn 'xft:Monospace:pixelsize=44' -geometry 2x1 -e 'diaysi'")
+end
+
+function Utils.shift_pressed(mods)
+	for _, mod in ipairs(mods) do
+		if mod == "Shift" then
+			return true
+		end
+	end
+
+	return false
 end
 
 Utils.debounce_keys = Utils.debounce(function()
