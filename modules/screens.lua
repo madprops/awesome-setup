@@ -50,23 +50,27 @@ local function sysmonitor_widget(mode)
 		args.left = ""
 		args.right = " | "
 		args.right_color = Globals.nicedark
+
 		args.on_click = function()
 			Utils.system_monitor()
 		end
 	elseif mode == "ram" then
 		args.right = " | "
 		args.right_color = Globals.nicedark
+
 		args.on_click = function()
 			Utils.system_monitor()
 		end
 	elseif mode == "tmp" then
 		args.right = " |"
 		args.right_color = Globals.nicedark
+
 		args.on_click = function()
 			Utils.system_monitor_temp()
 		end
 	elseif mode == "gpu" then
 		args.right = " | "
+
 		args.on_click = function()
 			Utils.system_monitor()
 		end
@@ -79,6 +83,7 @@ local function sysmonitor_widget(mode)
 		args.left_color = Globals.niceblue
 		args.right = " | "
 		args.right_color = Globals.nicedark
+
 		args.on_click = function()
 			Utils.network_monitor()
 		end
