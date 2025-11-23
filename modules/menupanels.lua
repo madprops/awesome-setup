@@ -350,6 +350,12 @@ Menupanels.context = menupanel.create({
 			end,
 		},
 		{
+			name = "Sticky",
+			action = function()
+				Utils.sticky(Utils.get_context_client())
+			end,
+		},
+		{
 			name = "Center",
 			action = function()
 				Utils.center(Utils.get_context_client())

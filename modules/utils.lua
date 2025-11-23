@@ -83,6 +83,10 @@ function Utils.on_top(c)
 	c.ontop = not c.ontop
 end
 
+function Utils.sticky(c)
+	c.sticky = not c.sticky
+end
+
 function Utils.check_fullscreen(c)
 	Utils.my_screen().mywibar1.ontop = not c.fullscreen
 	Utils.my_screen().mywibar2.ontop = not c.fullscreen
