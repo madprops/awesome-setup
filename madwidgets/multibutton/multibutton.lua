@@ -119,29 +119,25 @@ function multibutton.create(args)
 
 	if args.side_actions then
 		instance.left_text:connect_signal("button::press", function(a, b, c, button, mods)
-			instance.action(button, mods)
+			if button ~= 1 or button == 4 or button == 5 then
+				instance.action(button, mods)
+			else
+				args.on_left_text_click(instance)
+			end
 		end)
 
 		instance.right_text:connect_signal("button::press", function(a, b, c, button, mods)
-			instance.action(button, mods)
+			if button ~= 1 or button == 4 or button == 5 then
+				instance.action(button, mods)
+			else
+				args.on_right_text_click(instance)
+			end
 		end)
 	end
 
 	instance.subwidget:connect_signal("button::release", function(a, b, c, button, mods)
 		if button == 1 then
 			args.on_click_2(instance)
-		end
-	end)
-
-	instance.left_text:connect_signal("button::press", function(a, b, c, button, mods)
-		if button == 1 then
-			args.on_left_text_click(instance)
-		end
-	end)
-
-	instance.right_text:connect_signal("button::press", function(a, b, c, button, mods)
-		if button == 1 then
-			args.on_right_text_click(instance)
 		end
 	end)
 

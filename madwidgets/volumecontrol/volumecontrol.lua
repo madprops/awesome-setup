@@ -69,9 +69,11 @@ function volumecontrol.osd(vol)
 	utils.msg("Volume:" .. vol .. "%")
 end
 
-function volumecontrol.increase(osd)
+function volumecontrol.increase(osd, multiplier)
+	multiplier = multiplier or 1
+
 	volumecontrol.get_volume(function(vol)
-		vol = vol + volumecontrol.steps
+		vol = vol + (volumecontrol.steps * multiplier)
 
 		if vol > volumecontrol.max_volume then
 			vol = volumecontrol.max_volume
@@ -85,9 +87,11 @@ function volumecontrol.increase(osd)
 	end)
 end
 
-function volumecontrol.decrease(osd)
+function volumecontrol.decrease(osd, multiplier)
+	multiplier = multiplier or 1
+
 	volumecontrol.get_volume(function(vol)
-		vol = vol - volumecontrol.steps
+		vol = vol - (volumecontrol.steps * multiplier)
 
 		if vol < 0 then
 			vol = 0
@@ -153,12 +157,14 @@ function volumecontrol.create(args)
 		volumecontrol.set_max_volume()
 	end
 
-	args.on_wheel_down = function()
-		volumecontrol.decrease()
+	args.on_wheel_down = function(instance, mods)
+		local multiplier = utils.shift_pressed(mods) and 2 or 1
+		volumecontrol.decrease(false, multiplier)
 	end
 
-	args.on_wheel_up = function()
-		volumecontrol.increase()
+	args.on_wheel_up = function(instance, mods)
+		local multiplier = utils.shift_pressed(mods) and 2 or 1
+		volumecontrol.increase(false, multiplier)
 	end
 
 	instance.widget = multibutton.create(args).widget
