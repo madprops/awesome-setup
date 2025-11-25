@@ -3,6 +3,7 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local multibutton = require("madwidgets/multibutton/multibutton")
 local utils = require("madwidgets/utils")
+local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 
 local audiocontrol = {}
 local instances = {}
@@ -13,6 +14,15 @@ function audiocontrol.create(args)
 	local instance = {}
 	instance.args = args
 	args.fontcolor = args.fontcolor or beautiful.fg_normal
+
+    args.on_wheel_up = function()
+        volumecontrol.player_volume_up()
+    end
+
+    args.on_wheel_down = function()
+        volumecontrol.player_volume_down()
+    end
+
     local prev_args = utils.table_clone(args)
 
 	prev_args.on_click = function()
