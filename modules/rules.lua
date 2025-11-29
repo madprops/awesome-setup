@@ -125,6 +125,21 @@ awful.rules.rules = {
 			border_color = "#72dcff",
 			width = Utils.width_factor(0.55),
 			height = Utils.height_factor(0.5),
+			placement = function(c)
+				Utils.placement(c, "centered")
+			end,
+		},
+	},
+	{
+		rule = { instance = "ghostty" },
+		properties = {
+			border_width = 3,
+			border_color = "#72dcff",
+			width = Utils.width_factor(0.55),
+			height = Utils.height_factor(0.55),
+			placement = function(c)
+				Utils.placement(c, "centered")
+			end,
 		},
 	},
 	{

@@ -396,9 +396,9 @@ end
 
 function Utils.open_terminal(cmd)
 	if cmd then
-		Utils.spawn("konsole -e " .. cmd)
+		Utils.spawn("ghostty -e " .. cmd)
 	else
-		Utils.spawn("konsole")
+		Utils.spawn("ghostty")
 	end
 end
 
