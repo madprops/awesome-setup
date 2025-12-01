@@ -7,7 +7,7 @@ local volumecontrol = require("madwidgets/volumecontrol/volumecontrol")
 
 local audiocontrol = {}
 local instances = {}
-local player = "audacious"
+local player = "tauon"
 
 function audiocontrol.create(args)
 	args = args or {}
