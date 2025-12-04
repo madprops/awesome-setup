@@ -152,11 +152,11 @@ audiocontrol.next = function()
 end
 
 audiocontrol.volume_up = function()
-	awful.spawn.with_shell("playerctl --player " .. player .. " volume 0.05+", false)
+	awful.spawn.with_shell(player_cmd .. " volume 0.05+", false)
 end
 
 audiocontrol.volume_down = function()
-	awful.spawn.with_shell("playerctl --player " .. player .. " volume 0.05-", false)
+	awful.spawn.with_shell(player_cmd .. " volume 0.05-", false)
 end
 
 return audiocontrol
