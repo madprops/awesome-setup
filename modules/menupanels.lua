@@ -374,6 +374,12 @@ Menupanels.context = menupanel.create({
 			end,
 		},
 		{
+			name = "Border",
+			action = function()
+				Utils.toggle_border(Utils.get_context_client())
+			end,
+		},
+		{
 			name = "Reset",
 			action = function()
 				Rules.reset(Utils.get_context_client())

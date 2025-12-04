@@ -1022,6 +1022,14 @@ function Utils.shift_pressed(mods)
 	return false
 end
 
+function Utils.toggle_border(c)
+	if c.border_width == 0 then
+		c.border_width = Globals.terminal_border_width
+	else
+		c.border_width = 0
+	end
+end
+
 Utils.debounce_keys = Utils.debounce(function()
 	Utils.release_keys()
 end, 0.15)

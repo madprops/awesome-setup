@@ -121,7 +121,7 @@ awful.rules.rules = {
 	{
 		rule = { instance = "konsole" },
 		properties = {
-			border_width = 3,
+			border_width = Globals.terminal_border_width,
 			border_color = "#72dcff",
 			width = Utils.width_factor(0.55),
 			height = Utils.height_factor(0.5),
@@ -133,7 +133,7 @@ awful.rules.rules = {
 	{
 		rule = { instance = "ghostty" },
 		properties = {
-			border_width = 3,
+			border_width = Globals.terminal_border_width,
 			border_color = "#72dcff",
 			width = Utils.width_factor(0.55),
 			height = Utils.height_factor(0.55),
