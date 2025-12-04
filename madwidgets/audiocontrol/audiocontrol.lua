@@ -16,11 +16,11 @@ function audiocontrol.create(args)
 	args.fontcolor = args.fontcolor or beautiful.fg_normal
 
     args.on_wheel_up = function()
-        volumecontrol.player_volume_up()
+        audiocontrol.volume_up()
     end
 
     args.on_wheel_down = function()
-        volumecontrol.player_volume_down()
+        audiocontrol.volume_down()
     end
 
     local prev_args = utils.table_clone(args)
@@ -149,6 +149,14 @@ end
 audiocontrol.next = function()
 	local cmd = player_cmd .. " next"
 	os.execute(cmd)
+end
+
+audiocontrol.volume_up = function()
+	awful.spawn.with_shell("playerctl --player " .. player .. " volume 0.05+", false)
+end
+
+audiocontrol.volume_down = function()
+	awful.spawn.with_shell("playerctl --player " .. player .. " volume 0.05-", false)
 end
 
 return audiocontrol

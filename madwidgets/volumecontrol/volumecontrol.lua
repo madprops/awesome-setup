@@ -131,14 +131,6 @@ function volumecontrol.volstring(s)
 	return "Vol:" .. s .. "%"
 end
 
-function volumecontrol.player_volume_up()
-	awful.spawn.with_shell("playerctl volume 0.05+", false)
-end
-
-function volumecontrol.player_volume_down()
-	awful.spawn.with_shell("playerctl volume 0.05-", false)
-end
-
 function volumecontrol.create(args)
 	args = args or {}
 
