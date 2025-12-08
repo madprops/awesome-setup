@@ -3,7 +3,7 @@ local gears = require("gears")
 local beautiful = require("beautiful")
 
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-
+beautiful.wallpaper = Globals.conf_dir .. "wallpaper.jpg"
 beautiful.font = "monospace 13"
 beautiful.wibar_height = 30
 beautiful.tasklist_shape_border_width = 1
@@ -36,6 +36,3 @@ beautiful.tasklist_bg_minimize = bg0
 beautiful.tasklist_plain_task_name = true
 beautiful.taglist_fg_focus = white
 beautiful.taglist_bg_focus = bg1
-
--- Wallpaper
-beautiful.wallpaper = Globals.conf_dir .. "wallpaper_2.jpg"
