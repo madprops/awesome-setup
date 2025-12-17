@@ -3,7 +3,7 @@ local gears = require("gears")
 local beautiful = require("beautiful")
 
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-beautiful.wallpaper = Globals.conf_dir .. "wallpaper.jpg"
+beautiful.wallpaper = "/home/yo/Downloads/pics/pics1/minoan_crete/Gemini_Generated_Image_kqbx3ekqbx3ekqbx.png"
 beautiful.font = "monospace 13"
 beautiful.wibar_height = 30
 beautiful.tasklist_shape_border_width = 1
