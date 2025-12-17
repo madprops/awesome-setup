@@ -3,7 +3,6 @@ local gears = require("gears")
 local beautiful = require("beautiful")
 
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-beautiful.wallpaper = "/home/yo/Downloads/pics/pics1/minoan_crete/Gemini_Generated_Image_kqbx3ekqbx3ekqbx.png"
 beautiful.font = "monospace 13"
 beautiful.wibar_height = 30
 beautiful.tasklist_shape_border_width = 1
@@ -36,3 +35,25 @@ beautiful.tasklist_bg_minimize = bg0
 beautiful.tasklist_plain_task_name = true
 beautiful.taglist_fg_focus = white
 beautiful.taglist_bg_focus = bg1
+
+-- This allows you to use ~/.config/wallpaper.txt to set the path of an image
+local wallpaper_txt_path = os.getenv("HOME") .. "/.config/awesome/wallpaper.txt"
+-- The fallback is this hardcoded string
+local wallpaper = Globals.conf_dir .. "wallpaper.jpg"
+local f = io.open(wallpaper_txt_path, "r")
+
+if f then
+    local content = f:read("*all")
+    f:close()
+
+    if content then
+        -- Trim whitespace and newlines from the file content
+        local clean_path = content:match("^%s*(.-)%s*$")
+
+        if clean_path ~= "" then
+            wallpaper = clean_path
+        end
+    end
+end
+
+beautiful.wallpaper = wallpaper
