@@ -12,6 +12,3 @@ Utils.spawn("setxkbmap -option caps:none")
 
 -- Clipboard Manager
 Utils.spawn("systemctl --user start clipton")
-
--- Wallpaper
-Utils.spawn("feh --bg-fill " .. beautiful.wallpaper)
