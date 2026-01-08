@@ -195,7 +195,7 @@ Other information can be added manually with the `add_to_log` function.
 
 If your mouse has topside buttons, you can use them for virtual desktop changing.
 
-# Wallpaper``
+# Wallpaper
 
 The files `wallpaper.txt` and `wallpaper_mode.txt` can be created in `~/.config/awesome`
 
