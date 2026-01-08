@@ -57,86 +57,6 @@ Client signals
 ## globals.lua
 Holds some global variables
 
-# Other programs used
-
->dash
-
->numlockx
-
->xset
-
->setxkbmap
-
->systemctl
-
->pavucontrol
-
->spectacle
-
->playerctl
-
->rofi
-
->i3lock
-
->firefox-developer-edition
-
->some scripts
-
->geany
-
->osmo
-
->alacritty
-
->clipton
-
->tilix
-
->killall
-
->echo
-
->cat
-
->sponge
-
->onboard
-
->btop
-
->nethogs
-
->ip
-
->sed
-
->speedcrunch
-
-## Used by widgets
-
->awk
-
->sensors
-
->free
-
->cat
-
->mpstat
-
->sleep
-
->sed
-
->grep
-
->pamixer
-
->pkill
-
->espeak
-
 # Some shortcuts
 
 Win + Backspace
@@ -274,3 +194,9 @@ Other information can be added manually with the `add_to_log` function.
 # Notes
 
 If your mouse has topside buttons, you can use them for virtual desktop changing.
+
+# Wallpaper``
+
+The files `wallpaper.txt` and `wallpaper_mode.txt` can be created in `~/.config/awesome`
+
+This allows overriding the wallaper image path, and the mode (fill, max, scale, tile, center)
