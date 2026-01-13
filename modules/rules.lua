@@ -135,8 +135,8 @@ awful.rules.rules = {
 		properties = {
 			border_width = Globals.terminal_border_width,
 			border_color = "#72dcff",
-			width = Utils.width_factor(0.55),
-			height = Utils.height_factor(0.55),
+			width = Utils.width_factor(0.66),
+			height = Utils.height_factor(0.66),
 			placement = function(c)
 				Utils.placement(c, "centered")
 			end,
