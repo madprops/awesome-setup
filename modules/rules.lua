@@ -235,12 +235,10 @@ awful.rules.rules = {
 	{
 		rule = { instance = "dolphin" },
 		properties = {
-			maximized = false,
+			maximized = true,
 			placement = function(c)
 				Utils.placement(c, "top")
 			end,
-			width = Utils.width_factor(1),
-			height = Utils.height_factor(0.6),
 			-- skip_taskbar = true,
 			x_dropdown_utils = true,
 		},
@@ -255,6 +253,14 @@ awful.rules.rules = {
 			end,
 			tag = "3",
 			x_frame = "top_right",
+		},
+	},
+	{
+		rule = { instance = "projectMSDL" },
+		properties = {
+			maximized = false,
+			width = Utils.width_factor(0.5),
+			height = Utils.height_factor(0.5),
 		},
 	},
 }
