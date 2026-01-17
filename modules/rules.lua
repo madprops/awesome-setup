@@ -1,6 +1,7 @@
 local awful = require("awful")
-local screen_left = 2
-local screen_right = 1
+local screen_left = 1
+local screen_center = 2
+local screen_right = 3
 
 Rules = {}
 
@@ -74,7 +75,7 @@ awful.rules.rules = {
 		rule = { instance = "hexchat" },
 		properties = {
 			tag = "1",
-			screen = screen_right,
+			screen = screen_center,
 			placement = awful.placement.right,
 			width = Utils.width_factor(0.66),
 			height = Utils.height_factor(1),
@@ -85,7 +86,7 @@ awful.rules.rules = {
 		properties = {
 			x_alt_q = true,
 			x_frame = "bottom_left",
-			screen = screen_right,
+			screen = screen_center,
 			urgent = false,
 			focusable = true,
 			tag = "3",
@@ -153,7 +154,7 @@ awful.rules.rules = {
 		rule = { instance = "Devtools" },
 		properties = {
 			maximized = true,
-			screen = screen_right,
+			screen = screen_center,
 			x_index = 1,
 		},
 	},
@@ -176,7 +177,7 @@ awful.rules.rules = {
 		properties = {
 			x_frame = "top_left",
 			tag = "3",
-			screen = screen_right,
+			screen = screen_center,
 		},
 	},
 	{
@@ -258,6 +259,7 @@ awful.rules.rules = {
 	{
 		rule = { instance = "projectMSDL" },
 		properties = {
+			screen = screen_right,
 			maximized = false,
 			width = Utils.width_factor(0.5),
 			height = Utils.height_factor(0.5),
@@ -275,7 +277,7 @@ function Rules.check_title(c, force)
 	if Utils.startswith(c.name, "[ff_tile1]") then
 		if not c.x_rules_applied or force then
 			c.tag = "2"
-			c.screen = screen_right
+			c.screen = screen_center
 			c.x_rules_applied = true
 			c.width = Utils.width_factor(0.8)
 			c.height = Utils.height_factor(1)

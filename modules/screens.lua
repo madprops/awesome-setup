@@ -104,7 +104,7 @@ for i = 1, num_tags do
 end
 
 local screen_num = 0
-local max_screens = 2
+local max_screens = 3
 
 awful.screen.connect_for_each_screen(function(s)
 	screen_num = screen_num + 1
