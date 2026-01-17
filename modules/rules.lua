@@ -260,9 +260,7 @@ awful.rules.rules = {
 		rule = { instance = "projectMSDL" },
 		properties = {
 			screen = screen_right,
-			maximized = false,
-			width = Utils.width_factor(0.5),
-			height = Utils.height_factor(0.5),
+			maximized = true,
 		},
 	},
 }
