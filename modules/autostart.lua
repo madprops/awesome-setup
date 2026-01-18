@@ -12,3 +12,8 @@ Utils.spawn("setxkbmap -option caps:none")
 
 -- Clipboard Manager
 Utils.spawn("systemctl --user start clipton")
+
+
+Utils.spawn("xrandr --output DisplayPort-3 --auto --primary --pos 0x0 \
+                  --output DisplayPort-1-2 --auto --right-of DisplayPort-3 \
+                  --output HDMI-A-1-0 --auto --right-of DisplayPort-1-2")
