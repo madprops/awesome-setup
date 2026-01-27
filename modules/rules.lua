@@ -181,6 +181,13 @@ awful.rules.rules = {
 		},
 	},
 	{
+		rule = { class = "obs" },
+		properties = {
+			maximized = true,
+			screen = screen_center,
+		},
+	},
+	{
 		rule = { class = "cool-retro-term" },
 		properties = {
 			x_index = 1,
