@@ -66,18 +66,6 @@ Menupanels.applications = menupanel.create({
 	parent = Menupanels.main,
 	items = {
 		{
-			name = "Chan",
-			action = function()
-				Utils.spawn("firefox-developer-edition -P 4chanposter")
-			end,
-		},
-		{
-			name = "Cytube",
-			action = function()
-				Utils.spawn("firefox-developer-edition -P cytube")
-			end,
-		},
-		{
 			name = "Tile 1",
 			action = function()
 				Utils.spawn("firefox-developer-edition -P tile1")
