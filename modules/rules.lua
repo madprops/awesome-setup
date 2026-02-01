@@ -1,7 +1,6 @@
 local awful = require("awful")
 local screen_left = 1
 local screen_center = 2
-local screen_right = 3
 
 Rules = {}
 
@@ -266,7 +265,7 @@ awful.rules.rules = {
 	{
 		rule = { instance = "projectMSDL" },
 		properties = {
-			screen = screen_right,
+			screen = screen_center,
 			maximized = true,
 		},
 	},
