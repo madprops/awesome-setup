@@ -283,8 +283,7 @@ function Rules.check_title(c, force)
 			c.tag = "2"
 			c.screen = screen_center
 			c.x_rules_applied = true
-			c.width = Utils.width_factor(0.8)
-			c.height = Utils.height_factor(1)
+			c.maximized = true
 			Utils.placement(c, "left")
 		end
 	elseif Utils.startswith(c.name, "[ff_tile2]") then
