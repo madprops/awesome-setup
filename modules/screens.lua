@@ -286,7 +286,7 @@ awful.screen.connect_for_each_screen(function(s)
 		sysmonitor_widget("net_upload"),
 		Globals.volumecontrol.create({
 			left = " " .. Globals.star .. " ",
-			right = " " .. Globals.star .. " ",
+			right = " ",
 			left_color = Globals.niceblue,
 			right_color = Globals.niceblue,
 			mutecolor = Globals.nicedark,
