@@ -52,6 +52,12 @@ Menupanels.main = menupanel.create({
 			end,
 		},
 		{
+			name = "Keyboard",
+			action = function(trigger)
+				Menupanels.keyboard.show(trigger)
+			end,
+		},
+		{
 			name = "Leave",
 			action = function(trigger)
 				Menupanels.leave.show(trigger)
@@ -246,6 +252,26 @@ Menupanels.layouts = menupanel.create({
 			name = "Paper Vertical",
 			action = function()
 				Utils.paper_vertical_layout()
+			end,
+		},
+	},
+})
+
+Menupanels.keyboard = menupanel.create({
+	placement = "top",
+	height = height,
+	parent = Menupanels.main,
+	items = {
+		{
+			name = "US",
+			action = function()
+				Utils.keyboard_layout("us")
+			end,
+		},
+		{
+			name = "ES",
+			action = function()
+				Utils.keyboard_layout("latam")
 			end,
 		},
 	},

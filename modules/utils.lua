@@ -1030,6 +1030,10 @@ function Utils.toggle_border(c)
 	end
 end
 
+function Utils.keyboard_layout(what)
+	Utils.spawn("setxkbmap " .. what)
+end
+
 Utils.debounce_keys = Utils.debounce(function()
 	Utils.release_keys()
 end, 0.15)
