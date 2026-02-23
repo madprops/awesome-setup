@@ -46,6 +46,13 @@ awful.rules.rules = {
 		},
 	},
 	{
+		rule = { class = "floorp" },
+		properties = {
+			x_hotcorner = "1_top_left",
+			x_index = 1,
+		},
+	},
+	{
 		rule = { instance = "code" },
 		properties = {
 			screen = screen_left,
