@@ -231,11 +231,7 @@ awful.rules.rules = {
 	{
 		rule = { class = "haruna" },
 		properties = {
-			screen = screen_left,
 			maximized = true,
-			placement = function(c)
-				Utils.placement(c, "centered")
-			end,
 		},
 	},
 	{
