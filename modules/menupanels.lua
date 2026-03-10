@@ -327,14 +327,21 @@ Menupanels.bluetooth = menupanel.create({
 		{
 			name = "Connect",
 			action = function()
-				Utils.bluetooth(true)
+				Utils.bluetooth("connect")
 			end,
 			needs_confirm = true,
 		},
 		{
 			name = "Disconnect",
 			action = function()
-				Utils.bluetooth(false)
+				Utils.bluetooth("disconnect")
+			end,
+			needs_confirm = true,
+		},
+		{
+			name = "Reconnect",
+			action = function()
+				Utils.bluetooth("reconnect")
 			end,
 			needs_confirm = true,
 		},

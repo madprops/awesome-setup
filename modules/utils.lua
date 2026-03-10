@@ -10,6 +10,7 @@ local autotimer = require("madwidgets/autotimer/autotimer")
 local debounce_timers = {}
 local keys_used = {}
 local context_client
+local bluetooth_mac = "1C:6E:4C:8B:90:53"
 
 local media_lock = lockdelay.create({
 	action = function(cmd)
@@ -679,17 +680,19 @@ function Utils.smart_button(c)
 	end
 end
 
-function Utils.bluetooth(on)
+function Utils.bluetooth(action)
 	local cmd
-	local mac = "1C:6E:4C:8B:90:53"
+	local mac = bluetooth_mac
 
-	if on then
+	if action == "connect" then
 		cmd = "bluetoothctl connect " .. mac
-	else
+	elseif action == "disconnect" then
 		cmd = "bluetoothctl disconnect " .. mac
+	elseif action == "reconnect" then
+		cmd = "bluetoothctl disconnect " .. mac .. " ; sleep 2 ; bluetoothctl connect " .. mac
 	end
 
-	Utils.spawn(cmd)
+	Utils.shellspawn(cmd)
 end
 
 function Utils.corner_click()
