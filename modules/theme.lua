@@ -118,3 +118,17 @@ gears.timer {
   autostart = true,
   callback  = update_wallpaper
 }
+
+-- Force an update when new screens connect
+screen.connect_signal("added", function()
+    last_wallpaper_path = nil
+    last_wallpaper_mode = nil
+    update_wallpaper()
+end)
+
+-- Force an update when screens change resolution or orientation
+screen.connect_signal("property::geometry", function()
+    last_wallpaper_path = nil
+    last_wallpaper_mode = nil
+    update_wallpaper()
+end)
