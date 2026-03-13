@@ -170,14 +170,14 @@ awful.rules.rules = {
 			x_frame = "top_left",
 		},
 	},
-	{
-		rule = { class = "cromulant" },
-		properties = {
-			x_frame = "right",
-			tag = "3",
-			screen = right,
-		},
-	},
+	-- {
+	-- 	rule = { class = "cromulant" },
+	-- 	properties = {
+	-- 		x_frame = "right",
+	-- 		tag = "3",
+	-- 		screen = right,
+	-- 	},
+	-- },
 	{
 		rule = { class = "Milton" },
 		properties = {
