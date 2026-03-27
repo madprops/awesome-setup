@@ -194,6 +194,13 @@ awful.rules.rules = {
 		},
 	},
 	{
+		rule = { class = "Vncviewer" },
+		properties = {
+			width = 800,
+			height = 600,
+		},
+	},
+	{
 		rule = { class = "cool-retro-term" },
 		properties = {
 			x_index = 1,
