@@ -298,10 +298,9 @@ function Rules.check_title(c, force)
 	elseif Utils.startswith(c.name, "[ff_tile2]") then
 		if not c.x_rules_applied or force then
 			c.x_rules_applied = true
-			c.x_dropdown_utils = true
-			Utils.placement(c, "bottom")
-			c.width = Utils.width_factor(1)
-			c.height = Utils.height_factor(0.4)
+			Utils.placement(c, "top_right")
+			c.width = Utils.width_factor(0.46)
+			c.height = Utils.height_factor(0.46)
 		end
 	elseif Utils.startswith(c.name, "[ff_tile3]") then
 		if not c.x_rules_applied or force then
