@@ -299,8 +299,8 @@ function Rules.check_title(c, force)
 		if not c.x_rules_applied or force then
 			c.x_rules_applied = true
 			Utils.placement(c, "top_right")
-			c.width = Utils.width_factor(0.46)
-			c.height = Utils.height_factor(0.46)
+			c.width = Utils.width_factor(0.5)
+			c.height = Utils.height_factor(0.5)
 		end
 	elseif Utils.startswith(c.name, "[ff_tile3]") then
 		if not c.x_rules_applied or force then
